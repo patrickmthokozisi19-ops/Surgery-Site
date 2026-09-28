@@ -97,16 +97,14 @@ ol {
     flex-direction: row;
     width:100%;
     height: auto;
-    background-color: #e2e2e28c;
-    border: 1px solid rgba(0, 0, 0, 0.274);
-    padding: 1rem;
+ 
 
     .nav-inner{
       display:flex;
       flex-direction: row;
       gap:5.5rem;
       justify-content: space-between;
-      align-items: center;
+      
     }
 
   }
