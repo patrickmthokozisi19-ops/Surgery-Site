@@ -156,17 +156,20 @@ ol {
       height: 60px;
       background: #fff;
       box-shadow: none;
-
+      gap:0;
+ 
       .bnavLinks{
         padding: 12px 0 12px 20px;
-      }
-      
-      .navBtn{
+
+         .navBtn{
   background-color: #1D3443;
   color:#fff;
   padding: 0.9rem 1.8rem;
   border-radius:12px;
 }
+      }
+      
+     
   }
 }
 }
