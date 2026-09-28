@@ -92,18 +92,11 @@ ol {
   .nav{
 
     display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    flex-direction: row;
-    width:100%;
-    height: auto;
+    flex-direction: column;
+  
  
 
-    .nav-inner{
-      display:flex;
-      flex-direction: row;
-      gap:5.5rem;
-      justify-content: space-between;
+   
       
     }
 
