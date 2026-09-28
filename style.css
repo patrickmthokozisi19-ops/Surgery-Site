@@ -32,6 +32,7 @@
      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
   }
 
+
 *, *::before, *::after {
 box-sizing: border-box;
 margin:0
@@ -67,9 +68,14 @@ body{
   font-size: 16px;
   line-height: 1.5;
   color: #111;
-  background: #fff;
+  background-color: #7f96ff21; 
+  letter-spacing: 0.1;
+  height: 2000px;
 }
+ 
 
+
+  
 h1,
 h2,
 h3,
@@ -97,10 +103,15 @@ ol {
 @layer Content{
 
   .nav{
-
+    position: sticky;
+    top:0;
     display: flex;
     flex-direction: column;
-
+    color:rgb(2, 2, 73);
+    font-weight:500;
+     font-family:'Segoe UI',  Geneva, Verdana, sans-serif;
+     font-size: calc(14/16*1rem);
+      
     .tNav{
       height: 50px;
       display: flex;
