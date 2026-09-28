@@ -159,7 +159,10 @@ ol {
       gap:0;
  
       .bnavLinks{
+        display:flex;
         padding: 12px 0 12px 20px;
+        gap: 2.1rem;
+        align-items: center;
 
          .navBtn{
   background-color: #1D3443;
