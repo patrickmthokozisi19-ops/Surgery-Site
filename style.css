@@ -113,7 +113,7 @@ ol {
       .t-nav-btns{
         display:flex;
         flex-direction: row;
-    }
+    }}
 
     .bNav{
       display: flex;
@@ -125,13 +125,9 @@ ol {
       height: 60px;
       background: #fff;
       box-shadow: none;
-      border: 1px rgb(4, 4, 83)7, 0.212)
+      border: 1px rgb(66, 66, 99) 
     }
   
- 
-
-   
-      
-    }
 
   }
+}
