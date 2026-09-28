@@ -113,9 +113,11 @@ ol {
       .t-nav-btns{
         display:flex;
         flex-direction: row;
+      
 
         .seach-box{
           font-size: 1rem;
+          padding:0 15px;
     
         }
     }}
