@@ -92,15 +92,21 @@ ol {
   list-style: none;
 }
 
+main{
+  margin: 0;
+  white-space: normal;
+}
 
-
+.wrapper{
+display:grid;
+grid-template-columns: 1fr 90% 1fr;
+}
 
 
 
 }
 
 @layer Content{
-
   .nav{
     display: flex;
     position: sticky;
@@ -284,4 +290,9 @@ ol {
   letter-spacing: -.48px;
 }
 
-}}}
+}}
+.home{
+  
+}
+
+}
