@@ -131,8 +131,8 @@ ol {
           align-items: center;
           gap:0.1rem;
 
-
-          span{
+          span{  
+            font-size: 0.7rem;
             font-size: 1rem;
             color:rgb(2, 2, 73);
           }
@@ -141,6 +141,7 @@ ol {
       .t-nav-btns{
         display:flex;
         flex-direction: row;  
+        align-items: center;
         
         }
 
@@ -152,22 +153,40 @@ ol {
           gap:1rem;
 
           .search-icon{
-            width: 1.3rem;
+            width: 1.7rem;
             background-color: #fff;
             border-radius: 50%;
             padding: 0.2em;
 
           }
-          .searchtext{}
-          .close_searcHBtn{}
+          .searchtext{
+            color:grey;
+            font-weight: lighter;
+          }
+
+          .close_searchBtn{
+            display:none;
+            width: 1.7rem;
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 0.2em;}
         }
 
         .Pweb_login{
-          font-size: 1rem;
+       
           padding:0 15px;
 
-          .login{
-            .login-icon{}
+          .login{   
+          display:flex;
+          flex-direction: row;
+          font-size: 1rem;
+
+            .login-icon{
+              width: 1.7rem;
+              background-color: #fff;
+              border-radius: 50%;
+              padding: 0.2em;
+            }
             .loginText{}
           }
 
