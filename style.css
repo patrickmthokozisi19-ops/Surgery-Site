@@ -107,7 +107,7 @@ ol {
     top:0;
     left:0;
     flex-direction: column;
-    color:rgb(2, 2, 73);
+    color:#1b3b50;
     font-family: "Inter", sans-serif;
     font-weight: 600;
      font-size: 0.9rem;
@@ -135,7 +135,6 @@ ol {
           span{  
             font-size: 0.7rem;
             font-size: 1rem;
-            color:rgb(2, 2, 73);
           }
         }
 
