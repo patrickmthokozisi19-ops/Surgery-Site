@@ -68,7 +68,7 @@ body{
   font-size: 16px;
   line-height: 1.5;
   color: #111;
-  background-color: #7f96ff21; 
+  background-color: #7f96ff8f; 
   height: 2000px;
 }
  
@@ -242,29 +242,8 @@ grid-template-columns: 1fr 90% 1fr;
           flex-direction: row;
 
           .logoPGN{
-            width:4rem;
+            width:10rem;
             height: auto;
-          }
-
-          .logoSpan{
-            display: flex;
-            flex-direction: column;
-            
-            .logoText1{
-            font-family:"Faster One", system-ui, sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 1.8rem;
-            color: rgb(186, 221, 47);
-            gap:0;
-          }
-          .logoText2{
-            font-family:"Faster One", system-ui, sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 1.5rem;
-            color: rgb(186, 221, 47);
-            gap:0;
           }
         }
           
@@ -291,8 +270,21 @@ grid-template-columns: 1fr 90% 1fr;
 }
 
 }}
-.home{
-  
+.hero{
+  display:grid;
+  grid-area:1/2;
+
+  .heroTitle{
+    margin-block-start: 10rem;
+    color:#ffff;
+     justify-self: center;
+  }
+
+  .d1{
+    width: 5rem;
+  }
+ 
+
 }
 
 }
