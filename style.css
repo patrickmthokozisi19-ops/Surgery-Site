@@ -106,16 +106,17 @@ height: auto;
 .wrapper1 {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh;   /* fallback for old browsers */
+  min-height: 100svh;  /* svh = the visible height with the mobile URL bar showing */
   overflow: hidden;
   opacity: 0.9;
-  background: rgba(17, 17, 17, 0.6)  url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg") opacity(10%) center / cover no-repeat;
+  background: rgba(17, 17, 17, 0.6)  url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg")  center / cover no-repeat;
 }
 
 .slide {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -126,10 +127,10 @@ height: auto;
   animation-name: slideMid;
 }
 
-.s2 { background-image: url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg"); animation-delay: 10s; }
-.s3 { background-image: url("body imgs/pexels-alesiakozik-8155159.jpg"); animation-delay: 20s; }
-.s4 { background-image: url("body imgs/pexels-mikhail-nilov-8317785.jpg"); animation-delay: 30s; }
-.s5 { background-image: url("body imgs/pexels-gustavo-fring-7446684.jpg"); animation-delay: 40s; animation-name: slideLast; }
+.s2 { background-image: url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg") center / cover no-repeat; animation-delay: 10s; }
+.s3 { background: url("body imgs/pexels-alesiakozik-8155159.jpg") center / cover no-repeat; animation-delay: 20s; }
+.s4 { background: url("body imgs/pexels-mikhail-nilov-8317785.jpg") center / cover no-repeat; animation-delay: 30s; }
+.s5 { background: url("body imgs/pexels-gustavo-fring-7446684.jpg") center / cover no-repeat; animation-delay: 40s; animation-name: slideLast; }
 
 /* images 2-4: fade in, hold, then vanish while the next one covers them */
 @keyframes slideMid {
@@ -324,6 +325,7 @@ height: auto;
 .hero{
   display:grid;
   grid-area:1/2;
+  justify-content: center;
 
   .heroTitle{
     margin-block-start: 17rem;
@@ -333,20 +335,33 @@ height: auto;
   }
 
   .d1{
-    width: 6rem;
+    width: 4rem;
     height: auto;
     justify-self: center;
     border: 1px solid rgba(255, 255, 255, 0.507);
     border-radius: 50%;
   }
 
-  .searchbox{
+  .search-box{
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: row;
+    background:white;
+    justify-self: center;
+    width: 70%;
+    height: 3.3rem ;
+    align-items: center;
+    border-radius: 12px;
+    justify-content: space-between;
 
-  .search-input{
+    .placeholder{
+      width:100%; 
+     }
 
-  }
-
-  .
+     .searchbtn{
+      width:2rem;
+     }
+  
   }
  
 
