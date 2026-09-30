@@ -109,7 +109,7 @@ height: auto;
   min-height: 100vh;
   overflow: hidden;
   opacity: 0.9;
-  background: #111 url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg") center / cover no-repeat;
+  background: rgba(17, 17, 17, 0.6)  url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg") opacity(10%) center / cover no-repeat;
 }
 
 .slide {
@@ -134,8 +134,8 @@ height: auto;
 /* images 2-4: fade in, hold, then vanish while the next one covers them */
 @keyframes slideMid {
   0%      { opacity: 0; }
-  3%      { opacity: 1; }
-  23%     { opacity: 1; }
+  3%      { opacity: 0.8; }
+  23%     { opacity: 0.8; }
   23.1%   { opacity: 0; }
   100%    { opacity: 0; }
 }
@@ -143,8 +143,8 @@ height: auto;
 /* image 5: fade in, hold, then fade out to reveal image 1 (seamless loop) */
 @keyframes slideLast {
   0%      { opacity: 0; }
-  3%      { opacity: 1; }
-  20%     { opacity: 1; }
+  3%      { opacity: 0.8; }
+  20%     { opacity: 0.8; }
   25%     { opacity: 0; }
   100%    { opacity: 0; }
 }
