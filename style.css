@@ -353,13 +353,18 @@ height: auto;
     align-items: center;
     border-radius: 12px;
     justify-content: space-between;
+    padding:1.2rem;
 
     .placeholder{
-      width:100%; 
-     }
+      display:flex;
+      gap: 0 0.5rem;  
+
+       }
 
      .searchbtn{
       width:2rem;
+      background-color: #1d3443;
+      fill:white;
      }
   
   }
