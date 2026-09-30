@@ -353,7 +353,7 @@ height: auto;
     align-items: center;
     border-radius: 12px;
     justify-content: space-between;
-    padding:1.2rem;
+    padding: 0.5rem 0.2rem 0.5rem 1rem;
 
     .placeholder{
       display:flex;
@@ -363,9 +363,12 @@ height: auto;
 
      .searchbtn{
       
-      width:2rem;
+      width:2.7rem;
       background-color: #1d3443;
       color:white;
+      padding:10px;
+      border-radius:12px;
+    
      }
   
   }
