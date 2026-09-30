@@ -362,9 +362,10 @@ height: auto;
        }
 
      .searchbtn{
+      
       width:2rem;
       background-color: #1d3443;
-      fill:white;
+      color:white;
      }
   
   }
