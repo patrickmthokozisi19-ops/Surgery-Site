@@ -325,14 +325,18 @@ height: auto;
   grid-area:1/2;
 
   .heroTitle{
-    margin-block-start: 15rem;
+    margin-block-start: 17rem;
     color:#ffff;
     justify-self: center;
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
   .d1{
-    width: 5rem;
+    width: 6rem;
+    height: auto;
+    justify-self: center;
+    border: 1px solid white;
+    border-radius: 50%;
   }
  
 
