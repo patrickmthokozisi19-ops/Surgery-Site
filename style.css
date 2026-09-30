@@ -105,36 +105,37 @@ height: auto;
 }
 .wrapper1 {
   position: relative;
+  top:0;
   width: 100%;
   min-height: 100vh; 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  animation: bgChange 60s infinite;
+  animation: bgChange 45s infinite;
 }
 
 @keyframes bgChange {
 
-  0%, 10% {
-      background-image: url("body imgs/pexels-cottonbro-5722158.jpg");
+  0%, 15% {
+      background-image: url("body imgs/pexels-cristian-rojas-8460030.jpg");
   }
 
-  11%, 20% {
-      background-image: url("body imgs/pexels-cottonbro-5722158.jpg");
-  }
-
-  21%, 40% {
+  15%, 20% {
       background-image: url("body imgs/pexels-gustavo-fring-7447002.jpg");
   }
 
-  41%,60% {
-      background-image: url("body imgs/pexels-jonathanborba-13697931.jpg");
+  20%, 40% {
+      background-image: url("body imgs/pexels-shvets-production-8413203.jpg");
   }
-      61%,80% {
-        background-image: url("body imgs/pexels-jonathanborba-13697931.jpg");
+
+  40%,60% {
+      background-image: url("body imgs/pexels-shvets-production-8413203.jpg");
+  }
+      60%,80% {
+        background-image: url("body imgs/pexels-shvets-production-8413203.jpg");
       }
     100% {
-      background-image: url("body imgs/pexels-jonathanborba-13697931.jpg");
+      background-image: url("body imgs/pexels-silverkblack-39192347.jpg");
 }
 }
 }
@@ -312,9 +313,16 @@ height: auto;
   grid-area:1/2;
 
   .heroTitle{
-    margin-block-start: 10rem;
+    margin-block-start: 15rem;
     color:#ffff;
-     justify-self: center;
+    justify-self: center;
+    font-size: 3rem;
+    background: rgba(0, 0, 0, 0.007);      /* must be see-through */
+  -webkit-backdrop-filter: blur(10px);  /* Safari */
+  backdrop-filter: blur(10px);
+  padding:0 5px;
+  border-radius: 12px;;
+  border: 1px solid rgba(255, 255, 255, 0.247)
   }
 
   .d1{
