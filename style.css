@@ -68,8 +68,7 @@ body{
   font-size: 16px;
   line-height: 1.5;
   color: #111;
-  background-color: #7f96ff8f; 
-  height: 2000px;
+  background-color: #7582be8f; 
 }
  
 
@@ -102,18 +101,48 @@ main{
 display:grid;
 grid-template-columns: 1fr 90% 1fr;
 width: 100%;
-height: 500px;
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-transition: background-image 0.8s ease;
+height: auto;
+}
+.wrapper1 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: bgChange 60s infinite;
+}
+
+@keyframes bgChange {
+
+  0%, 10% {
+      background-image: url("body imgs/pexels-cottonbro-5722158.jpg");
+  }
+
+  11%, 20% {
+      background-image: url("body imgs/pexels-cottonbro-5722158.jpg");
+  }
+
+  21%, 40% {
+      background-image: url("body imgs/pexels-gustavo-fring-7447002.jpg");
+  }
+
+  41%,60% {
+      background-image: url("body imgs/pexels-jonathanborba-13697931.jpg");
+  }
+      61%,80% {
+        background-image: url("body imgs/pexels-jonathanborba-13697931.jpg");
+      }
+    100% {
+      background-image: url("body imgs/pexels-jonathanborba-13697931.jpg");
+}
+}
 }
 
 
-
-}
 
 @layer Content{
+
   .nav{
     display: flex;
     position: sticky;
@@ -124,6 +153,7 @@ transition: background-image 0.8s ease;
     font-family: "Inter", sans-serif;
     font-weight: 600;
      font-size: 1.1rem;
+     z-index:100;
 
     
     .tNav{ 
@@ -276,7 +306,7 @@ transition: background-image 0.8s ease;
   letter-spacing: -.48px;
 }
 
-}}
+}
 .hero{
   display:grid;
   grid-area:1/2;
@@ -292,6 +322,5 @@ transition: background-image 0.8s ease;
   }
  
 
-}
+}}
 
-}
