@@ -105,42 +105,54 @@ height: auto;
 }
 .wrapper1 {
   position: relative;
-  top:0;
   width: 100%;
-  min-height: 100vh; 
-  background-size: cover;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #111 url("body imgs/pexels-gustavo-fring-7446684.jpg") center / cover no-repeat;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
-  animation: bgChange 45s infinite;
+  opacity: 0;
+  animation-duration: 50s;              /* 5 images x 15s */
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: slideMid;
 }
 
-@keyframes bgChange {
+.s2 { background-image: url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg"); animation-delay: 10s; }
+.s3 { background-image: url("body imgs/pexels-alesiakozik-8155159.jpg"); animation-delay: 20s; }
+.s4 { background-image: url("body imgs/pexels-mikhail-nilov-8317785.jpg"); animation-delay: 30s; }
+.s5 { background-image: url("body imgs/pexels-gustavo-fring-7446684.jpg"); animation-delay: 40s; animation-name: slideLast; }
 
-  0%, 15% {
-      background-image: url("body imgs/pexels-cristian-rojas-8460030.jpg");
-  }
-
-  15%, 20% {
-      background-image: url("body imgs/pexels-gustavo-fring-7447002.jpg");
-  }
-
-  20%, 40% {
-      background-image: url("body imgs/pexels-shvets-production-8413203.jpg");
-  }
-
-  40%,60% {
-      background-image: url("body imgs/pexels-shvets-production-8413203.jpg");
-  }
-      60%,80% {
-        background-image: url("body imgs/pexels-shvets-production-8413203.jpg");
-      }
-    100% {
-      background-image: url("body imgs/pexels-silverkblack-39192347.jpg");
-}
-}
+/* images 2-4: fade in, hold, then vanish while the next one covers them */
+@keyframes slideMid {
+  0%      { opacity: 0; }
+  3%      { opacity: 1; }
+  23%     { opacity: 1; }
+  23.1%   { opacity: 0; }
+  100%    { opacity: 0; }
 }
 
+/* image 5: fade in, hold, then fade out to reveal image 1 (seamless loop) */
+@keyframes slideLast {
+  0%      { opacity: 0; }
+  3%      { opacity: 1; }
+  20%     { opacity: 1; }
+  25%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
 
+.wrapper1 > *:not(.slide) {
+  position: relative;
+  z-index: 1;
+}
+}
 
 @layer Content{
 
@@ -287,7 +299,7 @@ height: auto;
           
           }
           
-        }
+        
       .bnavLinks{
         display:flex;
         padding: 12px 0 12px 20px;
@@ -305,9 +317,9 @@ height: auto;
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -.48px;
-}
+}}
+}}
 
-}
 .hero{
   display:grid;
   grid-area:1/2;
@@ -317,12 +329,6 @@ height: auto;
     color:#ffff;
     justify-self: center;
     font-size: 3rem;
-    background: rgba(0, 0, 0, 0.007);      /* must be see-through */
-  -webkit-backdrop-filter: blur(10px);  /* Safari */
-  backdrop-filter: blur(10px);
-  padding:0 5px;
-  border-radius: 12px;;
-  border: 1px solid rgba(255, 255, 255, 0.247)
   }
 
   .d1{
@@ -330,5 +336,5 @@ height: auto;
   }
  
 
-}}
+}
 
