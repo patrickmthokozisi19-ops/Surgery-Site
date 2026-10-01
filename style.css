@@ -68,7 +68,7 @@ body{
   font-size: 16px;
   line-height: 1.5;
   color: #111;
-  background-color: white; 
+  background-color: #afccc7; 
 }
  
 
@@ -95,6 +95,8 @@ main{
   margin: 0;
   white-space: normal;
 }
+
+@layer wrapper{
 
 .wrapper{
   position:relative;
@@ -124,13 +126,13 @@ height: auto;
   animation-duration: 50s;              /* 5 images x 15s */
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  animation-name: slideMid;
+  animation-name: slideMid;filter:brightness(0.6)
 }
 
 .s2 { animation-delay: 10s; }
 .s3 {animation-delay: 20s; }
 .s4 {  animation-delay: 30s; }
-.s5 {  animation-delay: 40s; animation-name: slideLast; }
+.s5 {  animation-delay: 40s; animation-name: slideLast;}
 
 /* images 2-4: fade in, hold, then vanish while the next one covers them */
 @keyframes slideMid {
@@ -154,6 +156,8 @@ height: auto;
   position: relative;
   z-index: 1;
 }
+}
+
 }
 
 @layer Content{
@@ -334,13 +338,6 @@ height: auto;
     font-size: 3.5rem;
   }
 
-  .d1{
-    width: 4rem;
-    height: auto;
-    justify-self: center;
-    border: 1px solid rgba(255, 255, 255, 0.507);
-    border-radius: 50%;
-  }
 
   .search-box{
     margin-block-start: 2rem;
@@ -371,6 +368,71 @@ height: auto;
     
      }
   
+  } 
+
+
+  .heroBts{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap:2rem;
+    margin-block-start: 4rem;
+
+
+  .hbtn{
+    display:flex;
+    flex-direction: row;
+    flex: 0 0 initial;
+    background-color: #ffffff28;
+    backdrop-filter: blur(10px);
+    padding: 2.5rem 2rem;
+    border-radius: 13px;
+    border: 1px solid white;
+    gap:1rem;
+    justify-content: space-between;
+    height: 140px;
+    width:298px;
+  }
+  .hicons{
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 3rem;       /* prevents it from shrinking */
+    border-radius: 50%;
+    padding: 8px;
+    box-sizing: border-box;
+    fill:#1d3443;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+span{
+  color: white;
+  font-weight:300;
+  font-size: 1.2rem;
+  max-width:16rem;
+}
+    .heroBt1{
+      .hbtn1Icon{
+        
+      }
+      span{}
+    }
+    .heroBt2{
+      .hbtn2Icon{
+
+      }
+      
+    }
+    .heroBt3{
+      .hbtn3Icon{}
+    
+      span{}
+    }
+    .heroBt4{
+      .hbtn4Icon{
+  
+      }
+      span{}
+    }
   }
  
 
