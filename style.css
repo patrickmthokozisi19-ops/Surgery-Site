@@ -110,7 +110,7 @@ height: auto;
   min-height: 100svh;  /* svh = the visible height with the mobile URL bar showing */
   overflow: hidden;
   opacity: 0.9;
-  background: rgba(17, 17, 17, 0.6)  url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg")  center / cover no-repeat;
+  background: rgba(17, 17, 17, 0.6);
 }
 
 .slide {
@@ -127,10 +127,10 @@ height: auto;
   animation-name: slideMid;
 }
 
-.s2 { background-image: url("body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg") center / cover no-repeat; animation-delay: 10s; }
-.s3 { background: url("body imgs/pexels-alesiakozik-8155159.jpg") center / cover no-repeat; animation-delay: 20s; }
-.s4 { background: url("body imgs/pexels-mikhail-nilov-8317785.jpg") center / cover no-repeat; animation-delay: 30s; }
-.s5 { background: url("body imgs/pexels-gustavo-fring-7446684.jpg") center / cover no-repeat; animation-delay: 40s; animation-name: slideLast; }
+.s2 { animation-delay: 10s; }
+.s3 {animation-delay: 20s; }
+.s4 {  animation-delay: 30s; }
+.s5 {  animation-delay: 40s; animation-name: slideLast; }
 
 /* images 2-4: fade in, hold, then vanish while the next one covers them */
 @keyframes slideMid {
