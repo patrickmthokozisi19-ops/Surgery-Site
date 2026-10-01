@@ -95,7 +95,6 @@ main{
   margin: 0;
   white-space: normal;
 }
-@layer wrapper{
 
 .wrapper{
   position:relative;
@@ -104,62 +103,7 @@ grid-template-columns: 1fr 90% 1fr;
 width: 100%;
 height: auto;
 }
-/*
-.wrapper1 {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;   
-  min-height: 100svh;  
-  overflow: hidden;
-  opacity: 0.9;
-  background: rgba(17, 17, 17, 0.6);
-  z-index: -1;
 }
-
-.slide {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
-  animation-duration: 50s;             
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-name: slideMid;filter:brightness(0.6)
-}
-
-.s2 { animation-delay: 10s; }
-.s3 {animation-delay: 20s; }
-.s4 {  animation-delay: 30s; }
-.s5 {  animation-delay: 40s; animation-name: slideLast;}
-
-/ images 2-4: fade in, hold, then vanish while the next one covers them 
-@keyframes slideMid {
-  0%      { opacity: 0; }
-  3%      { opacity: 1; }
-  23%     { opacity: 1; }
-  23.1%   { opacity: 0; }
-  100%    { opacity: 0; }
-}
-
-
-@keyframes slideLast {
-  0%      { opacity: 0; }
-  3%      { opacity: 1; }
-  20%     { opacity: 1; }
-  25%     { opacity: 0; }
-  100%    { opacity: 0; }
-}
-
-.wrapper1 > *:not(.slide) {
-  position: relative;
-  z-index: 1;
-}
-}
-
-*/
 
 @layer Content{
 
@@ -327,57 +271,30 @@ height: auto;
 }}
 }
 
-.hero{
-  display:grid;
-  grid-area:1/2;
-  justify-content: center;
+.hero {
+  position: relative;      /* wrapper1 now measures itself against the hero */
+  isolation: isolate;      /* keeps wrapper1's z-index: -1 inside the hero */
+  overflow: clip;          /* nothing from the slideshow can spill out */
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: grid;
 
-  
+
   .heroContent {
     position: relative;
     isolation: isolate;     /* keeps the z-index: -1 layers inside this box */
     display: grid;          /* your title/search-box use justify-self, which needs a grid parent */
     justify-content: center;
-  }
-  
-  .wrapper1 {
-    position: absolute;     /* was relative with min-height: 100svh */
-    inset: 0;               /* same width and height as .heroContent */
-    overflow: hidden;
-    z-index: -1;
-    background: #111;
-    /* delete: min-height, width: 100% */
-  }
-  
-  .slide {
-    position: absolute;     /* was fixed */
-    inset: 0;
-    opacity: 0;
-    filter: brightness(0.6);
-    animation-name: slideMid;
-    animation-duration: 50s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-  
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .s1 { opacity: 1; animation: none; }   /* base layer, always visible */
-  .s2 { animation-delay: 10s; }
-  .s3 { animation-delay: 20s; }
-  .s4 { animation-delay: 30s; }
-  .s5 { animation-delay: 40s; animation-name: slideLast; }
-  .heroTitle{
+    margin-block-start: 10rem;
+    z-index: 1;
+
+
+   .heroTitle{
     margin-block-start: 17rem;
     color:#ffff;
     justify-self: center;
     font-size: 3.5rem;
   }
-
 
   .search-box{
     margin-block-start: 2rem;
@@ -472,8 +389,47 @@ span{
       }
       span{}
     }
-  }
- 
+  }}
 
+  .wrapper1 {
+    position: relative;
+    min-height: 100svh;    /* hero grows with its content if it needs more */
+    overflow: hidden;
+    background: #111;
+  
+  
+  /* the slides are layers inside wrapper1 */
+  .slide {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    animation-duration: 75s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: slideMid;
+  }
+  
+  .slide img {                 /* needed now that you use <img> tags */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .s1 { opacity: 1; animation: none; }
+  .s2 { animation-delay: 15s; }
+  .s3 { animation-delay: 30s; }
+  .s4 { animation-delay: 45s; }
+  .s5 { animation-delay: 60s; animation-name: slideLast; }
+  
+  /* content above the slides */
+  .wrapper1 > *:not(.slide) {
+    position: relative;
+    z-index: 1;
+  }
+}
+  
 }}
+  
 
