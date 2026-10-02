@@ -160,11 +160,8 @@ height: auto;
     60%      { --bg: #d1aab6; }
     80%      { --bg: #d1c09f; }
   } 
-   @property --bg {
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #afccc7;
-  }
+  @property --bg { syntax: "<color>"; inherits: true; initial-value: var(--bg); }
+
   /*=================================================================*/
 
 .wrapper1 > *:not(.slide) {
@@ -464,23 +461,22 @@ span{
 .Pweb{
   grid-column: 1 / -1;
  background: var(--bg);
-    animation: bgShift 30s ease-in-out infinite;
+    animation: bgShift 50s ease-in-out infinite;
+    width: 100%;
+    height:1000px;
 
 
-  }
-
-  .pwebAd{
     .PwebAdBg{  
       display: block;          /* removes the small gap iframes get as inline elements */
       width: 100%;
       height: 610px;           /* iframes don't size to their content, so set a height */
       border: 0;
+      margin-block-start: 15rem;
       
     }
 
   }
 
-}
 }
   
 
