@@ -115,7 +115,7 @@ height: auto;
 
 
 .slide {
-  position: relative;
+  position: absolute;
   inset: 0;
   z-index: 0;
   background-position: center;
@@ -126,12 +126,13 @@ height: auto;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: slideMid;
+  filter:brightness(0.7);
 }
 
 .s2 { animation-delay: 15s; }
 .s3 { animation-delay: 30s; }
 .s4 { animation-delay: 45s; }
-.s5 { background-image: url("body-imgs/img5.jpg"); animation-delay: 60s; animation-name: slideLast; }
+.s5 {  animation-delay: 60s; animation-name: slideLast; }
 }
 /* images 2-4: fade in, hold, then vanish while the next one covers them */
 @keyframes slideMid {
