@@ -449,11 +449,31 @@ span{
 .Pweb{
   grid-column: 1 / -1;
 
+  @property --bg {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #afccc7;
+  }
+  
+  @keyframes bgShift {
+    0%, 100% { --bg: #afccc7; }
+    20%      { --bg: #9fbad1; }
+    40%      { --bg: #b3aad1; }
+    60%      { --bg: #d1aab6; }
+    80%      { --bg: #d1c09f; }
+  }
+  
+  .anim {
+    grid-column: 1 / -1;
+    background: var(--bg);
+    animation: bgShift 30s ease-in-out infinite;
+  }
+
   .pwebAd{
     .PwebAdBg{  
       display: block;          /* removes the small gap iframes get as inline elements */
       width: 100%;
-      height: 600px;           /* iframes don't size to their content, so set a height */
+      height: 610px;           /* iframes don't size to their content, so set a height */
       border: 0;
       
     }
