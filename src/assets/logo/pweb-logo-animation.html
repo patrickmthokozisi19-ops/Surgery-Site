@@ -8,6 +8,23 @@
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html,body{height:100%;margin:0}
 body{background:#afccc7;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+@property --bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #afccc7;
+}
+
+:root { animation: bgShift 50s ease-in-out infinite; }
+
+body { background: var(--bg); font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+
+@keyframes bgShift {
+  0%, 100% { --bg: #afccc7; }  /* sage (your current) */
+  20%      { --bg: #9fbad1; }  /* soft blue */
+  40%      { --bg: #b3aad1; }  /* lavender */
+  60%      { --bg: #d1aab6; }  /* dusty rose */
+  80%      { --bg: #d1c09f; }  /* warm sand */
+}
 .layout{display:grid;grid-template-columns:1fr minmax(0,580px) 1fr;gap:24px;align-items:center;width:100%;max-width:1500px;min-height:100%;margin:0 auto;padding:24px;box-sizing:border-box}
 .stage{display:flex;flex-direction:column;align-items:center;transition:opacity .6s}
 .stage.fade{opacity:0}

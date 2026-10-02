@@ -444,6 +444,23 @@ span{
     }
   }}
   
-}}
+}
+
+.Pweb{
+  grid-column: 1 / -1;
+
+  .pwebAd{
+    .PwebAdBg{  
+      display: block;          /* removes the small gap iframes get as inline elements */
+      width: 100%;
+      height: 600px;           /* iframes don't size to their content, so set a height */
+      border: 0;
+      
+    }
+
+  }
+
+}
+}
   
 
