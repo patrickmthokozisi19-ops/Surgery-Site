@@ -111,6 +111,7 @@ height: auto;
   min-height: 100vh;
   overflow: hidden;
   background: #111 url("body-imgs/img1.jpg") center / cover no-repeat;
+  contain: size;
 
 
 .slide {
@@ -131,7 +132,7 @@ height: auto;
 .s3 { background-image: url("body-imgs/img3.jpg"); animation-delay: 30s; }
 .s4 { background-image: url("body-imgs/img4.jpg"); animation-delay: 45s; }
 .s5 { background-image: url("body-imgs/img5.jpg"); animation-delay: 60s; animation-name: slideLast; }
-
+}
 /* images 2-4: fade in, hold, then vanish while the next one covers them */
 @keyframes slideMid {
   0%      { opacity: 0; }
@@ -156,7 +157,8 @@ height: auto;
 }
 
 }
-}
+
+
 @layer Content{
 
   .nav{
@@ -343,7 +345,7 @@ height: auto;
 
 
    .heroTitle{
-    margin-block-start: 17rem;
+    margin-block-start: 7rem;
     color:#ffff;
     justify-self: center;
     font-size: 3.5rem;
