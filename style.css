@@ -110,12 +110,12 @@ height: auto;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: #111 url("body-imgs/img1.jpg") center / cover no-repeat;
-  contain: size;
+  background: #afccc7 url("body-imgs/img1.jpg") center / cover no-repeat;
+
 
 
 .slide {
-  position: absolute;
+  position: relative;
   inset: 0;
   z-index: 0;
   background-position: center;
@@ -128,9 +128,9 @@ height: auto;
   animation-name: slideMid;
 }
 
-.s2 { background-image: url("body-imgs/img2.jpg"); animation-delay: 15s; }
-.s3 { background-image: url("body-imgs/img3.jpg"); animation-delay: 30s; }
-.s4 { background-image: url("body-imgs/img4.jpg"); animation-delay: 45s; }
+.s2 { animation-delay: 15s; }
+.s3 { animation-delay: 30s; }
+.s4 { animation-delay: 45s; }
 .s5 { background-image: url("body-imgs/img5.jpg"); animation-delay: 60s; animation-name: slideLast; }
 }
 /* images 2-4: fade in, hold, then vanish while the next one covers them */
@@ -335,13 +335,12 @@ height: auto;
 
 
   .heroContent {
-    position: relative;
-    isolation: isolate;     /* keeps the z-index: -1 layers inside this box */
-    display: grid;          /* your title/search-box use justify-self, which needs a grid parent */
-    justify-content: center;
-    margin-block-start: 10rem;
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* replaces justify-self: center on the children */
+    padding-block: 10rem 3rem;
     z-index: 1;
-    grid-area: 1/1;
 
 
    .heroTitle{
@@ -388,6 +387,7 @@ height: auto;
     flex-direction: row;
     align-items: center;
     gap:2rem;
+    margin-block-start: 5rem;
 
 
   .hbtn{
