@@ -154,11 +154,11 @@ height: auto;
 /*=============== FOR PWEB SECTION======================*/
 
  @keyframes bgShift {
-    0%, 100% { --bg: #afccc7; }
-    20%      { --bg: #9fbad1; }
-    40%      { --bg: #b3aad1; }
-    60%      { --bg: #d1aab6; }
-    80%      { --bg: #d1c09f; }
+    0%, 100% { --bg: #192422; }
+    20%      { --bg: #000000; }
+    40%      { --bg: #172927; }
+    60%      { --bg: #1a1729; }
+    80%      { --bg: rgb(23, 41, 29); }
   } 
   @property --bg { syntax: "<color>"; inherits: true; initial-value: var(--bg); }
 
@@ -307,7 +307,7 @@ height: auto;
             width:10rem;
             height: auto;
             padding: 1rem;
-            border-radius: 1rem;
+            border-radius: 1.5rem;
             border: 1px #11111141;
           }
         }
