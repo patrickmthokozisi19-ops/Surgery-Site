@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pweb — Interactive Device Advertisement</title>
+<style>
+  :root{
+    --pweb:#2635FF;
+    --ink:#10131c;
+    --muted:#667085;
+    --screen:#fff;
+    --device:#e9ebf0;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:transparent;
+    color:var(--ink);
+  }
+
+  /* Advertisement stage — transparent background */
+  .ad-stage{
+    width:min(1100px,100%);
+    min-height:650px;
+    margin:auto;
+    padding:70px 35px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:70px;
+  }
+
+  /* ---------- PC ---------- */
+  .pc{
+    width:min(690px,62vw);
+    position:relative;
+    animation:pcFloat 5s ease-in-out infinite;
+  }
+
+  .monitor{
+    background:linear-gradient(145deg,#f7f8fa,#dfe2e8);
+    border:2px solid #cdd1d8;
+    border-radius:20px;
+    padding:13px;
+    box-shadow:
+      0 28px 70px rgba(0,0,0,.16),
+      inset 0 1px 1px rgba(255,255,255,.95);
+  }
+
+  .monitor-screen{
+    aspect-ratio:16/10;
+    background:#fff;
+    border-radius:11px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:inset 0 0 0 1px #d8dbe1;
+  }
+
+  /* Put your advertisement inside this editable screen */
+  .screen-content{
+    width:100%;
+    height:100%;
+    padding:8%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    background:
+      radial-gradient(circle at 80% 20%,rgba(38,53,255,.10),transparent 28%),
+      #fff;
+  }
+
+  .screen-content .eyebrow{
+    color:var(--pweb);
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:clamp(10px,1.1vw,15px);
+  }
+
+  .screen-content h1{
+    margin:.25em 0;
+    font-size:clamp(32px,4.4vw,65px);
+    line-height:.95;
+    letter-spacing:-.055em;
+  }
+
+  .screen-content p{
+    max-width:480px;
+    color:var(--muted);
+    font-size:clamp(12px,1.35vw,18px);
+  }
+
+  .screen-button{
+    display:inline-flex;
+    width:max-content;
+    padding:11px 17px;
+    border-radius:999px;
+    background:var(--pweb);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    margin-top:10px;
+    transition:transform .2s,box-shadow .2s;
+  }
+
+  .screen-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 9px 25px rgba(38,53,255,.28);
+  }
+
+  .monitor-camera{
+    position:absolute;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#333;
+    top:5px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .stand{
+    width:120px;
+    height:70px;
+    margin:auto;
+    background:linear-gradient(90deg,#cfd2d8,#f5f6f8,#cfd2d8);
+    clip-path:polygon(35% 0,65% 0,78% 100%,22% 100%);
+  }
+
+  .base{
+    width:220px;
+    height:15px;
+    margin:-1px auto 0;
+    border-radius:50%;
+    background:linear-gradient(#d9dce2,#bfc3cb);
+    box-shadow:0 10px 18px rgba(0,0,0,.12);
+  }
+
+  /* ---------- PHONE ---------- */
+  .phone{
+    width:min(245px,24vw);
+    min-width:175px;
+    padding:10px;
+    border-radius:34px;
+    background:linear-gradient(135deg,#fafbfc,#cfd3da);
+    border:2px solid #c3c7ce;
+    box-shadow:
+      0 30px 60px rgba(0,0,0,.20),
+      inset 1px 1px 2px white;
+    position:relative;
+    transform:rotate(6deg);
+    animation:phoneFloat 4s ease-in-out infinite;
+  }
+
+  .phone-screen{
+    aspect-ratio:9/19.5;
+    border-radius:25px;
+    overflow:hidden;
+    background:#fff;
+    position:relative;
+    box-shadow:inset 0 0 0 1px #d8dbe1;
+  }
+
+  .phone-screen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,
+      transparent 20%,
+      rgba(255,255,255,.70) 38%,
+      transparent 52%);
+    transform:translateX(-130%);
+    animation:shine 4.5s ease-in-out infinite;
+    pointer-events:none;
+  }
+
+  .phone-notch{
+    position:absolute;
+    top:6px;
+    left:50%;
+    transform:translateX(-50%);
+    width:38%;
+    height:20px;
+    background:#111;
+    border-radius:0 0 14px 14px;
+    z-index:3;
+  }
+
+  .phone-content{
+    height:100%;
+    padding:50px 17px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background:
+      radial-gradient(circle at 20% 30%,rgba(38,53,255,.13),transparent 32%),
+      #fff;
+  }
+
+  .phone-content .mini-logo{
+    color:var(--pweb);
+    font-weight:900;
+    font-size:17px;
+  }
+
+  .phone-content h2{
+    font-size:clamp(25px,3vw,39px);
+    line-height:.95;
+    margin:12px 0;
+    letter-spacing:-.05em;
+  }
+
+  .phone-content p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.45;
+  }
+
+  .phone-link{
+    color:var(--pweb);
+    font-size:12px;
+    font-weight:800;
+    text-decoration:none;
+    margin-top:12px;
+  }
+
+  .phone-link:hover{text-decoration:underline}
+
+  /* ---------- Editable floating copy ---------- */
+  .floating-copy{
+    position:absolute;
+    right:30px;
+    top:35px;
+    max-width:260px;
+    pointer-events:none;
+  }
+
+  .floating-copy strong{
+    display:block;
+    font-size:clamp(18px,2.3vw,30px);
+    letter-spacing:-.04em;
+  }
+
+  .floating-copy span{color:var(--muted)}
+
+  /* Make the devices clickable as a whole if desired */
+  .device-link{
+    text-decoration:none;
+    color:inherit;
+    display:block;
+  }
+
+  @keyframes pcFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+  }
+
+  @keyframes phoneFloat{
+    0%,100%{transform:rotate(6deg) translateY(0)}
+    50%{transform:rotate(6deg) translateY(-13px)}
+  }
+
+  @keyframes shine{
+    0%,55%{transform:translateX(-130%)}
+    75%,100%{transform:translateX(130%)}
+  }
+
+  @media(max-width:800px){
+    .ad-stage{
+      min-height:550px;
+      gap:20px;
+      padding:55px 15px;
+    }
+    .pc{width:68vw}
+    .phone{
+      width:24vw;
+      min-width:135px;
+    }
+    .floating-copy{
+      top:12px;
+      right:15px;
+      max-width:180px;
+    }
+  }
+
+  @media(max-width:600px){
+    .ad-stage{
+      align-items:flex-end;
+      gap:8px;
+    }
+    .pc{width:72vw}
+    .phone{width:25vw;min-width:110px}
+    .floating-copy{display:none}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .pc,.phone,.phone-screen::after{animation:none}
+    .screen-button{transition:none}
+  }
+</style>
+</head>
+
+<body>
+
+<section class="ad-stage" aria-label="Pweb advertisement">
+
+  <!-- EDIT THIS TEXT -->
+  <div class="floating-copy">
+    <strong>Build it. Ship it.</strong>
+    <span>Traditional coding, modern experiences.</span>
+  </div>
+
+  <!-- PC -->
+  <div class="pc">
+    <div class="monitor">
+      <div class="monitor-screen">
+
+        <!-- EVERYTHING INSIDE THIS AREA IS EDITABLE -->
+        <div class="screen-content">
+          <div class="eyebrow">PWEB</div>
+
+          <h1>Your project.<br>Built better.</h1>
+
+          <p>
+            Replace this text with your own advertisement.
+            You can add images, buttons, links, forms or animations here.
+          </p>
+
+          <a class="screen-button"
+             href="https://example.com"
+             target="_blank"
+             rel="noopener">
+            Explore Pweb
+          </a>
+        </div>
+
+        <div class="monitor-camera"></div>
+      </div>
+    </div>
+
+    <div class="stand"></div>
+    <div class="base"></div>
+  </div>
+
+
+  <!-- PHONE -->
+  <div class="phone">
+
+    <div class="phone-screen">
+      <div class="phone-notch"></div>
+
+      <!-- EVERYTHING INSIDE THIS AREA IS EDITABLE -->
+      <div class="phone-content">
+        <div class="mini-logo">Pweb</div>
+
+        <h2>Code.<br>Create.<br>Launch.</h2>
+
+        <p>
+          Your phone advertisement can contain
+          completely different content from the PC.
+        </p>
+
+        <a class="phone-link"
+           href="https://example.com"
+           target="_blank"
+           rel="noopener">
+          Visit Pweb →
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+  /*
+    OPTIONAL INTERACTION
+
+    The devices already contain real HTML links, so you can put
+    your own URLs directly in href="...".
+
+    You can also add JavaScript interactions below.
+  */
+
+  // Example: clicking the PC screen changes its headline.
+  // Delete or replace this if you don't need it.
+
+  const pcScreen = document.querySelector(".monitor-screen");
+  const pcHeadline = document.querySelector(".screen-content h1");
+
+  pcScreen.addEventListener("click", (event) => {
+    // Don't override normal clicks on links.
+    if (event.target.closest("a")) return;
+
+    pcHeadline.classList.toggle("active");
+  });
+</script>
+
+<style>
+  /* Example interactive state */
+  .screen-content h1{
+    transition:transform .35s ease, letter-spacing .35s ease;
+  }
+
+  .screen-content h1.active{
+    transform:translateX(8px);
+    letter-spacing:-.075em;
+  }
+</style>
+
+</body>
+</html>
