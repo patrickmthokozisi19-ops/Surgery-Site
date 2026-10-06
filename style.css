@@ -156,8 +156,8 @@ height: auto;
  @keyframes bgShift {
     0%, 100% { --bg: #192422; }
     20%      { --bg: #000000; }
-    40%      { --bg: #172927; }
-    60%      { --bg: #1a1729; }
+    40%      { --bg: #1e3331; }
+    60%      { --bg: #26213b; }
     80%      { --bg: rgb(23, 41, 29); }
   } 
   @property --bg { syntax: "<color>"; inherits: true; initial-value: var(--bg); }
@@ -469,11 +469,14 @@ span{
 
 
     .PwebAdBg{  
+      position:relative;
       display: block;          /* removes the small gap iframes get as inline elements */
       width: 40%;
-      height: 610px;           /* iframes don't size to their content, so set a height */
+      height: 600px;           /* iframes don't size to their content, so set a height */
       border: 0;
       margin-block-start: 15rem;
+     flex:3;
+    
     }
 
   }
