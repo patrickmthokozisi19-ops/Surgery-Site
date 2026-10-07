@@ -34,8 +34,9 @@
 
 
 *, *::before, *::after {
-box-sizing: border-box;
-margin:0
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -466,8 +467,9 @@ span{
     height: auto;    
     display:grid;
     grid-template-columns: repeat(2,1fr);
-    align-items: center;
+    align-items: start;
     justify-content: center;
+    gap:3rem;
 
   .Pwebcontent {
     position:relative;
@@ -487,7 +489,6 @@ span{
       width: 100%;
       height: 1000px;           /* iframes don't size to their content, so set a height */
       border: 0;
-      margin-block-start: 15rem;
     }
 
   
