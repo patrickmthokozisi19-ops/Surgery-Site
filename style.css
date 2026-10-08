@@ -284,15 +284,15 @@ height: auto;
       height: 60px;
       background: #fff;
       gap:1rem;
+      flex: 0 0 auto;          /* never shrink this block */
 
      
 
       .logoNbackBtn{
+        flex: 0 0 auto;          /* never shrink this block */
         display: flex;
-        flex-direction: row;
         align-items: center;
-        gap:1rem;
-    
+        gap: .5rem;
 
          .backToHome{
           width: 2rem;
@@ -301,6 +301,7 @@ height: auto;
           background-color: #dbdbdb;
           border-radius: 50%;
           border: 1px solid grey;
+          
         }
         .logo{  
 
@@ -311,31 +312,55 @@ height: auto;
             padding: 1rem;
             border-radius: 1.5rem;
             border: 1px #11111141;
+            flex:0 0 auto;
+
           }
         }
           
           }
           
         
-      .bnavLinks{
-        display:flex;
-        padding: 12px 0 12px 20px;
-        gap: 3rem;
-        align-items: center;
-      }
+.burger{
+  display: none; /* Hidden on desktop by default */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+
+   span{
+    display: flex;
+    width: 100%;
+    height: 3px;
+    background-color: red;
+    transition: all 0.3s ease; /* For smooth animation later */
+}}
+
+.bnavLinks {
+  display: flex;
+  padding: 12px 0 12px 20px;
+  gap: 3rem;
+  align-items: center;
+}
+
 
          .navBtn{
   background-color: #1d3443;
   color:#fff;
   padding: 1rem 1.8rem;
-  border-radius:12px;
   text-align: center;
   border-radius: 10px;
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -.48px;
-}}
 }
+
+    }
+  }
 
 .hero {
   position: relative;      /* wrapper1 now measures itself against the hero */
@@ -498,6 +523,44 @@ span{
 
   }
 
+/* --- Responsive Layout (Mobile Viewport) --- */
+@media (max-width: 1315px) {
+  .burger {
+    display: flex; /* Show hamburger button on mobile */
+  }
+
+  .bnavLinks {
+    display: none; /* Hide default desktop links */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+
+  /* When the 'open' class is toggled active via JS */
+  .bnavLinks .open {
+    display: flex; 
+  }
+
+  /* Optional: Smoothly animate bars into an "X" when active */
+  .burger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .burger.open span:nth-child(2) {
+    opacity: 0; /* Hide middle bar */
+  }
+  .burger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
 }
+
+
+}
+
+
   
 

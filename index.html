@@ -67,8 +67,11 @@
           </div>
        
         </a>
-        
-        <div class="bnavLinks">
+
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="bnavLinks">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="bnavLinks" id="bnavLinks">
           <a href="">Overview</a> 
           <a href="">About us</a>
           <a href="">Find a Specialist</a>
@@ -195,6 +198,18 @@ Register on MyPweb Online
   </main>
 
     
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.getElementById("burger");
+  const navLinks = document.getElementById("bnavLinks");
+
+  burger.addEventListener("click", () => {
+    // Toggle the 'open' class on click
+    burger.classList.toggle("open");
+    navLinks.classList.toggle("open");
+  });
+});
+    </script>
 
 </body>
 </html>
