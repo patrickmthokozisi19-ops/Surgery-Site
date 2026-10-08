@@ -155,11 +155,11 @@ height: auto;
 /*=============== FOR PWEB SECTION======================*/
 
  @keyframes bgShift {
-    0%, 100% { --bg: #000000; }
-    20%      { --bg: #030000; }
-    40%      { --bg: #000505; }
-    60%      { --bg: #040011; }
-    80%      { --bg: rgb(0, 7, 2); }
+    0%, 100% { --bg: #0a1020; }
+    20%      { --bg: #0f1d3a; }
+    40%      { --bg: #14295a; }
+    60%      { --bg: #1b3a6b; }
+    80%      { --bg: #0e2a47; }
   } 
   @property --bg { syntax: "<color>"; inherits: true; initial-value: var(--bg); }
 
@@ -479,7 +479,9 @@ span{
   
 
   .Pweblinks{
-  width:100%;
+    width: 100%;
+    height: 1000px;           /* iframes don't size to their content, so set a height */
+    border: 0;
   }
 }
 

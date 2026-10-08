@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pweb devices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Chivo+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ===== EDIT HERE: page + text styles ===== */
+:root{--page:#0e1011;--font:'Space Grotesk',system-ui,sans-serif;--mono:'Chivo Mono',ui-monospace,monospace;--frame:#2a3033;--edge:#3b4347;--fade:.7s}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--page:#e9edef}}
+:root[data-theme="light"]{--page:#e9edef}
+:root[data-theme="dark"]{--page:#0e1011}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--page);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0) 12px env(safe-area-inset-bottom,0)}
+svg{width:100%;max-width:1000px;height:auto;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+text{font-family:var(--font);fill:#fff}
+.dk{fill:#15181a}.lt{fill:#fff}.lime{fill:#b8f23a}.c{text-anchor:middle}
+.eyebrow{font:600 14px var(--mono);letter-spacing:2.5px}
+.big{font-weight:700;font-size:70px;letter-spacing:-3px}
+.h2{font-weight:700;font-size:34px;letter-spacing:-1px}
+.sub{font-weight:500;font-size:20px}
+.lbl{font-weight:500;font-size:14px}
+.card-t{font-weight:700;font-size:18px}
+.pbig{font-weight:700;font-size:44px;letter-spacing:-2px}
+.ph2{font-weight:700;font-size:26px;letter-spacing:-.5px}
+.psub{font-weight:500;font-size:13px}
+.prow{font-weight:700;font-size:15px}
+/* ===== slide engine ===== */
+.slide{transition:transform var(--fade) cubic-bezier(.65,0,.25,1),opacity var(--fade);pointer-events:none}
+.slide.active{pointer-events:auto}
+.tile,.btn,.dot{cursor:pointer}.tile:hover,.btn:hover{opacity:.85}
+.dot{transition:all .3s}
+.float{animation:float 7s ease-in-out infinite}.phone .float{animation-delay:-3.5s}
+.device:hover .float,.device:focus-within .float,.device.hold .float{animation-play-state:paused}
+@keyframes float{50%{transform:translateY(-14px)}}
+@media (prefers-reduced-motion:reduce){.float{animation:none}}
+.device{outline:none}
+</style>
+</head>
+<body>
+<!--
+ HOW TO EDIT
+ - Each <g class="slide"> is one slide.
+ - data-duration="5000"  -> how long it stays (ms)
+ - data-color="#b8f23a"  -> the colour of its circle at the bottom (match the slide)
+ - Add/remove slides freely; circles + timing are automatic.
+ - Hover/touch/drag a device = it pauses. Swipe/drag left-right, click the circles, or use arrow keys.
+-->
+<svg viewBox="0 0 1000 640" role="img" aria-label="Pweb showcase on a laptop and a phone">
+<defs>
+  <clipPath id="lc"><rect width="580" height="340" rx="6"/></clipPath>
+  <clipPath id="pc"><rect width="186" height="396" rx="26"/></clipPath>
+  <linearGradient id="gv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b6bff"/><stop offset="1" stop-color="#3a1db5"/></linearGradient>
+  <linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a5c"/><stop offset="1" stop-color="#ff3d6e"/></linearGradient>
+  <linearGradient id="gt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee6d6"/><stop offset="1" stop-color="#1b8cf0"/></linearGradient>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="26" stdDeviation="24" flood-color="#000" flood-opacity=".5"/></filter>
+  <path id="gh" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+  <path id="ml" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.5 2.2V8l7.5 5 7.5-5v-.8L12 12.2 4.5 7.2z"/>
+</defs>
+
+<!-- ================= LAPTOP (screen 580 x 340) ================= -->
+<g class="device laptop" tabindex="0">
+<g class="float" filter="url(#sh)">
+  <rect x="40" y="100" width="620" height="380" rx="20" fill="var(--frame)" stroke="var(--edge)" stroke-width="2"/>
+  <path d="M10 480h680l-24 24a14 14 0 0 1-10 4H44a14 14 0 0 1-10-4z" fill="var(--edge)"/>
+  <rect x="300" y="480" width="100" height="8" rx="4" fill="var(--frame)"/>
+  <circle cx="350" cy="110" r="3" fill="#0c0e0f"/>
+  <g class="screen" transform="translate(60 120)" clip-path="url(#lc)">
+    <rect width="580" height="340" fill="#15181a"/>
+
+    <!-- L1: intro (lime) -->
+    <g class="slide" data-duration="5000" data-color="#b8f23a">
+      <rect width="580" height="340" fill="#b8f23a"/>
+      <circle cx="500" cy="50" r="160" fill="#15181a" opacity=".07"/>
+      <circle cx="545" cy="300" r="90" fill="#15181a" opacity=".12"/>
+      <text x="44" y="82" class="eyebrow dk">HI, MY NAME IS</text>
+      <text x="40" y="158" class="big dk">Patrick</text>
+      <text x="40" y="226" class="big dk">Lubisi.</text>
+      <text x="44" y="272" class="sub dk">I build web apps people love.</text>
+    </g>
+
+    <!-- L2: tagline (violet) -->
+    <g class="slide" data-duration="4500" data-color="#8b6bff">
+      <rect width="580" height="340" fill="url(#gv)"/>
+      <circle cx="520" cy="80" r="130" fill="#fff" opacity=".07"/>
+      <text x="40" y="112" class="big">Fast.</text>
+      <text x="40" y="180" class="big">Clean.</text>
+      <text x="40" y="248" class="big lime">Yours.</text>
+      <text x="44" y="292" class="sub" opacity=".85">Web apps · Branding · Landing pages</text>
+    </g>
+
+    <!-- L3: socials (charcoal) -->
+    <g class="slide" data-duration="6000" data-color="#ffffff">
+      <rect width="580" height="340" fill="#15181a"/>
+      <text x="44" y="82" class="eyebrow lime">FIND ME ONLINE</text>
+      <text x="44" y="126" class="h2">Let's connect.</text>
+      <a href="https://github.com/your-username" target="_blank" class="tile">
+        <rect x="44" y="154" width="118" height="150" rx="20" fill="#fff"/>
+        <use href="#gh" class="dk" transform="translate(76 178) scale(2.2)"/>
+        <text x="103" y="280" class="lbl c dk">GitHub</text></a>
+      <a href="https://linkedin.com/in/your-username" target="_blank" class="tile">
+        <rect x="176" y="154" width="118" height="150" rx="20" fill="#0a66c2"/>
+        <text x="235" y="236" class="c" style="font:700 52px var(--font)">in</text>
+        <text x="235" y="280" class="lbl c">LinkedIn</text></a>
+      <a href="https://x.com/your-username" target="_blank" class="tile">
+        <rect x="308" y="154" width="118" height="150" rx="20" fill="#000" stroke="#444" stroke-width="2"/>
+        <text x="367" y="236" class="c" style="font:700 52px var(--font)">X</text>
+        <text x="367" y="280" class="lbl c">X / Twitter</text></a>
+      <a href="mailto:you@example.com" class="tile">
+        <rect x="440" y="154" width="118" height="150" rx="20" fill="#b8f23a"/>
+        <use href="#ml" class="dk" transform="translate(472 178) scale(2.2)"/>
+        <text x="499" y="280" class="lbl c dk">Email</text></a>
+    </g>
+
+    <!-- L4: work (coral) -->
+    <g class="slide" data-duration="6000" data-color="#ff6a5c">
+      <rect width="580" height="340" fill="url(#gc)"/>
+      <text x="44" y="82" class="eyebrow">SELECTED WORK</text>
+      <text x="44" y="124" class="h2">Built to impress.</text>
+      <a href="https://example.com/1" target="_blank" class="tile"><rect x="44" y="148" width="152" height="160" rx="18" fill="#fff"/>
+        <rect x="58" y="162" width="124" height="72" rx="12" fill="#15181a"/><circle cx="90" cy="198" r="16" fill="#b8f23a"/>
+        <text x="58" y="262" class="card-t dk">Dashboard</text><text x="58" y="284" class="lbl" style="fill:#6b7378">Web app</text></a>
+      <a href="https://example.com/2" target="_blank" class="tile"><rect x="214" y="148" width="152" height="160" rx="18" fill="#fff"/>
+        <rect x="228" y="162" width="124" height="72" rx="12" fill="#8b6bff"/><rect x="244" y="184" width="70" height="10" rx="5" fill="#fff"/><rect x="244" y="204" width="40" height="10" rx="5" fill="#fff" opacity=".6"/>
+        <text x="228" y="262" class="card-t dk">Booking site</text><text x="228" y="284" class="lbl" style="fill:#6b7378">Landing page</text></a>
+      <a href="https://example.com/3" target="_blank" class="tile"><rect x="384" y="148" width="152" height="160" rx="18" fill="#fff"/>
+        <rect x="398" y="162" width="124" height="72" rx="12" fill="#2ee6d6"/><circle cx="460" cy="198" r="22" fill="#15181a" opacity=".85"/>
+        <text x="398" y="262" class="card-t dk">Brand kit</text><text x="398" y="284" class="lbl" style="fill:#6b7378">Identity</text></a>
+    </g>
+
+    <!-- L5: call to action (cyan) -->
+    <g class="slide" data-duration="5000" data-color="#2ee6d6">
+      <rect width="580" height="340" fill="url(#gt)"/>
+      <circle cx="90" cy="320" r="170" fill="#fff" opacity=".1"/>
+      <text x="40" y="112" class="big dk">Got an idea?</text>
+      <text x="40" y="184" class="big">Let's build it.</text>
+      <a href="mailto:you@example.com" class="btn">
+        <rect x="44" y="222" width="230" height="56" rx="28" fill="#15181a"/>
+        <text x="159" y="257" class="c" style="font:700 19px var(--font)">Start a project  →</text></a>
+    </g>
+
+    <rect x="0" y="336" width="580" height="4" fill="#000" opacity=".25"/>
+    <rect class="bar" x="0" y="336" width="0" height="4" fill="#fff" opacity=".85"/>
+    <g class="dots" data-w="580" data-y="312"/>
+  </g>
+</g>
+</g>
+
+<!-- ================= PHONE (screen 186 x 396) ================= -->
+<g class="device phone" tabindex="0">
+<g class="float" filter="url(#sh)">
+  <rect x="720" y="170" width="210" height="420" rx="38" fill="var(--frame)" stroke="var(--edge)" stroke-width="2"/>
+  <g class="screen" transform="translate(732 182)" clip-path="url(#pc)">
+    <rect width="186" height="396" fill="#15181a"/>
+
+    <!-- P1: intro (lime) -->
+    <g class="slide" data-duration="4500" data-color="#b8f23a">
+      <rect width="186" height="396" fill="#b8f23a"/>
+      <circle cx="170" cy="60" r="90" fill="#15181a" opacity=".08"/>
+      <text x="22" y="92" class="eyebrow dk" style="font-size:11px">HI, MY NAME IS</text>
+      <text x="20" y="146" class="pbig dk">Patrick</text>
+      <text x="20" y="192" class="pbig dk">Lubisi.</text>
+      <text x="22" y="226" class="psub dk">I build web apps people love.</text>
+    </g>
+
+    <!-- P2: tagline (violet) -->
+    <g class="slide" data-duration="4000" data-color="#8b6bff">
+      <rect width="186" height="396" fill="url(#gv)"/>
+      <text x="20" y="130" class="pbig">Fast.</text>
+      <text x="20" y="180" class="pbig">Clean.</text>
+      <text x="20" y="230" class="pbig lime">Yours.</text>
+      <text x="22" y="266" class="psub" opacity=".85">Web apps · Branding</text>
+    </g>
+
+    <!-- P3: socials (charcoal) -->
+    <g class="slide" data-duration="6000" data-color="#ffffff">
+      <rect width="186" height="396" fill="#15181a"/>
+      <text x="22" y="86" class="ph2">Connect</text>
+      <a href="https://github.com/your-username" target="_blank" class="tile"><rect x="22" y="106" width="142" height="52" rx="16" fill="#fff"/>
+        <use href="#gh" class="dk" transform="translate(38 120) scale(1.1)"/><text x="76" y="138" class="prow dk">GitHub</text></a>
+      <a href="https://linkedin.com/in/your-username" target="_blank" class="tile"><rect x="22" y="168" width="142" height="52" rx="16" fill="#0a66c2"/>
+        <text x="38" y="203" style="font:700 22px var(--font)">in</text><text x="76" y="200" class="prow">LinkedIn</text></a>
+      <a href="https://x.com/your-username" target="_blank" class="tile"><rect x="22" y="230" width="142" height="52" rx="16" fill="#000" stroke="#444" stroke-width="2"/>
+        <text x="40" y="265" style="font:700 22px var(--font)">X</text><text x="76" y="262" class="prow">X / Twitter</text></a>
+      <a href="mailto:you@example.com" class="tile"><rect x="22" y="292" width="142" height="52" rx="16" fill="#b8f23a"/>
+        <use href="#ml" class="dk" transform="translate(38 306) scale(1.1)"/><text x="76" y="324" class="prow dk">Email</text></a>
+    </g>
+
+    <!-- P3b: numbers (coral) - placeholder figures, edit them -->
+    <g class="slide" data-duration="5000" data-color="#ff6a5c">
+      <rect width="186" height="396" fill="url(#gc)"/>
+      <text x="22" y="100" class="eyebrow" style="font-size:11px">IN NUMBERS</text>
+      <text x="20" y="160" class="pbig">10+</text><text x="22" y="182" class="psub">Projects shipped</text>
+      <text x="20" y="236" class="pbig">100%</text><text x="22" y="258" class="psub">Hand-coded</text>
+      <text x="20" y="312" class="pbig">24h</text><text x="22" y="334" class="psub">Reply time</text>
+    </g>
+
+    <!-- P4: CTA (cyan) -->
+    <g class="slide" data-duration="5000" data-color="#2ee6d6">
+      <rect width="186" height="396" fill="url(#gt)"/>
+      <circle cx="40" cy="380" r="120" fill="#fff" opacity=".1"/>
+      <text x="20" y="130" class="ph2 dk" style="font-size:34px;letter-spacing:-1.5px">Got an</text>
+      <text x="20" y="168" class="ph2 dk" style="font-size:34px;letter-spacing:-1.5px">idea?</text>
+      <text x="20" y="212" class="ph2" style="font-size:26px">Let's build it.</text>
+      <a href="mailto:you@example.com" class="btn"><rect x="22" y="244" width="142" height="48" rx="24" fill="#15181a"/>
+        <text x="93" y="274" class="c" style="font:700 14px var(--font)">Start a project →</text></a>
+    </g>
+
+    <rect x="0" y="392" width="186" height="4" fill="#000" opacity=".25"/>
+    <rect class="bar" x="0" y="392" width="0" height="4" fill="#fff" opacity=".85"/>
+    <g class="dots" data-w="186" data-y="366"/>
+  </g>
+  <rect x="790" y="190" width="70" height="18" rx="9" fill="#0c0e0f"/>
+</g>
+</g>
+</svg>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function mk(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e}
+
+  document.querySelectorAll('.device').forEach(function(dev){
+    var sl=[].slice.call(dev.querySelectorAll('.slide')), n=sl.length;
+    var screen=dev.querySelector('.screen'), bar=dev.querySelector('.bar'), dg=dev.querySelector('.dots');
+    var W=+dg.getAttribute('data-w'), Y=+dg.getAttribute('data-y');
+    var idx=0, elapsed=0, last=null, hold=false, down=false, sx=0, swiped=false;
+
+    /* circles: one per slide, coloured with the slide's data-color */
+    var pw=(n-1)*20+30, x0=W/2-(n-1)*10;
+    dg.appendChild(mk('rect',{x:W/2-pw/2,y:Y-12,width:pw,height:24,rx:12,fill:'rgba(0,0,0,.55)'}));
+    var dots=sl.map(function(s,k){
+      var c=mk('circle',{cx:x0+k*20,cy:Y,r:5,fill:s.getAttribute('data-color'),'class':'dot'});
+      c.addEventListener('click',function(e){e.stopPropagation();go(k)});
+      dg.appendChild(c);return c});
+
+    function dur(){return +sl[idx].getAttribute('data-duration')||4000}
+
+    function go(i){
+      idx=((i%n)+n)%n; elapsed=0;
+      sl.forEach(function(s,k){
+        var d=((k-idx)%n+n)%n; if(d>n/2)d-=n;
+        s.style.transform='translateX('+(d*W)+'px)';
+        s.style.opacity=Math.abs(d)>1?0:1;
+        s.classList.toggle('active',d===0);
+      });
+      dots.forEach(function(c,k){
+        c.setAttribute('r',k===idx?7:5);
+        c.setAttribute('stroke',k===idx?'#fff':'none');
+        c.setAttribute('stroke-width',2);
+      });
+    }
+
+    function setHold(v){hold=v;dev.classList.toggle('hold',v)}
+    dev.addEventListener('mouseenter',function(){setHold(true)});
+    dev.addEventListener('mouseleave',function(){if(!down)setHold(false)});
+    dev.addEventListener('focusin',function(){setHold(true)});
+    dev.addEventListener('focusout',function(){setHold(false)});
+
+    /* swipe / drag */
+    screen.addEventListener('pointerdown',function(e){down=true;sx=e.clientX;swiped=false;setHold(true)});
+    window.addEventListener('pointerup',function(e){
+      if(!down)return; down=false;
+      var dx=e.clientX-sx;
+      if(Math.abs(dx)>28){swiped=true;go(idx+(dx<0?1:-1));setTimeout(function(){swiped=false},80)}
+      if(!dev.matches(':hover'))setHold(false);
+    });
+    window.addEventListener('pointercancel',function(){down=false});
+    dev.addEventListener('click',function(e){if(swiped){e.preventDefault();e.stopPropagation()}},true);
+    dev.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight')go(idx+1); if(e.key==='ArrowLeft')go(idx-1);
+    });
+
+    function tick(t){
+      if(last!==null&&!hold)elapsed+=t-last;
+      last=t;
+      if(elapsed>=dur())go(idx+1);
+      bar.setAttribute('width',W*Math.min(elapsed/dur(),1));
+      requestAnimationFrame(tick);
+    }
+    go(0);requestAnimationFrame(tick);
+  });
+})();
+</script>
+</body>
+</html>
