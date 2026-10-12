@@ -308,7 +308,7 @@ height: auto;
     }
 
     & .login-icon {
-      width: 1.6rem;
+      width: 1rem;
       padding: 0.3em;
       background-color: #dbdbdb;
       border: 1px solid rgba(128, 128, 128, 0.192);
