@@ -232,9 +232,7 @@ height: auto;
           border: 1px solid rgba(128, 128, 128, 0.192);
             padding: 0.2em;
           }
-          .searchtext{
-
-          }
+       
 
           .searchPlaceHolder{
             display:none;
@@ -268,7 +266,7 @@ height: auto;
               border: 1px solid rgba(128, 128, 128, 0.192);
               padding: 0.3em;
             }
-            .loginText{}
+          
           }
 
         }
@@ -458,29 +456,7 @@ span{
   font-size: 1.2rem;
   max-width:16rem;
 }
-    .heroBt1{
-      .hbtn1Icon{
-        
-      }
-      span{}
-    }
-    .heroBt2{
-      .hbtn2Icon{
-
-      }
-      
-    }
-    .heroBt3{
-      .hbtn3Icon{}
-    
-      span{}
-    }
-    .heroBt4{
-      .hbtn4Icon{
   
-      }
-      span{}
-    }
   }}
   
 }
