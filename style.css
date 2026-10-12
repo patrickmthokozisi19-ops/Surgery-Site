@@ -101,7 +101,7 @@ main{
 .wrapper{
   position:relative;
 display:grid;
-grid-template-columns: 1fr 85% 1fr;
+grid-template-columns: 1fr 90% 1fr;
 width: 100%;
 height: auto;
   min-height: 100vh;
@@ -185,7 +185,7 @@ height: auto;
   @keyframes rise {
     from { opacity: 0; transform: translateY(40px); }
     to   { opacity: 1; transform: none; }
-  }}
+  }}}
 
 
 @layer Content{
@@ -203,88 +203,178 @@ height: auto;
      z-index:100;
 
     
-    .tNav{ 
-      height: 50px;
+  
+/* ============ TOP NAVIGATION ============ */
+
+.tNav {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 30px 0 40px;
+  background: #f8f6f4;
+  box-sizing: border-box;
+
+  & a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  & img {
+    display: block;
+    width: 2.5rem;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  /* EMERGENCY CONTACT */
+
+  & .Emegerncy_contact {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+
+    & span {
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+  }
+
+  /* RIGHT-SIDE CONTROLS */
+
+  & .t-nav-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  /* SEARCH */
+
+  & .seach-box {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0 15px;
+    cursor: pointer;
+
+    & .search-icon {
+      width: 1.7rem;
+      padding: 0.2em;
+      background-color: #dbdbdb;
+      border: 1px solid rgba(128, 128, 128, 0.192);
+      border-radius: 50%;
+      box-sizing: content-box;
+    }
+
+    & .searchtext {
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    & .searchPlaceHolder {
+      display: none;
+      color: grey;
+      font-weight: 100;
+      opacity: 0.5;
+    }
+
+    & .close_searchBtn {
+      display: none;
+      width: 1rem;
+    }
+  }
+
+  /* LOGIN */
+
+  & .Pweb_login {
+    padding: 0 15px;
+
+    & .login {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       align-items: center;
-      background: #f8f6f4;
-      padding: 0px 30px 0px 40px;  
-      img{
-            width: 2.5rem;
-            height:auto;
-          }
+      gap: 0.8rem;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
 
-      .Emegerncy_contact{
-          display:flex;
-          align-items: center;
-          gap:0.1rem;
+    & .login-icon {
+      width: 1.6rem;
+      padding: 0.3em;
+      background-color: #dbdbdb;
+      border: 1px solid rgba(128, 128, 128, 0.192);
+      border-radius: 50%;
+      box-sizing: content-box;
+    }
+  }
 
-          span{  
-            font-size: 0.7rem;
-            font-size: 1rem;
-          }
-        }
+  /* TABLET: ICONS ONLY */
 
-      .t-nav-btns{
-        display:flex;
-        flex-direction: row;  
-        align-items: center;
-        
+  @media (max-width: 850px) {
+    padding-inline: 20px;
 
-        .seach-box{
-          display:flex;
-          padding:0 15px;
-          align-items: center;
-          gap:1rem;
+    & .Emegerncy_contact {
+      gap: 0;
+    }
 
-          .search-icon{
-            width: 1.7rem;
-            background-color: #dbdbdb;
-          border-radius: 50%;
-          border: 1px solid rgba(128, 128, 128, 0.192);
-            padding: 0.2em;
-          }
-       
+    & .number,
+    & .searchtext,
+    & .loginText {
+      display: none;
+    }
 
-          .searchPlaceHolder{
-            display:none;
-            color: grey;
-            font-weight:100;
-            opacity:0.5;
+    & .t-nav-btns {
+      gap: 1rem;
+    }
 
-          }
+    & .seach-box,
+    & .Pweb_login {
+      padding-inline: 5px;
+    }
 
-          .close_searchBtn{
-            display:none;
-            width: 1rem;
-          
-        }
-      }
+    & .seach-box {
+      gap: 0.4rem;
+    }
+  }
 
-        .Pweb_login{
-       
-          padding:0 15px;
+  /* MOBILE */
 
-          .login{   
-          display:flex;
-          flex-direction: row;
-          font-size: 1rem;
-          gap:0.8rem;
+  @media (max-width: 480px) {
+    height: 48px;
+    padding-inline: 12px;
+    gap: 0.5rem;
 
-            .login-icon{
-              width: 1.6rem;
-              background-color: #dbdbdb;
-              border-radius: 50%;
-              border: 1px solid rgba(128, 128, 128, 0.192);
-              padding: 0.3em;
-            }
-          
-          }
+    & img {
+      width: 2rem;
+    }
 
-        }
-    }}
+    & .t-nav-btns {
+      gap: 0.6rem;
+    }
+
+    & .seach-box,
+    & .Pweb_login {
+      padding-inline: 2px;
+    }
+
+    & .seach-box .search-icon {
+      width: 1.4rem;
+    }
+
+    & .Pweb_login .login-icon {
+      width: 1.3rem;
+    }
+  }
+}
 
     .bNav{
       display: flex;
@@ -1153,7 +1243,7 @@ height: auto;
 }
 
 
-}
+
 
 
 
