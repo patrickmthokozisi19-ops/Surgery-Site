@@ -523,39 +523,36 @@ span{
 
   }
 
-/* --- Responsive Layout (Mobile Viewport) --- */
-@media (max-width: 1315px) {
-  .burger {
-    display: flex; /* Show hamburger button on mobile */
+/* --- Responsive Layout (hamburger under 1000px) --- */
+@media (max-width: 1000px) {
+
+  .nav .bNav .burger {
+    display: flex;
+    margin-left: auto;          /* pushes it toward the right, next to the button */
   }
 
-  .bnavLinks {
-    display: none; /* Hide default desktop links */
+  .nav .bNav .bnavLinks {
+    display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 100%;                  /* directly under the whole header */
+    left: 0;
     right: 0;
-    background-color: #fff;
-    width: 100%;
-    text-align: center;
+    gap: 1.2rem;
     padding: 1.5rem 0;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
-  /* When the 'open' class is toggled active via JS */
-  .bnavLinks .open {
-    display: flex; 
+  .nav .bNav .bnavLinks.open {
+    display: flex;
   }
 
-  /* Optional: Smoothly animate bars into an "X" when active */
-  .burger.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .burger.open span:nth-child(2) {
-    opacity: 0; /* Hide middle bar */
-  }
-  .burger.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
+  /* burger -> X */
+  .burger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 }
 
 
