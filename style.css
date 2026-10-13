@@ -662,13 +662,14 @@ height: auto;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
     align-items: start;
     gap: clamp(0.5rem, 2vw, 2rem);
+    align-items: center;
   
     /* Main device screens: prioritise visibility */
     & .Pwebcontent {
       position: relative;
       width: 100%;
       min-width: 0;
-      height: 650px;
+      height: 950px;
       overflow: hidden;
       border: 0;
     }
@@ -695,8 +696,7 @@ height: auto;
       gap: 0.75rem;
   
       & .Pwebcontent {
-        height:  min(75vw, 650px);
-        min-height: 420px;
+      min-height: 1000px;
       }
   
       & .Pweblinks {

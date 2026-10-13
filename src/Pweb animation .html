@@ -6,18 +6,58 @@
 <title>Pweb wordmark animation</title>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html,body{    margin: 0;
+html,
+body {
+    margin: 0;
     width: 100%;
-    max-height: 100%;}
-body{background:transparent;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-.layout{display:grid;grid-template-columns:minmax(0,600px);gap:24px;align-items:center;width:100%;max-width:1500px;min-height:100%;margin:0 auto;padding:24px;box-sizing:border-box}
-.stage{display:flex;flex-direction:column;align-items:center;transition:opacity .6s}
-.stage.fade{opacity:0}
-.stage svg{width:100%;height:auto;display:block}
-.stage svg.word{max-width:300px;margin-top:-2px}
-.stage svg.web{max-width:360px;margin-top:-6px}
-.side{min-height:120px}
-@media (max-width:900px){.layout{grid-template-columns:1fr}.stage{order:-1}}
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 600px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+.stage svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.stage svg.word {
+    max-width: 260px;
+    margin-top: 18px;
+}
+
+.stage svg.web {
+    max-width: 360px;
+    margin-top: -6px;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 550px;
+        z-index:1
+    }
+
+    .stage {
+        order: -1;
+    }
+}
+
 .play .d{stroke-dasharray:1 2;animation:dr var(--s,.5s) ease-out var(--t,0s) both}
 .play .stem{transform-box:fill-box;transform-origin:50% 0;animation:grow .6s ease-out .4s both}
 .play .eye{transform-box:fill-box;transform-origin:center;animation:pop .35s cubic-bezier(.3,1.6,.5,1) var(--t) both}
