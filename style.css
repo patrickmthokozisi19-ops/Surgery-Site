@@ -585,6 +585,7 @@ height: auto;
         justify-content: center;
         gap: 1rem;
         width: 85%;
+        min-height:100px;
         margin: 0 auto;
   
         > a {
@@ -629,7 +630,7 @@ height: auto;
   
     /* ---------- responsive ---------- */
     @media (max-width: 1199px) {
-      .heroContent .heroBts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      ..heroBts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 600px) {
       .heroContent {
@@ -663,17 +664,19 @@ height: auto;
     align-items: start;
     gap: clamp(0.5rem, 2vw, 2rem);
     align-items: center;
+    justify-content: center;
   
     /* Main device screens: prioritise visibility */
     & .Pwebcontent {
       position: relative;
       width: 100%;
       min-width: 0;
-      height: 950px;
+      height: 1050px;
       overflow: hidden;
       border: 0;
     }
-  
+
+
     & .Pweblinks {
       display: block;
       width: 100%;
@@ -754,7 +757,6 @@ height: auto;
 
 
 /* ============ ABOUT US ============ */
-
 .about-us {
   --ink: #0e1f2b;
   --muted: #5b6b75;
@@ -763,11 +765,27 @@ height: auto;
   --line: rgba(14, 31, 43, 0.08);
   --surface: #f4f7f6;
 
-  grid-column: 1 / -1;
+  grid-column: 2;                                   /* middle column of main.wrapper */
   min-width: 0;
-  padding: clamp(4rem, 8vw, 7rem) 1.5rem;
+  margin: 0;
+  padding: clamp(4rem, 8vw, 7rem) 0;                /* no side padding, wrapper handles it */
   background: var(--surface);
   color: var(--ink);
+
+  /* OPTIONAL: full-bleed tint behind the section while content stays in the middle column.
+     Uncomment this, delete the background line above, and add overflow-x: clip to main.wrapper.
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline: -100vw;
+    z-index: -1;
+    background: var(--surface);
+  }
+  */
 
   & * {
     box-sizing: border-box;
@@ -775,8 +793,8 @@ height: auto;
 
   & .about-inner {
     width: 100%;
-    max-width: 1200px;
-    margin-inline: auto;
+    max-width: none;
+    margin-inline: 0;
   }
 
   & p {
@@ -807,7 +825,7 @@ height: auto;
   }
 
   & .about-title {
-    max-width: 20ch;
+    width: 100%;
     margin: 0 0 1.2rem;
     font-size: clamp(2rem, 4.5vw, 3.4rem);
     font-weight: 700;
@@ -851,7 +869,7 @@ height: auto;
     margin-bottom: 0;
   }
 
-  /* SPECIALITY CARDS */
+  /* DEPARTMENT CARDS */
 
   & .card-grid {
     display: grid;
@@ -946,7 +964,7 @@ height: auto;
     color: var(--accent);
   }
 
-  /* WHY CHOOSE PWEB */
+  /* WHY MYPWEB */
 
   & .about-why {
     padding-block: clamp(2.5rem, 5vw, 4rem);
@@ -1029,7 +1047,7 @@ height: auto;
     margin: 0;
   }
 
-  /* PATIENT JOURNEY */
+  /* HOW IT WORKS */
 
   & .steps {
     display: grid;
@@ -1205,7 +1223,7 @@ height: auto;
   /* MOBILE */
 
   @media (max-width: 640px) {
-    padding-inline: 1rem;
+    padding-inline: 0;
 
     & .card-grid,
     & .steps,
@@ -1267,7 +1285,6 @@ height: auto;
     }
   }
 }
-
 
 /* Footer */
 .site-footer {

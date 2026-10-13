@@ -13,50 +13,50 @@ body {
 }
 
 .layout {
+    position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 600px) minmax(0, 1fr);
     gap: 24px;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px;
+    margin: 0 ;
 }
 
 .stage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 0;
+    height: auto;              /* was 100px, the main cause of the cut-off */
+    padding-bottom: 32px;
 }
 
 .stage svg {
     width: 100%;
     height: auto;
     display: block;
+    flex-shrink: 0;            /* stops the SVGs squashing */
+    overflow: visible;         /* stops the 3D layers being clipped */
 }
 
+@media (min-width: 900px) {
+    .layout {
+        max-width: 300px;
+        z-index: 1;
+        padding: 0;
+        margin: 0;
+    }
+}
 .stage svg.word {
     max-width: 260px;
     margin-top: 18px;
 }
 
 .stage svg.web {
-    max-width: 360px;
-    margin-top: -6px;
+    max-width: 320px;
+    margin:0;
 }
 
-@media (max-width: 900px) {
-    .layout {
-        grid-template-columns: minmax(0, 1fr);
-        max-width: 550px;
-        z-index:1
-    }
 
-    .stage {
-        order: -1;
-    }
-}
+
 
 .play .d{stroke-dasharray:1 2;animation:dr var(--s,.5s) ease-out var(--t,0s) both}
 .play .stem{transform-box:fill-box;transform-origin:50% 0;animation:grow .6s ease-out .4s both}
@@ -73,7 +73,24 @@ body {
 .ol{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
 @keyframes fi{from{opacity:0}to{opacity:1}}
 @keyframes so{from{opacity:1}to{opacity:0}}
-.stage svg.word{margin-top:18px;max-width:260px}
+
+@media (max-width: 899px) {
+    .layout {
+        max-width: 100%;
+        padding: 0 16px 32px;
+        box-sizing: border-box;
+    }
+
+    .stage svg#s     { max-width: 340px; }
+    .stage svg.word  { max-width: 200px; margin-top: 12px; }
+    .stage svg.web   { max-width: 240px; }
+}
+
+@media (max-width: 480px) {
+    .stage svg#s     { max-width: 260px; }
+    .stage svg.word  { max-width: 160px; }
+    .stage svg.web   { max-width: 190px; }
+}
 </style>
 </head>
 <body>
