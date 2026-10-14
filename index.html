@@ -1,62 +1,86 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Faster+One&display=swap" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
- <title>Pweb | Appointments &amp; Admissions (Design)</title>
+
+ <title>Cape Meridian Surgical Hospital | About Our Hospital</title>
 
 <!-- wrapper one bg img priority-->
+
  <link rel="preload" as="image" href="/body imgs/pexels-bohdan-hyrovych-796614725-38682775.jpg" fetchpriority="high">
 
 </head>
 
-
-
-
 <body>
+
   <a class="skip-link" href="#dashMain">Skip to content</a>
 
+  <!-- Demo hospital branding and contact details: replace before publishing. -->
   <!-- ================= HEADER ================= -->
 
   <header class="nav">
 
     <div class="tNav">
-      <a href="" class="Emegerncy_contact">
+
+      <a href="tel:0215550100" class="Emegerncy_contact">
+
         <img  src="public/phone-calling-rounded-svgrepo-com.svg" alt="">
-        <span class="number">071-234-5678</span>
+
+        <span class="number">021 555 0100</span>
+
       </a> 
+
      <div class="t-nav-btns">
 
         <div class="seach-box">
+
           <img src="public/search-finder-magnifying-glass-svgrepo-com.svg" alt="" class="search-icon">
-          <span class="searchtext">Search Pweb</span>
+
+          <span class="searchtext">Search this site</span>
+
           <span class="searchPlaceHolder">Select type of search</span>
 
           <img src="public/cancel-close-delete-svgrepo-com.svg" alt="" class="close_searchBtn">
+
         </div>
 
         <div class="Pweb_login">
-          <a href="" class="login">
+
+          <a href="patient-portal.html" class="login" aria-label="Sign in to the patient portal">
+
             <img src="public/account-avatar-person-svgrepo-com.svg" alt="" class="login-icon">
-            <span class="loginText">Sign in to MyPweb</span> 
+
+            <span class="loginText">Patient portal</span> 
+
           </a>
+
         </div>
+
       </div> 
+
     </div>
 
       <div class="bNav">
 
-        
         <a href="" class="logoNbackBtn">
           <!--Redirects Home-->
 
@@ -70,389 +94,607 @@
         </a>
 
         <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="bnavLinks">
-          <span></span><span></span><span></span>
-        </button>
-        <div class="bnavLinks" id="bnavLinks">
-          <a href="">Overview</a> 
-          <a href="">About us</a>
-          <a href="">Find a Specialist</a>
-          <a href="">Our Location</a>
-          <a href="">Patient tools</a>
-            <a href="">Departments</a>
-         <a href="">Career</a>
-           <button class="navBtn">Book appointment</button>
-        </div>
-       
-    
 
-        
+          <span></span><span></span><span></span>
+
+        </button>
+
+        <div class="bnavLinks" id="bnavLinks">
+
+          <a href="#overview">Home</a> 
+
+          <a href="#about-us">About us</a>
+
+          <a href="#specialities">Find a Specialist</a>
+
+          <a href="#visit-us">Our Location</a>
+
+          <a href="patient-portal.html">Patient portal</a>
+
+            <a href="#specialities">Departments</a>
+
+         <a href="#visit-us">Careers</a>
+
+           <a class="navBtn" href="#contact">Book appointment</a>
+
+        </div>
+
       </div>
 
   </header>
 
+  <main class="main wrapper" id="dashMain">
 
-  <main class="main wrapper">
+     <section class="hero" id="overview">
 
-     <section class="hero ">
       <div class="heroContent">   
 
   <h1 class="heroTitle">
-    Manage your appointments, admissions and records in one place
+
+    Expert surgical care. Personal attention.
+
   </h1>
 
-<div tabindex="0" aria-label="Search Pweb" role="searchbox" class="search-box" id="searchbox">
+<div tabindex="0" aria-label="Search this site" role="searchbox" class="search-box" id="searchbox">
 
 <div class="placeholder">
- <p>Find a</p><span>Specialist</span>
+
+ <p>Find a</p><span>Specialist or department</span>
+
 </div>
 
 <svg class="searchbtn" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
   <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+
     d="M11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C12.8487 19 14.551 18.3729 15.9056 17.3199L19.2929 20.7071C19.6834 21.0976 20.3166 21.0976 20.7071 20.7071C21.0976 20.3166 21.0976 19.6834 20.7071 19.2929L17.3199 15.9056C18.3729 14.551 19 12.8487 19 11C19 6.58172 15.4183 3 11 3ZM5 11C5 7.68629 7.68629 5 11 5C14.3137 5 17 7.68629 17 11C17 14.3137 14.3137 17 11 17C7.68629 17 5 14.3137 5 11Z"/>
+
 </svg>
+
 </div>
 
-<div class="heroBts" role="button">
-  
-<a href=""  class="heroBt1">
+<div class="heroBts">
+
+<a href="#contact" class="heroBt1">
+
 <div class="heroBt1 hbtn">  
+
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class=" hbtn1Icon hicons" >
+
     <path d="M9 3V5M12 3V5M15 3V5M13 9H9M15 13H9M8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V7.2C19 6.0799 19 5.51984 18.782 5.09202C18.5903 4.71569 18.2843 4.40973 17.908 4.21799C17.4802 4 16.9201 4 15.8 4H8.2C7.0799 4 6.51984 4 6.09202 4.21799C5.71569 4.40973 5.40973 4.71569 5.21799 5.09202C5 5.51984 5 6.07989 5 7.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
   </svg>
-     
+
   <span>
+
 Book an appointment
+
   </span>
+
 </div>  
+
 </a>
 
-<a href="" class="heroBt2">
+<a href="#why-choose-us" class="heroBt2">
+
 <div class="heroBt2 hbtn"> 
+
   <svg class=" hbtn2Icon hicons" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+
     <g id="Fill">
+
     <path d="M25,26a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V5H17V3H5V26a3,3,0,0,0,3,3H24a3,3,0,0,0,3-3V13H25Z"/>
+
     <path d="M27.12,2.88a3.08,3.08,0,0,0-4.24,0L17,8.75,16,14.05,21.25,13l5.87-5.87A3,3,0,0,0,27.12,2.88Zm-6.86,8.27-1.76.35.35-1.76,3.32-3.33,1.42,1.42Zm5.45-5.44-.71.7L23.59,5l.7-.71h0a1,1,0,0,1,1.42,0A1,1,0,0,1,25.71,5.71Z"/>
+
     </g>
+
   </svg>
- 
+
   <span>
-Complete pre-admission forms
+
+Our approach
+
   </span>
+
 </div>
+
 </a>
-<a href="" class="heroBt3">
+
+<a href="#specialities" class="heroBt3">
+
 <div class="heroBt3 hbtn">
+
   <svg  viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" class=" hbtn3Icon hicons" >
+
     <path d="M11.483 2.333v9.548h-9.508v8.823h9.508v9.508h8.823v-9.508h9.548v-8.823h-9.548v-9.548h-8.823z"></path>
+
     </svg>  
+
   <span>
-Manage medical aid and cover
+
+Our departments
+
   </span>
+
 </div>
+
 </a>
-<a href="" class="heroBt4">
+
+<a href="#specialities" class="heroBt4">
+
 <div class="heroBt4 hbtn" >
+
   <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" class=" hbtn4Icon hicons" >
+
     <path d="M69.3677,51.0059a30,30,0,1,0-42.7354,0A41.9971,41.9971,0,0,0,0,90a5.9966,5.9966,0,0,0,6,6H90a5.9966,5.9966,0,0,0,6-6A41.9971,41.9971,0,0,0,69.3677,51.0059ZM48,12A18,18,0,1,1,30,30,18.02,18.02,0,0,1,48,12ZM12.5977,84A30.0624,30.0624,0,0,1,42,60H54A30.0624,30.0624,0,0,1,83.4023,84Z"/>
+
     </svg>  
+
   <span>
-Set up your MyPweb account
+
+Meet our specialists
+
   </span>
+
 </div>
+
 </a>
+
 </div> 
+
       </div>  
+
       <div class="wrapper1">
+
   <div class="slide s1"> <img src="body imgs/pexels-cedric-fauntleroy-4269203.jpg" alt=""></div>
+
   <div class="slide s2"> <img src="body imgs/pexels-oles-kanebckuu-34911-127873.jpg" alt=""></div>
+
   <div class="slide s3"><img src="body imgs/pexels-gustavo-fring-5622000.jpg" alt=""> </div>
+
   <div class="slide s4"> <img src="body imgs/pexels-pavel-danilyuk-7653333.jpg" alt=""></div>
+
   <div class="slide s5"> <img src="body imgs/pexels-silverkblack-39192335.jpg" alt=""></div>  
+
       </div>
-</section>
-
-
-<section class="Pweb">
-   <div class="Pwebcontent">
-
-    <iframe class="Pweblinks" src="/src/PwebdevicesFinal_responsive.html"  scrolling="no" title="" aria-hidden="true" tabindex="-1" width="10px"></iframe>
-
-  </div> 
-  
-  <iframe class="PwebAdBg" src="/src/Pweb animation .html"  scrolling="no" title="" aria-hidden="true" tabindex="-1" width="10px"></iframe>
 
 </section>
-
-
 
 <!-- ============ ABOUT US ============ -->
+
 <section class="about-us" id="about-us">
+
   <div class="about-inner">
 
     <!-- INTRODUCTION -->
+
     <div class="about-intro">
-      <p class="about-eyebrow">Patient portal</p>
-      <h2 class="about-title">Everything for your surgical care, organised in one place</h2>
+
+      <p class="about-eyebrow">Welcome to Cape Meridian</p>
+
+      <h2 class="about-title">Surgical expertise with you at the centre of care</h2>
+
       <p class="about-lead">
-        Book consultations, submit admission forms, check costs and track
-        follow-ups without calling around. Your care team and your
-        paperwork stay connected from first visit to recovery.
+
+        Our multidisciplinary team provides thoughtful, coordinated surgical care—from your first consultation through treatment and recovery. We are here to help you understand your options and feel supported at every step.
+
       </p>
+
     </div>
 
     <!-- SPECIALITIES -->
+
     <div class="about-specialities" id="specialities">
+
       <div class="about-heading">
+
         <div>
+
           <p class="about-eyebrow">Departments</p>
-          <h2 class="about-title">Find the right department and book directly</h2>
+
+          <h2 class="about-title">Explore our departments and specialist services</h2>
+
         </div>
+
         <p>
-          Browse departments, review what each one treats and request a
-          consultation or referral in a few steps.
+
+          Learn about the specialist services available at Cape Meridian and the teams dedicated to delivering thoughtful surgical care.
+
         </p>
+
       </div>
 
       <div class="card-grid">
 
         <article class="card">
+
           <span class="card-label">01 / General</span>
+
           <h3>General surgery</h3>
+
           <p>
+
             Book assessments for hernias, gallbladder conditions,
+
             appendicitis and other abdominal conditions.
+
           </p>
-          <a href="">View department <span aria-hidden="true">→</span></a>
+
+          <a href="#contact">Contact us <span aria-hidden="true">→</span></a>
+
         </article>
 
         <article class="card">
+
           <span class="card-label">02 / Mobility</span>
+
           <h3>Orthopaedic surgery</h3>
+
           <p>
+
             Arrange consultations for joint conditions, sports injuries,
+
             fractures and musculoskeletal problems.
+
           </p>
-          <a href="">View department <span aria-hidden="true">→</span></a>
+
+          <a href="#contact">Contact us <span aria-hidden="true">→</span></a>
+
         </article>
 
         <article class="card">
+
           <span class="card-label">03 / Heart &amp; lungs</span>
+
           <h3>Cardiothoracic surgery</h3>
+
           <p>
+
             Request specialist assessment for selected conditions of
+
             the heart, lungs and chest.
+
           </p>
-          <a href="">View department <span aria-hidden="true">→</span></a>
+
+          <a href="#contact">Contact us <span aria-hidden="true">→</span></a>
+
         </article>
 
         <article class="card">
+
           <span class="card-label">04 / Reconstruction</span>
+
           <h3>Plastic &amp; reconstructive surgery</h3>
+
           <p>
+
             Book a consultation for reconstructive procedures and
+
             appropriate cosmetic interventions.
+
           </p>
-          <a href="">View department <span aria-hidden="true">→</span></a>
+
+          <a href="#contact">Contact us <span aria-hidden="true">→</span></a>
+
         </article>
 
         <article class="card">
+
           <span class="card-label">05 / Urinary tract</span>
+
           <h3>Urology</h3>
+
           <p>
+
             Arrange assessment and treatment for urinary tract,
+
             bladder and prostate conditions.
+
           </p>
-          <a href="">View department <span aria-hidden="true">→</span></a>
+
+          <a href="#contact">Contact us <span aria-hidden="true">→</span></a>
+
         </article>
 
         <article class="card">
+
           <span class="card-label">06 / Same-day</span>
+
           <h3>Day surgery</h3>
+
           <p>
+
             Check eligibility, plan your discharge and arrange recovery
+
             at home for suitable procedures.
+
           </p>
-          <a href="">View department <span aria-hidden="true">→</span></a>
+
+          <a href="#contact">Contact us <span aria-hidden="true">→</span></a>
+
         </article>
 
       </div>
+
     </div>
 
-    <!-- WHY CHOOSE PWEB -->
-    <div class="about-why" id="why-pweb">
+    <!-- WHY CHOOSE US -->
+
+    <div class="about-why" id="why-choose-us">
+
       <div class="about-heading">
+
         <div>
-          <p class="about-eyebrow">Why MyPweb</p>
-          <h2 class="about-title">Less paperwork, clearer next steps</h2>
+
+          <p class="about-eyebrow">Why choose us</p>
+
+          <h2 class="about-title">Care built around people, not just procedures</h2>
+
         </div>
+
         <p>
-          One account keeps your bookings, forms, estimates and
-          follow-ups together, so you always know what is done and
-          what is pending.
+
+          We combine specialist knowledge, clear communication and a patient-first approach to help make your care journey more comfortable and straightforward.
+
         </p>
+
       </div>
 
       <ul class="about-values">
+
         <li>
+
           <strong>01</strong>
-          <span>Single account</span>
-          <p>Bookings, forms and records in one secure place.</p>
+
+          <span>Coordinated care</span>
+
+          <p>Our team helps coordinate the next steps in your care.</p>
+
         </li>
+
         <li>
+
           <strong>02</strong>
-          <span>Clear costs</span>
-          <p>Review estimates, cover and payments before you are admitted.</p>
+
+          <span>Clear communication</span>
+
+          <p>We explain your options and help you understand what to expect.</p>
+
         </li>
+
         <li>
+
           <strong>03</strong>
-          <span>Status tracking</span>
-          <p>See what is confirmed, what is outstanding and what is next.</p>
+
+          <span>Experienced specialists</span>
+
+          <p>Access specialist assessment and treatment across key surgical fields.</p>
+
         </li>
+
         <li>
+
           <strong>04</strong>
-          <span>Follow-up reminders</span>
-          <p>Get recovery instructions and follow-up appointments in one list.</p>
+
+          <span>Support through recovery</span>
+
+          <p>We help you plan follow-up care after your procedure.</p>
+
         </li>
+
       </ul>
 
       <div class="why-grid">
+
         <div>
-          <h3>Forms completed online</h3>
+
+          <h3>Guidance at every stage</h3>
+
           <p>
-            Submit pre-admission details and consent forms ahead of
-            time to shorten check-in.
+
+            Our admissions team can explain the information and preparation needed before your visit.
+
           </p>
+
         </div>
+
         <div>
-          <h3>Appointments you control</h3>
+
+          <h3>Appointments made simpler</h3>
+
           <p>
-            Book, reschedule or cancel consultations and see your
-            upcoming schedule at a glance.
+
+            Contact our team to request a consultation with the appropriate specialist.
+
           </p>
+
         </div>
+
         <div>
-          <h3>Support after your procedure</h3>
+
+          <h3>Care beyond the procedure</h3>
+
           <p>
-            Access discharge instructions and message the practice
-            with questions during recovery.
+
+            Your care team will explain your discharge plan and recommended follow-up.
+
           </p>
+
         </div>
+
       </div>
+
     </div>
 
-    <!-- PATIENT JOURNEY -->
-    <div class="about-journey" id="patient-journey">
+    <!-- VISIT OUR HOSPITAL -->
+
+    <div class="about-journey" id="visit-us">
+
       <div class="about-heading">
+
         <div>
-          <p class="about-eyebrow">How it works</p>
-          <h2 class="about-title">Four steps from booking to follow-up</h2>
+
+          <p class="about-eyebrow">More about us</p>
+
+          <h2 class="about-title">A welcoming place for specialist care</h2>
+
         </div>
+
         <p>
-          Each stage has its own checklist, so you can see what to
-          complete before your procedure and what to do afterwards.
+
+          From the moment you arrive, our team is here to help you find your way around and connect with the right department.
+
         </p>
+
       </div>
 
       <ol class="steps">
+
         <li>
+
           <span class="step-no">01</span>
-          <h3>Book a consultation</h3>
-          <p>
-            Choose a department or specialist and select an
-            available time.
-          </p>
+
+          <h3>Our facilities</h3>
+          <p>Purposeful spaces and clinical facilities designed to support safe, coordinated surgical care.</p>
+
         </li>
+
         <li>
+
           <span class="step-no">02</span>
-          <h3>Complete your paperwork</h3>
-          <p>
-            Submit pre-admission forms, review your cost estimate and
-            confirm your medical aid details.
-          </p>
+
+          <h3>Our specialists</h3>
+          <p>Multidisciplinary teams working together across a range of surgical services.</p>
+
         </li>
+
         <li>
+
           <span class="step-no">03</span>
-          <h3>Check in and receive care</h3>
-          <p>
-            Confirm your admission details and arrive for your
-            procedure with everything on file.
-          </p>
+
+          <h3>Getting here</h3>
+          <p>Contact our reception team for directions, parking information and help finding the right department.</p>
+
         </li>
+
         <li>
+
           <span class="step-no">04</span>
-          <h3>Track your recovery</h3>
-          <p>
-            View discharge instructions and manage your follow-up
-            appointments.
-          </p>
+
+          <h3>Join our team</h3>
+          <p>Explore opportunities to contribute to a hospital community focused on quality care.</p>
+
         </li>
+
       </ol>
 
-      <!-- APPOINTMENT CTA -->
-      <div class="cta-band">
+      <div class="cta-band" id="contact-cta">
+
         <div class="cta-content">
-          <p class="cta-eyebrow">Need help with a booking?</p>
-          <h3>Our admissions team can help.</h3>
+
+          <p class="cta-eyebrow">Contact Cape Meridian</p>
+
+          <h3>We would be happy to hear from you.</h3>
+
           <p>
-            Questions about an appointment, admission form or estimate?
-            Contact the team and we'll sort it out with you.
+
+            For general enquiries, directions or appointment requests, get in touch with our hospital team.
+
           </p>
+
           <p class="cta-contact">
-            Call admissions on <a href="tel:0712345678">071-234-5678</a>
+
+            Call reception on <a href="tel:0215550100">021 555 0100</a>
+
           </p>
+
         </div>
 
-        <a href="" class="navBtn">Book appointment <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
+        <a href="#contact" class="navBtn">Contact us <span aria-hidden="true">↗</span></a>
 
+      </div>
+
+    </div>
   </div>
+
 </section>
 
   </main>
-  
-  <footer class="site-footer">
-    <div class="home-inner footer-grid">
-      <div>
-        <h4>Pweb Surgical Practice</h4>
-        <p>Appointments, admissions and records, managed online.</p>
-      </div>
-      <div>
-        <h4>Quick links</h4>
-        <a href="">About us</a>
-        <a href="">Find a Specialist</a>
-        <a href="">Our Location</a>
-        <a href="">Career</a>
-      </div>
-      <div>
-        <h4>Patient tools</h4>
-        <a href="">Patient information</a>
-        <a href="">Pre-admission forms</a>
-        <a href="">MyPweb account</a>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <a href="tel:0712345678">071-234-5678</a>
-        <p>Emergency? Call your local emergency number.</p>
-      </div>
-    </div>
-    <p class="footer-copy">© 2026 Pweb Surgical Practice. All rights reserved.</p>
-  </footer>
-    
 
+  <footer class="site-footer" id="contact">
+
+    <div class="home-inner footer-grid">
+
+      <div>
+
+        <h4>Cape Meridian Surgical Hospital</h4>
+
+        <p>Specialist surgical services with compassionate, coordinated care.</p>
+
+      </div>
+
+      <div>
+
+        <h4>Quick links</h4>
+
+        <a href="#about-us">About us</a>
+
+        <a href="#specialities">Find a Specialist</a>
+
+        <a href="#visit-us">Our Location</a>
+
+        <a href="#visit-us">Careers</a>
+
+      </div>
+
+      <div>
+
+        <h4>Explore</h4>
+          <a href="#why-choose-us">Why choose us</a>
+          <a href="#visit-us">Visit our hospital</a>
+          <a href="patient-portal.html">Patient portal</a>
+
+      </div>
+
+      <div>
+
+        <h4>Contact</h4>
+
+        <a href="tel:0215550100">021 555 0100</a>
+
+        <p>Emergency? Call your local emergency number.</p>
+
+      </div>
+
+    </div>
+
+    <p class="footer-copy">© 2026 Cape Meridian Surgical Hospital. All rights reserved.</p>
+
+  </footer>
 
   <script>
+
 document.addEventListener("DOMContentLoaded", () => {
+
   const burger = document.getElementById("burger");
+
   const navLinks = document.getElementById("bnavLinks");
 
   burger.addEventListener("click", () => {
+
     // Toggle the 'open' class on click
+
     burger.classList.toggle("open");
+
     navLinks.classList.toggle("open");
+
   });
+
 });
+
     </script>
 
 </body>
+
 </html>
