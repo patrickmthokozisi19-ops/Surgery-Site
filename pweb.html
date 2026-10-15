@@ -15,7 +15,6 @@
 
 <body>
 
-  <!-- Icons reused across the page (placeholder image icon, carousel arrows) -->
   <svg class="sr-only" aria-hidden="true" focusable="false">
     <symbol id="i-image" viewBox="0 0 24 24">
       <rect x="3" y="4" width="18" height="16" rx="3"/>
@@ -28,7 +27,7 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ================= HEADER (same classes as the hospital page) ================= -->
+  <!-- HEADER -->
   <header class="nav nav-slim">
 
     <div class="tNav">
@@ -39,7 +38,7 @@
 
       <div class="t-nav-btns">
         <div class="Pweb_login">
-          <!-- PLACEHOLDER: sign-in page for existing institutions and staff (not built yet) -->
+          <!-- Placeholder link: sign-in page -->
           <a href="sign-in.html" class="login" aria-label="Sign in to Pweb">
             <img src="public/account-avatar-person-svgrepo-com.svg" alt="" class="login-icon">
             <span class="loginText">Sign in</span>
@@ -65,7 +64,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#about">About Pweb</a>
         <a href="#contact">Contact</a>
-        <!-- PLACEHOLDER: demo request page or form (not built yet) -->
+        <!-- Placeholder link: demo request page -->
         <a class="navBtn" href="request-demo.html">Request a Demo</a>
       </nav>
     </div>
@@ -74,44 +73,16 @@
 
   <main class="main wrapper" id="main">
 
-    <!-- ============ A. HERO ============ -->
-    <section class="band pw-hero" id="top" aria-labelledby="hero-title">
+    <!-- A. HERO -->
+    <section class="band pw-stage" id="top" aria-labelledby="hero-title">
       <div class="band-inner">
+        <h1 class="sr-only" id="hero-title">Better digital experiences for modern healthcare.</h1>
 
-        <div class="pw-hero-copy">
-          <h1 id="hero-title">Better digital experiences for modern healthcare.</h1>
-          <p class="about-lead">
-            Pweb helps hospitals and surgical practices build a professional online presence and create more convenient digital experiences for their patients.
-          </p>
-
-          <div class="pw-actions">
-            <a class="btn btn-dark" href="request-demo.html">Request a Demo</a>
-            <a class="btn btn-ghost" href="#platform">Explore the Platform</a>
-          </div>
-
-          <ul class="pw-points">
-            <li>Built for multiple institutions</li>
-            <li>Branded for each institution</li>
-            <li>Organised patient enquiries</li>
-          </ul>
-        </div>
-
-        <div class="pw-frame">
-          <!-- HERO IMAGE: add <img src="images/hero.jpg" alt="Describe the image" width="1600" height="1280" fetchpriority="high">
-               as the FIRST child of the figure below. The placeholder hides itself automatically. -->
-          <figure class="ph" style="--ratio: 5 / 4; --min: 20rem">
-            <span class="ph-label" aria-hidden="true">
-              <svg><use href="#i-image"/></svg>
-              Hero image
-              <small>Suggested 1600 × 1280 px</small>
-            </span>
-          </figure>
-        </div>
-
+        <iframe class="stage-frame" id="heroFrame" src="/pweb/hero-animation.html" title="Pweb animated introduction: the Pweb wordmark, then sample calendar, booking and appointment screens on a laptop and contact details on a phone"></iframe>
       </div>
     </section>
 
-    <!-- ============ B. MARKETING CAROUSEL ============ -->
+    <!-- B. MARKETING CAROUSEL -->
     <section class="band is-white pw-carousel" id="why-pweb" aria-labelledby="carousel-title">
       <div class="band-inner">
 
@@ -133,7 +104,7 @@
                   <p>Present departments, services, facilities, specialists and contact information online, clearly and consistently.</p>
                   <a class="btn btn-ghost" href="#platform">See the platform</a>
                 </div>
-                <!-- CAROUSEL IMAGE 1: institution website / departments page -->
+                <!-- Replace with carousel image 1 -->
                 <figure class="ph" style="--ratio: 16 / 11">
                   <span class="ph-label" aria-hidden="true">
                     <svg><use href="#i-image"/></svg>
@@ -148,7 +119,7 @@
                   <h3>Simplified appointment enquiries</h3>
                   <p>Give patients a convenient way to ask about or request appointments, and help your team organise incoming requests.</p>
                 </div>
-                <!-- CAROUSEL IMAGE 2: appointment enquiry screen -->
+                <!-- Replace with carousel image 2 -->
                 <figure class="ph" style="--ratio: 16 / 11">
                   <span class="ph-label" aria-hidden="true">
                     <svg><use href="#i-image"/></svg>
@@ -164,7 +135,7 @@
                   <p>Each hospital or practice can have its own branding, service information and configuration, all within one shared platform.</p>
                   <a class="btn btn-ghost" href="#how-it-works">See how onboarding works</a>
                 </div>
-                <!-- CAROUSEL IMAGE 3: two differently branded institution sites side by side -->
+                <!-- Replace with carousel image 3 -->
                 <figure class="ph" style="--ratio: 16 / 11">
                   <span class="ph-label" aria-hidden="true">
                     <svg><use href="#i-image"/></svg>
@@ -180,7 +151,7 @@
                   <p>Over time, bring institutional websites, booking workflows and relevant patient-facing tools together on one foundation.</p>
                   <a class="btn btn-ghost" href="request-demo.html">Request a Demo</a>
                 </div>
-                <!-- CAROUSEL IMAGE 4: connected services concept image -->
+                <!-- Replace with carousel image 4 -->
                 <figure class="ph" style="--ratio: 16 / 11">
                   <span class="ph-label" aria-hidden="true">
                     <svg><use href="#i-image"/></svg>
@@ -193,7 +164,6 @@
             </div>
           </div>
 
-          <!-- Controls stay hidden until JavaScript is running, so there are no dead buttons -->
           <div class="pw-controls" hidden>
             <div class="pw-dots">
               <button type="button" aria-label="Go to slide 1"></button>
@@ -213,7 +183,7 @@
       </div>
     </section>
 
-    <!-- ============ C. PLATFORM OVERVIEW ============ -->
+    <!-- C. PLATFORM OVERVIEW -->
     <section class="band pw-overview" id="platform" aria-labelledby="platform-title">
       <div class="band-inner">
 
@@ -261,7 +231,6 @@
           </article>
         </div>
 
-        <!-- ABOUT PWEB (nav link target) -->
         <div class="pw-multi" id="about">
           <div>
             <p class="about-eyebrow">About Pweb</p>
@@ -284,7 +253,7 @@
       </div>
     </section>
 
-    <!-- ============ D. SOLUTIONS ============ -->
+    <!-- D. SOLUTIONS -->
     <section class="band is-white pw-solutions" id="solutions" aria-labelledby="solutions-title">
       <div class="band-inner">
 
@@ -316,8 +285,7 @@
           </ul>
 
           <figure class="pw-sol-visual">
-            <!-- INSTITUTION EXAMPLE IMAGE: add <img src="images/institution.jpg" alt="…" width="1200" height="1200">
-                 as the FIRST child of the .ph figure below. -->
+            <!-- Replace with institution example image -->
             <div class="ph" style="--ratio: 1 / 1">
               <span class="ph-label" aria-hidden="true">
                 <svg><use href="#i-image"/></svg>
@@ -334,7 +302,7 @@
       </div>
     </section>
 
-    <!-- ============ E. HOW IT WORKS ============ -->
+    <!-- E. HOW IT WORKS -->
     <section class="band pw-how" id="how-it-works" aria-labelledby="how-title">
       <div class="band-inner">
         <div class="how-layout">
@@ -387,7 +355,7 @@
       </div>
     </section>
 
-    <!-- ============ F. PRODUCT PREVIEW ============ -->
+    <!-- F. PRODUCT PREVIEW -->
     <section class="band is-ink pw-preview" id="preview" aria-labelledby="preview-title">
       <div class="band-inner">
 
@@ -405,8 +373,7 @@
               <span></span><span></span><span></span>
               <em>sample-practice.pweb.example</em>
             </div>
-            <!-- PRODUCT SCREENSHOT: add <img src="images/preview-site.png" alt="…" width="1600" height="1000">
-                 as the FIRST child of the .ph div below. -->
+            <!-- Replace with product screenshot -->
             <div class="ph" style="--ratio: 16 / 10; --min: 18rem">
               <span class="ph-label" aria-hidden="true">
                 <svg><use href="#i-image"/></svg>
@@ -419,7 +386,7 @@
 
           <div class="prev-side">
             <figure>
-              <!-- SCREENSHOT 2: appointment enquiry concept -->
+              <!-- Replace with enquiry screenshot -->
               <div class="ph" style="--ratio: 16 / 10; --min: 8rem">
                 <span class="ph-label" aria-hidden="true">
                   <svg><use href="#i-image"/></svg>
@@ -429,7 +396,7 @@
               <figcaption>Appointment enquiry (concept).</figcaption>
             </figure>
             <figure>
-              <!-- SCREENSHOT 3: staff overview concept, fictional data only -->
+              <!-- Replace with staff overview screenshot -->
               <div class="ph" style="--ratio: 16 / 10; --min: 8rem">
                 <span class="ph-label" aria-hidden="true">
                   <svg><use href="#i-image"/></svg>
@@ -444,7 +411,7 @@
       </div>
     </section>
 
-    <!-- ============ G. FINAL CALL TO ACTION ============ -->
+    <!-- G. FINAL CALL TO ACTION -->
     <section class="band pw-cta" id="contact" aria-labelledby="cta-title">
       <div class="band-inner">
         <div class="cta-band">
@@ -453,11 +420,10 @@
             <p class="cta-eyebrow">Get in touch</p>
             <h2 id="cta-title">Ready to improve your institution's digital experience?</h2>
             <p>Let's explore how Pweb could support your hospital or practice.</p>
-            <!-- PLACEHOLDER: add real contact details here once available (email / phone). Do not invent any. -->
+            <!-- Add real contact details here -->
           </div>
 
           <div class="cta-actions">
-            <!-- PLACEHOLDER links: request-demo.html and contact.html do not exist yet -->
             <a class="btn btn-primary" href="request-demo.html">Request a Demo</a>
             <a class="btn btn-ghost" href="contact.html">Contact Pweb</a>
           </div>
@@ -468,7 +434,7 @@
 
   </main>
 
-  <!-- ================= FOOTER ================= -->
+  <!-- FOOTER -->
   <footer class="site-footer">
 
     <div class="footer-grid">
@@ -509,9 +475,14 @@
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("message", (e) => {
+      const frame = document.getElementById("heroFrame");
+      if (frame && e.source === frame.contentWindow && e.data && e.data.type === "pweb-hero-height") {
+        frame.style.height = e.data.h + "px";
+      }
+    });
 
-      /* ---------- mobile menu ---------- */
+    document.addEventListener("DOMContentLoaded", () => {
       const burger = document.getElementById("burger");
       const navLinks = document.getElementById("bnavLinks");
 
@@ -530,8 +501,6 @@
           burger.focus();
         }
       });
-
-      /* ---------- carousel ---------- */
       const region = document.getElementById("pwCarousel");
       if (!region) return;
 
@@ -548,7 +517,7 @@
         track.style.setProperty("--i", index);
 
         slides.forEach((slide, i) => {
-          slide.inert = i !== index;                       /* off-screen slides can't be tabbed to */
+          slide.inert = i !== index;
           slide.setAttribute("aria-hidden", String(i !== index));
         });
 
@@ -565,7 +534,7 @@
       region.querySelector("[data-dir='prev']").addEventListener("click", () => go(index - 1));
       region.querySelector("[data-dir='next']").addEventListener("click", () => go(index + 1));
 
-      /* keyboard: arrows / Home / End while focus is on the controls */
+
       controls.addEventListener("keydown", (e) => {
         const keys = {
           ArrowLeft: () => go(index - 1, true),
@@ -579,7 +548,7 @@
         }
       });
 
-      /* touch: swipe left / right */
+
       let startX = null;
       viewport.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
       viewport.addEventListener("touchend", (e) => {
@@ -589,9 +558,9 @@
         if (Math.abs(dx) > 50) go(index + (dx < 0 ? 1 : -1));
       });
 
-      controls.hidden = false;   /* JS is running, so the controls can show */
+      controls.hidden = false;
       go(0);
-      status.textContent = "";   /* don't announce on page load */
+      status.textContent = "";
     });
   </script>
 
