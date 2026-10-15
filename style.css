@@ -1,5 +1,8 @@
-@layer Global, Content, Content2;
+@layer Global, Layer1, Layer2, Layer3;
 
+/* ================================================================
+   GLOBAL — shared styling
+   ================================================================ */
 @property --bg {
   syntax: "<color>";
   inherits: true;
@@ -164,8 +167,7 @@
   }
 }
 
-@layer Content {
-
+@layer Global {
   /* nav */
   .nav {
     position: sticky;
@@ -486,177 +488,6 @@
         padding-inline: 1rem;
       }
     }
-  }
-
-  /* hero */
-  .hero {
-    position: relative;
-    isolation: isolate;
-    overflow: clip;
-    display: grid;
-    grid-column: 1 / -1;
-    grid-row: 1;
-    grid-template-columns: 1fr 90% 1fr;
-    grid-template-columns: subgrid;
-    min-height: 100vh;
-    min-height: 100svh;
-
-    & .wrapper1 {
-      position: relative;
-      grid-column: 1 / -1;
-      grid-row: 1;
-      overflow: hidden;
-      background: #afccc7;
-
-      & .slide {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        opacity: 0;
-        filter: brightness(0.7);
-        animation: slideMid 75s linear infinite;
-
-        & img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-        }
-      }
-
-      & .s2 { animation-delay: 15s; }
-      & .s3 { animation-delay: 30s; }
-      & .s4 { animation-delay: 45s; }
-      & .s5 { animation-delay: 60s; animation-name: slideLast; }
-    }
-
-    & .heroContent {
-      z-index: 1;
-      grid-column: 2;
-      grid-row: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(1.5rem, 4vh, 3rem);
-      min-width: 0;
-      padding-block: clamp(3rem, 10vh, 8rem) clamp(2rem, 6vh, 4rem);
-
-      & .heroTitle {
-        text-align: center;
-        color: var(--white);
-        font-size: clamp(2rem, 5.5vw, 3.5rem);
-        line-height: 1.1;
-        text-wrap: balance;
-      }
-
-      & .search-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: min(100%, 640px);
-        height: 3.3rem;
-        padding: 0.5rem 0.2rem 0.5rem 1rem;
-        background: var(--white);
-        border-radius: 12px;
-
-        & .placeholder {
-          display: flex;
-          gap: 0 0.5rem;
-        }
-
-        & .searchbtn {
-          width: 2.7rem;
-          padding: 10px;
-          color: var(--white);
-          background: var(--brand);
-          border-radius: 12px;
-        }
-      }
-
-      & .heroBts {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        justify-content: center;
-        gap: 0.6rem;
-        width: 85%;
-        min-height: 100px;
-        margin: 0 auto;
-
-        & > a {
-          width: 100%;
-
-          & > .hbtn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            width: 100%;
-            min-height: 110px;
-            padding: 1.25rem 1.5rem;
-            background: #ffffff28;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--white);
-            border-radius: 13px;
-          }
-        }
-
-        & .hicons {
-          flex: 0 0 3rem;
-          width: 3rem;
-          height: 3rem;
-          padding: 8px;
-          fill: var(--brand);
-          background: var(--white);
-          border-radius: 50%;
-        }
-
-        & span {
-          color: var(--white);
-          font-size: clamp(1rem, 1.4vw, 1.2rem);
-          font-weight: 300;
-        }
-      }
-    }
-
-    @media (max-width: 1199px) {
-      & .heroContent .heroBts {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      & .heroContent .heroBts {
-        grid-template-columns: minmax(0, 1fr);
-        width: 80%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      & .wrapper1 .slide {
-        animation: none;
-      }
-
-      & .wrapper1 .s1 {
-        opacity: 1;
-      }
-    }
-  }
-
-  @keyframes slideMid {
-    0%    { opacity: 0; }
-    3%    { opacity: 1; }
-    23%   { opacity: 1; }
-    23.1% { opacity: 0; }
-    100%  { opacity: 0; }
-  }
-
-  @keyframes slideLast {
-    0%    { opacity: 0; }
-    3%    { opacity: 1; }
-    20%   { opacity: 1; }
-    25%   { opacity: 0; }
-    100%  { opacity: 0; }
   }
 
   /* section kit */
@@ -1025,6 +856,239 @@
     }
   }
 
+  /* footer */
+  .site-footer {
+    padding: 4rem 1.5rem 1.5rem;
+    color: #aebcc4;
+    background: #0a1620;
+
+    & .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 2.5rem;
+      width: 90%;
+      margin-inline: auto;
+    }
+
+    & h4 {
+      margin-bottom: 1rem;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    & :is(a, p) {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: inherit;
+      font-weight: 400;
+    }
+
+    & a:hover {
+      color: var(--accent);
+    }
+
+    & .footer-copy {
+      width: 90%;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      & .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      padding-top: 3rem;
+
+      & .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.8rem;
+      }
+    }
+  }
+
+}
+
+/* ================================================================
+   LAYER 1 — hospital HTML
+   ================================================================ */
+@layer Layer1 {
+  /* hero */
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    grid-template-columns: 1fr 90% 1fr;
+    grid-template-columns: subgrid;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    & .wrapper1 {
+      position: relative;
+      grid-column: 1 / -1;
+      grid-row: 1;
+      overflow: hidden;
+      background: #afccc7;
+
+      & .slide {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0;
+        filter: brightness(0.7);
+        animation: slideMid 75s linear infinite;
+
+        & img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      & .s2 { animation-delay: 15s; }
+      & .s3 { animation-delay: 30s; }
+      & .s4 { animation-delay: 45s; }
+      & .s5 { animation-delay: 60s; animation-name: slideLast; }
+    }
+
+    & .heroContent {
+      z-index: 1;
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1.5rem, 4vh, 3rem);
+      min-width: 0;
+      padding-block: clamp(3rem, 10vh, 8rem) clamp(2rem, 6vh, 4rem);
+
+      & .heroTitle {
+        text-align: center;
+        color: var(--white);
+        font-size: clamp(2rem, 5.5vw, 3.5rem);
+        line-height: 1.1;
+        text-wrap: balance;
+      }
+
+      & .search-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: min(100%, 640px);
+        height: 3.3rem;
+        padding: 0.5rem 0.2rem 0.5rem 1rem;
+        background: var(--white);
+        border-radius: 12px;
+
+        & .placeholder {
+          display: flex;
+          gap: 0 0.5rem;
+        }
+
+        & .searchbtn {
+          width: 2.7rem;
+          padding: 10px;
+          color: var(--white);
+          background: var(--brand);
+          border-radius: 12px;
+        }
+      }
+
+      & .heroBts {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: center;
+        gap: 0.6rem;
+        width: 85%;
+        min-height: 100px;
+        margin: 0 auto;
+
+        & > a {
+          width: 100%;
+
+          & > .hbtn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+            min-height: 110px;
+            padding: 1.25rem 1.5rem;
+            background: #ffffff28;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--white);
+            border-radius: 13px;
+          }
+        }
+
+        & .hicons {
+          flex: 0 0 3rem;
+          width: 3rem;
+          height: 3rem;
+          padding: 8px;
+          fill: var(--brand);
+          background: var(--white);
+          border-radius: 50%;
+        }
+
+        & span {
+          color: var(--white);
+          font-size: clamp(1rem, 1.4vw, 1.2rem);
+          font-weight: 300;
+        }
+      }
+    }
+
+    @media (max-width: 1199px) {
+      & .heroContent .heroBts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      & .heroContent .heroBts {
+        grid-template-columns: minmax(0, 1fr);
+        width: 80%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      & .wrapper1 .slide {
+        animation: none;
+      }
+
+      & .wrapper1 .s1 {
+        opacity: 1;
+      }
+    }
+  }
+
+  @keyframes slideMid {
+    0%    { opacity: 0; }
+    3%    { opacity: 1; }
+    23%   { opacity: 1; }
+    23.1% { opacity: 0; }
+    100%  { opacity: 0; }
+  }
+
+  @keyframes slideLast {
+    0%    { opacity: 0; }
+    3%    { opacity: 1; }
+    20%   { opacity: 1; }
+    25%   { opacity: 0; }
+    100%  { opacity: 0; }
+  }
+
   /* about us */
   .about-us {
     grid-column: 2;
@@ -1161,6 +1225,12 @@
     }
   }
 
+}
+
+/* ================================================================
+   LAYER 2 — Pweb HTML
+   ================================================================ */
+@layer Layer2 {
   /* band */
   .band {
     display: grid;
@@ -1888,62 +1958,6 @@
     padding-block: clamp(2.5rem, 5vw, 4.5rem);
   }
 
-  /* footer */
-  .site-footer {
-    padding: 4rem 1.5rem 1.5rem;
-    color: #aebcc4;
-    background: #0a1620;
-
-    & .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr repeat(3, 1fr);
-      gap: 2.5rem;
-      width: 90%;
-      margin-inline: auto;
-    }
-
-    & h4 {
-      margin-bottom: 1rem;
-      color: var(--white);
-      letter-spacing: -0.01em;
-    }
-
-    & :is(a, p) {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: inherit;
-      font-weight: 400;
-    }
-
-    & a:hover {
-      color: var(--accent);
-    }
-
-    & .footer-copy {
-      width: 90%;
-      margin: 3rem auto 0;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.85rem;
-      text-align: center;
-    }
-
-    @media (max-width: 900px) {
-      & .footer-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 560px) {
-      padding-top: 3rem;
-
-      & .footer-grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.8rem;
-      }
-    }
-  }
-
   /* pweb ad */
   .Pweb {
     display: grid;
@@ -2025,12 +2039,12 @@
     40%      { --bg: #14295a; }
     60%      { --bg: #1b3a6b; }
     80%      { --bg: #0e2a47; }
-  }
-}
+  }}
 
-@layer Content2 {
-
-  /* dash base */
+/* ================================================================
+   LAYER 3 — dashboard HTML
+   ================================================================ */
+@layer Layer3 {  /* dash base */
   .dash {
 
     & .dash-eyebrow {
