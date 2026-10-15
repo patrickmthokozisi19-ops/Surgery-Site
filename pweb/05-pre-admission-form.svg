@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-label="Pre-admission forms">
+<rect x="0" y="0" width="1280" height="880" rx="0" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="78" rx="0" fill="#1d3443" stroke="none" stroke-width="1"/>
+<text x="44" y="49" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="750" text-anchor="start">Pweb</text>
+<text x="1200" y="47" fill="#5fd3b3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end">PLATFORM PREVIEW</text>
+<text x="46" y="143" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="750" text-anchor="start">Pre-admission forms</text>
+<text x="46" y="180" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Structured forms for patient information and preparation</text>
+<rect x="40" y="211" width="1200" height="625" rx="22" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1160" y="853" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end">PWEB / PLATFORM PREVIEW</text>
+<rect x="75" y="241" width="850" height="556" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="97" y="279" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Pre-admission questionnaire</text>
+<rect x="103" y="298" width="127" height="32" rx="16" fill="#e2f6ef" stroke="none" stroke-width="1"/><text x="117" y="320" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Step 2 of 4</text>
+<rect x="103" y="350" width="780" height="9" rx="5" fill="#e9eeee" stroke="none" stroke-width="1"/>
+<rect x="103" y="350" width="390" height="9" rx="5" fill="#5fd3b3" stroke="none" stroke-width="1"/>
+<text x="104" y="408" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="start">Contact details</text>
+<text x="103" y="434" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start">Full name</text>
+<rect x="103" y="447" width="364" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="119" y="481" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start">Alex Morgan</text>
+<text x="505" y="434" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start">Date of birth</text>
+<rect x="505" y="447" width="378" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="521" y="481" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start">12 March 1995</text>
+<text x="103" y="552" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start">Mobile number</text>
+<rect x="103" y="565" width="364" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="119" y="599" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start">071 234 5678</text>
+<text x="505" y="552" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start">Email address</text>
+<rect x="505" y="565" width="378" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="521" y="599" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start">alex@example.com</text>
+<rect x="690" y="718" width="185" height="44" rx="11" fill="#5fd3b3" stroke="none" stroke-width="1"/><text x="708" y="746" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Continue</text>
+<rect x="949" y="241" width="256" height="556" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="971" y="279" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Form progress</text>
+<rect x="971" y="320" width="34" height="34" rx="17" fill="#5fd3b3" stroke="none" stroke-width="1"/>
+<text x="988" y="342" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle">✓</text>
+<text x="1020" y="344" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Patient details</text>
+<rect x="971" y="420" width="34" height="34" rx="17" fill="#5fd3b3" stroke="none" stroke-width="1"/>
+<text x="988" y="442" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle">✓</text>
+<text x="1020" y="444" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Contact details</text>
+<rect x="971" y="520" width="34" height="34" rx="17" fill="#e6eeec" stroke="none" stroke-width="1"/>
+<text x="988" y="542" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle">3</text>
+<text x="1020" y="544" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Medical history</text>
+<rect x="971" y="620" width="34" height="34" rx="17" fill="#e6eeec" stroke="none" stroke-width="1"/>
+<text x="988" y="642" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle">4</text>
+<text x="1020" y="644" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Review &amp; submit</text>
+</svg>

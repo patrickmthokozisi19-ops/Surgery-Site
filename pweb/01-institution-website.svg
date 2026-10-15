@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-label="Institution website">
+<rect x="0" y="0" width="1280" height="880" rx="0" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="78" rx="0" fill="#1d3443" stroke="none" stroke-width="1"/>
+<text x="44" y="49" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="750" text-anchor="start">logo</text>
+<text x="1200" y="47" fill="#5fd3b3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end">PLATFORM PREVIEW</text>
+<text x="46" y="143" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="750" text-anchor="start">Institution website</text>
+<text x="46" y="180" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">A polished public-facing experience for each hospital or specialist practice</text>
+<rect x="40" y="211" width="1200" height="625" rx="22" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1160" y="853" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end">logo / PLATFORM PREVIEW</text>
+<rect x="62" y="230" width="1156" height="70" rx="10" fill="#f8faf9" stroke="none" stroke-width="1"/>
+<text x="91" y="274" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="750" text-anchor="start">Your</text>
+<text x="267" y="272" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Surgical Centre</text>
+<text x="830" y="273" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="500" text-anchor="start">Specialists    Services    Contact</text>
+<rect x="1010" y="244" width="170" height="44" rx="11" fill="#5fd3b3" stroke="none" stroke-width="1"/><text x="1028" y="272" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Book a visit</text>
+<rect x="62" y="320" width="730" height="482" rx="16" fill="#e9f5f1" stroke="none" stroke-width="1"/>
+<text x="105" y="395" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="750" text-anchor="start">SPECIALIST SURGICAL CARE</text>
+<text x="105" y="455" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="750" text-anchor="start">Care that puts</text>
+<text x="105" y="510" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="750" text-anchor="start">people first.</text>
+<text x="105" y="561" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="400" text-anchor="start">Consultations, procedures and</text>
+<text x="105" y="589" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="400" text-anchor="start">a clearer path to your next visit.</text>
+<rect x="105" y="631" width="225" height="44" rx="11" fill="#1d3443" stroke="none" stroke-width="1"/><text x="123" y="659" fill="white" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Explore specialists</text>
+<rect x="812" y="320" width="386" height="230" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="834" y="358" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Find your specialist</text>
+<rect x="838" y="381" width="300" height="9" rx="4" fill="#e7eeed" stroke="none" stroke-width="1"/><rect x="838" y="404" width="220" height="9" rx="4" fill="#e7eeed" stroke="none" stroke-width="1"/>
+<rect x="838" y="452" width="136" height="32" rx="16" fill="#e2f6ef" stroke="none" stroke-width="1"/><text x="852" y="474" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Orthopaedics</text>
+<rect x="995" y="452" width="166" height="32" rx="16" fill="#dce9fa" stroke="none" stroke-width="1"/><text x="1009" y="474" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">General surgery</text>
+<rect x="812" y="568" width="386" height="234" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="834" y="606" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Contact &amp; appointments</text>
+<text x="839" y="636" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="start">Monday – Friday</text>
+<text x="839" y="673" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start">08:00 – 17:00</text>
+<rect x="839" y="719" width="154" height="32" rx="16" fill="#e2f6ef" stroke="none" stroke-width="1"/><text x="853" y="741" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Enquiries open</text>
+</svg>

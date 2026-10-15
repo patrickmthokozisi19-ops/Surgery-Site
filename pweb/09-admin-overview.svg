@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-label="Practice administration">
+<rect x="0" y="0" width="1280" height="880" rx="0" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="78" rx="0" fill="#1d3443" stroke="none" stroke-width="1"/>
+<text x="44" y="49" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="750" text-anchor="start">Pweb</text>
+<text x="1200" y="47" fill="#5fd3b3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end">PLATFORM PREVIEW</text>
+<text x="46" y="143" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="750" text-anchor="start">Practice administration</text>
+<text x="46" y="180" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">A central view of requests, schedules and team activity</text>
+<rect x="40" y="211" width="1200" height="625" rx="22" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1160" y="853" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end">PWEB / PLATFORM PREVIEW</text>
+<rect x="72" y="247" width="351" height="160" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="94" y="285" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Requests awaiting review</text>
+<text x="97" y="362" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="47" font-weight="750" text-anchor="start">12</text>
+<rect x="451" y="247" width="351" height="160" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="473" y="285" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Appointments today</text>
+<text x="476" y="362" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="47" font-weight="750" text-anchor="start">24</text>
+<rect x="830" y="247" width="351" height="160" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="852" y="285" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Forms received</text>
+<text x="855" y="362" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="47" font-weight="750" text-anchor="start">18</text>
+<rect x="72" y="430" width="716" height="359" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="94" y="468" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Recent appointment requests</text>
+<path d="M99 490 L753 490" stroke="#dfe8e7" stroke-width="2"/>
+<text x="101" y="524" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start">Alex Morgan</text>
+<text x="329" y="524" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Orthopaedics</text>
+<rect x="613" y="497" width="127" height="32" rx="16" fill="#f7e8c7" stroke="none" stroke-width="1"/><text x="627" y="519" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Pending</text>
+<path d="M99 570 L753 570" stroke="#dfe8e7" stroke-width="2"/>
+<text x="101" y="604" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start">Jamie Khumalo</text>
+<text x="329" y="604" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">General surgery</text>
+<rect x="613" y="577" width="127" height="32" rx="16" fill="#e2f6ef" stroke="none" stroke-width="1"/><text x="627" y="599" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Confirmed</text>
+<path d="M99 650 L753 650" stroke="#dfe8e7" stroke-width="2"/>
+<text x="101" y="684" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start">Taylor Dlamini</text>
+<text x="329" y="684" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Radiology</text>
+<rect x="613" y="657" width="127" height="32" rx="16" fill="#f7e8c7" stroke="none" stroke-width="1"/><text x="627" y="679" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Pending</text>
+<rect x="810" y="430" width="399" height="359" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="832" y="468" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Team activity</text>
+<rect x="839" y="501" width="136" height="32" rx="16" fill="#e2f6ef" stroke="none" stroke-width="1"/><text x="853" y="523" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Staff access</text>
+<text x="839" y="574" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="600" text-anchor="start">Specialist schedule updated</text>
+<text x="839" y="604" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Today · 08:45</text>
+<path d="M839 634 L1170 634" stroke="#dfe8e7" stroke-width="2"/>
+<text x="839" y="683" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="600" text-anchor="start">Form received</text>
+<text x="839" y="712" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Today · 08:12</text>
+</svg>

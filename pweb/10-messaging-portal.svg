@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-label="Patient–practice messaging">
+<rect x="0" y="0" width="1280" height="880" rx="0" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="78" rx="0" fill="#1d3443" stroke="none" stroke-width="1"/>
+<text x="44" y="49" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="750" text-anchor="start">Pweb</text>
+<text x="1200" y="47" fill="#5fd3b3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end">PLATFORM PREVIEW</text>
+<text x="46" y="143" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="750" text-anchor="start">Patient–practice messaging</text>
+<text x="46" y="180" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">A simple communication view for authorised care teams</text>
+<rect x="40" y="211" width="1200" height="625" rx="22" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1160" y="853" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end">PWEB / PLATFORM PREVIEW</text>
+<rect x="75" y="246" width="357" height="550" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="97" y="284" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Conversations</text>
+<rect x="103" y="314" width="100" height="32" rx="16" fill="#e2f6ef" stroke="none" stroke-width="1"/><text x="117" y="336" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">2 unread</text>
+<rect x="101" y="378" width="305" height="97" rx="12" fill="#f4f8f7" stroke="none" stroke-width="1"/>
+<rect x="118" y="398" width="49" height="49" rx="24" fill="#d5eee5" stroke="none" stroke-width="1"/>
+<text x="142" y="430" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="700" text-anchor="middle">A</text>
+<text x="182" y="416" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="start">Alex Morgan</text>
+<text x="182" y="445" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Pre-visit question</text>
+<rect x="101" y="497" width="305" height="97" rx="12" fill="#f4f8f7" stroke="none" stroke-width="1"/>
+<rect x="118" y="517" width="49" height="49" rx="24" fill="#d5eee5" stroke="none" stroke-width="1"/>
+<text x="142" y="549" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="700" text-anchor="middle">J</text>
+<text x="182" y="535" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="start">Jamie Khumalo</text>
+<text x="182" y="564" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Appointment enquiry</text>
+<rect x="101" y="616" width="305" height="97" rx="12" fill="#f4f8f7" stroke="none" stroke-width="1"/>
+<rect x="118" y="636" width="49" height="49" rx="24" fill="#d5eee5" stroke="none" stroke-width="1"/>
+<text x="142" y="668" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="700" text-anchor="middle">T</text>
+<text x="182" y="654" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="start">Taylor Dlamini</text>
+<text x="182" y="683" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Form assistance</text>
+<rect x="453" y="246" width="748" height="550" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="475" y="284" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Alex Morgan · Orthopaedics</text>
+<rect x="999" y="268" width="165" height="32" rx="16" fill="#dce9fa" stroke="none" stroke-width="1"/><text x="1013" y="290" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Secure portal</text>
+<rect x="487" y="341" width="475" height="100" rx="13" fill="#f2f6f5" stroke="none" stroke-width="1"/>
+<text x="507" y="376" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Could you confirm what I need</text>
+<text x="507" y="405" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">to bring to my appointment?</text>
+<rect x="649" y="464" width="520" height="121" rx="13" fill="#e3f5ee" stroke="none" stroke-width="1"/>
+<text x="671" y="504" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Please bring your recent X-ray</text>
+<text x="671" y="534" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">report and photo identification.</text>
+<rect x="487" y="664" width="682" height="65" rx="12" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="509" y="706" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start">Write a message…</text>
+<rect x="1031" y="674" width="115" height="44" rx="11" fill="#5fd3b3" stroke="none" stroke-width="1"/><text x="1049" y="702" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Send</text>
+</svg>
