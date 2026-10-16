@@ -1,0 +1,103 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Practice Calendar | Pweb Admin</title><link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../admin-home-font-fixed.css"><link rel="stylesheet" href="../admin-calendar.css"></head>
+
+        <body class="dw dw-light adm ac-page"><a class="skip-link" href="#main">Skip to content</a>
+            <header class="nav nav-slim dw-nav adm-doc-nav">
+                <div class="tNav">
+                    <a class="Emegerncy_contact" href="tel:+27000000000">
+<img alt="" src="assets/icons/phone.svg"/>
+<span class="number">Reception desk: 000 000 0000</span>
+</a>
+<div class="t-nav-btns">
+<div class="seach-box">
+<img alt="" class="search-icon" src="assets/icons/search.svg"/>
+<span class="searchtext">Search patients</span>
+<input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
+<img alt="Close search" class="close_searchBtn" src="assets/icons/close.svg"/>
+</div>
+<div class="Pweb_login">
+<a class="login" href="logout.html">
+<img alt="" class="login-icon" src="public/account-avatar-person-svgrepo-com.svg"/>
+<span class="loginText">Sign out</span>
+</a>
+</div>
+</div>
+</div>
+<div class="bNav">
+<a class="logoNbackBtn" href="index.html">
+<!--Redirects Home-->
+<img alt="" class="backToHome" src="public/back-arrow-navigation-svgrepo-com.svg"/>
+<div class="logo">
+<img alt="" class="logoPGN" src="src/ThePwebLogo.png"/>
+</div>
+</a>
+<button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links"><a href="admin-home.html">Overview</a><a aria-current="page" class="is-current" href="admin-calendar.html">Calendar</a><a href="admin-bookings.html">Bookings</a><a href="admin-patients.html">Patients</a><a href="admin-specialists.html">Specialists</a><a href="admin-messages.html">Messages</a><a href="admin-reports.html">Reports</a><a href="admin-settings.html">Settings</a><a class="navBtn" href="admin-bookings.html">New booking</a></nav>
+</div>
+</header>
+<main class="wrapper dw-main ac-main" id="main">
+ <section class="ac-heading"><div><p class="ac-overline">PRACTICE ADMINISTRATION</p><h1>Practice calendar</h1><p class="ac-sub">Manage appointments and specialist availability in one place.</p></div><button class="ac-btn ac-primary" id="newBtn" type="button">+ New appointment</button></section>
+ <section class="ac-toolbar" aria-label="Calendar controls">
+  <div class="ac-date-controls"><button class="ac-icon-btn" id="prev" aria-label="Previous period">‹</button><button class="ac-icon-btn" id="next" aria-label="Next period">›</button><button class="ac-btn" id="todayBtn">Today</button><h2 id="periodTitle" aria-live="polite"></h2></div>
+  <div class="ac-filters"><label>View <select id="viewSelect"><option value="month">Month</option><option value="week">Week</option><option value="day">Day</option></select></label><label>Specialist <select id="doctorFilter"><option value="all">All specialists</option><option>Dr. P. Surname</option><option>Dr. N. Maseko</option><option>Dr. K. Lewis</option></select></label></div>
+ </section>
+ <div class="ac-layout"><section class="ac-panel ac-calendar" aria-label="Calendar"><div id="calendarGrid"></div><div class="ac-legend"><span><i class="consult"></i>Consultation</span><span><i class="followup"></i>Follow-up</span><span><i class="procedure"></i>Procedure</span><span><i class="blocked"></i>Blocked</span></div></section>
+ <aside class="ac-panel ac-agenda"><div class="ac-agenda-top"><p class="ac-overline">SELECTED DAY</p><h2 id="agendaTitle"></h2><p id="agendaCount"></p></div><div id="agendaItems"></div><button class="ac-btn ac-primary ac-full" id="addForDay">+ Add appointment</button></aside></div>
+ <p class="ac-note">Demo workspace · Changes are saved in this browser only, not shared with other users.</p>
+</main>
+<dialog class="ac-dialog" id="editDialog" aria-labelledby="dialogTitle">
+ <form id="appointmentForm"><div class="ac-dialog-head"><div><p class="ac-overline">APPOINTMENT DETAILS</p><h2 id="dialogTitle">New appointment</h2></div><button type="button" class="ac-close" id="closeDialog" aria-label="Close">×</button></div>
+ <div class="ac-form-grid"><label class="wide">Patient / reason<input id="patientInput" required maxlength="90" placeholder="Patient name or blocked-time reason"></label>
+ <label>Specialist<select id="doctorInput"><option>Dr. P. Surname</option><option>Dr. N. Maseko</option><option>Dr. K. Lewis</option></select></label>
+ <label>Visit type<select id="kindInput"><option value="consult">Consultation</option><option value="followup">Follow-up</option><option value="procedure">Procedure</option><option value="blocked">Blocked time</option></select></label>
+ <label>Date<input id="dateInput" type="date" required></label><label>Start time<input id="startInput" type="time" value="09:00" required step="900"></label>
+ <label>End time<input id="endInput" type="time" value="09:45" required step="900"></label><label>Status<select id="statusInput"><option value="confirmed">Confirmed</option><option value="pending">Pending</option><option value="checked">Checked in</option></select></label></div>
+ <p class="ac-error" id="formError" role="alert"></p><div class="ac-dialog-actions"><button class="ac-btn ac-danger" type="button" id="deleteBtn" hidden>Delete</button><span class="ac-spacer"></span><button class="ac-btn" type="button" id="cancelBtn">Cancel</button><button class="ac-btn ac-primary" type="submit">Save changes</button></div>
+ </form></dialog>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), pad=n=>String(n).padStart(2,'0'), iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`, parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}, plus=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n), monday=d=>plus(d,-((d.getDay()+6)%7)), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])), fmt=(d,opts)=>d.toLocaleDateString('en-ZA',opts), names=['Dr. P. Surname','Dr. N. Maseko','Dr. K. Lewis'];
+const key='pweb-admin-calendar-v1',now=new Date(),today=iso(now);
+const defaults=[
+ {id:'a1',date:today,start:'08:30',end:'09:15',patient:'T. Mokoena',doctor:names[0],kind:'followup',status:'checked'},
+ {id:'a2',date:today,start:'09:15',end:'10:00',patient:'S. Khumalo',doctor:names[0],kind:'consult',status:'confirmed'},
+ {id:'a3',date:today,start:'10:00',end:'10:45',patient:'R. Adams',doctor:names[0],kind:'consult',status:'confirmed'},
+ {id:'a4',date:today,start:'10:45',end:'11:30',patient:'M. van der Merwe',doctor:names[0],kind:'followup',status:'pending'},
+ {id:'a5',date:today,start:'13:00',end:'14:00',patient:'Z. Ndlovu',doctor:names[0],kind:'procedure',status:'confirmed'},
+ {id:'a6',date:iso(plus(now,1)),start:'09:00',end:'09:45',patient:'N. Dlamini',doctor:names[1],kind:'consult',status:'pending'},
+ {id:'a7',date:iso(plus(now,2)),start:'11:00',end:'12:00',patient:'Theatre list',doctor:names[2],kind:'blocked',status:'confirmed'}];
+let entries;try{const saved=JSON.parse(localStorage.getItem(key));entries=Array.isArray(saved)?saved:defaults}catch{entries=defaults}
+let selected=parse(today),view='month',filter='all',editing=null;
+function save(){try{localStorage.setItem(key,JSON.stringify(entries))}catch{ $('formError').textContent='Browser storage is unavailable. Changes may not persist.' }}
+function matching(day){return entries.filter(e=>e.date===day&&(filter==='all'||e.doctor===filter)).sort((a,b)=>a.start.localeCompare(b.start))}
+function chip(e){return `<span class="ac-event ${e.kind}" title="${esc(e.start+'–'+e.end+' · '+e.patient+' · '+e.doctor)}" data-id="${esc(e.id)}"><b>${esc(e.start)}</b> ${esc(e.patient)}</span>`}
+function month(){const first=new Date(selected.getFullYear(),selected.getMonth(),1),start=monday(first),last=new Date(selected.getFullYear(),selected.getMonth()+1,0),count=Math.ceil((Math.round((last-start)/86400000)+1)/7)*7;let out='<div class="ac-dow">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<span>${x}</span>`).join('')+'</div><div class="ac-month">';
+for(let i=0;i<count;i++){const d=plus(start,i),k=iso(d),ev=matching(k),classes=['ac-day',d.getMonth()!==selected.getMonth()?'outside':'',k===today?'today':'',k===iso(selected)?'selected':''].join(' ');out+=`<div class="${classes}"><button class="ac-day-number" data-date="${k}" aria-label="${esc(fmt(d,{day:'numeric',month:'long',year:'numeric'}))}">${d.getDate()}</button><div class="ac-event-stack">${ev.slice(0,3).map(chip).join('')}${ev.length>3?`<button class="ac-more" data-date="${k}">+${ev.length-3} more</button>`:''}</div><span class="ac-mobile-dots">${ev.slice(0,4).map(e=>`<i class="${e.kind}"></i>`).join('')}</span></div>`}
+return out+'</div>'}
+function week(){const start=monday(selected);return '<div class="ac-week">'+Array.from({length:7},(_,i)=>{const d=plus(start,i),k=iso(d);return `<section class="ac-week-day ${k===iso(selected)?'selected':''}"><button class="ac-week-title" data-date="${k}">${fmt(d,{weekday:'short'})}<strong>${d.getDate()}</strong></button>${matching(k).map(chip).join('')||'<p class="ac-empty">No bookings</p>'}</section>`}).join('')+'</div>'}
+function day(){const e=matching(iso(selected));return `<div class="ac-day-view">${e.length?e.map(item=>`<button class="ac-day-event" data-id="${esc(item.id)}"><time>${esc(item.start)} – ${esc(item.end)}</time><span><strong>${esc(item.patient)}</strong><small>${esc(item.doctor)} · ${esc(item.kind)}</small></span><span class="ac-status">${esc(item.status)}</span></button>`).join(''):'<p class="ac-empty">No appointments scheduled.</p>'}</div>`}
+function render(){const d=selected,k=iso(d);$('periodTitle').textContent=view==='month'?fmt(d,{month:'long',year:'numeric'}):view==='week'?`${fmt(monday(d),{day:'numeric',month:'short'})} – ${fmt(plus(monday(d),6),{day:'numeric',month:'short',year:'numeric'})}`:fmt(d,{weekday:'long',day:'numeric',month:'long',year:'numeric'});$('calendarGrid').innerHTML=view==='month'?month():view==='week'?week():day();$('agendaTitle').textContent=fmt(d,{weekday:'long',day:'numeric',month:'long'});const e=matching(k);$('agendaCount').textContent=`${e.length} ${e.length===1?'entry':'entries'}`;$('agendaItems').innerHTML=e.length?e.map(item=>`<button class="ac-agenda-row" data-id="${esc(item.id)}"><span class="ac-time">${esc(item.start)}<small>${esc(item.end)}</small></span><span class="ac-agenda-details"><strong>${esc(item.patient)}</strong><small>${esc(item.doctor)}</small><em class="ac-tag ${item.kind}">${esc(item.kind==='blocked'?'Blocked':item.kind)}</em></span><span class="ac-edit">Edit ↗</span></button>`).join(''):'<p class="ac-empty">Nothing scheduled for this day.</p>'}
+function openForm(id){editing=id||null;const e=entries.find(x=>x.id===id);$('appointmentForm').reset();$('dialogTitle').textContent=e?'Edit appointment':'New appointment';$('deleteBtn').hidden=!e;$('formError').textContent='';$('patientInput').value=e?.patient||'';$('doctorInput').value=e?.doctor||names[0];$('kindInput').value=e?.kind||'consult';$('dateInput').value=e?.date||iso(selected);$('startInput').value=e?.start||'09:00';$('endInput').value=e?.end||'09:45';$('statusInput').value=e?.status||'confirmed';$('editDialog').showModal()}
+function closeForm(){$('editDialog').close()}
+$('prev').onclick=()=>{selected=view==='month'?new Date(selected.getFullYear(),selected.getMonth()-1,1):plus(selected,view==='week'?-7:-1);render()};
+$('next').onclick=()=>{selected=view==='month'?new Date(selected.getFullYear(),selected.getMonth()+1,1):plus(selected,view==='week'?7:1);render()};
+$('todayBtn').onclick=()=>{selected=parse(today);render()};
+$('viewSelect').onchange=e=>{view=e.target.value;render()};
+$('doctorFilter').onchange=e=>{filter=e.target.value;render()};
+$('calendarGrid').onclick=e=>{const ev=e.target.closest('[data-id]');if(ev){openForm(ev.dataset.id);return}const day=e.target.closest('[data-date]');if(day){selected=parse(day.dataset.date);render()}};
+$('agendaItems').onclick=e=>{const row=e.target.closest('[data-id]');if(row)openForm(row.dataset.id)};
+$('newBtn').onclick=()=>openForm();$('addForDay').onclick=()=>openForm();$('closeDialog').onclick=closeForm;$('cancelBtn').onclick=closeForm;
+$('editDialog').onclick=e=>{if(e.target===$('editDialog'))closeForm()};
+$('appointmentForm').onsubmit=e=>{e.preventDefault();const data={id:editing||('a'+Date.now()),patient:$('patientInput').value.trim(),doctor:$('doctorInput').value,kind:$('kindInput').value,date:$('dateInput').value,start:$('startInput').value,end:$('endInput').value,status:$('statusInput').value};const error=$('formError');error.textContent='';if(!data.patient||!data.date){error.textContent='Enter a patient or reason and choose a date.';return}if(data.end<=data.start){error.textContent='End time must be after start time.';return}if(entries.some(x=>x.id!==editing&&x.doctor===data.doctor&&x.date===data.date&&x.start<data.end&&data.start<x.end)){error.textContent='This specialist already has an appointment or blocked time during that period.';return}if(editing)entries=entries.map(x=>x.id===editing?data:x);else entries.push(data);selected=parse(data.date);save();closeForm();render()};
+$('deleteBtn').onclick=()=>{if(!editing)return;if(!confirm('Delete this appointment?'))return;entries=entries.filter(x=>x.id!==editing);save();closeForm();render()};
+const burger=document.querySelector('.adm-doc-nav .burger'),links=$('dw-nav-links');if(burger&&links)burger.addEventListener('click',()=>{const open=links.classList.toggle('open');burger.classList.toggle('open',open);document.querySelector('.adm-doc-nav').classList.toggle('open',open);burger.setAttribute('aria-expanded',String(open))});
+render();
+})();
+</script></body></html>
