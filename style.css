@@ -3547,751 +3547,771 @@
   }
 
 
-@layer DoctorWorkspace {
 
-  /* doctor workspace base: tokens, panels, buttons, chips, links */
-  .dw {
-    --dw-bg: #060607;
-    --dw-panel: #111214;
-    --dw-raise: #1a1c1f;
-    --dw-line: rgba(255, 255, 255, 0.1);
-    --dw-text: #f5f6f7;
-    --dw-mute: #98a0a8;
-    --dw-accent: #6ea8fe;
-    --dw-warn: #f0c36a;
-    --dw-radius: 24px;
+  @layer DoctorWorkspace {
 
-    color: var(--dw-text);
-    background: var(--dw-bg);
-
-    & :focus-visible {
-      outline-color: var(--dw-accent);
-    }
-
-    & .dw-panel {
-      min-width: 0;
-      padding: clamp(1.3rem, 2.5vw, 1.9rem);
-      background: var(--dw-panel);
-      border: 1px solid var(--dw-line);
-      border-radius: var(--dw-radius);
-    }
-
-    & .dw-panel-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-
-      & h2 {
-        font-size: 1.3rem;
-        font-weight: 700;
-        line-height: 1.25;
-        letter-spacing: -0.02em;
-      }
-    }
-
-    & .dw-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1.4rem;
+    /* doctor workspace base: tokens, panels, buttons, chips, links */
+    .dw {
+      --dw-bg: #F5F7FA;
+      --dw-panel: #FFFFFF;
+      --dw-raise: #EDF2F7;
+      --dw-line: #E2E8F0;
+      --dw-text: #172033;
+      --dw-mute: #64748B;
+      --dw-accent: #334155;
+      --dw-warn: #92600C;
+      --dw-radius: 24px;
+  
       color: var(--dw-text);
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 999px;
-      font-weight: 600;
-      line-height: 1.2;
-      text-align: center;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-
-      &:hover {
-        border-color: var(--dw-text);
-      }
-
-      &.is-solid {
-        color: #000;
-        background: var(--dw-text);
-        border-color: transparent;
-
-        &:hover {
-          background: #d9dde0;
-        }
-      }
-
-      &.is-small {
-        padding: 0.5rem 1rem;
-        font-size: 0.88rem;
-      }
-    }
-
-    & .dw-chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-
-      &.is-confirmed {
-        color: var(--dw-accent);
-        background: rgba(110, 168, 254, 0.14);
-      }
-
-      &.is-pending {
-        color: var(--dw-warn);
-        background: rgba(240, 195, 106, 0.14);
-      }
-
-      &.is-done {
-        color: var(--dw-mute);
-        background: rgba(255, 255, 255, 0.07);
-      }
-
-      &.is-live {
-        color: #000;
-        background: var(--dw-text);
-      }
-    }
-
-    & .dw-link {
-      color: var(--dw-accent);
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-underline-offset: 3px;
-      white-space: nowrap;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      & .dw-btn {
-        transition: none;
-      }
-    }
-  }
-
-  /* doctor workspace header colours */
-  .nav.dw-nav {
-    border-bottom: 1px solid var(--dw-line);
-
-    & .tNav {
-      background: #000;
-      border-bottom: 1px solid var(--dw-line);
-    }
-
-    & .bNav {
       background: var(--dw-bg);
-
-      & .burger span {
-        background: var(--dw-text);
+  
+      & :focus-visible {
+        outline-color: var(--dw-accent);
       }
-
-      & .bnavLinks a {
-        color: var(--dw-mute);
-
-        &:hover {
-          color: var(--dw-text);
-          background: var(--dw-panel);
-        }
-
-        &.is-current {
-          color: var(--dw-text);
-          background: var(--dw-raise);
-        }
-
-        &.navBtn {
-          color: #000;
-          background: var(--dw-text);
-
-          &:hover {
-            color: #000;
-            background: #d9dde0;
-          }
-        }
-      }
-    }
-
-    @media (max-width: 900px) {
-      & .bNav .bnavLinks {
-        background: var(--dw-panel);
-        border-block: 1px solid var(--dw-line);
-        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.7);
-      }
-    }
-  }
-
-  /* doctor workspace page grid */
-  .dw-main {
-    align-content: start;
-    row-gap: clamp(2rem, 4vw, 3rem);
-    padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
-
-    & > :is(section, div) {
-      grid-column: 2;
-      min-width: 0;
-    }
-  }
-
-  /* doctor workspace greeting */
-  .dw-hello {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1.5rem 2rem;
-
-    & .dw-hello-text {
-      flex: 1 1 26rem;
-      min-width: 0;
-    }
-
-    & .dw-date {
-      margin-bottom: 0.6rem;
-      color: var(--dw-mute);
-      font-size: 0.95rem;
-    }
-
-    & h1 {
-      margin-bottom: 0.8rem;
-      font-size: clamp(2.1rem, 4.8vw, 3.4rem);
-      font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.035em;
-      text-wrap: balance;
-    }
-
-    & .dw-summary {
-      max-width: 56ch;
-      color: var(--dw-mute);
-      font-size: 1.05rem;
-      line-height: 1.6;
-
-      & strong {
-        color: var(--dw-text);
-        font-weight: 600;
-      }
-    }
-
-    & .dw-hello-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    @media (max-width: 560px) {
-      & .dw-hello-actions {
-        width: 100%;
-        flex-direction: column;
-
-        & .dw-btn {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  /* doctor workspace next patient */
-  .dw-next {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    align-items: center;
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-    padding: clamp(1.6rem, 3.5vw, 3rem);
-    color: #0b0c0e;
-    background: #f4f5f6;
-    border-radius: 32px;
-
-    & .dw-next-label {
-      margin-bottom: 0.6rem;
-      color: #5d656c;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    & h2 {
-      margin-bottom: 0.7rem;
-      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    & .dw-next-reason {
-      max-width: 46ch;
-      margin-bottom: 1.6rem;
-      color: #3c434a;
-      line-height: 1.6;
-    }
-
-    & .dw-next-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-
-      & .dw-btn {
-        color: #0b0c0e;
-        border-color: rgba(11, 12, 14, 0.28);
-
-        &:hover {
-          border-color: #0b0c0e;
-        }
-
-        &.is-solid {
-          color: #fff;
-          background: #0b0c0e;
-          border-color: transparent;
-
-          &:hover {
-            background: #26292d;
-          }
-        }
-      }
-    }
-
-    & .dw-next-facts {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0 1.5rem;
-
-      & > div {
-        padding-block: 1rem;
-        border-top: 1px solid rgba(11, 12, 14, 0.14);
-      }
-
-      & dt {
-        margin-bottom: 0.2rem;
-        color: #5d656c;
-        font-size: 0.85rem;
-      }
-
-      & dd {
-        font-weight: 600;
-      }
-    }
-
-    @media (max-width: 992px) {
-      grid-template-columns: minmax(0, 1fr);
-      align-items: start;
-    }
-
-    @media (max-width: 480px) {
-      border-radius: 24px;
-
-      & .dw-next-actions .dw-btn {
-        width: 100%;
-      }
-
-      & .dw-next-facts {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-  }
-
-  /* doctor workspace today at a glance */
-  .dw-glance {
-    border-block: 1px solid var(--dw-line);
-
-    & dl {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-
-      & > div {
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: flex-end;
-        gap: 0.3rem;
+  
+      & .dw-panel {
         min-width: 0;
-        padding: 1.6rem 1.5rem;
-
-        &:first-child {
-          padding-left: 0;
-        }
-
-        & + div {
-          border-left: 1px solid var(--dw-line);
-        }
+        padding: clamp(1.3rem, 2.5vw, 1.9rem);
+        background: var(--dw-panel);
+        border: 1px solid var(--dw-line);
+        border-radius: var(--dw-radius);
       }
-    }
-
-    & dt {
-      color: var(--dw-mute);
-      font-size: 0.9rem;
-    }
-
-    & dd {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-    }
-
-    @media (max-width: 992px) {
-      & dl {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-
-        & > div {
-          &:nth-child(odd) {
-            padding-left: 0;
-            border-left: 0;
-          }
-
-          &:nth-child(n + 3) {
-            border-top: 1px solid var(--dw-line);
-          }
-        }
-      }
-    }
-
-    @media (max-width: 420px) {
-      & dl {
-        grid-template-columns: minmax(0, 1fr);
-
-        & > div {
-          padding-inline: 0;
-          border-left: 0;
-
-          &:nth-child(n + 2) {
-            border-top: 1px solid var(--dw-line);
-          }
-        }
-      }
-    }
-  }
-
-  /* doctor workspace day layout */
-  .dw-day {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-    align-items: start;
-    gap: 1.2rem;
-
-    @media (max-width: 992px) {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  /* doctor workspace schedule */
-  .dw-schedule {
-
-    & .dw-slot {
-      display: grid;
-      grid-template-columns: 4rem 1rem minmax(0, 1fr) auto;
-      align-items: stretch;
-      gap: 0 1rem;
-
-      & > time {
-        padding-top: 1rem;
-        color: var(--dw-mute);
-        font-weight: 600;
-        font-variant-numeric: tabular-nums;
-      }
-
-      & > .dw-dot {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 1.3rem;
-
-        &::before {
-          content: "";
-          flex: none;
-          width: 9px;
-          height: 9px;
-          background: var(--dw-panel);
-          border: 2px solid var(--dw-mute);
-          border-radius: 50%;
-        }
-
-        &::after {
-          content: "";
-          flex: 1;
-          width: 1px;
-          margin-top: 0.3rem;
-          background: var(--dw-line);
-        }
-      }
-
-      & > div {
-        padding-block: 1rem 1.2rem;
-      }
-
-      & > .dw-chip {
-        align-self: start;
-        margin-top: 1rem;
-      }
-
-      & h3 {
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.3;
-      }
-
-      & p {
-        color: var(--dw-mute);
-        font-size: 0.9rem;
-        line-height: 1.5;
-      }
-
-      &:last-child > .dw-dot::after {
-        display: none;
-      }
-
-      &.is-done {
-        & h3 {
-          color: var(--dw-mute);
-        }
-
-        & > .dw-dot::before {
-          background: var(--dw-mute);
-        }
-      }
-
-      &.is-live {
-        & > time {
-          color: var(--dw-text);
-        }
-
-        & > .dw-dot::before {
-          background: var(--dw-text);
-          border-color: var(--dw-text);
-          box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16);
-        }
-      }
-
-      &.is-break {
-        grid-template-columns: 4rem 1rem minmax(0, 1fr);
-
-        & > .dw-dot::before {
-          width: 5px;
-          height: 5px;
-          border-width: 1px;
-        }
-
-        & p {
-          font-size: 0.85rem;
-        }
-      }
-    }
-
-    @media (max-width: 560px) {
-      & .dw-slot {
-        grid-template-columns: 3.4rem 1rem minmax(0, 1fr);
-
-        & > .dw-chip {
-          grid-column: 3;
-          margin-top: 0;
-          margin-bottom: 1rem;
-          justify-self: start;
-        }
-
-        &.is-break {
-          grid-template-columns: 3.4rem 1rem minmax(0, 1fr);
-        }
-      }
-    }
-  }
-
-  /* doctor workspace needs attention */
-  .dw-attention {
-
-    & .dw-group {
-
-      & + .dw-group {
-        margin-top: 1.6rem;
-      }
-
-      & h3 {
-        padding-bottom: 0.6rem;
-        color: var(--dw-mute);
-        font-size: 0.9rem;
-        font-weight: 600;
-      }
-
-      & li {
+  
+      & .dw-panel-head {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         gap: 1rem;
-        padding: 0.95rem 0;
-        border-top: 1px solid var(--dw-line);
-
+        margin-bottom: 1.2rem;
+  
+        & h2 {
+          font-size: 1.3rem;
+          font-weight: 700;
+          line-height: 1.25;
+          letter-spacing: -0.02em;
+        }
+      }
+  
+      & .dw-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.4rem;
+        color: var(--dw-text);
+        background: transparent;
+        border: 1px solid #CBD5E1;
+        border-radius: 999px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  
+        &:hover {
+          border-color: #334155;
+        }
+  
+        &.is-solid {
+          color: #FFFFFF;
+          background: #334155;
+          border-color: transparent;
+  
+          &:hover {
+            background: #475569;
+          }
+        }
+  
+        &.is-small {
+          padding: 0.5rem 1rem;
+          font-size: 0.88rem;
+        }
+      }
+  
+      & .dw-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+  
+        &.is-confirmed {
+          color: #176A54;
+          background: #DDF5EC;
+        }
+  
+        &.is-pending {
+          color: #92600C;
+          background: #FFF1D6;
+        }
+  
+        &.is-done {
+          color: var(--dw-mute);
+          background: #F1F5F9;
+        }
+  
+        &.is-live {
+          color: #FFFFFF;
+          background: #334155;
+        }
+      }
+  
+      & .dw-link {
+        color: var(--dw-accent);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-underline-offset: 3px;
+        white-space: nowrap;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      @media (prefers-reduced-motion: reduce) {
+        & .dw-btn {
+          transition: none;
+        }
+      }
+    }
+  
+    /* doctor workspace header colours */
+    .nav.dw-nav {
+      border-bottom: 1px solid var(--dw-line);
+  
+      & .tNav {
+        background: #334155;
+        border-bottom: 1px solid var(--dw-line);
+      }
+  
+      & .bNav {
+        background: var(--dw-bg);
+  
+        & .burger span {
+          background: var(--dw-text);
+        }
+  
+        & .bnavLinks a {
+          color: var(--dw-mute);
+  
+          &:hover {
+            color: var(--dw-text);
+            background: var(--dw-panel);
+          }
+  
+          &.is-current {
+            color: var(--dw-text);
+            background: var(--dw-raise);
+          }
+  
+          &.navBtn {
+            color: #FFFFFF;
+            background: #334155;
+  
+            &:hover {
+              color: #FFFFFF;
+              background: #475569;
+            }
+          }
+        }
+      }
+  
+      @media (max-width: 900px) {
+        & .bNav .bnavLinks {
+          background: var(--dw-panel);
+          border-block: 1px solid var(--dw-line);
+          box-shadow: 0 24px 40px rgba(15, 23, 42, 0.12);
+        }
+      }
+    }
+  
+    /* doctor workspace page grid */
+    .dw-main {
+      align-content: start;
+      row-gap: clamp(2rem, 4vw, 3rem);
+      padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+  
+      & > :is(section, div) {
+        grid-column: 2;
+        min-width: 0;
+      }
+    }
+  
+    /* doctor workspace greeting */
+    .dw-hello {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem 2rem;
+  
+      & .dw-hello-text {
+        flex: 1 1 26rem;
+        min-width: 0;
+      }
+  
+      & .dw-date {
+        margin-bottom: 0.6rem;
+        color: var(--dw-mute);
+        font-size: 0.95rem;
+      }
+  
+      & h1 {
+        margin-bottom: 0.8rem;
+        font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+        font-weight: 700;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+      }
+  
+      & .dw-summary {
+        max-width: 56ch;
+        color: var(--dw-mute);
+        font-size: 1.05rem;
+        line-height: 1.6;
+  
         & strong {
-          display: block;
+          color: var(--dw-text);
           font-weight: 600;
         }
-
-        & p {
-          color: var(--dw-mute);
-          font-size: 0.88rem;
-          line-height: 1.5;
-        }
-
-        & time {
-          flex: none;
-          color: var(--dw-mute);
-          font-size: 0.8rem;
-          font-variant-numeric: tabular-nums;
-        }
-
-        &.is-unread strong::before {
-          content: "";
-          display: inline-block;
-          width: 0.5rem;
-          height: 0.5rem;
-          margin-right: 0.6rem;
-          background: var(--dw-accent);
-          border-radius: 50%;
+      }
+  
+      & .dw-hello-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+  
+      @media (max-width: 560px) {
+        & .dw-hello-actions {
+          width: 100%;
+          flex-direction: column;
+  
+          & .dw-btn {
+            width: 100%;
+          }
         }
       }
     }
-
-    & .dw-request-actions {
-      display: flex;
-      flex: none;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 0.5rem;
-    }
-
-    @media (max-width: 560px) {
-      & .dw-group li:has(.dw-request-actions) {
-        flex-direction: column;
-      }
-
-      & .dw-request-actions {
-        justify-content: flex-start;
-      }
-    }
-  }
-
-  /* doctor workspace coming up */
-  .dw-week {
-
-    & .dw-week-grid {
+  
+    /* doctor workspace next patient */
+    .dw-next {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0.8rem;
-    }
-
-    & .dw-day-cell {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      min-width: 0;
-      padding: 1.2rem;
-      background: var(--dw-panel);
-      border: 1px solid var(--dw-line);
-      border-radius: 20px;
-      transition: border-color 0.2s ease;
-
-      &:hover {
-        border-color: rgba(255, 255, 255, 0.4);
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      padding: clamp(1.6rem, 3.5vw, 3rem);
+      color: #FFFFFF;
+      background: #334155;
+      border-radius: 32px;
+  
+      & .dw-next-label {
+        margin-bottom: 0.6rem;
+        color: #CBD5E1;
+        font-size: 0.95rem;
+        font-weight: 600;
       }
-
-      & .dw-dayname {
-        color: var(--dw-mute);
-        font-size: 0.88rem;
-      }
-
-      & .dw-daynum {
-        font-size: 1.8rem;
+  
+      & h2 {
+        margin-bottom: 0.7rem;
+        font-size: clamp(1.8rem, 3.6vw, 2.8rem);
         font-weight: 700;
         line-height: 1.1;
         letter-spacing: -0.03em;
       }
-
-      & .dw-count {
-        margin-top: 0.6rem;
-        font-size: 0.92rem;
-        font-weight: 600;
+  
+      & .dw-next-reason {
+        max-width: 46ch;
+        margin-bottom: 1.6rem;
+        color: #E2E8F0;
+        line-height: 1.6;
       }
-
-      & .dw-bar {
-        display: block;
-        height: 4px;
-        margin-block: 0.4rem 0.5rem;
-        overflow: hidden;
-        background: var(--dw-raise);
-        border-radius: 999px;
-
-        &::after {
-          content: "";
-          display: block;
-          width: calc(var(--n, 0) * 10%);
-          height: 100%;
-          background: var(--dw-mute);
-          border-radius: inherit;
+  
+      & .dw-next-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+  
+        & .dw-btn {
+          color: #FFFFFF;
+          border-color: #CBD5E1;
+  
+          &:hover {
+            border-color: #FFFFFF;
+          }
+  
+          &.is-solid {
+            color: #334155;
+            background: #FFFFFF;
+            border-color: transparent;
+  
+            &:hover {
+              background: #E2E8F0;
+            }
+          }
         }
       }
-
-      & .dw-note {
-        color: var(--dw-mute);
-        font-size: 0.82rem;
-      }
-
-      &.is-today {
-        background: var(--dw-raise);
-        border-color: rgba(255, 255, 255, 0.45);
-
-        & .dw-bar::after {
-          background: var(--dw-text);
-        }
-      }
-    }
-
-    @media (max-width: 992px) {
-      & .dw-week-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 560px) {
-      & .dw-week-grid {
+  
+      & .dw-next-facts {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 1.5rem;
+  
+        & > div {
+          padding-block: 1rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+  
+        & dt {
+          margin-bottom: 0.2rem;
+          color: #CBD5E1;
+          font-size: 0.85rem;
+        }
+  
+        & dd {
+          font-weight: 600;
+        }
+      }
+  
+      @media (max-width: 992px) {
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
+      }
+  
+      @media (max-width: 480px) {
+        border-radius: 24px;
+  
+        & .dw-next-actions .dw-btn {
+          width: 100%;
+        }
+  
+        & .dw-next-facts {
+          grid-template-columns: minmax(0, 1fr);
+        }
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
+  
+    /* doctor workspace today at a glance */
+    .dw-glance {
+      border-block: 1px solid var(--dw-line);
+  
+      & dl {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+  
+        & > div {
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: flex-end;
+          gap: 0.3rem;
+          min-width: 0;
+          padding: 1.6rem 1.5rem;
+  
+          &:first-child {
+            padding-left: 0;
+          }
+  
+          & + div {
+            border-left: 1px solid var(--dw-line);
+          }
+        }
+      }
+  
+      & dt {
+        color: var(--dw-mute);
+        font-size: 0.9rem;
+      }
+  
+      & dd {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+      }
+  
+      @media (max-width: 992px) {
+        & dl {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+  
+          & > div {
+            &:nth-child(odd) {
+              padding-left: 0;
+              border-left: 0;
+            }
+  
+            &:nth-child(n + 3) {
+              border-top: 1px solid var(--dw-line);
+            }
+          }
+        }
+      }
+  
+      @media (max-width: 420px) {
+        & dl {
+          grid-template-columns: minmax(0, 1fr);
+  
+          & > div {
+            padding-inline: 0;
+            border-left: 0;
+  
+            &:nth-child(n + 2) {
+              border-top: 1px solid var(--dw-line);
+            }
+          }
+        }
+      }
+    }
+  
+    /* doctor workspace day layout */
+    .dw-day {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      align-items: start;
+      gap: 1.2rem;
+  
+      @media (max-width: 992px) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  
+    /* doctor workspace schedule */
+    .dw-schedule {
+  
+      & .dw-slot {
+        display: grid;
+        grid-template-columns: 4rem 1rem minmax(0, 1fr) auto;
+        align-items: stretch;
+        gap: 0 1rem;
+  
+        & > time {
+          padding-top: 1rem;
+          color: var(--dw-mute);
+          font-weight: 600;
+          font-variant-numeric: tabular-nums;
+        }
+  
+        & > .dw-dot {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 1.3rem;
+  
+          &::before {
+            content: "";
+            flex: none;
+            width: 9px;
+            height: 9px;
+            background: var(--dw-panel);
+            border: 2px solid var(--dw-mute);
+            border-radius: 50%;
+          }
+  
+          &::after {
+            content: "";
+            flex: 1;
+            width: 1px;
+            margin-top: 0.3rem;
+            background: var(--dw-line);
+          }
+        }
+  
+        & > div {
+          padding-block: 1rem 1.2rem;
+        }
+  
+        & > .dw-chip {
+          align-self: start;
+          margin-top: 1rem;
+        }
+  
+        & h3 {
+          font-size: 1rem;
+          font-weight: 600;
+          line-height: 1.3;
+        }
+  
+        & p {
+          color: var(--dw-mute);
+          font-size: 0.9rem;
+          line-height: 1.5;
+        }
+  
+        &:last-child > .dw-dot::after {
+          display: none;
+        }
+  
+        &.is-done {
+          & h3 {
+            color: var(--dw-mute);
+          }
+  
+          & > .dw-dot::before {
+            background: var(--dw-mute);
+          }
+        }
+  
+        &.is-live {
+          & > time {
+            color: var(--dw-text);
+          }
+  
+          & > .dw-dot::before {
+            background: var(--dw-text);
+            border-color: var(--dw-text);
+            box-shadow: 0 0 0 4px rgba(51, 65, 85, 0.16);
+          }
+        }
+  
+        &.is-break {
+          grid-template-columns: 4rem 1rem minmax(0, 1fr);
+  
+          & > .dw-dot::before {
+            width: 5px;
+            height: 5px;
+            border-width: 1px;
+          }
+  
+          & p {
+            font-size: 0.85rem;
+          }
+        }
+      }
+  
+      @media (max-width: 560px) {
+        & .dw-slot {
+          grid-template-columns: 3.4rem 1rem minmax(0, 1fr);
+  
+          & > .dw-chip {
+            grid-column: 3;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            justify-self: start;
+          }
+  
+          &.is-break {
+            grid-template-columns: 3.4rem 1rem minmax(0, 1fr);
+          }
+        }
+      }
+    }
+  
+    /* doctor workspace needs attention */
+    .dw-attention {
+  
+      & .dw-group {
+  
+        & + .dw-group {
+          margin-top: 1.6rem;
+        }
+  
+        & h3 {
+          padding-bottom: 0.6rem;
+          color: var(--dw-mute);
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+  
+        & li {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 1rem;
+          padding: 0.95rem 0;
+          border-top: 1px solid var(--dw-line);
+  
+          & strong {
+            display: block;
+            font-weight: 600;
+          }
+  
+          & p {
+            color: var(--dw-mute);
+            font-size: 0.88rem;
+            line-height: 1.5;
+          }
+  
+          & time {
+            flex: none;
+            color: var(--dw-mute);
+            font-size: 0.8rem;
+            font-variant-numeric: tabular-nums;
+          }
+  
+          &.is-unread strong::before {
+            content: "";
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            margin-right: 0.6rem;
+            background: var(--dw-accent);
+            border-radius: 50%;
+          }
+        }
+      }
+  
+      & .dw-request-actions {
+        display: flex;
+        flex: none;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
+  
+      @media (max-width: 560px) {
+        & .dw-group li:has(.dw-request-actions) {
+          flex-direction: column;
+        }
+  
+        & .dw-request-actions {
+          justify-content: flex-start;
+        }
+      }
+    }
+  
+    /* doctor workspace coming up */
+    .dw-week {
+  
+      & .dw-week-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+  
       & .dw-day-cell {
-        transition: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        min-width: 0;
+        padding: 1.2rem;
+        background: var(--dw-panel);
+        border: 1px solid var(--dw-line);
+        border-radius: 20px;
+        transition: border-color 0.2s ease;
+  
+        &:hover {
+          border-color: #94A3B8;
+        }
+  
+        & .dw-dayname {
+          color: var(--dw-mute);
+          font-size: 0.88rem;
+        }
+  
+        & .dw-daynum {
+          font-size: 1.8rem;
+          font-weight: 700;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+        }
+  
+        & .dw-count {
+          margin-top: 0.6rem;
+          font-size: 0.92rem;
+          font-weight: 600;
+        }
+  
+        & .dw-bar {
+          display: block;
+          height: 4px;
+          margin-block: 0.4rem 0.5rem;
+          overflow: hidden;
+          background: var(--dw-raise);
+          border-radius: 999px;
+  
+          &::after {
+            content: "";
+            display: block;
+            width: calc(var(--n, 0) * 10%);
+            height: 100%;
+            background: var(--dw-mute);
+            border-radius: inherit;
+          }
+        }
+  
+        & .dw-note {
+          color: var(--dw-mute);
+          font-size: 0.82rem;
+        }
+  
+        &.is-today {
+          background: var(--dw-raise);
+          border-color: #CBD5E1;
+  
+          & .dw-bar::after {
+            background: var(--dw-text);
+          }
+        }
+      }
+  
+      @media (max-width: 992px) {
+        & .dw-week-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+  
+      @media (max-width: 560px) {
+        & .dw-week-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+  
+      @media (prefers-reduced-motion: reduce) {
+        & .dw-day-cell {
+          transition: none;
+        }
       }
     }
-  }
-
-  /* doctor workspace footer */
-  .dw-footer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem 2rem;
-    padding: 2rem 5%;
-    color: var(--dw-mute);
-    border-top: 1px solid var(--dw-line);
-    font-size: 0.88rem;
-
-    & a {
-      color: var(--dw-text);
-      text-underline-offset: 3px;
-
-      &:hover {
-        color: var(--dw-accent);
-        text-decoration: underline;
+  
+    /* doctor workspace footer */
+    .dw-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem 2rem;
+      padding: 2rem 5%;
+      color: var(--dw-mute);
+      border-top: 1px solid var(--dw-line);
+      font-size: 0.88rem;
+  
+      & a {
+        color: var(--dw-text);
+        text-underline-offset: 3px;
+  
+        &:hover {
+          color: var(--dw-accent);
+          text-decoration: underline;
+        }
+      }
+  
+      @media (max-width: 560px) {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
-
-    @media (max-width: 560px) {
-      flex-direction: column;
-      align-items: flex-start;
+    /* Nordic Slate: header text on dark top bar */
+    .dw .nav.dw-nav .tNav,
+    .dw.nav.dw-nav .tNav {
+      color: #FFFFFF;
     }
+  
+    /* Nordic Slate: today tile is highlighted without reducing contrast */
+    .dw .dw-week .dw-day-cell.is-today,
+    .dw-week .dw-day-cell.is-today {
+      background: #334155;
+      color: #FFFFFF;
+      border-color: #334155;
+  
+      & .dw-dayname,
+      & .dw-note { color: #CBD5E1; }
+      & .dw-bar { background: rgba(255,255,255,0.18); }
+      & .dw-bar::after { background: #FFFFFF; }
+    }
+  
   }
-}
-   
+     
