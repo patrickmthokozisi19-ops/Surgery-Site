@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookings | Pweb Administration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../admin-home-font-fixed.css">
+  <link rel="stylesheet" href="../admin-bookings.css">
+</head>
+<body class="dw dw-light adm ab-page">
+  <a class="skip" href="#main">Skip to content</a>
+<header class="nav nav-slim dw-nav adm-doc-nav">
+ <div class="tNav">
+  <a class="Emegerncy_contact" href="tel:+27000000000">
+   <img alt="" src="assets/icons/phone.svg"/>
+   <span class="number">
+    Reception desk: 000 000 0000
+   </span>
+  </a>
+  <div class="t-nav-btns">
+   <div class="seach-box">
+    <img alt="" class="search-icon" src="assets/icons/search.svg"/>
+    <span class="searchtext">
+     Search patients
+    </span>
+    <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
+    <img alt="Close search" class="close_searchBtn" src="assets/icons/close.svg"/>
+   </div>
+   <div class="Pweb_login">
+    <a class="login" href="logout.html">
+     <img alt="" class="login-icon" src="public/account-avatar-person-svgrepo-com.svg"/>
+     <span class="loginText">
+      Sign out
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <div class="bNav">
+  <a class="logoNbackBtn" href="index.html">
+   <img alt="" class="backToHome" src="public/back-arrow-navigation-svgrepo-com.svg"/>
+   <div class="logo">
+    <img alt="" class="logoPGN" src="src/ThePwebLogo.png"/>
+   </div>
+  </a>
+  <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+   <span>
+   </span>
+   <span>
+   </span>
+   <span>
+   </span>
+  </button>
+  <nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links">
+   <a class="" href="admin-home.html">
+    Overview
+   </a>
+   <a class="" href="admin-calendar.html">
+    Calendar
+   </a>
+   <a aria-current="page" class="is-current" href="admin-bookings.html">
+    Bookings
+   </a>
+   <a class="" href="admin-patients.html">
+    Patients
+   </a>
+   <a class="" href="admin-specialists.html">
+    Specialists
+   </a>
+   <a class="" href="admin-messages.html">
+    Messages
+   </a>
+   <a class="" href="admin-reports.html">
+    Reports
+   </a>
+   <a class="" href="admin-settings.html">
+    Settings
+   </a>
+   <a aria-current="page" class="navBtn is-current" href="admin-bookings.html">
+    New booking
+   </a>
+  </nav>
+ </div>
+</header>
+
+  <main class="ab-main" id="main">
+    <section class="ab-heading">
+      <div>
+        <p class="ab-kicker">PRACTICE ADMINISTRATION</p>
+        <h1>Bookings</h1>
+        <p>Review requests, schedule appointments and manage arrivals.</p>
+      </div>
+      <div class="ab-heading-actions">
+        <button class="ab-btn" id="exportBookings" type="button">Export CSV</button>
+        <button class="ab-btn ab-primary" id="createBooking" type="button">+ New booking</button>
+      </div>
+    </section>
+
+    <section class="ab-stats" aria-label="Booking overview">
+      <article class="ab-stat"><span>All bookings</span><strong id="totalCount">0</strong><small>Across selected practice</small></article>
+      <article class="ab-stat"><span>Pending requests</span><strong id="pendingCount">0</strong><small>Awaiting confirmation</small></article>
+      <article class="ab-stat"><span>Today's appointments</span><strong id="todayCount">0</strong><small>Scheduled for today</small></article>
+      <article class="ab-stat"><span>Checked in today</span><strong id="checkedCount">0</strong><small>Patients arrived</small></article>
+    </section>
+
+    <section class="ab-panel" aria-labelledby="bookingsTitle">
+      <div class="ab-panel-head">
+        <div>
+          <p class="ab-kicker">APPOINTMENT MANAGEMENT</p>
+          <h2 id="bookingsTitle">All bookings <span id="resultCount" class="ab-count"></span></h2>
+        </div>
+        <a class="ab-text-link" href="admin-calendar.html">Open calendar ↗</a>
+      </div>
+
+      <div class="ab-filters">
+        <label class="ab-search-label" for="bookingSearch">
+          <span>Search</span>
+          <input id="bookingSearch" type="search" placeholder="Patient, specialist or reference" autocomplete="off">
+        </label>
+        <label for="statusFilter">
+          <span>Status</span>
+          <select id="statusFilter">
+            <option value="all">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="checked-in">Checked in</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </label>
+        <label for="specialistFilter">
+          <span>Specialist</span>
+          <select id="specialistFilter"><option value="all">All specialists</option></select>
+        </label>
+        <label for="dateFilter">
+          <span>Date</span>
+          <input id="dateFilter" type="date">
+        </label>
+        <button class="ab-btn ab-clear" id="clearFilters" type="button">Clear filters</button>
+      </div>
+
+      <div class="ab-tabs" role="group" aria-label="Quick booking filters">
+        <button type="button" class="is-active" data-tab="all" aria-pressed="true">All</button>
+        <button type="button" data-tab="today" aria-pressed="false">Today</button>
+        <button type="button" data-tab="upcoming" aria-pressed="false">Upcoming</button>
+        <button type="button" data-tab="pending" aria-pressed="false">Pending</button>
+      </div>
+
+      <div class="ab-table-wrap">
+        <table class="ab-table">
+          <thead>
+            <tr>
+              <th scope="col">Patient / reference</th>
+              <th scope="col">Specialist</th>
+              <th scope="col">Date &amp; time</th>
+              <th scope="col">Visit</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookingRows"></tbody>
+        </table>
+      </div>
+      <div class="ab-empty" id="emptyState" hidden>
+        <strong>No bookings found</strong>
+        <p>Try different filters or create a booking.</p>
+      </div>
+      <div class="ab-table-footer">
+        <p id="rangeLabel" aria-live="polite"></p>
+        <div class="ab-pagination">
+          <button type="button" class="ab-btn" id="prevPage">Previous</button>
+          <span id="pageLabel"></span>
+          <button type="button" class="ab-btn" id="nextPage">Next</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="ab-dialog" id="bookingDialog" aria-labelledby="bookingDialogTitle">
+    <form id="bookingForm" novalidate>
+      <div class="ab-dialog-head">
+        <div>
+          <p class="ab-kicker">APPOINTMENT DETAILS</p>
+          <h2 id="bookingDialogTitle">New booking</h2>
+        </div>
+        <button class="ab-dialog-close" type="button" id="closeDialog" aria-label="Close">×</button>
+      </div>
+      <div class="ab-form-grid">
+        <label class="ab-wide" for="patientName">Patient name <span aria-hidden="true">*</span>
+          <input id="patientName" name="patient" required maxlength="100" autocomplete="off" placeholder="Patient full name">
+        </label>
+        <label for="patientContact">Contact number
+          <input id="patientContact" name="contact" type="tel" maxlength="30" placeholder="Contact number">
+        </label>
+        <label for="visitType">Visit type
+          <select id="visitType" name="type">
+            <option value="consult">Consultation</option>
+            <option value="followup">Follow-up</option>
+            <option value="procedure">Procedure</option>
+            <option value="results">Results review</option>
+          </select>
+        </label>
+        <label for="bookingSpecialist">Specialist <span aria-hidden="true">*</span>
+          <select id="bookingSpecialist" name="doctor" required></select>
+        </label>
+        <label for="bookingStatus">Status
+          <select id="bookingStatus" name="status">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="checked-in">Checked in</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </label>
+        <label for="bookingDate">Date <span aria-hidden="true">*</span>
+          <input id="bookingDate" name="date" type="date" required>
+        </label>
+        <label for="bookingStart">Start time <span aria-hidden="true">*</span>
+          <input id="bookingStart" name="start" type="time" required step="900">
+        </label>
+        <label for="bookingEnd">End time <span aria-hidden="true">*</span>
+          <input id="bookingEnd" name="end" type="time" required step="900">
+        </label>
+        <label class="ab-wide" for="bookingNotes">Administrative notes
+          <textarea id="bookingNotes" name="notes" rows="3" maxlength="500" placeholder="Optional booking notes"></textarea>
+        </label>
+      </div>
+      <p class="ab-form-error" id="formError" role="alert" aria-live="polite"></p>
+      <div class="ab-dialog-actions">
+        <button class="ab-btn ab-danger" id="deleteBooking" type="button" hidden>Delete booking</button>
+        <span class="ab-action-spacer"></span>
+        <button class="ab-btn" id="cancelDialog" type="button">Cancel</button>
+        <button class="ab-btn ab-primary" type="submit">Save booking</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="ab-toast" id="bookingToast" role="status" aria-live="polite"></div>
+  <script>
+(() => {
+  'use strict';
+
+  const STORAGE_KEY = 'pweb-admin-bookings-v1';
+  const PAGE_SIZE = 8;
+  const SPECIALISTS = ['Dr. P. Surname', 'Dr. N. Maseko', 'Dr. K. Lewis'];
+  const STATUS_LABELS = {
+    pending: 'Pending',
+    confirmed: 'Confirmed',
+    'checked-in': 'Checked in',
+    completed: 'Completed',
+    cancelled: 'Cancelled'
+  };
+  const TYPE_LABELS = {
+    consult: 'Consultation',
+    followup: 'Follow-up',
+    procedure: 'Procedure',
+    results: 'Results review'
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const pad = (number) => String(number).padStart(2, '0');
+  const toLocalDate = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  const today = () => toLocalDate(new Date());
+  const addDays = (days) => {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return toLocalDate(date);
+  };
+  const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[character]);
+  const displayDate = (dateString) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day).toLocaleDateString('en-ZA', {
+      day: 'numeric', month: 'short', year: 'numeric'
+    });
+  };
+
+  const bookingStore = {
+    load() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (Array.isArray(stored)) return stored;
+      } catch (error) {
+        console.warn('Unable to read saved bookings.', error);
+      }
+      return [
+        { id: 'PB-1001', patient: 'T. Mokoena', contact: '', doctor: SPECIALISTS[0], date: today(), start: '08:30', end: '09:15', type: 'followup', status: 'checked-in', notes: '' },
+        { id: 'PB-1002', patient: 'S. Khumalo', contact: '', doctor: SPECIALISTS[0], date: today(), start: '09:15', end: '10:00', type: 'consult', status: 'confirmed', notes: '' },
+        { id: 'PB-1003', patient: 'R. Adams', contact: '', doctor: SPECIALISTS[0], date: today(), start: '10:00', end: '10:45', type: 'consult', status: 'confirmed', notes: '' },
+        { id: 'PB-1004', patient: 'M. van der Merwe', contact: '', doctor: SPECIALISTS[0], date: today(), start: '10:45', end: '11:30', type: 'results', status: 'pending', notes: '' },
+        { id: 'PB-1005', patient: 'C. Jacobs', contact: '', doctor: SPECIALISTS[1], date: today(), start: '14:30', end: '15:15', type: 'followup', status: 'pending', notes: '' },
+        { id: 'PB-1006', patient: 'N. Dlamini', contact: '', doctor: SPECIALISTS[1], date: addDays(1), start: '09:00', end: '09:45', type: 'consult', status: 'confirmed', notes: '' },
+        { id: 'PB-1007', patient: 'Z. Ndlovu', contact: '', doctor: SPECIALISTS[2], date: addDays(2), start: '11:00', end: '12:00', type: 'procedure', status: 'pending', notes: '' }
+      ];
+    },
+    save(bookings) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
+        return true;
+      } catch (error) {
+        console.warn('Unable to save bookings.', error);
+        return false;
+      }
+    }
+  };
+
+  const state = {
+    bookings: bookingStore.load(),
+    search: '',
+    status: 'all',
+    specialist: 'all',
+    date: '',
+    tab: 'all',
+    page: 1,
+    editingId: null
+  };
+
+  let toastTimer;
+  const toast = (message) => {
+    const element = $('bookingToast');
+    element.textContent = message;
+    element.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => element.classList.remove('is-visible'), 3200);
+  };
+
+  function persist() {
+    if (!bookingStore.save(state.bookings)) toast('Changes could not be saved in this browser.');
+  }
+
+  function filteredBookings() {
+    const query = state.search.toLowerCase();
+    return state.bookings.filter((booking) => {
+      if (state.status !== 'all' && booking.status !== state.status) return false;
+      if (state.specialist !== 'all' && booking.doctor !== state.specialist) return false;
+      if (state.date && booking.date !== state.date) return false;
+      if (state.tab === 'today' && booking.date !== today()) return false;
+      if (state.tab === 'upcoming' && (booking.date < today() || booking.status === 'cancelled')) return false;
+      if (state.tab === 'pending' && booking.status !== 'pending') return false;
+      return [booking.patient, booking.doctor, booking.id, booking.type].some((value) =>
+        String(value).toLowerCase().includes(query)
+      );
+    }).sort((a, b) => a.date.localeCompare(b.date) || a.start.localeCompare(b.start));
+  }
+
+  function renderStats() {
+    $('totalCount').textContent = state.bookings.length;
+    $('pendingCount').textContent = state.bookings.filter((item) => item.status === 'pending').length;
+    $('todayCount').textContent = state.bookings.filter((item) => item.date === today() && item.status !== 'cancelled').length;
+    $('checkedCount').textContent = state.bookings.filter((item) => item.date === today() && item.status === 'checked-in').length;
+  }
+
+  function actionButtons(booking) {
+    const actions = [];
+    if (booking.status === 'pending') actions.push('<button type="button" data-action="confirm">Confirm</button>');
+    if (booking.status === 'confirmed') actions.push('<button type="button" data-action="checkin">Check in</button>');
+    if (booking.status === 'checked-in') actions.push('<button type="button" data-action="complete">Complete</button>');
+    actions.push('<button type="button" data-action="edit">Edit</button>');
+    return `<div class="ab-row-actions">${actions.join('')}</div>`;
+  }
+
+  function render() {
+    renderStats();
+    const bookings = filteredBookings();
+    const pages = Math.max(1, Math.ceil(bookings.length / PAGE_SIZE));
+    state.page = Math.min(state.page, pages);
+    const start = (state.page - 1) * PAGE_SIZE;
+    const visible = bookings.slice(start, start + PAGE_SIZE);
+
+    $('bookingRows').innerHTML = visible.map((booking) => `
+      <tr data-id="${escapeHTML(booking.id)}">
+        <td><strong>${escapeHTML(booking.patient)}</strong><small>${escapeHTML(booking.id)}</small></td>
+        <td>${escapeHTML(booking.doctor)}</td>
+        <td><strong>${escapeHTML(displayDate(booking.date))}</strong><small>${escapeHTML(booking.start)} – ${escapeHTML(booking.end)}</small></td>
+        <td>${escapeHTML(TYPE_LABELS[booking.type] || booking.type)}</td>
+        <td><span class="ab-status ab-status-${escapeHTML(booking.status)}">${escapeHTML(STATUS_LABELS[booking.status] || booking.status)}</span></td>
+        <td>${actionButtons(booking)}</td>
+      </tr>
+    `).join('');
+
+    $('emptyState').hidden = bookings.length > 0;
+    $('resultCount').textContent = `(${bookings.length})`;
+    $('rangeLabel').textContent = bookings.length
+      ? `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, bookings.length)} of ${bookings.length}`
+      : 'Showing 0 bookings';
+    $('pageLabel').textContent = `${state.page} / ${pages}`;
+    $('prevPage').disabled = state.page === 1;
+    $('nextPage').disabled = state.page === pages;
+  }
+
+  function resetPageAndRender() {
+    state.page = 1;
+    render();
+  }
+
+  function openDialog(id = null) {
+    state.editingId = id;
+    $('bookingForm').reset();
+    $('formError').textContent = '';
+    const booking = state.bookings.find((item) => item.id === id);
+    $('bookingDialogTitle').textContent = booking ? `Edit booking · ${booking.id}` : 'New booking';
+    $('deleteBooking').hidden = !booking;
+    $('patientName').value = booking?.patient || '';
+    $('patientContact').value = booking?.contact || '';
+    $('visitType').value = booking?.type || 'consult';
+    $('bookingSpecialist').value = booking?.doctor || SPECIALISTS[0];
+    $('bookingStatus').value = booking?.status || 'pending';
+    $('bookingDate').value = booking?.date || today();
+    $('bookingStart').value = booking?.start || '09:00';
+    $('bookingEnd').value = booking?.end || '09:45';
+    $('bookingNotes').value = booking?.notes || '';
+    $('bookingDialog').showModal();
+    $('patientName').focus();
+  }
+
+  function closeDialog() {
+    $('bookingDialog').close();
+    state.editingId = null;
+  }
+
+  function hasConflict(candidate) {
+    if (candidate.status === 'cancelled') return false;
+    return state.bookings.some((booking) =>
+      booking.id !== candidate.id &&
+      booking.status !== 'cancelled' &&
+      booking.doctor === candidate.doctor &&
+      booking.date === candidate.date &&
+      candidate.start < booking.end &&
+      booking.start < candidate.end
+    );
+  }
+
+  function nextId() {
+    const max = state.bookings.reduce((highest, booking) => {
+      const match = /^PB-(\d+)$/.exec(booking.id);
+      return match ? Math.max(highest, Number(match[1])) : highest;
+    }, 1000);
+    return `PB-${max + 1}`;
+  }
+
+  function saveForm(event) {
+    event.preventDefault();
+    const id = state.editingId || nextId();
+    const booking = {
+      id,
+      patient: $('patientName').value.trim(),
+      contact: $('patientContact').value.trim(),
+      doctor: $('bookingSpecialist').value,
+      type: $('visitType').value,
+      status: $('bookingStatus').value,
+      date: $('bookingDate').value,
+      start: $('bookingStart').value,
+      end: $('bookingEnd').value,
+      notes: $('bookingNotes').value.trim()
+    };
+
+    const error = $('formError');
+    error.textContent = '';
+    if (!booking.patient || !booking.doctor || !booking.date || !booking.start || !booking.end) {
+      error.textContent = 'Complete all required fields.';
+      return;
+    }
+    if (booking.end <= booking.start) {
+      error.textContent = 'End time must be later than start time.';
+      return;
+    }
+    if (hasConflict(booking)) {
+      error.textContent = 'This specialist already has a booking during the selected time.';
+      return;
+    }
+
+    const wasEditing = Boolean(state.editingId);
+    if (wasEditing) {
+      state.bookings = state.bookings.map((item) => item.id === id ? booking : item);
+    } else {
+      state.bookings.push(booking);
+    }
+    persist();
+    closeDialog();
+    resetPageAndRender();
+    toast(wasEditing ? 'Booking updated.' : 'Booking saved.');
+  }
+
+  function updateStatus(id, status) {
+    const booking = state.bookings.find((item) => item.id === id);
+    if (!booking) return;
+    booking.status = status;
+    persist();
+    render();
+    toast(`Booking marked ${STATUS_LABELS[status].toLowerCase()}.`);
+  }
+
+  function exportCSV() {
+    const headings = ['Reference', 'Patient', 'Contact', 'Specialist', 'Date', 'Start', 'End', 'Visit', 'Status', 'Notes'];
+    const rows = filteredBookings().map((booking) => [
+      booking.id, booking.patient, booking.contact, booking.doctor, booking.date,
+      booking.start, booking.end, TYPE_LABELS[booking.type], STATUS_LABELS[booking.status], booking.notes
+    ]);
+    const csv = [headings, ...rows].map((row) => row.map((value) =>
+      `"${String(value ?? '').replace(/"/g, '""')}"`
+    ).join(',')).join('\r\n');
+    const url = URL.createObjectURL(new Blob(['\uFEFF', csv], { type: 'text/csv;charset=utf-8;' }));
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `pweb-bookings-${today()}.csv`;
+    anchor.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function init() {
+    for (const doctor of SPECIALISTS) {
+      for (const select of [$('specialistFilter'), $('bookingSpecialist')]) {
+        const option = document.createElement('option');
+        option.value = doctor;
+        option.textContent = doctor;
+        select.append(option);
+      }
+    }
+
+    $('bookingSearch').addEventListener('input', (event) => {
+      state.search = event.target.value.trim();
+      resetPageAndRender();
+    });
+    $('statusFilter').addEventListener('change', (event) => {
+      state.status = event.target.value;
+      resetPageAndRender();
+    });
+    $('specialistFilter').addEventListener('change', (event) => {
+      state.specialist = event.target.value;
+      resetPageAndRender();
+    });
+    $('dateFilter').addEventListener('change', (event) => {
+      state.date = event.target.value;
+      resetPageAndRender();
+    });
+    $('clearFilters').addEventListener('click', () => {
+      $('bookingSearch').value = '';
+      $('statusFilter').value = 'all';
+      $('specialistFilter').value = 'all';
+      $('dateFilter').value = '';
+      Object.assign(state, { search: '', status: 'all', specialist: 'all', date: '', tab: 'all' });
+      document.querySelectorAll('[data-tab]').forEach((button) => {
+        const active = button.dataset.tab === 'all';
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      resetPageAndRender();
+    });
+
+    document.querySelectorAll('[data-tab]').forEach((button) => button.addEventListener('click', () => {
+      state.tab = button.dataset.tab;
+      document.querySelectorAll('[data-tab]').forEach((item) => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      resetPageAndRender();
+    }));
+
+    $('bookingRows').addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-action]');
+      if (!button) return;
+      const id = button.closest('tr')?.dataset.id;
+      if (button.dataset.action === 'edit') openDialog(id);
+      if (button.dataset.action === 'confirm') updateStatus(id, 'confirmed');
+      if (button.dataset.action === 'checkin') updateStatus(id, 'checked-in');
+      if (button.dataset.action === 'complete') updateStatus(id, 'completed');
+    });
+
+    $('createBooking').addEventListener('click', () => openDialog());
+    $('closeDialog').addEventListener('click', closeDialog);
+    $('cancelDialog').addEventListener('click', closeDialog);
+    $('bookingForm').addEventListener('submit', saveForm);
+    $('bookingDialog').addEventListener('click', (event) => {
+      if (event.target === $('bookingDialog')) closeDialog();
+    });
+    $('deleteBooking').addEventListener('click', () => {
+      if (!state.editingId || !confirm('Delete this booking permanently?')) return;
+      state.bookings = state.bookings.filter((item) => item.id !== state.editingId);
+      persist();
+      closeDialog();
+      render();
+      toast('Booking deleted.');
+    });
+    $('exportBookings').addEventListener('click', exportCSV);
+    $('prevPage').addEventListener('click', () => { state.page--; render(); });
+    $('nextPage').addEventListener('click', () => { state.page++; render(); });
+
+    const burger = document.querySelector('.adm-doc-nav .burger');
+    const nav = $('dw-nav-links');
+    if (burger && nav) burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      document.querySelector('.adm-doc-nav').classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    });
+
+    render();
+  }
+
+  init();
+})();
+  </script>
+</body>
+</html>
