@@ -1,105 +1,681 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Admin Workspace | Pweb</title>
-<link href="../style.css" rel="stylesheet"/><link href="../admin-home-consistent.css" rel="stylesheet"/>
-</head>
-<body class="dw dw-light adm">
-<a class="skip" href="#main">Skip to content</a>
-<header class="nav nav-slim dw-nav adm-doc-nav">
-<div class="tNav">
-<a class="Emegerncy_contact" href="tel:+27000000000">
-<img alt="" src="assets/icons/phone.svg"/>
-<span class="number">Reception desk: 000 000 0000</span>
-</a>
-<div class="t-nav-btns">
-<div class="seach-box">
-<img alt="" class="search-icon" src="assets/icons/search.svg"/>
-<span class="searchtext">Search patients</span>
-<input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
-<img alt="Close search" class="close_searchBtn" src="assets/icons/close.svg"/>
-</div>
-<div class="Pweb_login">
-<a class="login" href="logout.html">
-<img alt="" class="login-icon" src="public/account-avatar-person-svgrepo-com.svg"/>
-<span class="loginText">Sign out</span>
-</a>
-</div>
-</div>
-</div>
-<div class="bNav">
-<a class="logoNbackBtn" href="index.html">
-<!--Redirects Home-->
-<img alt="" class="backToHome" src="public/back-arrow-navigation-svgrepo-com.svg"/>
-<div class="logo">
-<img alt="" class="logoPGN" src="src/ThePwebLogo.png"/>
-</div>
-</a>
-<button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
-<span></span><span></span><span></span>
-</button>
-<nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links"><a aria-current="page" class="is-current" href="admin-home.html">Overview</a><a href="admin-calendar.html">Calendar</a><a href="admin-bookings.html">Bookings</a><a href="admin-patients.html">Patients</a><a href="admin-specialists.html">Specialists</a><a href="admin-messages.html">Messages</a><a href="admin-reports.html">Reports</a><a href="admin-settings.html">Settings</a><a class="navBtn" href="admin-bookings.html">New booking</a></nav>
-</div>
-</header>
-<main class="adm-main" id="main">
-<section class="adm-intro">
-<div><div class="eyebrow"><span class="pulse"></span> PRACTICE OVERVIEW <span id="todayDate"></span></div><h1>Good morning, Admin<span class="dot">.</span></h1><p>Manage your practice, appointments and specialist schedules from one place.</p></div>
-<div class="adm-actions"><button class="btn btn-outline" id="exportBtn">↓ Export bookings</button><button class="btn btn-primary" id="newBooking">＋ New booking</button></div>
-</section>
-<section aria-label="Practice statistics" class="adm-metrics">
-<article class="metric"><div class="metric-top"><span>Today's appointments</span><span class="metric-icon">▦</span></div><strong>28</strong><div class="metric-bottom"><span class="positive">↗ 12%</span> vs. last week</div></article>
-<article class="metric"><div class="metric-top"><span>Pending requests</span><span class="metric-icon">◷</span></div><strong id="pendingCount">06</strong><div class="metric-bottom"><span class="amber">● Needs attention</span></div></article>
-<article class="metric"><div class="metric-top"><span>Specialists on duty</span><span class="metric-icon">♙</span></div><strong>08<span class="denom"> / 11</span></strong><div class="metric-bottom"><span class="positive">● 8 available</span> today</div></article>
-<article class="metric"><div class="metric-top"><span>Checked-in patients</span><span class="metric-icon">✓</span></div><strong id="checkedCount">14</strong><div class="metric-bottom">of 28 appointments</div></article>
-</section>
-<section class="adm-columns">
-<article class="panel bookings">
-<div class="panel-head"><div><div class="eyebrow">LIVE OPERATIONS</div><h2>Today's bookings</h2><p>Review arrivals, appointment status and schedules.</p></div><a href="admin-bookings.html">View all ↗</a></div>
-<div class="table-scroll"><table><thead><tr><th>Patient</th><th>Specialist</th><th>Time</th><th>Status</th><th>Action</th></tr></thead><tbody id="bookingRows">
-<tr><td><strong>T. Mokoena</strong><small>Follow-up</small></td><td>Dr. P. Surname</td><td>08:30</td><td><span class="status checked">Checked in</span></td><td><button class="text-btn" disabled="">Done</button></td></tr>
-<tr><td><strong>S. Khumalo</strong><small>Consultation</small></td><td>Dr. P. Surname</td><td>09:15</td><td><span class="status confirmed">Confirmed</span></td><td><button class="text-btn checkin">Check in</button></td></tr>
-<tr><td><strong>R. Adams</strong><small>Assessment</small></td><td>Dr. P. Surname</td><td>10:00</td><td><span class="status confirmed">Confirmed</span></td><td><button class="text-btn checkin">Check in</button></td></tr>
-<tr><td><strong>M. van der Merwe</strong><small>Results review</small></td><td>Dr. P. Surname</td><td>10:45</td><td><span class="status pending">Pending</span></td><td><button class="text-btn confirm">Confirm</button></td></tr>
-<tr><td><strong>C. Jacobs</strong><small>Wound review</small></td><td>Dr. P. Surname</td><td>14:30</td><td><span class="status pending">Pending</span></td><td><button class="text-btn confirm">Confirm</button></td></tr>
-</tbody></table></div>
-</article>
-<aside class="panel side-panel"><div class="panel-head"><div><div class="eyebrow">INBOX</div><h2>Needs attention</h2></div><span class="count">3 new</span></div>
-<div class="attention-item"><span class="attention-icon amber-bg">◷</span><div><strong>Booking requests</strong><p>6 appointments awaiting confirmation</p><a href="admin-bookings.html">Review requests →</a></div></div>
-<div class="attention-item"><span class="attention-icon blue-bg">▤</span><div><strong>Schedule changes</strong><p>2 specialist availability updates</p><a href="admin-specialists.html">View schedules →</a></div></div>
-<div class="attention-item"><span class="attention-icon green-bg">✓</span><div><strong>Patient registrations</strong><p>3 new profiles need verification</p><a href="admin-patients.html">Review profiles →</a></div></div>
-</aside>
-</section>
-<section class="adm-columns bottom">
-<article class="panel"><div class="panel-head"><div><div class="eyebrow">STAFF AVAILABILITY</div><h2>Specialist schedules</h2></div><a href="admin-specialists.html">Manage ↗</a></div>
-<div class="staff-list"><div class="staff"><span class="staff-avatar">PS</span><div><strong>Dr. P. Surname</strong><small>General surgery</small></div><span class="status checked">On duty</span></div><div class="staff"><span class="staff-avatar">NM</span><div><strong>Dr. N. Maseko</strong><small>Orthopaedics</small></div><span class="status checked">On duty</span></div><div class="staff"><span class="staff-avatar">KL</span><div><strong>Dr. K. Lewis</strong><small>ENT</small></div><span class="status pending">In theatre</span></div></div>
-</article>
-<article class="panel quick"><div class="panel-head"><div><div class="eyebrow">SHORTCUTS</div><h2>Quick actions</h2></div></div><div class="quick-grid"><a href="admin-bookings.html"><span>▦</span><strong>Manage bookings</strong><small>Appointments &amp; requests</small></a><a href="admin-calendar.html"><span>▦</span><strong>Practice calendar</strong><small>Daily and weekly schedule</small></a><a href="admin-patients.html"><span>♙</span><strong>Patient records</strong><small>Registration &amp; profiles</small></a><a href="admin-specialists.html"><span>◷</span><strong>Staff schedules</strong><small>Availability &amp; shifts</small></a><a href="admin-reports.html"><span>↗</span><strong>Practice reports</strong><small>Operations &amp; trends</small></a></div></article>
-</section>
-<footer class="adm-footer"><span>© 2026 Pweb · Practice Administration</span><span>Demo workspace · Sample data only</span></footer>
-</main>
-<div aria-live="polite" class="toast" id="toast" role="status"></div>
-<script>
-(function(){
- const date = new Date();
- document.getElementById('todayDate').textContent = '· '+date.toLocaleDateString('en-ZA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
- const nav=document.getElementById('dw-nav-links'), toggle=document.querySelector('.adm-doc-nav .burger');
- toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.classList.toggle('open',open);document.querySelector('.adm-doc-nav').classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));});
- const toast=document.getElementById('toast');let timer;
- function notify(s){toast.textContent=s;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),3000);}
- document.getElementById('newBooking').addEventListener('click',()=>{location.href='admin-bookings.html';});
- document.getElementById('bookingRows').addEventListener('click',e=>{
-  const b=e.target.closest('button');if(!b||b.disabled)return;
-  const cell=b.closest('tr').querySelector('.status');
-  if(b.classList.contains('checkin')){cell.textContent='Checked in';cell.className='status checked';b.textContent='Done';b.disabled=true;document.getElementById('checkedCount').textContent=String(+document.getElementById('checkedCount').textContent+1);notify('Patient checked in (demo only).');}
-  else if(b.classList.contains('confirm')){cell.textContent='Confirmed';cell.className='status confirmed';b.textContent='Check in';b.className='text-btn checkin';document.getElementById('pendingCount').textContent=String(+document.getElementById('pendingCount').textContent-1).padStart(2,'0');notify('Booking confirmed (demo only).');}
- });
- document.getElementById('exportBtn').addEventListener('click',()=>{
-  const rows=[['Patient','Visit','Specialist','Time','Status'],...Array.from(document.querySelectorAll('#bookingRows tr')).map(tr=>[tr.cells[0].querySelector('strong').textContent,tr.cells[0].querySelector('small').textContent,tr.cells[1].textContent,tr.cells[2].textContent,tr.cells[3].textContent])];
-  const csv=rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n');
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='pweb-demo-bookings.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);notify('Sample bookings exported.');
- });
-})();
-</script>
-</body></html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Admin Workspace | Pweb
+  </title>
+  <link href="../style.css" rel="stylesheet"/>
+  <link href="../admin-home-consistent.css" rel="stylesheet"/>
+ </head>
+ <body class="dw dw-light adm">
+  <a class="skip" href="#main">
+   Skip to content
+  </a>
+  <header class="nav nav-slim dw-nav adm-doc-nav">
+   <div class="tNav">
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+     <img alt="" src="assets/icons/phone.svg"/>
+     <span class="number">
+      Reception desk: 000 000 0000
+     </span>
+    </a>
+    <div class="t-nav-btns">
+     <div class="seach-box">
+      <img alt="" class="search-icon" src="assets/icons/search.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="assets/icons/close.svg"/>
+     </div>
+     <div class="Pweb_login">
+      <a class="login" href="logout.html">
+       <img alt="" class="login-icon" src="public/account-avatar-person-svgrepo-com.svg"/>
+       <span class="loginText">
+        Sign out
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="bNav">
+    <a class="logoNbackBtn" href="index.html">
+     <img alt="" class="backToHome" src="public/back-arrow-navigation-svgrepo-com.svg"/>
+     <div class="logo">
+      <img alt="" class="logoPGN" src="src/ThePwebLogo.png"/>
+     </div>
+    </a>
+    <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links">
+     <a aria-current="page" class="is-current" href="admin-home.html">
+      Overview
+     </a>
+     <a href="admin-calendar.html">
+      Calendar
+     </a>
+     <a href="admin-bookings.html">
+      Bookings
+     </a>
+     <a href="admin-patients.html">
+      Patients
+     </a>
+     <a href="admin-specialists.html">
+      Specialists
+     </a>
+     <a href="admin-messages.html">
+      Messages
+     </a>
+     <a href="admin-reports.html">
+      Reports
+     </a>
+     <a href="admin-settings.html">
+      Settings
+     </a>
+     <a class="navBtn" href="admin-bookings.html">
+      New booking
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="adm-main" id="main">
+   <section class="adm-intro">
+    <div>
+     <div class="eyebrow">
+      <span class="pulse">
+      </span>
+      PRACTICE OVERVIEW
+      <span id="todayDate">
+      </span>
+     </div>
+     <h1>
+      Good morning, Admin
+      <span class="dot">
+       .
+      </span>
+     </h1>
+     <p>
+      Manage your practice, appointments and specialist schedules from one place.
+     </p>
+    </div>
+    <div class="adm-actions">
+     <button class="btn btn-outline" id="exportBtn">
+      &darr; Export bookings
+     </button>
+     <button class="btn btn-primary" id="newBooking">
+      ＋ New booking
+     </button>
+    </div>
+   </section>
+   <section aria-label="Practice statistics" class="adm-metrics">
+    <article class="metric">
+     <div class="metric-top">
+      <span>
+       Today's appointments
+      </span>
+      <span class="metric-icon">
+       ▦
+      </span>
+     </div>
+     <strong>
+      28
+     </strong>
+     <div class="metric-bottom">
+      <span class="positive">
+       &nearrow; 12%
+      </span>
+      vs. last week
+     </div>
+    </article>
+    <article class="metric">
+     <div class="metric-top">
+      <span>
+       Pending requests
+      </span>
+      <span class="metric-icon">
+       ◷
+      </span>
+     </div>
+     <strong id="pendingCount">
+      06
+     </strong>
+     <div class="metric-bottom">
+      <span class="amber">
+       ● Needs attention
+      </span>
+     </div>
+    </article>
+    <article class="metric">
+     <div class="metric-top">
+      <span>
+       Specialists on duty
+      </span>
+      <span class="metric-icon">
+       ♙
+      </span>
+     </div>
+     <strong>
+      08
+      <span class="denom">
+       / 11
+      </span>
+     </strong>
+     <div class="metric-bottom">
+      <span class="positive">
+       ● 8 available
+      </span>
+      today
+     </div>
+    </article>
+    <article class="metric">
+     <div class="metric-top">
+      <span>
+       Checked-in patients
+      </span>
+      <span class="metric-icon">
+       &checkmark;
+      </span>
+     </div>
+     <strong id="checkedCount">
+      14
+     </strong>
+     <div class="metric-bottom">
+      of 28 appointments
+     </div>
+    </article>
+   </section>
+   <section class="adm-columns">
+    <article class="panel bookings">
+     <div class="panel-head">
+      <div>
+       <div class="eyebrow">
+        LIVE OPERATIONS
+       </div>
+       <h2>
+        Today's bookings
+       </h2>
+       <p>
+        Review arrivals, appointment status and schedules.
+       </p>
+      </div>
+      <a href="admin-bookings.html">
+       View all &nearrow;
+      </a>
+     </div>
+     <div class="table-scroll">
+      <table>
+       <thead>
+        <tr>
+         <th>
+          Patient
+         </th>
+         <th>
+          Specialist
+         </th>
+         <th>
+          Time
+         </th>
+         <th>
+          Status
+         </th>
+         <th>
+          Action
+         </th>
+        </tr>
+       </thead>
+       <tbody id="bookingRows">
+        <tr>
+         <td>
+          <strong>
+           T. Mokoena
+          </strong>
+          <small>
+           Follow-up
+          </small>
+         </td>
+         <td>
+          Dr. P. Surname
+         </td>
+         <td>
+          08:30
+         </td>
+         <td>
+          <span class="status checked">
+           Checked in
+          </span>
+         </td>
+         <td>
+          <button class="text-btn" disabled="">
+           Done
+          </button>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <strong>
+           S. Khumalo
+          </strong>
+          <small>
+           Consultation
+          </small>
+         </td>
+         <td>
+          Dr. P. Surname
+         </td>
+         <td>
+          09:15
+         </td>
+         <td>
+          <span class="status confirmed">
+           Confirmed
+          </span>
+         </td>
+         <td>
+          <button class="text-btn checkin">
+           Check in
+          </button>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <strong>
+           R. Adams
+          </strong>
+          <small>
+           Assessment
+          </small>
+         </td>
+         <td>
+          Dr. P. Surname
+         </td>
+         <td>
+          10:00
+         </td>
+         <td>
+          <span class="status confirmed">
+           Confirmed
+          </span>
+         </td>
+         <td>
+          <button class="text-btn checkin">
+           Check in
+          </button>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <strong>
+           M. van der Merwe
+          </strong>
+          <small>
+           Results review
+          </small>
+         </td>
+         <td>
+          Dr. P. Surname
+         </td>
+         <td>
+          10:45
+         </td>
+         <td>
+          <span class="status pending">
+           Pending
+          </span>
+         </td>
+         <td>
+          <button class="text-btn confirm">
+           Confirm
+          </button>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <strong>
+           C. Jacobs
+          </strong>
+          <small>
+           Wound review
+          </small>
+         </td>
+         <td>
+          Dr. P. Surname
+         </td>
+         <td>
+          14:30
+         </td>
+         <td>
+          <span class="status pending">
+           Pending
+          </span>
+         </td>
+         <td>
+          <button class="text-btn confirm">
+           Confirm
+          </button>
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </article>
+    <aside class="panel side-panel">
+     <div class="panel-head">
+      <div>
+       <div class="eyebrow">
+        INBOX
+       </div>
+       <h2>
+        Needs attention
+       </h2>
+      </div>
+      <span class="count">
+       3 new
+      </span>
+     </div>
+     <div class="attention-item">
+      <span class="attention-icon amber-bg">
+       ◷
+      </span>
+      <div>
+       <strong>
+        Booking requests
+       </strong>
+       <p>
+        6 appointments awaiting confirmation
+       </p>
+       <a href="admin-bookings.html">
+        Review requests &rarr;
+       </a>
+      </div>
+     </div>
+     <div class="attention-item">
+      <span class="attention-icon blue-bg">
+       ▤
+      </span>
+      <div>
+       <strong>
+        Schedule changes
+       </strong>
+       <p>
+        2 specialist availability updates
+       </p>
+       <a href="admin-specialists.html">
+        View schedules &rarr;
+       </a>
+      </div>
+     </div>
+     <div class="attention-item">
+      <span class="attention-icon green-bg">
+       &checkmark;
+      </span>
+      <div>
+       <strong>
+        Patient registrations
+       </strong>
+       <p>
+        3 new profiles need verification
+       </p>
+       <a href="admin-patients.html">
+        Review profiles &rarr;
+       </a>
+      </div>
+     </div>
+    </aside>
+   </section>
+   <section class="adm-columns bottom">
+    <article class="panel">
+     <div class="panel-head">
+      <div>
+       <div class="eyebrow">
+        STAFF AVAILABILITY
+       </div>
+       <h2>
+        Specialist schedules
+       </h2>
+      </div>
+      <a href="admin-specialists.html">
+       Manage &nearrow;
+      </a>
+     </div>
+     <div class="staff-list">
+      <div class="staff">
+       <span class="staff-avatar">
+        PS
+       </span>
+       <div>
+        <strong>
+         Dr. P. Surname
+        </strong>
+        <small>
+         General surgery
+        </small>
+       </div>
+       <span class="status checked">
+        On duty
+       </span>
+      </div>
+      <div class="staff">
+       <span class="staff-avatar">
+        NM
+       </span>
+       <div>
+        <strong>
+         Dr. N. Maseko
+        </strong>
+        <small>
+         Orthopaedics
+        </small>
+       </div>
+       <span class="status checked">
+        On duty
+       </span>
+      </div>
+      <div class="staff">
+       <span class="staff-avatar">
+        KL
+       </span>
+       <div>
+        <strong>
+         Dr. K. Lewis
+        </strong>
+        <small>
+         ENT
+        </small>
+       </div>
+       <span class="status pending">
+        In theatre
+       </span>
+      </div>
+     </div>
+    </article>
+    <article class="panel quick">
+     <div class="panel-head">
+      <div>
+       <div class="eyebrow">
+        SHORTCUTS
+       </div>
+       <h2>
+        Quick actions
+       </h2>
+      </div>
+     </div>
+     <div class="quick-grid">
+      <a href="admin-bookings.html">
+       <span>
+        ▦
+       </span>
+       <strong>
+        Manage bookings
+       </strong>
+       <small>
+        Appointments &amp; requests
+       </small>
+      </a>
+      <a href="admin-calendar.html">
+       <span>
+        ▦
+       </span>
+       <strong>
+        Practice calendar
+       </strong>
+       <small>
+        Daily and weekly schedule
+       </small>
+      </a>
+      <a href="admin-patients.html">
+       <span>
+        ♙
+       </span>
+       <strong>
+        Patient records
+       </strong>
+       <small>
+        Registration &amp; profiles
+       </small>
+      </a>
+      <a href="admin-specialists.html">
+       <span>
+        ◷
+       </span>
+       <strong>
+        Staff schedules
+       </strong>
+       <small>
+        Availability &amp; shifts
+       </small>
+      </a>
+      <a href="admin-reports.html">
+       <span>
+        &nearrow;
+       </span>
+       <strong>
+        Practice reports
+       </strong>
+       <small>
+        Operations &amp; trends
+       </small>
+      </a>
+     </div>
+    </article>
+   </section>
+   <footer class="adm-footer">
+    <span>
+     &copy; 2026 Pweb &middot; Practice Administration
+    </span>
+    <span>
+     Practice Administration
+    </span>
+   </footer>
+  </main>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+  <script>
+   (function () {
+    const date = new Date();
+    const todayDate = document.getElementById('todayDate');
+
+    todayDate.textContent = '· ' + date.toLocaleDateString('en-ZA', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const nav = document.getElementById('dw-nav-links');
+    const toggle = document.querySelector('.adm-doc-nav .burger');
+    const header = document.querySelector('.adm-doc-nav');
+
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+
+      toggle.classList.toggle('open', open);
+      header.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    const toast = document.getElementById('toast');
+    let timer;
+
+    function notify(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+
+      clearTimeout(timer);
+      timer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    document.getElementById('newBooking').addEventListener('click', () => {
+      location.href = 'admin-bookings.html';
+    });
+
+    document.getElementById('bookingRows').addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+
+      if (!button || button.disabled) return;
+
+      const status = button.closest('tr').querySelector('.status');
+
+      if (button.classList.contains('checkin')) {
+        status.textContent = 'Checked in';
+        status.className = 'status checked';
+
+        button.textContent = 'Done';
+        button.disabled = true;
+
+        const checkedCount = document.getElementById('checkedCount');
+        checkedCount.textContent = String(Number(checkedCount.textContent) + 1);
+
+        notify('Patient checked in.');
+      } else if (button.classList.contains('confirm')) {
+        status.textContent = 'Confirmed';
+        status.className = 'status confirmed';
+
+        button.textContent = 'Check in';
+        button.className = 'text-btn checkin';
+
+        const pendingCount = document.getElementById('pendingCount');
+        pendingCount.textContent = String(Number(pendingCount.textContent) - 1).padStart(2, '0');
+
+        notify('Booking confirmed.');
+      }
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const rows = [
+        ['Patient', 'Visit', 'Specialist', 'Time', 'Status'],
+        ...Array.from(document.querySelectorAll('#bookingRows tr')).map((row) => [
+          row.cells[0].querySelector('strong').textContent,
+          row.cells[0].querySelector('small').textContent,
+          row.cells[1].textContent,
+          row.cells[2].textContent,
+          row.cells[3].textContent
+        ])
+      ];
+
+      const csv = rows
+        .map((row) => row.map((value) => '"' + String(value).replaceAll('"', '""') + '"').join(','))
+        .join('\r\n');
+
+      const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      const link = document.createElement('a');
+
+      link.href = url;
+      link.download = 'pweb-bookings.csv';
+      link.click();
+
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      notify('Bookings exported.');
+    });
+  })();
+  </script>
+ </body>
+</html>
+
