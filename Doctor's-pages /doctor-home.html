@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Today — Dr. P. Surname | Pweb</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dw">
+
+  <a class="skip-link" href="#dw-main">Skip to content</a>
+
+  <!-- header: same class labels as every other page; colours come from .dw-nav -->
+  <header class="nav nav-slim dw-nav">
+
+    <div class="tNav">
+      <a class="Emegerncy_contact" href="tel:+27000000000">
+        <img src="assets/icons/phone.svg" alt="">
+        <span class="number">Theatre desk: 000 000 0000</span>
+      </a>
+
+      <div class="t-nav-btns">
+        <div class="seach-box">
+          <img class="search-icon" src="assets/icons/search.svg" alt="">
+          <span class="searchtext">Search patients</span>
+          <input class="searchPlaceHolder" type="search" placeholder="Search patients or bookings" aria-label="Search patients or bookings">
+          <img class="close_searchBtn" src="assets/icons/close.svg" alt="Close search">
+        </div>
+
+        <div class="Pweb_login">
+          <a class="login" href="logout.html">
+            <img class="login-icon" src="assets/icons/user.svg" alt="">
+            <span class="loginText">Sign out</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bNav">
+      <div class="logoNbackBtn">
+        <a href="index.html" aria-label="Pweb home">
+          <img class="logoPGN" src="assets/logo.png" alt="Pweb">
+        </a>
+      </div>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="dw-nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="bnavLinks" id="dw-nav-links" aria-label="Doctor workspace">
+        <a class="is-current" href="doctor-home.html" aria-current="page">Today</a>
+        <a href="doctor-calendar.html">Calendar</a>
+        <a href="doctor-patients.html">Patients</a>
+        <a href="doctor-messages.html">Messages</a>
+        <a href="doctor-billing.html">Billing</a>
+        <a href="doctor-settings.html">Settings</a>
+        <a class="navBtn" href="doctor-booking-new.html">New booking</a>
+      </nav>
+    </div>
+
+  </header>
+
+  <main id="dw-main" class="wrapper dw-main">
+
+    <!-- greeting -->
+    <section class="dw-hello" aria-labelledby="dw-hello-title">
+      <div class="dw-hello-text">
+        <p class="dw-date">Friday, 16 October 2026</p>
+        <h1 id="dw-hello-title"><span id="dw-greeting-word">Good morning</span>, Dr. P. Surname</h1>
+        <p class="dw-summary">
+          You have <strong>7 appointments</strong> today and <strong>3 booking requests</strong> to answer.
+        </p>
+      </div>
+      <div class="dw-hello-actions">
+        <a class="dw-btn is-solid" href="doctor-booking-new.html">New booking</a>
+        <a class="dw-btn" href="doctor-calendar.html?view=block">Block time</a>
+      </div>
+    </section>
+
+    <!-- next patient -->
+    <section class="dw-next" aria-labelledby="dw-next-title">
+      <div class="dw-next-main">
+        <p class="dw-next-label">Next patient</p>
+        <h2 id="dw-next-title">M. van der Merwe</h2>
+        <p class="dw-next-reason">Results review after ultrasound. Report received and attached to the file.</p>
+
+        <div class="dw-next-actions">
+          <a class="dw-btn is-solid" href="doctor-patients.html?id=mvdm-0412">Open patient file</a>
+          <a class="dw-btn" href="doctor-messages.html?patient=mvdm-0412">Message patient</a>
+        </div>
+      </div>
+
+      <dl class="dw-next-facts">
+        <div><dt>Time</dt><dd>10:45 to 11:30</dd></div>
+        <div><dt>Room</dt><dd>Consulting room 2</dd></div>
+        <div><dt>Visit</dt><dd>Results review</dd></div>
+        <div><dt>Referred by</dt><dd>Dr. A. Referrer</dd></div>
+      </dl>
+    </section>
+
+    <!-- today at a glance -->
+    <section class="dw-glance" aria-label="Today at a glance">
+      <dl>
+        <div><dt>Appointments today</dt><dd>7</dd></div>
+        <div><dt>Completed</dt><dd>2</dd></div>
+        <div><dt>Booking requests</dt><dd>3</dd></div>
+        <div><dt>Unread messages</dt><dd>2</dd></div>
+      </dl>
+    </section>
+
+    <!-- schedule and attention -->
+    <div class="dw-day">
+
+      <section class="dw-panel dw-schedule" aria-labelledby="dw-schedule-title">
+        <div class="dw-panel-head">
+          <h2 id="dw-schedule-title">Today’s schedule</h2>
+          <a class="dw-link" href="doctor-calendar.html?date=2026-10-16">Open full day</a>
+        </div>
+
+        <ol class="dw-slots">
+          <li class="dw-slot is-done">
+            <time datetime="08:30">08:30</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <h3>T. Mokoena</h3>
+              <p>Follow-up, two weeks after surgery</p>
+            </div>
+            <span class="dw-chip is-done">Completed</span>
+          </li>
+          <li class="dw-slot is-done">
+            <time datetime="09:15">09:15</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <h3>S. Khumalo</h3>
+              <p>New consultation, GP referral</p>
+            </div>
+            <span class="dw-chip is-done">Completed</span>
+          </li>
+          <li class="dw-slot is-live">
+            <time datetime="10:00">10:00</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <h3>R. Adams</h3>
+              <p>Pre-operative assessment</p>
+            </div>
+            <span class="dw-chip is-live">In room</span>
+          </li>
+          <li class="dw-slot">
+            <time datetime="10:45">10:45</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <h3>M. van der Merwe</h3>
+              <p>Results review</p>
+            </div>
+            <span class="dw-chip is-confirmed">Confirmed</span>
+          </li>
+          <li class="dw-slot">
+            <time datetime="11:30">11:30</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <h3>P. Sithole</h3>
+              <p>New consultation</p>
+            </div>
+            <span class="dw-chip is-confirmed">Confirmed</span>
+          </li>
+          <li class="dw-slot is-break">
+            <time datetime="12:15">12:15</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <p>Break until 13:00</p>
+            </div>
+          </li>
+          <li class="dw-slot">
+            <time datetime="13:00">13:00</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <h3>Z. Ndlovu</h3>
+              <p>Laparoscopic cholecystectomy, Theatre 2</p>
+            </div>
+            <span class="dw-chip is-confirmed">Confirmed</span>
+          </li>
+          <li class="dw-slot">
+            <time datetime="14:30">14:30</time>
+            <span class="dw-dot" aria-hidden="true"></span>
+            <div>
+              <h3>C. Jacobs</h3>
+              <p>Wound review</p>
+            </div>
+            <span class="dw-chip is-pending">Awaiting confirmation</span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="dw-panel dw-attention" aria-labelledby="dw-attention-title">
+        <div class="dw-panel-head">
+          <h2 id="dw-attention-title">Needs your attention</h2>
+          <span class="dw-chip is-pending">8 items</span>
+        </div>
+
+        <div class="dw-group" aria-labelledby="dw-req-title">
+          <h3 id="dw-req-title">Booking requests</h3>
+          <ul>
+            <li data-request="n-dlamini">
+              <div>
+                <strong>N. Dlamini</strong>
+                <p>Monday 19 October, 09:15. New consultation, GP referral.</p>
+              </div>
+              <div class="dw-request-actions">
+                <button class="dw-btn is-solid is-small" type="button" data-action="accept">Accept</button>
+                <button class="dw-btn is-small" type="button" data-action="decline">Decline</button>
+              </div>
+            </li>
+            <li data-request="a-pretorius">
+              <div>
+                <strong>A. Pretorius</strong>
+                <p>Tuesday 20 October, 14:00. Follow-up, wound review.</p>
+              </div>
+              <div class="dw-request-actions">
+                <button class="dw-btn is-solid is-small" type="button" data-action="accept">Accept</button>
+                <button class="dw-btn is-small" type="button" data-action="decline">Decline</button>
+              </div>
+            </li>
+            <li data-request="l-naidoo">
+              <div>
+                <strong>L. Naidoo</strong>
+                <p>Thursday 22 October, 10:45. Second opinion.</p>
+              </div>
+              <div class="dw-request-actions">
+                <button class="dw-btn is-solid is-small" type="button" data-action="accept">Accept</button>
+                <button class="dw-btn is-small" type="button" data-action="decline">Decline</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dw-group" aria-labelledby="dw-res-title">
+          <h3 id="dw-res-title">Results to review</h3>
+          <ul>
+            <li>
+              <div>
+                <strong>T. Mokoena</strong>
+                <p>Pathology report received.</p>
+              </div>
+              <a class="dw-link" href="doctor-patients.html?id=tmok-0388&amp;tab=results">Open</a>
+            </li>
+            <li>
+              <div>
+                <strong>R. Adams</strong>
+                <p>Pre-operative bloods and imaging.</p>
+              </div>
+              <a class="dw-link" href="doctor-patients.html?id=radm-0291&amp;tab=results">Open</a>
+            </li>
+            <li>
+              <div>
+                <strong>M. van der Merwe</strong>
+                <p>Ultrasound report, discussed at 10:45.</p>
+              </div>
+              <a class="dw-link" href="doctor-patients.html?id=mvdm-0412&amp;tab=results">Open</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dw-group" aria-labelledby="dw-msg-title">
+          <h3 id="dw-msg-title">Unread messages</h3>
+          <ul>
+            <li class="is-unread">
+              <div>
+                <strong>Reception</strong>
+                <p>Thursday’s theatre list starts 30 minutes earlier.</p>
+              </div>
+              <time datetime="2026-10-16T07:50">07:50</time>
+            </li>
+            <li class="is-unread">
+              <div>
+                <strong>Dr. A. Referrer</strong>
+                <p>Referral letter attached for N. Dlamini.</p>
+              </div>
+              <time datetime="2026-10-16T07:12">07:12</time>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- coming up -->
+    <section class="dw-week" aria-labelledby="dw-week-title">
+      <div class="dw-panel-head">
+        <h2 id="dw-week-title">Coming up</h2>
+        <a class="dw-link" href="doctor-calendar.html?view=week">Open calendar</a>
+      </div>
+
+      <div class="dw-week-grid">
+        <a class="dw-day-cell is-today" href="doctor-calendar.html?date=2026-10-16" aria-current="date">
+          <span class="dw-dayname">Friday</span>
+          <span class="dw-daynum">16</span>
+          <span class="dw-count">7 appointments</span>
+          <span class="dw-bar" style="--n: 7"></span>
+          <span class="dw-note">Today</span>
+        </a>
+        <a class="dw-day-cell" href="doctor-calendar.html?date=2026-10-19">
+          <span class="dw-dayname">Monday</span>
+          <span class="dw-daynum">19</span>
+          <span class="dw-count">8 appointments</span>
+          <span class="dw-bar" style="--n: 8"></span>
+          <span class="dw-note">1 request pending</span>
+        </a>
+        <a class="dw-day-cell" href="doctor-calendar.html?date=2026-10-20">
+          <span class="dw-dayname">Tuesday</span>
+          <span class="dw-daynum">20</span>
+          <span class="dw-count">6 appointments</span>
+          <span class="dw-bar" style="--n: 6"></span>
+          <span class="dw-note">1 request pending</span>
+        </a>
+        <a class="dw-day-cell" href="doctor-calendar.html?date=2026-10-21">
+          <span class="dw-dayname">Wednesday</span>
+          <span class="dw-daynum">21</span>
+          <span class="dw-count">7 appointments</span>
+          <span class="dw-bar" style="--n: 7"></span>
+          <span class="dw-note">Day procedures</span>
+        </a>
+        <a class="dw-day-cell" href="doctor-calendar.html?date=2026-10-22">
+          <span class="dw-dayname">Thursday</span>
+          <span class="dw-daynum">22</span>
+          <span class="dw-count">9 appointments</span>
+          <span class="dw-bar" style="--n: 9"></span>
+          <span class="dw-note">Theatre list, early start</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="dw-footer">
+    <p>Pweb for specialists. Signed in as Dr. P. Surname.</p>
+    <p><a href="support.html">Support</a> &nbsp; <a href="privacy.html">Privacy</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      var hour = new Date().getHours();
+      var word = document.getElementById("dw-greeting-word");
+      if (word) word.textContent = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+
+      var burger = document.querySelector(".nav .burger");
+      var links = document.getElementById("dw-nav-links");
+      if (burger && links) {
+        burger.addEventListener("click", function () {
+          var open = burger.classList.toggle("open");
+          links.classList.toggle("open", open);
+          burger.setAttribute("aria-expanded", String(open));
+        });
+      }
+
+      document.querySelectorAll(".dw-request-actions").forEach(function (box) {
+        box.addEventListener("click", function (e) {
+          var btn = e.target.closest("button[data-action]");
+          if (!btn) return;
+          var accepted = btn.dataset.action === "accept";
+          box.innerHTML = '<span class="dw-chip ' + (accepted ? "is-confirmed" : "is-done") + '">' +
+            (accepted ? "Accepted" : "Declined") + "</span>";
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -3188,364 +3188,9 @@
      }
    
    }
-   
-@layer findSpecialist {
- 
-  /* specialist profile */
-  .sp-profile {
-    padding-block: clamp(3rem, 6vw, 5rem);
- 
-    & > .band-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-      align-items: center;
-      gap: clamp(2rem, 6vw, 5rem);
-    }
- 
-    & .sp-role {
-      margin-bottom: 0.8rem;
-      color: var(--accent-deep);
-      font-size: 1rem;
-      font-weight: 600;
-    }
- 
-    & .about-title {
-      font-size: clamp(2.4rem, 5vw, 4rem);
-    }
- 
-    & .sp-facts {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0 2rem;
-      margin-block: 2rem;
-      border-top: 1px solid var(--line);
- 
-      & > div {
-        padding-block: 0.9rem;
-        border-bottom: 1px solid var(--line);
-      }
- 
-      & dt {
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
- 
-      & dd {
-        color: var(--ink);
-        font-weight: 600;
-      }
-    }
- 
-    & .sp-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
- 
-    & .sp-portrait {
- 
-      & .ph {
-        --ratio: 4 / 5;
-        border-radius: var(--radius-lg);
-      }
- 
-      & figcaption {
-        margin-top: 0.8rem;
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
-    }
- 
-    @media (max-width: 992px) {
-      & > .band-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
- 
-      & .sp-portrait {
-        max-width: 28rem;
-      }
-    }
- 
-    @media (max-width: 560px) {
-      & .sp-facts {
-        grid-template-columns: minmax(0, 1fr);
-      }
- 
-      & .sp-actions .btn {
-        width: 100%;
-      }
-    }
-  }
- 
-  /* specialist key figures */
-  .sp-figures {
-    padding-block: clamp(2.5rem, 5vw, 4rem);
- 
-    & .sp-figure-list {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
- 
-      & > div {
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: flex-end;
-        gap: 0.5rem;
-        min-width: 0;
-        padding-inline: 1.5rem;
- 
-        &:first-child {
-          padding-left: 0;
-        }
- 
-        & + div {
-          border-left: 1px solid rgba(255, 255, 255, 0.14);
-        }
-      }
- 
-      & dt {
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 0.92rem;
-        line-height: 1.4;
-      }
- 
-      & dd {
-        color: var(--accent);
-        font-size: clamp(1.9rem, 3.2vw, 2.7rem);
-        font-weight: 700;
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-      }
-    }
- 
-    @media (max-width: 992px) {
-      & .sp-figure-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        row-gap: 2rem;
- 
-        & > div:nth-child(odd) {
-          padding-left: 0;
-          border-left: 0;
-        }
-      }
-    }
- 
-    @media (max-width: 480px) {
-      & .sp-figure-list {
-        grid-template-columns: minmax(0, 1fr);
- 
-        & > div {
-          padding-inline: 0;
-          border-left: 0;
-        }
-      }
-    }
-  }
- 
-  /* specialist areas of practice */
-  .sp-focus {
- 
-    & .sp-focus-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.2rem;
- 
-      & .card {
-        min-height: 16rem;
-      }
-    }
- 
-    @media (max-width: 992px) {
-      & .sp-focus-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
- 
-    @media (max-width: 640px) {
-      & .sp-focus-grid {
-        grid-template-columns: minmax(0, 1fr);
- 
-        & .card {
-          min-height: 0;
-        }
-      }
-    }
-  }
- 
-  /* specialist care pathway */
-  .sp-pathway {
- 
-    & .steps {
-      margin-block: 0;
-    }
-  }
- 
-  /* specialist credentials */
-  .sp-credentials {
- 
-    & .sp-cred-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-      align-items: start;
-      gap: clamp(2rem, 6vw, 5rem);
-    }
- 
-    & .sp-record {
-      border-bottom: 1px solid var(--line);
- 
-      & li {
-        display: grid;
-        grid-template-columns: 5rem minmax(0, 1fr);
-        gap: 1.4rem;
-        padding: 1.5rem 0;
-        border-top: 1px solid var(--line);
-      }
- 
-      & .sp-year {
-        color: var(--accent-deep);
-        font-weight: 700;
-        font-variant-numeric: tabular-nums;
-      }
- 
-      & h3 {
-        margin-bottom: 0.25rem;
-        font-size: 1.15rem;
-        letter-spacing: -0.02em;
-      }
- 
-      & p {
-        font-size: 0.95rem;
-      }
-    }
- 
-    & .sp-affil {
-      padding: clamp(1.4rem, 2.5vw, 2rem);
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
- 
-      & h3 {
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-        letter-spacing: -0.02em;
-      }
- 
-      & ul {
-        margin-bottom: 1.4rem;
-        border-bottom: 1px solid var(--line);
-      }
- 
-      & li {
-        display: grid;
-        gap: 0.15rem;
-        padding: 0.9rem 0;
-        border-top: 1px solid var(--line);
-      }
- 
-      & strong {
-        color: var(--ink);
-      }
- 
-      & span {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
- 
-      & a {
-        color: var(--brand);
-        font-weight: 600;
-        text-decoration: underline;
-        text-underline-offset: 3px;
- 
-        &:hover {
-          color: var(--accent-deep);
-        }
-      }
-    }
- 
-    @media (max-width: 992px) {
-      & .sp-cred-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
- 
-    @media (max-width: 480px) {
-      & .sp-record li {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 0.3rem;
-      }
-    }
-  }
- 
-  /* specialist consulting rooms */
-  .sp-rooms {
- 
-    & .sp-rooms-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      align-items: stretch;
-      gap: clamp(2rem, 5vw, 4rem);
-    }
- 
-    & address {
-      margin-bottom: 2rem;
-      color: var(--muted);
-      font-style: normal;
-      line-height: 1.75;
- 
-      & strong {
-        display: block;
-        margin-bottom: 0.3rem;
-        color: var(--ink);
-        font-size: 1.15rem;
-      }
-    }
- 
-    & .sp-hours {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--line);
- 
-      & li {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.9rem 0;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
- 
-        & span:last-child {
-          color: var(--ink);
-          font-weight: 600;
-          font-variant-numeric: tabular-nums;
-        }
-      }
-    }
- 
-    & .sp-contact a {
-      color: var(--brand);
-      font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 3px;
- 
-      &:hover {
-        color: var(--accent-deep);
-      }
-    }
- 
-    & .sp-map .ph {
-      height: 100%;
-      min-height: 20rem;
-      border-radius: var(--radius);
-    }
- 
-    @media (max-width: 992px) {
-      & .sp-rooms-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-  }
-}
 
-   @layer SpecialistProfile {
+
+   @layer findSpeacialistPage {
 
     /* specialist profile */
     .dr-profile {
@@ -3900,4 +3545,753 @@
       }
     }
   }
+
+
+@layer DoctorWorkspace {
+
+  /* doctor workspace base: tokens, panels, buttons, chips, links */
+  .dw {
+    --dw-bg: #060607;
+    --dw-panel: #111214;
+    --dw-raise: #1a1c1f;
+    --dw-line: rgba(255, 255, 255, 0.1);
+    --dw-text: #f5f6f7;
+    --dw-mute: #98a0a8;
+    --dw-accent: #6ea8fe;
+    --dw-warn: #f0c36a;
+    --dw-radius: 24px;
+
+    color: var(--dw-text);
+    background: var(--dw-bg);
+
+    & :focus-visible {
+      outline-color: var(--dw-accent);
+    }
+
+    & .dw-panel {
+      min-width: 0;
+      padding: clamp(1.3rem, 2.5vw, 1.9rem);
+      background: var(--dw-panel);
+      border: 1px solid var(--dw-line);
+      border-radius: var(--dw-radius);
+    }
+
+    & .dw-panel-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+
+      & h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    & .dw-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.4rem;
+      color: var(--dw-text);
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        border-color: var(--dw-text);
+      }
+
+      &.is-solid {
+        color: #000;
+        background: var(--dw-text);
+        border-color: transparent;
+
+        &:hover {
+          background: #d9dde0;
+        }
+      }
+
+      &.is-small {
+        padding: 0.5rem 1rem;
+        font-size: 0.88rem;
+      }
+    }
+
+    & .dw-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+
+      &.is-confirmed {
+        color: var(--dw-accent);
+        background: rgba(110, 168, 254, 0.14);
+      }
+
+      &.is-pending {
+        color: var(--dw-warn);
+        background: rgba(240, 195, 106, 0.14);
+      }
+
+      &.is-done {
+        color: var(--dw-mute);
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      &.is-live {
+        color: #000;
+        background: var(--dw-text);
+      }
+    }
+
+    & .dw-link {
+      color: var(--dw-accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      & .dw-btn {
+        transition: none;
+      }
+    }
+  }
+
+  /* doctor workspace header colours */
+  .nav.dw-nav {
+    border-bottom: 1px solid var(--dw-line);
+
+    & .tNav {
+      background: #000;
+      border-bottom: 1px solid var(--dw-line);
+    }
+
+    & .bNav {
+      background: var(--dw-bg);
+
+      & .burger span {
+        background: var(--dw-text);
+      }
+
+      & .bnavLinks a {
+        color: var(--dw-mute);
+
+        &:hover {
+          color: var(--dw-text);
+          background: var(--dw-panel);
+        }
+
+        &.is-current {
+          color: var(--dw-text);
+          background: var(--dw-raise);
+        }
+
+        &.navBtn {
+          color: #000;
+          background: var(--dw-text);
+
+          &:hover {
+            color: #000;
+            background: #d9dde0;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 900px) {
+      & .bNav .bnavLinks {
+        background: var(--dw-panel);
+        border-block: 1px solid var(--dw-line);
+        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+
+  /* doctor workspace page grid */
+  .dw-main {
+    align-content: start;
+    row-gap: clamp(2rem, 4vw, 3rem);
+    padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+
+    & > :is(section, div) {
+      grid-column: 2;
+      min-width: 0;
+    }
+  }
+
+  /* doctor workspace greeting */
+  .dw-hello {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+
+    & .dw-hello-text {
+      flex: 1 1 26rem;
+      min-width: 0;
+    }
+
+    & .dw-date {
+      margin-bottom: 0.6rem;
+      color: var(--dw-mute);
+      font-size: 0.95rem;
+    }
+
+    & h1 {
+      margin-bottom: 0.8rem;
+      font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    & .dw-summary {
+      max-width: 56ch;
+      color: var(--dw-mute);
+      font-size: 1.05rem;
+      line-height: 1.6;
+
+      & strong {
+        color: var(--dw-text);
+        font-weight: 600;
+      }
+    }
+
+    & .dw-hello-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    @media (max-width: 560px) {
+      & .dw-hello-actions {
+        width: 100%;
+        flex-direction: column;
+
+        & .dw-btn {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  /* doctor workspace next patient */
+  .dw-next {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding: clamp(1.6rem, 3.5vw, 3rem);
+    color: #0b0c0e;
+    background: #f4f5f6;
+    border-radius: 32px;
+
+    & .dw-next-label {
+      margin-bottom: 0.6rem;
+      color: #5d656c;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    & h2 {
+      margin-bottom: 0.7rem;
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    & .dw-next-reason {
+      max-width: 46ch;
+      margin-bottom: 1.6rem;
+      color: #3c434a;
+      line-height: 1.6;
+    }
+
+    & .dw-next-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+
+      & .dw-btn {
+        color: #0b0c0e;
+        border-color: rgba(11, 12, 14, 0.28);
+
+        &:hover {
+          border-color: #0b0c0e;
+        }
+
+        &.is-solid {
+          color: #fff;
+          background: #0b0c0e;
+          border-color: transparent;
+
+          &:hover {
+            background: #26292d;
+          }
+        }
+      }
+    }
+
+    & .dw-next-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 1.5rem;
+
+      & > div {
+        padding-block: 1rem;
+        border-top: 1px solid rgba(11, 12, 14, 0.14);
+      }
+
+      & dt {
+        margin-bottom: 0.2rem;
+        color: #5d656c;
+        font-size: 0.85rem;
+      }
+
+      & dd {
+        font-weight: 600;
+      }
+    }
+
+    @media (max-width: 992px) {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+    }
+
+    @media (max-width: 480px) {
+      border-radius: 24px;
+
+      & .dw-next-actions .dw-btn {
+        width: 100%;
+      }
+
+      & .dw-next-facts {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  }
+
+  /* doctor workspace today at a glance */
+  .dw-glance {
+    border-block: 1px solid var(--dw-line);
+
+    & dl {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+
+      & > div {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        gap: 0.3rem;
+        min-width: 0;
+        padding: 1.6rem 1.5rem;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        & + div {
+          border-left: 1px solid var(--dw-line);
+        }
+      }
+    }
+
+    & dt {
+      color: var(--dw-mute);
+      font-size: 0.9rem;
+    }
+
+    & dd {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 992px) {
+      & dl {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        & > div {
+          &:nth-child(odd) {
+            padding-left: 0;
+            border-left: 0;
+          }
+
+          &:nth-child(n + 3) {
+            border-top: 1px solid var(--dw-line);
+          }
+        }
+      }
+    }
+
+    @media (max-width: 420px) {
+      & dl {
+        grid-template-columns: minmax(0, 1fr);
+
+        & > div {
+          padding-inline: 0;
+          border-left: 0;
+
+          &:nth-child(n + 2) {
+            border-top: 1px solid var(--dw-line);
+          }
+        }
+      }
+    }
+  }
+
+  /* doctor workspace day layout */
+  .dw-day {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 1.2rem;
+
+    @media (max-width: 992px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* doctor workspace schedule */
+  .dw-schedule {
+
+    & .dw-slot {
+      display: grid;
+      grid-template-columns: 4rem 1rem minmax(0, 1fr) auto;
+      align-items: stretch;
+      gap: 0 1rem;
+
+      & > time {
+        padding-top: 1rem;
+        color: var(--dw-mute);
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+
+      & > .dw-dot {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1.3rem;
+
+        &::before {
+          content: "";
+          flex: none;
+          width: 9px;
+          height: 9px;
+          background: var(--dw-panel);
+          border: 2px solid var(--dw-mute);
+          border-radius: 50%;
+        }
+
+        &::after {
+          content: "";
+          flex: 1;
+          width: 1px;
+          margin-top: 0.3rem;
+          background: var(--dw-line);
+        }
+      }
+
+      & > div {
+        padding-block: 1rem 1.2rem;
+      }
+
+      & > .dw-chip {
+        align-self: start;
+        margin-top: 1rem;
+      }
+
+      & h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      & p {
+        color: var(--dw-mute);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      &:last-child > .dw-dot::after {
+        display: none;
+      }
+
+      &.is-done {
+        & h3 {
+          color: var(--dw-mute);
+        }
+
+        & > .dw-dot::before {
+          background: var(--dw-mute);
+        }
+      }
+
+      &.is-live {
+        & > time {
+          color: var(--dw-text);
+        }
+
+        & > .dw-dot::before {
+          background: var(--dw-text);
+          border-color: var(--dw-text);
+          box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16);
+        }
+      }
+
+      &.is-break {
+        grid-template-columns: 4rem 1rem minmax(0, 1fr);
+
+        & > .dw-dot::before {
+          width: 5px;
+          height: 5px;
+          border-width: 1px;
+        }
+
+        & p {
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    @media (max-width: 560px) {
+      & .dw-slot {
+        grid-template-columns: 3.4rem 1rem minmax(0, 1fr);
+
+        & > .dw-chip {
+          grid-column: 3;
+          margin-top: 0;
+          margin-bottom: 1rem;
+          justify-self: start;
+        }
+
+        &.is-break {
+          grid-template-columns: 3.4rem 1rem minmax(0, 1fr);
+        }
+      }
+    }
+  }
+
+  /* doctor workspace needs attention */
+  .dw-attention {
+
+    & .dw-group {
+
+      & + .dw-group {
+        margin-top: 1.6rem;
+      }
+
+      & h3 {
+        padding-bottom: 0.6rem;
+        color: var(--dw-mute);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      & li {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.95rem 0;
+        border-top: 1px solid var(--dw-line);
+
+        & strong {
+          display: block;
+          font-weight: 600;
+        }
+
+        & p {
+          color: var(--dw-mute);
+          font-size: 0.88rem;
+          line-height: 1.5;
+        }
+
+        & time {
+          flex: none;
+          color: var(--dw-mute);
+          font-size: 0.8rem;
+          font-variant-numeric: tabular-nums;
+        }
+
+        &.is-unread strong::before {
+          content: "";
+          display: inline-block;
+          width: 0.5rem;
+          height: 0.5rem;
+          margin-right: 0.6rem;
+          background: var(--dw-accent);
+          border-radius: 50%;
+        }
+      }
+    }
+
+    & .dw-request-actions {
+      display: flex;
+      flex: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 560px) {
+      & .dw-group li:has(.dw-request-actions) {
+        flex-direction: column;
+      }
+
+      & .dw-request-actions {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  /* doctor workspace coming up */
+  .dw-week {
+
+    & .dw-week-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    & .dw-day-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 0;
+      padding: 1.2rem;
+      background: var(--dw-panel);
+      border: 1px solid var(--dw-line);
+      border-radius: 20px;
+      transition: border-color 0.2s ease;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      & .dw-dayname {
+        color: var(--dw-mute);
+        font-size: 0.88rem;
+      }
+
+      & .dw-daynum {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+
+      & .dw-count {
+        margin-top: 0.6rem;
+        font-size: 0.92rem;
+        font-weight: 600;
+      }
+
+      & .dw-bar {
+        display: block;
+        height: 4px;
+        margin-block: 0.4rem 0.5rem;
+        overflow: hidden;
+        background: var(--dw-raise);
+        border-radius: 999px;
+
+        &::after {
+          content: "";
+          display: block;
+          width: calc(var(--n, 0) * 10%);
+          height: 100%;
+          background: var(--dw-mute);
+          border-radius: inherit;
+        }
+      }
+
+      & .dw-note {
+        color: var(--dw-mute);
+        font-size: 0.82rem;
+      }
+
+      &.is-today {
+        background: var(--dw-raise);
+        border-color: rgba(255, 255, 255, 0.45);
+
+        & .dw-bar::after {
+          background: var(--dw-text);
+        }
+      }
+    }
+
+    @media (max-width: 992px) {
+      & .dw-week-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      & .dw-week-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      & .dw-day-cell {
+        transition: none;
+      }
+    }
+  }
+
+  /* doctor workspace footer */
+  .dw-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding: 2rem 5%;
+    color: var(--dw-mute);
+    border-top: 1px solid var(--dw-line);
+    font-size: 0.88rem;
+
+    & a {
+      color: var(--dw-text);
+      text-underline-offset: 3px;
+
+      &:hover {
+        color: var(--dw-accent);
+        text-decoration: underline;
+      }
+    }
+
+    @media (max-width: 560px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
    
