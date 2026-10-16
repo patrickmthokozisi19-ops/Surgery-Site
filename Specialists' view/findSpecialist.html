@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dr. Full Name — Specialist profile | Pweb</title>
+  <meta name="description" content="Consultant surgeon profile, areas of practice, care pathway, credentials and consulting rooms.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- header: same class labels as the existing nav, no new header CSS -->
+  <header class="nav nav-slim">
+
+    <div class="tNav">
+      <a href="#contact" class="Emegerncy_contact" aria-label="Institution enquiries">
+        <img src="public/phone-calling-rounded-svgrepo-com.svg" alt="">
+        <span class="number">Institution enquiries</span>
+      </a>
+
+      <div class="t-nav-btns">
+        <div class="Pweb_login">
+          <!-- Placeholder link: sign-in page -->
+          <a href="sign-in.html" class="login" aria-label="Sign in to Pweb">
+            <img src="public/account-avatar-person-svgrepo-com.svg" alt="" class="login-icon">
+            <span class="loginText">Sign in</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bNav">
+      <a href="#top" class="logoNbackBtn">
+        <div class="logo">
+          <img src="src/ThePwebLogo.png" alt="Pweb" class="logoPGN">
+        </div>
+      </a>
+
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="bnavLinks">
+        <span></span><span></span><span></span>
+      </button>
+
+
+      <nav class="bnavLinks" id="specialist-links" aria-label="Specialist profile">
+        <a class="is-current" href="#profile" aria-current="page">Profile</a>
+        <a href="#practice">Areas of practice</a>
+        <a href="#pathway">Care pathway</a>
+        <a href="#credentials">Credentials</a>
+        <a href="#rooms">Consulting rooms</a>
+        <a class="navBtn" href="#book">Book a consultation</a>
+      </nav>
+    </div>
+
+  </header>
+
+  <main id="main" class="wrapper">
+
+    <!-- profile -->
+    <section class="band sp-profile" id="profile" aria-labelledby="sp-name">
+      <div class="band-inner">
+
+        <div class="sp-profile-text">
+          <p class="sp-role">Consultant general and laparoscopic surgeon</p>
+          <h1 class="about-title" id="sp-name">Dr. Full Name</h1>
+          <p class="about-lead">
+            Elective and emergency surgery for adults, with a focus on minimally invasive
+            procedures, clear communication and a structured recovery plan for every patient.
+          </p>
+
+          <dl class="sp-facts">
+            <div><dt>Speciality</dt><dd>General and laparoscopic surgery</dd></div>
+            <div><dt>Practice</dt><dd>Pweb Surgical Practice</dd></div>
+            <div><dt>Registration</dt><dd>MP 0000000</dd></div>
+            <div><dt>Languages</dt><dd>English</dd></div>
+          </dl>
+
+          <div class="sp-actions">
+            <a class="btn btn-primary" href="#book">Book a consultation</a>
+            <a class="btn btn-ghost" href="#credentials">View credentials</a>
+          </div>
+        </div>
+
+        <figure class="sp-portrait">
+          <div class="ph">
+            <!-- replace with: <img src="assets/specialist.jpg" alt="Dr. Full Name"> -->
+            <span class="ph-label">Portrait<small>4:5</small></span>
+          </div>
+          <figcaption>Dr. Full Name, consulting at Pweb Surgical Practice</figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- key figures -->
+    <section class="band is-ink sp-figures" aria-label="Practice in numbers">
+      <div class="band-inner">
+        <dl class="sp-figure-list">
+          <div><dt>Years in practice</dt><dd>18</dd></div>
+          <div><dt>Procedures performed</dt><dd>6,500+</dd></div>
+          <div><dt>Hospital affiliations</dt><dd>3</dd></div>
+          <div><dt>Average wait for a first consultation</dt><dd>5 days</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- areas of practice -->
+    <section class="band is-white sp-focus" id="practice" aria-labelledby="sp-practice-title">
+      <div class="band-inner">
+
+        <div class="about-heading">
+          <div>
+            <h2 class="about-title" id="sp-practice-title">Areas of practice</h2>
+          </div>
+          <p>Conditions assessed and treated, and the procedures offered for each.</p>
+        </div>
+
+        <ul class="sp-focus-grid">
+          <li class="card">
+            <span class="card-label">Abdominal surgery</span>
+            <h3>Hernia repair</h3>
+            <p>Inguinal, umbilical and incisional hernias, repaired open or laparoscopically.</p>
+            <a href="practice.html#hernia">View details</a>
+          </li>
+          <li class="card">
+            <span class="card-label">Gastrointestinal</span>
+            <h3>Gallbladder and bile duct</h3>
+            <p>Laparoscopic cholecystectomy and management of gallstone disease.</p>
+            <a href="practice.html#gallbladder">View details</a>
+          </li>
+          <li class="card">
+            <span class="card-label">Colorectal</span>
+            <h3>Bowel and anorectal conditions</h3>
+            <p>Assessment, colonoscopy and surgery for common colorectal conditions.</p>
+            <a href="practice.html#colorectal">View details</a>
+          </li>
+          <li class="card">
+            <span class="card-label">Endocrine</span>
+            <h3>Thyroid surgery</h3>
+            <p>Evaluation of thyroid nodules and goitre, with surgery where indicated.</p>
+            <a href="practice.html#thyroid">View details</a>
+          </li>
+          <li class="card">
+            <span class="card-label">Soft tissue</span>
+            <h3>Lumps and skin lesions</h3>
+            <p>Examination, biopsy and removal, with pathology results reviewed with you.</p>
+            <a href="practice.html#soft-tissue">View details</a>
+          </li>
+          <li class="card">
+            <span class="card-label">Urgent care</span>
+            <h3>Emergency surgery</h3>
+            <p>Acute abdominal presentations referred through the emergency department.</p>
+            <a href="practice.html#emergency">View details</a>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- care pathway -->
+    <section class="band sp-pathway" id="pathway" aria-labelledby="sp-pathway-title">
+      <div class="band-inner">
+
+        <div class="about-heading">
+          <div>
+            <h2 class="about-title" id="sp-pathway-title">Care pathway</h2>
+          </div>
+          <p>What happens from your first appointment to your final follow-up.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <span class="step-no">1</span>
+            <h3>Referral and booking</h3>
+            <p>Send a referral from your GP or book directly. Our rooms confirm your date.</p>
+          </li>
+          <li>
+            <span class="step-no">2</span>
+            <h3>Consultation</h3>
+            <p>History, examination and a review of existing results, followed by a written plan.</p>
+          </li>
+          <li>
+            <span class="step-no">3</span>
+            <h3>Procedure</h3>
+            <p>Theatre date, cost estimate and pre-operative instructions are sent to you in advance.</p>
+          </li>
+          <li>
+            <span class="step-no">4</span>
+            <h3>Follow-up</h3>
+            <p>Post-operative review and results discussion. Your GP receives a full report.</p>
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- credentials -->
+    <section class="band is-white sp-credentials" id="credentials" aria-labelledby="sp-cred-title">
+      <div class="band-inner">
+
+        <div class="about-heading">
+          <div>
+            <h2 class="about-title" id="sp-cred-title">Qualifications and affiliations</h2>
+          </div>
+          <p>Training, registration and the hospitals where Dr. Full Name operates.</p>
+        </div>
+
+        <div class="sp-cred-layout">
+
+          <ol class="sp-record">
+            <li>
+              <span class="sp-year">2018</span>
+              <div>
+                <h3>Fellowship in minimally invasive surgery</h3>
+                <p>Institution name, country</p>
+              </div>
+            </li>
+            <li>
+              <span class="sp-year">2012</span>
+              <div>
+                <h3>FCS (SA), General surgery</h3>
+                <p>College of Medicine of South Africa</p>
+              </div>
+            </li>
+            <li>
+              <span class="sp-year">2005</span>
+              <div>
+                <h3>MBChB</h3>
+                <p>University name</p>
+              </div>
+            </li>
+          </ol>
+
+          <aside class="sp-affil" aria-label="Hospital affiliations">
+            <h3>Hospital affiliations</h3>
+            <ul>
+              <li><strong>Hospital name</strong><span>Main theatre list, Tuesday and Thursday</span></li>
+              <li><strong>Hospital name</strong><span>Day procedures, Wednesday</span></li>
+              <li><strong>Hospital name</strong><span>Emergency cover, rotating</span></li>
+            </ul>
+            <a href="credentials.html">Download registration documents</a>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- consulting rooms -->
+    <section class="band sp-rooms" id="rooms" aria-labelledby="sp-rooms-title">
+      <div class="band-inner">
+
+        <div class="about-heading">
+          <div>
+            <h2 class="about-title" id="sp-rooms-title">Consulting rooms</h2>
+          </div>
+          <p>Address, hours and how to reach reception.</p>
+        </div>
+
+        <div class="sp-rooms-layout">
+
+          <div class="sp-rooms-details">
+            <address>
+              <strong>Pweb Surgical Practice</strong>
+              Street address<br>
+              Suburb, City, Postal code
+            </address>
+
+            <ul class="sp-hours">
+              <li><span>Monday to Thursday</span><span>08:00 to 17:00</span></li>
+              <li><span>Friday</span><span>08:00 to 13:00</span></li>
+              <li><span>Saturday and Sunday</span><span>Closed</span></li>
+            </ul>
+
+            <p class="sp-contact">
+              Reception: <a href="tel:+27000000000">000 000 0000</a><br>
+              Email: <a href="mailto:rooms@example.com">rooms@example.com</a>
+            </p>
+          </div>
+
+          <figure class="sp-map">
+            <div class="ph">
+              <span class="ph-label">Map<small>Embed or image</small></span>
+            </div>
+          </figure>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- booking -->
+    <section class="band pw-cta" id="book" aria-labelledby="sp-book-title">
+      <div class="band-inner">
+        <div class="cta-band">
+          <div class="cta-content">
+            <h2 id="sp-book-title">Book a consultation</h2>
+            <p>Choose a time online or send your referral ahead of your visit. Reception confirms every booking within one working day.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="booking.html">Book online</a>
+            <a class="btn btn-ghost" href="referral.html">Send a referral</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h4>Pweb Surgical Practice</h4>
+        <p>Specialist surgical care with clear communication at every step.</p>
+      </div>
+      <div>
+        <h4>Profile</h4>
+        <a href="#practice">Areas of practice</a>
+        <a href="#pathway">Care pathway</a>
+        <a href="#credentials">Credentials</a>
+      </div>
+      <div>
+        <h4>Patients</h4>
+        <a href="booking.html">Book a consultation</a>
+        <a href="referral.html">Send a referral</a>
+        <a href="login.html">Client login</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+27000000000">000 000 0000</a>
+        <a href="mailto:rooms@example.com">rooms@example.com</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Pweb. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var burger = document.querySelector(".nav .burger");
+      var links = document.getElementById("specialist-links");
+      if (!burger || !links) return;
+      burger.addEventListener("click", function () {
+        var open = burger.classList.toggle("open");
+        links.classList.toggle("open", open);
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      links.addEventListener("click", function (e) {
+        if (e.target.closest("a")) {
+          burger.classList.remove("open");
+          links.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
