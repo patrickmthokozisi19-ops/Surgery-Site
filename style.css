@@ -4628,45 +4628,29 @@
 
 
 
-/* Shared Pweb doctor-style navigation on admin pages */
+/* Typography alignment with Doctor Workspace */
 @layer AdminWorkspace {
-  .adm {
-    &.dw {background:#F5F7FA;color:#172033}
-    & .adm-doc-nav {
-      background:#334155;
-      color:#FFFFFF;
-      border-bottom:1px solid #475569;
-      & .tNav {
-        background:#273449;
-        border-bottom:1px solid #475569;
-        & .number,& .searchtext,& .loginText {color:#E2E8F0}
-      }
-      & .bNav {
-        background:#334155;
-        & .burger span {background:#FFFFFF}
-        & .bnavLinks {
-          & a {
-            color:#CBD5E1;
-            &:hover {color:#FFFFFF;background:#475569}
-            &.is-current {color:#FFFFFF;background:#475569}
-            &.navBtn {
-              background:#FFFFFF;color:#334155;
-              &:hover {background:#E2E8F0;color:#172033}
-            }
-          }
-        }
-      }
-      @media(max-width:900px) {
-        & .bNav .bnavLinks {
-          background:#334155;
-          border-color:#475569;
-          box-shadow:0 20px 35px rgba(15,23,42,.2);
-        }
-      }
-    }
-    & .adm-main {width:min(1500px,100%);max-width:1500px}
-    & .quick-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
-  }
+ .adm {
+   font-family: "DM Sans", "Inter", system-ui, sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
+   & .adm-doc-nav {
+     font-family: inherit;
+     font-size: 1rem;
+     & .bnavLinks a {font-size: inherit; font-weight: 600; letter-spacing: normal; text-decoration: none;}
+     & .tNav {font-size: .9rem;}
+   }
+   & .adm-main {
+     & h1 {font-size: clamp(2.1rem,4.8vw,3.4rem);font-weight:700;line-height:1.08;letter-spacing:-.035em;}
+     & h2 {font-size:1.3rem;font-weight:700;line-height:1.25;letter-spacing:-.02em;}
+     & .adm-intro p {font-size:1.05rem;line-height:1.6;}
+     & .metric-top {font-size:.9rem;}
+     & .metric-bottom {font-size:.82rem;}
+     & td {font-size:.85rem;}
+     & td strong {font-size:.9rem;}
+     & .panel-head p {font-size:.9rem;}
+   }
+ }
 }
 
 @layer AdminCalendar {
@@ -4795,6 +4779,7 @@
     @media(prefers-reduced-motion:reduce) {& * {transition:none!important}}
   }
   }
+
   @layer AdminBookings {
     .ab-page {
       --ab-ink: #172033;
@@ -5349,5 +5334,4 @@
       }
     }
   }
-  
   
