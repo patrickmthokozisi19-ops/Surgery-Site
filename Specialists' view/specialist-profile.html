@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dr. Full Name — Specialist profile | Pweb</title>
+  <title>Specialist's home page</title>
   <meta name="description" content="Consultant surgeon profile, areas of practice, care pathway, credentials and consulting rooms.">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -15,41 +15,50 @@
   <header class="nav nav-slim">
 
     <div class="tNav">
-      <a href="#contact" class="Emegerncy_contact" aria-label="Institution enquiries">
-        <img src="public/phone-calling-rounded-svgrepo-com.svg" alt="">
-        <span class="number">Institution enquiries</span>
+      <a class="Emegerncy_contact" href="tel:+27000000000">
+        <img src="assets/icons/phone.svg" alt="">
+        <span class="number">Rooms: 000 000 0000</span>
       </a>
 
       <div class="t-nav-btns">
+        <div class="seach-box">
+          <img class="search-icon" src="assets/icons/search.svg" alt="">
+          <span class="searchtext">Search</span>
+          <input class="searchPlaceHolder" type="search" placeholder="Search this profile" aria-label="Search this profile">
+          <img class="close_searchBtn" src="assets/icons/close.svg" alt="Close search">
+        </div>
+
         <div class="Pweb_login">
-          <!-- Placeholder link: sign-in page -->
-          <a href="sign-in.html" class="login" aria-label="Sign in to Pweb">
-            <img src="public/account-avatar-person-svgrepo-com.svg" alt="" class="login-icon">
-            <span class="loginText">Sign in</span>
+          <a class="login" href="login.html">
+            <img class="login-icon" src="assets/icons/user.svg" alt="">
+            <span class="loginText">Client login</span>
           </a>
         </div>
       </div>
     </div>
 
     <div class="bNav">
-      <a href="#top" class="logoNbackBtn">
-        <div class="logo">
-          <img src="src/ThePwebLogo.png" alt="Pweb" class="logoPGN">
-        </div>
-      </a>
+      <div class="logoNbackBtn">
+        <a href="find-specialist.html" aria-label="Back to find a specialist">
+          <img class="backToHome" src="assets/icons/back.svg" alt="">
+        </a>
+        <a href="index.html" aria-label="Pweb home">
+          <img class="logoPGN" src="assets/logo.png" alt="Pweb">
+        </a>
+      </div>
 
-      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="bnavLinks">
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="dr-nav-links">
         <span></span><span></span><span></span>
       </button>
 
-
-      <nav class="bnavLinks" id="specialist-links" aria-label="Specialist profile">
-        <a class="is-current" href="#profile" aria-current="page">Profile</a>
-        <a href="#practice">Areas of practice</a>
-        <a href="#pathway">Care pathway</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#rooms">Consulting rooms</a>
-        <a class="navBtn" href="#book">Book a consultation</a>
+      <nav class="bnavLinks" id="dr-nav-links" aria-label="Specialist profile">
+        <a href="find-specialist.html">Find a specialist</a>
+        <a class="is-current" href="#dr-overview" aria-current="location">Overview</a>
+        <a href="#dr-practice">Areas of practice</a>
+        <a href="#dr-pathway">Care pathway</a>
+        <a href="#dr-credentials">Credentials</a>
+        <a href="#dr-rooms">Consulting rooms</a>
+        <a class="navBtn" href="booking.html?specialist=dr-full-name">Book a consultation</a>
       </nav>
     </div>
 
@@ -58,31 +67,31 @@
   <main id="main" class="wrapper">
 
     <!-- profile -->
-    <section class="band sp-profile" id="profile" aria-labelledby="sp-name">
+    <section class="band dr-profile" id="dr-overview" aria-labelledby="dr-name">
       <div class="band-inner">
 
-        <div class="sp-profile-text">
-          <p class="sp-role">Consultant general and laparoscopic surgeon</p>
-          <h1 class="about-title" id="sp-name">Dr. Full Name</h1>
+        <div class="dr-profile-text">
+          <p class="dr-role">Consultant general and laparoscopic surgeon</p>
+          <h1 class="about-title" id="dr-name">Dr. Full Name</h1>
           <p class="about-lead">
             Elective and emergency surgery for adults, with a focus on minimally invasive
             procedures, clear communication and a structured recovery plan for every patient.
           </p>
 
-          <dl class="sp-facts">
+          <dl class="dr-facts">
             <div><dt>Speciality</dt><dd>General and laparoscopic surgery</dd></div>
             <div><dt>Practice</dt><dd>Pweb Surgical Practice</dd></div>
             <div><dt>Registration</dt><dd>MP 0000000</dd></div>
             <div><dt>Languages</dt><dd>English</dd></div>
           </dl>
 
-          <div class="sp-actions">
-            <a class="btn btn-primary" href="#book">Book a consultation</a>
-            <a class="btn btn-ghost" href="#credentials">View credentials</a>
+          <div class="dr-actions">
+            <a class="btn btn-primary" href="booking.html?specialist=dr-full-name">Book a consultation</a>
+            <a class="btn btn-ghost" href="#dr-credentials">View credentials</a>
           </div>
         </div>
 
-        <figure class="sp-portrait">
+        <figure class="dr-portrait">
           <div class="ph">
             <!-- replace with: <img src="assets/specialist.jpg" alt="Dr. Full Name"> -->
             <span class="ph-label">Portrait<small>4:5</small></span>
@@ -94,9 +103,9 @@
     </section>
 
     <!-- key figures -->
-    <section class="band is-ink sp-figures" aria-label="Practice in numbers">
+    <section class="band is-ink dr-figures" aria-label="Practice in numbers">
       <div class="band-inner">
-        <dl class="sp-figure-list">
+        <dl class="dr-figure-list">
           <div><dt>Years in practice</dt><dd>18</dd></div>
           <div><dt>Procedures performed</dt><dd>6,500+</dd></div>
           <div><dt>Hospital affiliations</dt><dd>3</dd></div>
@@ -106,52 +115,52 @@
     </section>
 
     <!-- areas of practice -->
-    <section class="band is-white sp-focus" id="practice" aria-labelledby="sp-practice-title">
+    <section class="band is-white dr-focus" id="dr-practice" aria-labelledby="dr-practice-title">
       <div class="band-inner">
 
         <div class="about-heading">
           <div>
-            <h2 class="about-title" id="sp-practice-title">Areas of practice</h2>
+            <h2 class="about-title" id="dr-practice-title">Areas of practice</h2>
           </div>
           <p>Conditions assessed and treated, and the procedures offered for each.</p>
         </div>
 
-        <ul class="sp-focus-grid">
+        <ul class="dr-focus-grid">
           <li class="card">
             <span class="card-label">Abdominal surgery</span>
             <h3>Hernia repair</h3>
             <p>Inguinal, umbilical and incisional hernias, repaired open or laparoscopically.</p>
-            <a href="practice.html#hernia">View details</a>
+            <a href="booking.html?specialist=dr-full-name&amp;reason=hernia-repair">Book for hernia repair</a>
           </li>
           <li class="card">
             <span class="card-label">Gastrointestinal</span>
             <h3>Gallbladder and bile duct</h3>
             <p>Laparoscopic cholecystectomy and management of gallstone disease.</p>
-            <a href="practice.html#gallbladder">View details</a>
+            <a href="booking.html?specialist=dr-full-name&amp;reason=gallbladder">Book for gallbladder care</a>
           </li>
           <li class="card">
             <span class="card-label">Colorectal</span>
             <h3>Bowel and anorectal conditions</h3>
             <p>Assessment, colonoscopy and surgery for common colorectal conditions.</p>
-            <a href="practice.html#colorectal">View details</a>
+            <a href="booking.html?specialist=dr-full-name&amp;reason=colorectal">Book for a bowel or anorectal condition</a>
           </li>
           <li class="card">
             <span class="card-label">Endocrine</span>
             <h3>Thyroid surgery</h3>
             <p>Evaluation of thyroid nodules and goitre, with surgery where indicated.</p>
-            <a href="practice.html#thyroid">View details</a>
+            <a href="booking.html?specialist=dr-full-name&amp;reason=thyroid">Book for thyroid assessment</a>
           </li>
           <li class="card">
             <span class="card-label">Soft tissue</span>
             <h3>Lumps and skin lesions</h3>
             <p>Examination, biopsy and removal, with pathology results reviewed with you.</p>
-            <a href="practice.html#soft-tissue">View details</a>
+            <a href="booking.html?specialist=dr-full-name&amp;reason=lumps-and-lesions">Book for a lump or skin lesion</a>
           </li>
           <li class="card">
             <span class="card-label">Urgent care</span>
             <h3>Emergency surgery</h3>
             <p>Acute abdominal presentations referred through the emergency department.</p>
-            <a href="practice.html#emergency">View details</a>
+            <a href="referral.html?specialist=dr-full-name&amp;urgent=1">Emergency referral information</a>
           </li>
         </ul>
 
@@ -159,12 +168,12 @@
     </section>
 
     <!-- care pathway -->
-    <section class="band sp-pathway" id="pathway" aria-labelledby="sp-pathway-title">
+    <section class="band dr-pathway" id="dr-pathway" aria-labelledby="dr-pathway-title">
       <div class="band-inner">
 
         <div class="about-heading">
           <div>
-            <h2 class="about-title" id="sp-pathway-title">Care pathway</h2>
+            <h2 class="about-title" id="dr-pathway-title">Care pathway</h2>
           </div>
           <p>What happens from your first appointment to your final follow-up.</p>
         </div>
@@ -196,35 +205,35 @@
     </section>
 
     <!-- credentials -->
-    <section class="band is-white sp-credentials" id="credentials" aria-labelledby="sp-cred-title">
+    <section class="band is-white dr-credentials" id="dr-credentials" aria-labelledby="dr-cred-title">
       <div class="band-inner">
 
         <div class="about-heading">
           <div>
-            <h2 class="about-title" id="sp-cred-title">Qualifications and affiliations</h2>
+            <h2 class="about-title" id="dr-cred-title">Qualifications and affiliations</h2>
           </div>
           <p>Training, registration and the hospitals where Dr. Full Name operates.</p>
         </div>
 
-        <div class="sp-cred-layout">
+        <div class="dr-cred-layout">
 
-          <ol class="sp-record">
+          <ol class="dr-record">
             <li>
-              <span class="sp-year">2018</span>
+              <span class="dr-year">2018</span>
               <div>
                 <h3>Fellowship in minimally invasive surgery</h3>
                 <p>Institution name, country</p>
               </div>
             </li>
             <li>
-              <span class="sp-year">2012</span>
+              <span class="dr-year">2012</span>
               <div>
                 <h3>FCS (SA), General surgery</h3>
                 <p>College of Medicine of South Africa</p>
               </div>
             </li>
             <li>
-              <span class="sp-year">2005</span>
+              <span class="dr-year">2005</span>
               <div>
                 <h3>MBChB</h3>
                 <p>University name</p>
@@ -232,14 +241,14 @@
             </li>
           </ol>
 
-          <aside class="sp-affil" aria-label="Hospital affiliations">
+          <aside class="dr-affil" aria-label="Hospital affiliations">
             <h3>Hospital affiliations</h3>
             <ul>
               <li><strong>Hospital name</strong><span>Main theatre list, Tuesday and Thursday</span></li>
               <li><strong>Hospital name</strong><span>Day procedures, Wednesday</span></li>
               <li><strong>Hospital name</strong><span>Emergency cover, rotating</span></li>
             </ul>
-            <a href="credentials.html">Download registration documents</a>
+            <a href="documents/dr-full-name-registration.pdf" download>Download registration certificate (PDF)</a>
           </aside>
 
         </div>
@@ -248,38 +257,38 @@
     </section>
 
     <!-- consulting rooms -->
-    <section class="band sp-rooms" id="rooms" aria-labelledby="sp-rooms-title">
+    <section class="band dr-rooms" id="dr-rooms" aria-labelledby="dr-rooms-title">
       <div class="band-inner">
 
         <div class="about-heading">
           <div>
-            <h2 class="about-title" id="sp-rooms-title">Consulting rooms</h2>
+            <h2 class="about-title" id="dr-rooms-title">Consulting rooms</h2>
           </div>
           <p>Address, hours and how to reach reception.</p>
         </div>
 
-        <div class="sp-rooms-layout">
+        <div class="dr-rooms-layout">
 
-          <div class="sp-rooms-details">
+          <div class="dr-rooms-details">
             <address>
               <strong>Pweb Surgical Practice</strong>
               Street address<br>
               Suburb, City, Postal code
             </address>
 
-            <ul class="sp-hours">
+            <ul class="dr-hours">
               <li><span>Monday to Thursday</span><span>08:00 to 17:00</span></li>
               <li><span>Friday</span><span>08:00 to 13:00</span></li>
               <li><span>Saturday and Sunday</span><span>Closed</span></li>
             </ul>
 
-            <p class="sp-contact">
+            <p class="dr-contact">
               Reception: <a href="tel:+27000000000">000 000 0000</a><br>
               Email: <a href="mailto:rooms@example.com">rooms@example.com</a>
             </p>
           </div>
 
-          <figure class="sp-map">
+          <figure class="dr-map">
             <div class="ph">
               <span class="ph-label">Map<small>Embed or image</small></span>
             </div>
@@ -291,16 +300,16 @@
     </section>
 
     <!-- booking -->
-    <section class="band pw-cta" id="book" aria-labelledby="sp-book-title">
+    <section class="band pw-cta" id="dr-book" aria-labelledby="dr-book-title">
       <div class="band-inner">
         <div class="cta-band">
           <div class="cta-content">
-            <h2 id="sp-book-title">Book a consultation</h2>
+            <h2 id="dr-book-title">Book a consultation</h2>
             <p>Choose a time online or send your referral ahead of your visit. Reception confirms every booking within one working day.</p>
           </div>
           <div class="cta-actions">
-            <a class="btn btn-primary" href="booking.html">Book online</a>
-            <a class="btn btn-ghost" href="referral.html">Send a referral</a>
+            <a class="btn btn-primary" href="booking.html?specialist=dr-full-name">Book online</a>
+            <a class="btn btn-ghost" href="referral.html?specialist=dr-full-name">Send a referral</a>
           </div>
         </div>
       </div>
@@ -315,15 +324,16 @@
         <p>Specialist surgical care with clear communication at every step.</p>
       </div>
       <div>
-        <h4>Profile</h4>
-        <a href="#practice">Areas of practice</a>
-        <a href="#pathway">Care pathway</a>
-        <a href="#credentials">Credentials</a>
+        <h4>This profile</h4>
+        <a href="#dr-practice">Areas of practice</a>
+        <a href="#dr-pathway">Care pathway</a>
+        <a href="#dr-credentials">Credentials</a>
+        <a href="find-specialist.html">Find another specialist</a>
       </div>
       <div>
         <h4>Patients</h4>
-        <a href="booking.html">Book a consultation</a>
-        <a href="referral.html">Send a referral</a>
+        <a href="booking.html?specialist=dr-full-name">Book a consultation</a>
+        <a href="referral.html?specialist=dr-full-name">Send a referral</a>
         <a href="login.html">Client login</a>
       </div>
       <div>
@@ -338,7 +348,7 @@
   <script>
     (function () {
       var burger = document.querySelector(".nav .burger");
-      var links = document.getElementById("specialist-links");
+      var links = document.getElementById("dr-nav-links");
       if (!burger || !links) return;
       burger.addEventListener("click", function () {
         var open = burger.classList.toggle("open");
