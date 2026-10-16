@@ -1653,7 +1653,7 @@
      }
    }
    
-   @layer About {
+   @layer index {
      /* hero */
      .hero {
        position: relative;
@@ -1962,6 +1962,361 @@
      }
    }
    
+   @layer findSpeacialistPage {
+
+    /* specialist profile */
+    .dr-profile {
+      padding-block: clamp(3rem, 6vw, 5rem);
+  
+      & > .band-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        align-items: center;
+        gap: clamp(2rem, 6vw, 5rem);
+      }
+  
+      & .dr-role {
+        margin-bottom: 0.8rem;
+        color: var(--accent-deep);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+  
+      & .about-title {
+        font-size: clamp(2.4rem, 5vw, 4rem);
+      }
+  
+      & .dr-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 2rem;
+        margin-block: 2rem;
+        border-top: 1px solid var(--line);
+  
+        & > div {
+          padding-block: 0.9rem;
+          border-bottom: 1px solid var(--line);
+        }
+  
+        & dt {
+          color: var(--muted);
+          font-size: 0.85rem;
+        }
+  
+        & dd {
+          color: var(--ink);
+          font-weight: 600;
+        }
+      }
+  
+      & .dr-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+  
+      & .dr-portrait {
+  
+        & .ph {
+          --ratio: 4 / 5;
+          border-radius: var(--radius-lg);
+        }
+  
+        & figcaption {
+          margin-top: 0.8rem;
+          color: var(--muted);
+          font-size: 0.85rem;
+        }
+      }
+  
+      @media (max-width: 992px) {
+        & > .band-inner {
+          grid-template-columns: minmax(0, 1fr);
+        }
+  
+        & .dr-portrait {
+          max-width: 28rem;
+        }
+      }
+  
+      @media (max-width: 560px) {
+        & .dr-facts {
+          grid-template-columns: minmax(0, 1fr);
+        }
+  
+        & .dr-actions .btn {
+          width: 100%;
+        }
+      }
+    }
+  
+    /* specialist key figures */
+    .dr-figures {
+      padding-block: clamp(2.5rem, 5vw, 4rem);
+  
+      & .dr-figure-list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+  
+        & > div {
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: flex-end;
+          gap: 0.5rem;
+          min-width: 0;
+          padding-inline: 1.5rem;
+  
+          &:first-child {
+            padding-left: 0;
+          }
+  
+          & + div {
+            border-left: 1px solid rgba(255, 255, 255, 0.14);
+          }
+        }
+  
+        & dt {
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 0.92rem;
+          line-height: 1.4;
+        }
+  
+        & dd {
+          color: var(--accent);
+          font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+          font-weight: 700;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+        }
+      }
+  
+      @media (max-width: 992px) {
+        & .dr-figure-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          row-gap: 2rem;
+  
+          & > div:nth-child(odd) {
+            padding-left: 0;
+            border-left: 0;
+          }
+        }
+      }
+  
+      @media (max-width: 480px) {
+        & .dr-figure-list {
+          grid-template-columns: minmax(0, 1fr);
+  
+          & > div {
+            padding-inline: 0;
+            border-left: 0;
+          }
+        }
+      }
+    }
+  
+    /* specialist areas of practice */
+    .dr-focus {
+  
+      & .dr-focus-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.2rem;
+  
+        & .card {
+          min-height: 16rem;
+        }
+      }
+  
+      @media (max-width: 992px) {
+        & .dr-focus-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+  
+      @media (max-width: 640px) {
+        & .dr-focus-grid {
+          grid-template-columns: minmax(0, 1fr);
+  
+          & .card {
+            min-height: 0;
+          }
+        }
+      }
+    }
+  
+    /* specialist care pathway */
+    .dr-pathway {
+  
+      & .steps {
+        margin-block: 0;
+      }
+    }
+  
+    /* specialist credentials */
+    .dr-credentials {
+  
+      & .dr-cred-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        align-items: start;
+        gap: clamp(2rem, 6vw, 5rem);
+      }
+  
+      & .dr-record {
+        border-bottom: 1px solid var(--line);
+  
+        & li {
+          display: grid;
+          grid-template-columns: 5rem minmax(0, 1fr);
+          gap: 1.4rem;
+          padding: 1.5rem 0;
+          border-top: 1px solid var(--line);
+        }
+  
+        & .dr-year {
+          color: var(--accent-deep);
+          font-weight: 700;
+          font-variant-numeric: tabular-nums;
+        }
+  
+        & h3 {
+          margin-bottom: 0.25rem;
+          font-size: 1.15rem;
+          letter-spacing: -0.02em;
+        }
+  
+        & p {
+          font-size: 0.95rem;
+        }
+      }
+  
+      & .dr-affil {
+        padding: clamp(1.4rem, 2.5vw, 2rem);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+  
+        & h3 {
+          margin-bottom: 1rem;
+          font-size: 1.2rem;
+          letter-spacing: -0.02em;
+        }
+  
+        & ul {
+          margin-bottom: 1.4rem;
+          border-bottom: 1px solid var(--line);
+        }
+  
+        & li {
+          display: grid;
+          gap: 0.15rem;
+          padding: 0.9rem 0;
+          border-top: 1px solid var(--line);
+        }
+  
+        & strong {
+          color: var(--ink);
+        }
+  
+        & span {
+          color: var(--muted);
+          font-size: 0.9rem;
+        }
+  
+        & a {
+          color: var(--brand);
+          font-weight: 600;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+  
+          &:hover {
+            color: var(--accent-deep);
+          }
+        }
+      }
+  
+      @media (max-width: 992px) {
+        & .dr-cred-layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+  
+      @media (max-width: 480px) {
+        & .dr-record li {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 0.3rem;
+        }
+      }
+    }
+  
+    /* specialist consulting rooms */
+    .dr-rooms {
+  
+      & .dr-rooms-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: stretch;
+        gap: clamp(2rem, 5vw, 4rem);
+      }
+  
+      & address {
+        margin-bottom: 2rem;
+        color: var(--muted);
+        font-style: normal;
+        line-height: 1.75;
+  
+        & strong {
+          display: block;
+          margin-bottom: 0.3rem;
+          color: var(--ink);
+          font-size: 1.15rem;
+        }
+      }
+  
+      & .dr-hours {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--line);
+  
+        & li {
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+          padding: 0.9rem 0;
+          border-top: 1px solid var(--line);
+          color: var(--muted);
+  
+          & span:last-child {
+            color: var(--ink);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+          }
+        }
+      }
+  
+      & .dr-contact a {
+        color: var(--brand);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+  
+        &:hover {
+          color: var(--accent-deep);
+        }
+      }
+  
+      & .dr-map .ph {
+        height: 100%;
+        min-height: 20rem;
+        border-radius: var(--radius);
+      }
+  
+      @media (max-width: 992px) {
+        & .dr-rooms-layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+    }
+  }
    @layer ClientDashboard {
    
    
@@ -3190,361 +3545,6 @@
    }
 
 
-   @layer findSpeacialistPage {
-
-    /* specialist profile */
-    .dr-profile {
-      padding-block: clamp(3rem, 6vw, 5rem);
-  
-      & > .band-inner {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-        align-items: center;
-        gap: clamp(2rem, 6vw, 5rem);
-      }
-  
-      & .dr-role {
-        margin-bottom: 0.8rem;
-        color: var(--accent-deep);
-        font-size: 1rem;
-        font-weight: 600;
-      }
-  
-      & .about-title {
-        font-size: clamp(2.4rem, 5vw, 4rem);
-      }
-  
-      & .dr-facts {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0 2rem;
-        margin-block: 2rem;
-        border-top: 1px solid var(--line);
-  
-        & > div {
-          padding-block: 0.9rem;
-          border-bottom: 1px solid var(--line);
-        }
-  
-        & dt {
-          color: var(--muted);
-          font-size: 0.85rem;
-        }
-  
-        & dd {
-          color: var(--ink);
-          font-weight: 600;
-        }
-      }
-  
-      & .dr-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-  
-      & .dr-portrait {
-  
-        & .ph {
-          --ratio: 4 / 5;
-          border-radius: var(--radius-lg);
-        }
-  
-        & figcaption {
-          margin-top: 0.8rem;
-          color: var(--muted);
-          font-size: 0.85rem;
-        }
-      }
-  
-      @media (max-width: 992px) {
-        & > .band-inner {
-          grid-template-columns: minmax(0, 1fr);
-        }
-  
-        & .dr-portrait {
-          max-width: 28rem;
-        }
-      }
-  
-      @media (max-width: 560px) {
-        & .dr-facts {
-          grid-template-columns: minmax(0, 1fr);
-        }
-  
-        & .dr-actions .btn {
-          width: 100%;
-        }
-      }
-    }
-  
-    /* specialist key figures */
-    .dr-figures {
-      padding-block: clamp(2.5rem, 5vw, 4rem);
-  
-      & .dr-figure-list {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-  
-        & > div {
-          display: flex;
-          flex-direction: column-reverse;
-          justify-content: flex-end;
-          gap: 0.5rem;
-          min-width: 0;
-          padding-inline: 1.5rem;
-  
-          &:first-child {
-            padding-left: 0;
-          }
-  
-          & + div {
-            border-left: 1px solid rgba(255, 255, 255, 0.14);
-          }
-        }
-  
-        & dt {
-          color: rgba(255, 255, 255, 0.75);
-          font-size: 0.92rem;
-          line-height: 1.4;
-        }
-  
-        & dd {
-          color: var(--accent);
-          font-size: clamp(1.9rem, 3.2vw, 2.7rem);
-          font-weight: 700;
-          line-height: 1.1;
-          letter-spacing: -0.03em;
-        }
-      }
-  
-      @media (max-width: 992px) {
-        & .dr-figure-list {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          row-gap: 2rem;
-  
-          & > div:nth-child(odd) {
-            padding-left: 0;
-            border-left: 0;
-          }
-        }
-      }
-  
-      @media (max-width: 480px) {
-        & .dr-figure-list {
-          grid-template-columns: minmax(0, 1fr);
-  
-          & > div {
-            padding-inline: 0;
-            border-left: 0;
-          }
-        }
-      }
-    }
-  
-    /* specialist areas of practice */
-    .dr-focus {
-  
-      & .dr-focus-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1.2rem;
-  
-        & .card {
-          min-height: 16rem;
-        }
-      }
-  
-      @media (max-width: 992px) {
-        & .dr-focus-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-  
-      @media (max-width: 640px) {
-        & .dr-focus-grid {
-          grid-template-columns: minmax(0, 1fr);
-  
-          & .card {
-            min-height: 0;
-          }
-        }
-      }
-    }
-  
-    /* specialist care pathway */
-    .dr-pathway {
-  
-      & .steps {
-        margin-block: 0;
-      }
-    }
-  
-    /* specialist credentials */
-    .dr-credentials {
-  
-      & .dr-cred-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-        align-items: start;
-        gap: clamp(2rem, 6vw, 5rem);
-      }
-  
-      & .dr-record {
-        border-bottom: 1px solid var(--line);
-  
-        & li {
-          display: grid;
-          grid-template-columns: 5rem minmax(0, 1fr);
-          gap: 1.4rem;
-          padding: 1.5rem 0;
-          border-top: 1px solid var(--line);
-        }
-  
-        & .dr-year {
-          color: var(--accent-deep);
-          font-weight: 700;
-          font-variant-numeric: tabular-nums;
-        }
-  
-        & h3 {
-          margin-bottom: 0.25rem;
-          font-size: 1.15rem;
-          letter-spacing: -0.02em;
-        }
-  
-        & p {
-          font-size: 0.95rem;
-        }
-      }
-  
-      & .dr-affil {
-        padding: clamp(1.4rem, 2.5vw, 2rem);
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-  
-        & h3 {
-          margin-bottom: 1rem;
-          font-size: 1.2rem;
-          letter-spacing: -0.02em;
-        }
-  
-        & ul {
-          margin-bottom: 1.4rem;
-          border-bottom: 1px solid var(--line);
-        }
-  
-        & li {
-          display: grid;
-          gap: 0.15rem;
-          padding: 0.9rem 0;
-          border-top: 1px solid var(--line);
-        }
-  
-        & strong {
-          color: var(--ink);
-        }
-  
-        & span {
-          color: var(--muted);
-          font-size: 0.9rem;
-        }
-  
-        & a {
-          color: var(--brand);
-          font-weight: 600;
-          text-decoration: underline;
-          text-underline-offset: 3px;
-  
-          &:hover {
-            color: var(--accent-deep);
-          }
-        }
-      }
-  
-      @media (max-width: 992px) {
-        & .dr-cred-layout {
-          grid-template-columns: minmax(0, 1fr);
-        }
-      }
-  
-      @media (max-width: 480px) {
-        & .dr-record li {
-          grid-template-columns: minmax(0, 1fr);
-          gap: 0.3rem;
-        }
-      }
-    }
-  
-    /* specialist consulting rooms */
-    .dr-rooms {
-  
-      & .dr-rooms-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        align-items: stretch;
-        gap: clamp(2rem, 5vw, 4rem);
-      }
-  
-      & address {
-        margin-bottom: 2rem;
-        color: var(--muted);
-        font-style: normal;
-        line-height: 1.75;
-  
-        & strong {
-          display: block;
-          margin-bottom: 0.3rem;
-          color: var(--ink);
-          font-size: 1.15rem;
-        }
-      }
-  
-      & .dr-hours {
-        margin-bottom: 2rem;
-        border-bottom: 1px solid var(--line);
-  
-        & li {
-          display: flex;
-          justify-content: space-between;
-          gap: 1rem;
-          padding: 0.9rem 0;
-          border-top: 1px solid var(--line);
-          color: var(--muted);
-  
-          & span:last-child {
-            color: var(--ink);
-            font-weight: 600;
-            font-variant-numeric: tabular-nums;
-          }
-        }
-      }
-  
-      & .dr-contact a {
-        color: var(--brand);
-        font-weight: 600;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-  
-        &:hover {
-          color: var(--accent-deep);
-        }
-      }
-  
-      & .dr-map .ph {
-        height: 100%;
-        min-height: 20rem;
-        border-radius: var(--radius);
-      }
-  
-      @media (max-width: 992px) {
-        & .dr-rooms-layout {
-          grid-template-columns: minmax(0, 1fr);
-        }
-      }
-    }
-  }
 
 
 
