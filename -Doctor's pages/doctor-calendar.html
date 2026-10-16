@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendar — Dr. P. Surname | Pweb</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<!-- Nordic Slate calendar theme -->
+<body class="dw">
+
+  <a class="skip-link" href="#dw-main">Skip to content</a>
+
+  <!-- header: same class labels as every other page; colours come from .dw-nav -->
+  <header class="nav nav-slim dw-nav">
+
+    <div class="tNav">
+      <a class="Emegerncy_contact" href="tel:+27000000000">
+        <img src="assets/icons/phone.svg" alt="">
+        <span class="number">Theatre desk: 000 000 0000</span>
+      </a>
+
+      <div class="t-nav-btns">
+        <div class="seach-box">
+          <img class="search-icon" src="assets/icons/search.svg" alt="">
+          <span class="searchtext">Search patients</span>
+          <input class="searchPlaceHolder" type="search" placeholder="Search patients or bookings" aria-label="Search patients or bookings">
+          <img class="close_searchBtn" src="assets/icons/close.svg" alt="Close search">
+        </div>
+
+        <div class="Pweb_login">
+          <a class="login" href="logout.html">
+            <img class="login-icon" src="assets/icons/user.svg" alt="">
+            <span class="loginText">Sign out</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bNav">
+      <div class="logoNbackBtn">
+        <a href="index.html" aria-label="Pweb home">
+          <img class="logoPGN" src="assets/logo.png" alt="Pweb">
+        </a>
+      </div>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="dw-nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="bnavLinks" id="dw-nav-links" aria-label="Doctor workspace">
+        <a href="doctor-home.html">Today</a>
+        <a class="is-current" href="doctor-calendar.html" aria-current="page">Calendar</a>
+        <a href="doctor-patients.html">Patients</a>
+        <a href="doctor-messages.html">Messages</a>
+        <a href="doctor-billing.html">Billing</a>
+        <a href="doctor-settings.html">Settings</a>
+        <a class="navBtn" href="doctor-booking-new.html">New booking</a>
+      </nav>
+    </div>
+
+  </header>
+
+  <main id="dw-main" class="wrapper dw-main">
+
+    <!-- heading and controls -->
+    <section class="dc-head" aria-labelledby="dc-page-title">
+
+      <div class="dc-head-top">
+        <div>
+          <h1 id="dc-page-title">Calendar</h1>
+          <p class="dc-summary" id="dc-summary" aria-live="polite"></p>
+        </div>
+        <div class="dc-head-actions">
+          <a class="dw-btn is-solid" href="doctor-booking-new.html">New booking</a>
+          <button class="dw-btn" type="button" id="dc-block-open">Block time</button>
+        </div>
+      </div>
+
+      <div class="dc-toolbar">
+        <div class="dc-nav">
+          <button class="dc-step" type="button" id="dc-prev" aria-label="Previous month">&lsaquo;</button>
+          <button class="dc-step" type="button" id="dc-next" aria-label="Next month">&rsaquo;</button>
+          <button class="dw-btn is-small" type="button" id="dc-today">Today</button>
+        </div>
+
+        <h2 class="dc-title" id="dc-title" aria-live="polite"></h2>
+
+        <div class="dc-controls">
+          <label class="dc-select">
+            <span class="sr-only">Calendar view</span>
+            <select id="dc-view">
+              <option value="month">Month view</option>
+              <option value="week">Week view</option>
+              <option value="day">Day view</option>
+            </select>
+          </label>
+
+          <label class="dc-select">
+            <span class="sr-only">Visit type</span>
+            <select id="dc-filter">
+              <option value="all">All visit types</option>
+              <option value="consult">Consultations</option>
+              <option value="followup">Follow-ups</option>
+              <option value="procedure">Procedures</option>
+              <option value="results">Results reviews</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- board and selected day -->
+    <div class="dc-layout">
+
+      <section class="dw-panel dc-board" aria-label="Calendar">
+        <div class="dc-view" id="dc-board-view"></div>
+
+        <ul class="dc-legend" aria-label="Visit types">
+          <li data-kind="consult"><i></i>Consultation</li>
+          <li data-kind="followup"><i></i>Follow-up</li>
+          <li data-kind="procedure"><i></i>Procedure</li>
+          <li data-kind="results"><i></i>Results review</li>
+          <li data-kind="blocked"><i></i>Blocked time</li>
+        </ul>
+      </section>
+
+      <aside class="dw-panel dc-agenda" aria-label="Selected day">
+        <div id="dc-agenda-body"></div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- block time dialog -->
+  <dialog class="dc-dialog" id="dc-block-dialog" aria-labelledby="dc-block-title">
+    <form id="dc-block-form" novalidate>
+      <div>
+        <h2 id="dc-block-title">Block time</h2>
+        <p class="dc-dialog-sub">Blocked time can’t be booked by patients or reception.</p>
+      </div>
+
+      <div class="dc-field">
+        <label for="dc-block-date">Date</label>
+        <input id="dc-block-date" type="date" required>
+      </div>
+
+      <div class="dc-field-row">
+        <div class="dc-field">
+          <label for="dc-block-from">From</label>
+          <select id="dc-block-from"></select>
+        </div>
+        <div class="dc-field">
+          <label for="dc-block-to">To</label>
+          <select id="dc-block-to"></select>
+        </div>
+      </div>
+
+      <div class="dc-field">
+        <label for="dc-block-reason">Reason</label>
+        <select id="dc-block-reason">
+          <option>Theatre list</option>
+          <option>Leave</option>
+          <option>Admin time</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <p class="dc-error" id="dc-block-error" role="alert"></p>
+
+      <div class="dc-dialog-actions">
+        <button class="dw-btn" type="button" id="dc-block-cancel">Cancel</button>
+        <button class="dw-btn is-solid" type="submit">Block time</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="dw-footer">
+    <p>Pweb for specialists. Signed in as Dr. P. Surname.</p>
+    <p><a href="support.html">Support</a> &nbsp; <a href="privacy.html">Privacy</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* ---------- helpers ---------- */
+      var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var LABEL = { consult: "Consultation", followup: "Follow-up", procedure: "Procedure", results: "Results review", blocked: "Blocked time" };
+      var STATUS = {
+        done: ["is-done", "Completed"],
+        live: ["is-live", "In room"],
+        confirmed: ["is-confirmed", "Confirmed"],
+        pending: ["is-pending", "Pending"],
+        blocked: ["is-done", "Blocked"]
+      };
+
+      function pad(n) { return String(n).padStart(2, "0"); }
+      function ymd(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+      function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+      function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+      function mondayOf(d) { return addDays(d, -((d.getDay() + 6) % 7)); }
+      function isWeekend(d) { var w = d.getDay(); return w === 0 || w === 6; }
+      function firstWeekday(d) { while (isWeekend(d)) { d = addDays(d, 1); } return d; }
+      function mins(t) { var p = t.split(":"); return +p[0] * 60 + +p[1]; }
+      function hhmm(m) { return pad(Math.floor(m / 60)) + ":" + pad(m % 60); }
+      function surname(n) { return n.replace(/^[A-Z]\.\s*/, ""); }
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+      function hash(n) {
+        n = Math.imul(n ^ (n >>> 15), 0x2c1b3c6d);
+        n = Math.imul(n ^ (n >>> 12), 0x297a2d39);
+        return (n ^ (n >>> 15)) >>> 0;
+      }
+
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var todayKey = ymd(today);
+
+      /* ---------- sample data (replace with your API) ---------- */
+      var NAMES = ["T. Mokoena", "S. Khumalo", "R. Adams", "M. van der Merwe", "P. Sithole", "Z. Ndlovu", "C. Jacobs", "N. Dlamini", "A. Pretorius", "L. Naidoo", "K. Botha", "F. Mahlangu", "J. Smit", "B. Nkosi", "H. Pillay", "D. Fourie", "E. Moyo", "G. Petersen"];
+      var SLOTS = ["08:30", "09:15", "10:00", "10:45", "11:30", "13:00", "13:45", "14:30", "15:15"];
+      var CYCLE = ["consult", "followup", "results", "consult", "followup"];
+
+      var events = [];
+      var seq = 0;
+
+      function addEvent(date, start, end, patient, kind, extra) {
+        var e = { id: ++seq, date: date, start: start, end: end, patient: patient, kind: kind, room: "", note: "", pending: false };
+        if (extra) { for (var k in extra) { e[k] = extra[k]; } }
+        events.push(e);
+        return e;
+      }
+
+      function seedDay(d) {
+        var key = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+        var count = 6 + hash(key) % 4;
+        var wd = d.getDay();
+        for (var i = 0; i < count; i++) {
+          var h = hash(key * 31 + i);
+          var start = SLOTS[i];
+          var kind = CYCLE[h % CYCLE.length];
+          if (start === "13:00" && (wd === 3 || wd === 4)) { kind = "procedure"; }
+          addEvent(ymd(d), start, hhmm(mins(start) + 45), NAMES[h % NAMES.length], kind, {
+            room: kind === "procedure" ? "Theatre 2" : "Consulting room " + (1 + h % 3),
+            pending: h % 7 === 0
+          });
+        }
+      }
+
+      function place(date, start, patient, kind, note, pending) {
+        var s = mins(start), e = s + 45;
+        events = events.filter(function (x) { return !(x.date === date && mins(x.start) < e && mins(x.end) > s); });
+        addEvent(date, start, hhmm(e), patient, kind, {
+          note: note,
+          pending: !!pending,
+          room: kind === "procedure" ? "Theatre 2" : "Consulting room 2"
+        });
+      }
+
+      for (var d = addDays(today, -62); d <= addDays(today, 130); d = addDays(d, 1)) {
+        if (!isWeekend(d)) { seedDay(d); }
+      }
+
+      /* the same day the dashboard shows */
+      events = events.filter(function (x) { return x.date !== "2026-10-16"; });
+      place("2026-10-16", "08:30", "T. Mokoena", "followup", "Two weeks after surgery");
+      place("2026-10-16", "09:15", "S. Khumalo", "consult", "GP referral");
+      place("2026-10-16", "10:00", "R. Adams", "consult", "Pre-operative assessment");
+      place("2026-10-16", "10:45", "M. van der Merwe", "results", "Ultrasound results");
+      place("2026-10-16", "11:30", "P. Sithole", "consult", "New patient");
+      place("2026-10-16", "13:00", "Z. Ndlovu", "procedure", "Laparoscopic cholecystectomy");
+      place("2026-10-16", "14:30", "C. Jacobs", "followup", "Wound review", true);
+      /* the three booking requests */
+      place("2026-10-19", "09:15", "N. Dlamini", "consult", "GP referral, request pending", true);
+      place("2026-10-20", "14:00", "A. Pretorius", "followup", "Wound review, request pending", true);
+      place("2026-10-22", "10:45", "L. Naidoo", "consult", "Second opinion, request pending", true);
+
+      /* ---------- state and elements ---------- */
+      var state = { view: "month", selected: today, filter: "all" };
+
+      function $(id) { return document.getElementById(id); }
+      var el = {
+        title: $("dc-title"), summary: $("dc-summary"), board: $("dc-board-view"), agenda: $("dc-agenda-body"),
+        view: $("dc-view"), filter: $("dc-filter"), prev: $("dc-prev"), next: $("dc-next"), todayBtn: $("dc-today"),
+        dlg: $("dc-block-dialog"), form: $("dc-block-form"), bdate: $("dc-block-date"),
+        from: $("dc-block-from"), to: $("dc-block-to"), reason: $("dc-block-reason"), err: $("dc-block-error")
+      };
+
+      function statusOf(ev) {
+        if (ev.kind === "blocked") { return "blocked"; }
+        if (ev.date < todayKey) { return "done"; }
+        if (ev.date > todayKey) { return ev.pending ? "pending" : "confirmed"; }
+        var n = new Date(), cur = n.getHours() * 60 + n.getMinutes();
+        if (cur >= mins(ev.end)) { return "done"; }
+        if (cur >= mins(ev.start)) { return "live"; }
+        return ev.pending ? "pending" : "confirmed";
+      }
+
+      function eventsFor(key) {
+        return events.filter(function (e) {
+          return e.date === key && (state.filter === "all" || e.kind === state.filter || e.kind === "blocked");
+        }).sort(function (a, b) { return mins(a.start) - mins(b.start); });
+      }
+
+      function appointmentCount(list) {
+        return list.filter(function (e) { return e.kind !== "blocked"; }).length;
+      }
+
+      /* ---------- html builders ---------- */
+      function eventHtml(ev, withRoom) {
+        var st = statusOf(ev), s = STATUS[st];
+        var line = ev.kind === "blocked" ? "Blocked time" : (ev.note || LABEL[ev.kind]);
+        if (withRoom && ev.room) { line += ", " + ev.room; }
+        return '<li class="dc-event" data-kind="' + ev.kind + '" data-status="' + st + '">' +
+          '<time datetime="' + ev.start + '">' + ev.start + '</time>' +
+          '<div><strong>' + esc(ev.patient) + '</strong><span>' + esc(line) + '</span></div>' +
+          '<span class="dw-chip ' + s[0] + '">' + s[1] + '</span></li>';
+      }
+
+      function pillHtml(ev) {
+        var text = ev.kind === "blocked" ? ev.patient : ev.start + " " + surname(ev.patient);
+        return '<span class="dc-pill" data-kind="' + ev.kind + '">' + esc(text) + '</span>';
+      }
+
+      function monthHtml() {
+        var y = state.selected.getFullYear(), m = state.selected.getMonth();
+        var start = mondayOf(new Date(y, m, 1));
+        var weeks = Math.round((mondayOf(new Date(y, m + 1, 0)) - start) / 864e5) / 7 + 1;
+        var selKey = ymd(state.selected);
+        var head = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(function (n) { return "<span>" + n + "</span>"; }).join("");
+        var cells = "";
+        for (var i = 0; i < weeks * 7; i++) {
+          var day = addDays(start, i), key = ymd(day), evs = eventsFor(key);
+          var n = appointmentCount(evs);
+          var cls = "dc-cell" + (day.getMonth() !== m ? " is-out" : "") + (isWeekend(day) ? " is-off" : "") +
+            (key === todayKey ? " is-today" : "") + (key === selKey ? " is-selected" : "");
+          var pills = evs.slice(0, 3).map(pillHtml).join("") + (evs.length > 3 ? '<span class="dc-more">+' + (evs.length - 3) + " more</span>" : "");
+          var dots = evs.slice(0, 4).map(function (e) { return '<i data-kind="' + e.kind + '"></i>'; }).join("");
+          var label = day.getDate() + " " + MONTHS[day.getMonth()] + ", " + (n === 1 ? "1 appointment" : n + " appointments") + (key === todayKey ? ", today" : "");
+          cells += '<button type="button" class="' + cls + '" data-date="' + key + '" aria-pressed="' + (key === selKey) + '" aria-label="' + label + '"' +
+            (key === todayKey ? ' aria-current="date"' : "") + '><span class="dc-num">' + day.getDate() + '</span>' +
+            '<span class="dc-pills">' + pills + '</span><span class="dc-dots">' + dots + '</span></button>';
+        }
+        return '<div class="dc-month"><div class="dc-dow" aria-hidden="true">' + head + '</div><div class="dc-grid">' + cells + '</div></div>';
+      }
+
+      function weekHtml() {
+        var mon = mondayOf(state.selected), selKey = ymd(state.selected), cols = "";
+        for (var i = 0; i < 5; i++) {
+          var day = addDays(mon, i), key = ymd(day), evs = eventsFor(key);
+          var cls = "dc-col" + (key === todayKey ? " is-today" : "") + (key === selKey ? " is-selected" : "");
+          var items = evs.length ? evs.map(function (e) { return eventHtml(e, false); }).join("") : '<li class="dc-empty">No appointments</li>';
+          cols += '<section class="' + cls + '" data-date="' + key + '" aria-label="' + DAYS[day.getDay()] + " " + day.getDate() + '">' +
+            '<button type="button" class="dc-colhead" data-date="' + key + '"><span class="dc-dayname">' + DAYS[day.getDay()] +
+            '</span><span class="dc-daynum">' + day.getDate() + '</span></button><ul class="dc-collist">' + items + '</ul></section>';
+        }
+        return '<div class="dc-week">' + cols + '</div>';
+      }
+
+      function dayHtml() {
+        var key = ymd(state.selected), evs = eventsFor(key);
+        if (isWeekend(state.selected)) { return '<p class="dc-empty-state">No clinic on weekends. Use Block time or New booking if you need an exception.</p>'; }
+        if (!evs.length) { return '<p class="dc-empty-state">Nothing scheduled for this day.</p>'; }
+        var out = "", brk = false;
+        evs.forEach(function (e, i) {
+          if (!brk && i > 0 && mins(evs[i - 1].start) < 735 && mins(e.start) >= 780) {
+            out += '<li class="dc-break">Break, 12:15 to 13:00</li>';
+            brk = true;
+          }
+          out += eventHtml(e, true);
+        });
+        return '<ul class="dc-daylist">' + out + '</ul>';
+      }
+
+      function agendaHtml() {
+        var d = state.selected, key = ymd(d), evs = eventsFor(key);
+        var n = appointmentCount(evs);
+        var proc = evs.filter(function (e) { return e.kind === "procedure"; }).length;
+        var sub = isWeekend(d) ? "No clinic" : (n === 1 ? "1 appointment" : n + " appointments") + (proc ? ", " + proc + (proc === 1 ? " procedure" : " procedures") : "");
+        var list = evs.length ? '<ul class="dc-agenda-list">' + evs.map(function (e) { return eventHtml(e, true); }).join("") + "</ul>" : '<p class="dc-agenda-empty">Nothing scheduled.</p>';
+        return '<p class="dc-agenda-kicker">' + (key === todayKey ? "Today" : "Selected day") + '</p>' +
+          '<h2>' + DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS[d.getMonth()] + '</h2>' +
+          '<p class="dc-agenda-sub">' + sub + '</p>' + list +
+          '<div class="dc-agenda-actions">' +
+          '<a class="dw-btn is-solid is-small" href="doctor-booking-new.html?date=' + key + '">Add booking</a>' +
+          '<button type="button" class="dw-btn is-small" data-act="block">Block time</button>' +
+          (state.view !== "day" ? '<button type="button" class="dw-btn is-small" data-act="day">Open day</button>' : "") +
+          '</div>';
+      }
+
+      function titleText() {
+        var s = state.selected;
+        if (state.view === "month") { return MONTHS[s.getMonth()] + " " + s.getFullYear(); }
+        if (state.view === "week") {
+          var a = mondayOf(s), b = addDays(a, 4);
+          return a.getMonth() === b.getMonth()
+            ? a.getDate() + " to " + b.getDate() + " " + MONTHS[a.getMonth()] + " " + a.getFullYear()
+            : a.getDate() + " " + MONTHS[a.getMonth()] + " to " + b.getDate() + " " + MONTHS[b.getMonth()] + " " + b.getFullYear();
+        }
+        return DAYS[s.getDay()] + ", " + s.getDate() + " " + MONTHS[s.getMonth()] + " " + s.getFullYear();
+      }
+
+      function summaryText() {
+        var s = state.selected, a, b, where;
+        if (state.view === "month") {
+          a = new Date(s.getFullYear(), s.getMonth(), 1); b = new Date(s.getFullYear(), s.getMonth() + 1, 0);
+          where = " in " + MONTHS[s.getMonth()] + " " + s.getFullYear();
+        } else if (state.view === "week") {
+          a = mondayOf(s); b = addDays(a, 4);
+          where = " in the week of " + a.getDate() + " " + MONTHS[a.getMonth()];
+        } else {
+          a = s; b = s;
+          where = " on " + s.getDate() + " " + MONTHS[s.getMonth()];
+        }
+        var from = ymd(a), to = ymd(b);
+        var n = events.filter(function (e) {
+          return e.date >= from && e.date <= to && e.kind !== "blocked" && (state.filter === "all" || e.kind === state.filter);
+        }).length;
+        return n + (n === 1 ? " appointment" : " appointments") + where;
+      }
+
+      /* ---------- render ---------- */
+      function render(focus) {
+        var v = state.view, key = ymd(state.selected);
+        el.title.textContent = titleText();
+        el.summary.textContent = summaryText();
+        el.board.innerHTML = v === "month" ? monthHtml() : v === "week" ? weekHtml() : dayHtml();
+        el.agenda.innerHTML = agendaHtml();
+        el.view.value = v;
+        el.filter.value = state.filter;
+        el.prev.setAttribute("aria-label", "Previous " + v);
+        el.next.setAttribute("aria-label", "Next " + v);
+        try { history.replaceState(null, "", "?view=" + v + "&date=" + key); } catch (x) { /* file:// */ }
+        if (focus) {
+          var target = el.board.querySelector('button[data-date="' + key + '"]');
+          if (target) { target.focus(); }
+        }
+      }
+
+      function step(dir) {
+        var s = state.selected;
+        if (state.view === "month") {
+          var n = new Date(s.getFullYear(), s.getMonth() + dir, 1);
+          state.selected = (n.getFullYear() === today.getFullYear() && n.getMonth() === today.getMonth()) ? today : firstWeekday(n);
+        } else if (state.view === "week") {
+          state.selected = addDays(s, 7 * dir);
+        } else {
+          var x = addDays(s, dir);
+          while (isWeekend(x)) { x = addDays(x, dir); }
+          state.selected = x;
+        }
+        render();
+      }
+
+      /* ---------- events ---------- */
+      el.prev.addEventListener("click", function () { step(-1); });
+      el.next.addEventListener("click", function () { step(1); });
+      el.todayBtn.addEventListener("click", function () { state.selected = today; render(); });
+      el.view.addEventListener("change", function () { state.view = el.view.value; render(); });
+      el.filter.addEventListener("change", function () { state.filter = el.filter.value; render(); });
+
+      el.board.addEventListener("click", function (e) {
+        var t = e.target.closest("[data-date]");
+        if (!t) { return; }
+        state.selected = parse(t.dataset.date);
+        render(true);
+      });
+
+      el.board.addEventListener("keydown", function (e) {
+        var cell = e.target.closest(".dc-cell");
+        var delta = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[e.key];
+        if (!cell || !delta) { return; }
+        e.preventDefault();
+        state.selected = addDays(parse(cell.dataset.date), delta);
+        render(true);
+      });
+
+      el.agenda.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]");
+        if (!b) { return; }
+        if (b.dataset.act === "day") { state.view = "day"; render(); }
+        if (b.dataset.act === "block") { openBlock(); }
+      });
+
+      /* ---------- block time dialog ---------- */
+      function fillTimes(sel) {
+        for (var m = 7 * 60; m <= 18 * 60; m += 30) {
+          var o = document.createElement("option");
+          o.value = o.textContent = hhmm(m);
+          sel.appendChild(o);
+        }
+      }
+      fillTimes(el.from);
+      fillTimes(el.to);
+      el.from.value = "14:00";
+      el.to.value = "15:00";
+
+      function openBlock() {
+        el.bdate.value = ymd(state.selected);
+        el.err.textContent = "";
+        if (el.dlg.showModal) { el.dlg.showModal(); }
+      }
+
+      $("dc-block-open").addEventListener("click", openBlock);
+      $("dc-block-cancel").addEventListener("click", function () { el.dlg.close(); });
+      el.dlg.addEventListener("click", function (e) { if (e.target === el.dlg) { el.dlg.close(); } });
+
+      el.form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var date = el.bdate.value, s = mins(el.from.value), f = mins(el.to.value);
+        if (!date) { el.err.textContent = "Choose a date."; return; }
+        if (f <= s) { el.err.textContent = "The end time must be after the start time."; return; }
+        var clash = events.filter(function (x) { return x.date === date && mins(x.start) < f && mins(x.end) > s; });
+        if (clash.length) {
+          var onlyBlocks = clash.every(function (x) { return x.kind === "blocked"; });
+          el.err.textContent = onlyBlocks
+            ? "That time is already blocked."
+            : clash.length + (clash.length === 1 ? " appointment falls" : " appointments fall") + " in that time. Move or cancel them first.";
+          return;
+        }
+        addEvent(date, el.from.value, el.to.value, el.reason.value, "blocked", {});
+        state.selected = parse(date);
+        el.dlg.close();
+        render();
+      });
+
+      /* ---------- header menu ---------- */
+      var burger = document.querySelector(".nav .burger");
+      var links = $("dw-nav-links");
+      if (burger && links) {
+        burger.addEventListener("click", function () {
+          var open = burger.classList.toggle("open");
+          links.classList.toggle("open", open);
+          burger.setAttribute("aria-expanded", String(open));
+        });
+      }
+
+      /* ---------- start: ?view=day|week|month|block and ?date=YYYY-MM-DD ---------- */
+      var params = new URLSearchParams(window.location.search);
+      var qDate = params.get("date"), qView = params.get("view");
+      if (qDate && /^\d{4}-\d{2}-\d{2}$/.test(qDate)) { state.selected = parse(qDate); }
+      if (qView === "day" || qView === "week" || qView === "month") { state.view = qView; }
+      render();
+      if (qView === "block") { openBlock(); }
+    })();
+  </script>
+
+</body>
+</html>
