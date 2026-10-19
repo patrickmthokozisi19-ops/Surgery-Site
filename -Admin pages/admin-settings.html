@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Settings | Pweb Administration
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="../style.css" rel="stylesheet"/>
+  <link href="../admin-settings.css" rel="stylesheet"/>
+  <script>
+   // Apply saved preference before rendering. No preference = follow the system.
+    (function () {
+      const saved = localStorage.getItem('pweb_theme');
+      const preference = ['light', 'dark'].includes(saved) ? saved : 'system';
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = preference === 'system'
+        ? (systemDark ? 'dark' : 'light') : preference;
+    })();
+  </script>
+ </head>
+ <body class="dw dw-light adm settings-page">
+  <header class="nav nav-slim dw-nav adm-doc-nav">
+   <div class="tNav">
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+     <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+     <span class="number">
+      Reception desk: 000 000 0000
+     </span>
+    </a>
+    <div class="t-nav-btns">
+     <div class="seach-box">
+      <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+     </div>
+     <div class="Pweb_login">
+      <a class="login" href="logout.html">
+       <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+       <span class="loginText">
+        Sign out
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="bNav">
+    <a class="logoNbackBtn" href="index.html">
+     <!--Redirects Home-->
+     <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+     <div class="logo">
+      <img alt="" class="logoPGN" src="../src/ThePwebLogo.png"/>
+     </div>
+    </a>
+    <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links">
+     <a class="" href="admin-home.html">
+      Home
+     </a>
+     <a class="" href="admin-calendar.html">
+      Calendar
+     </a>
+     <a class="" href="admin-bookings.html">
+      Bookings
+     </a>
+     <a class="" href="admin-patients.html">
+      Patients
+     </a>
+     <a class="" href="admin-specialists.html">
+      Specialists
+     </a>
+     <a class="" href="admin-messages.html">
+      Messages
+     </a>
+     <a class="" href="admin-reports.html">
+      Reports
+     </a>
+     <a aria-current="page" class="is-current" href="admin-settings.html">
+      Settings
+     </a>
+     <a class="navBtn" href="admin-bookings.html">
+      New booking
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="settings-app" id="settingsApp">
+   <div class="page-intro">
+    <div>
+     <p class="eyebrow">
+      WORKSPACE MANAGEMENT
+     </p>
+     <h1>
+      Settings
+     </h1>
+     <p>
+      Configure how your hospital operates on Pweb.
+     </p>
+    </div>
+    <div class="intro-actions">
+     <span aria-live="polite" class="saved-indicator" id="savedIndicator">
+      Changes saved locally
+     </span>
+     <button class="btn btn-primary" id="saveButton" type="button">
+      Save changes
+     </button>
+    </div>
+   </div>
+   <div class="settings-layout">
+    <aside aria-label="Settings categories" class="settings-sidebar">
+     <label class="search-wrap">
+      <svg aria-hidden="true" viewbox="0 0 24 24">
+       <circle cx="11" cy="11" r="7">
+       </circle>
+       <path d="m16 16 5 5">
+       </path>
+      </svg>
+      <input aria-label="Find a setting" id="settingsSearch" placeholder="Find a setting…" type="search"/>
+     </label>
+     <nav class="settings-nav" id="settingsNav">
+     </nav>
+     <div class="sidebar-foot">
+      <span class="status-dot">
+      </span>
+      Workspace preferences
+      <small>
+       Saved in this browser for now
+      </small>
+     </div>
+    </aside>
+    <section aria-live="polite" class="settings-content" id="settingsContent">
+    </section>
+   </div>
+   <section aria-labelledby="themeFooterTitle" class="settings-theme-footer">
+    <div>
+     <h2 id="themeFooterTitle">
+      Appearance
+     </h2>
+     <p>
+      Choose your Pweb colour theme. System follows your device's light or dark setting.
+     </p>
+     <span aria-live="polite" class="theme-status" id="themeStatus">
+     </span>
+    </div>
+    <div aria-label="Colour theme" class="theme-choice" id="themeChoices" role="group">
+     <button aria-pressed="false" data-theme-choice="light" type="button">
+      ☀ Light
+     </button>
+     <button aria-pressed="false" data-theme-choice="dark" type="button">
+      ☾ Dark
+     </button>
+     <button aria-pressed="true" data-theme-choice="system" type="button">
+      ◐ System
+     </button>
+    </div>
+   </section>
+  </main>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+  <script>
+   // Pweb Admin Settings — front-end prototype. Production settings, permissions,
+    // credentials, and audit records MUST be stored and enforced by a secure backend.
+    const STORE = 'pweb_admin_settings_v1';
+    const defaultSettings = {
+      hospitalName: 'Northfield Surgical Centre', hospitalEmail: 'reception@northfield.example', hospitalPhone: '+27 00 000 0000', hospitalAddress: 'Cape Town, South Africa', timezone: 'Africa/Johannesburg', branch: 'Main practice',
+      bookingWindow: '60', appointmentDuration: '30', cancellationHours: '24', requireApproval: true, allowPatientCancellation: true, waitlist: true,
+      allowCash: true, allowCard: true, allowOnline: false, allowMedicalAid: true, currency: 'ZAR', consultationFee: '850', paymentProvider: 'none',
+      notifyEmail: true, notifySms: false, notifyWhatsapp: false, reminderHours: '24', notifyCancellation: true,
+      enforceMfa: true, sessionMinutes: '30', auditEnabled: true, accessReviewDays: '90',
+      requireEmergencyContact: true, requireConsent: true, documentVerification: false, patientQueue: true, queueAlerts: true,
+      workdayStart: '08:00', workdayEnd: '17:00', slotBuffer: '5', allowLeaveRequests: true,
+      staff: [{id:'ST-001',name:'Practice Administrator',email:'admin@northfield.example',role:'Administrator',status:'Active'},{id:'ST-002',name:'Reception Team',email:'reception@northfield.example',role:'Receptionist',status:'Active'}]
+    };
+    const categories = [
+      {id:'appearance',name:'Appearance',icon:'sun',desc:'Light and dark mode for the workspace'},
+      {id:'hospital',name:'Hospital profile',icon:'hospital',desc:'Identity, branches and contact information'},
+      {id:'staff',name:'Staff & access',icon:'users',desc:'Staff accounts and workspace permissions'},
+      {id:'appointments',name:'Appointments',icon:'calendar',desc:'Booking rules and cancellation policies'},
+      {id:'specialists',name:'Specialists & hours',icon:'clock',desc:'Working hours and schedule defaults'},
+      {id:'billing',name:'Billing & payments',icon:'card',desc:'Accepted methods, fees and gateways'},
+      {id:'patients',name:'Patient management',icon:'clipboard',desc:'Registration and check-in rules'},
+      {id:'notifications',name:'Notifications',icon:'bell',desc:'Patient communication preferences'},
+      {id:'security',name:'Security & privacy',icon:'shield',desc:'Account protection and session policies'},
+      {id:'integrations',name:'Integrations',icon:'plug',desc:'External services and connection status'},
+      {id:'audit',name:'Audit & activity',icon:'history',desc:'Review administrative activity'}
+    ];
+    const icons = {
+      sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+      hospital:'<path d="M4 21V5l8-3 8 3v16M2 21h20M9 21v-5h6v5M8 8h1m6 0h1M8 12h1m6 0h1"/>',
+      users:'<circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 5"/>',
+      calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6M17 2v6M3 10h18"/>',
+      clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/>',
+      card:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+      clipboard:'<rect x="5" y="4" width="14" height="18" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h6"/>',
+      bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
+      shield:'<path d="m12 2 9 4v6c0 6-4 9-9 10-5-1-9-4-9-10V6l9-4Z"/><path d="m9 12 2 2 4-4"/>',
+      plug:'<path d="M8 2v6M16 2v6M5 8h14v4a7 7 0 0 1-14 0V8ZM12 19v3"/>',
+      history:'<path d="M3 12a9 9 0 1 0 3-7M3 3v5h5M12 7v5l4 2"/>'
+    };
+    function icon(name){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]||icons.hospital}</svg>`;}
+    function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+    function load(){try{const saved=JSON.parse(localStorage.getItem(STORE)||'{}');return {...structuredClone(defaultSettings),...saved,staff:Array.isArray(saved.staff)?saved.staff:structuredClone(defaultSettings.staff)};}catch{return structuredClone(defaultSettings);}}
+    let state=load(), active='hospital', dirty=false;
+    const $=id=>document.getElementById(id);
+    function field(label,key,type='text',extra=''){return `<label class="field"><span>${label}</span><input data-key="${key}" type="${type}" value="${escapeHTML(state[key])}" ${extra}></label>`;}
+    function select(label,key,options){return `<label class="field"><span>${label}</span><select data-key="${key}">${options.map(([value,text])=>`<option value="${escapeHTML(value)}" ${String(state[key])===String(value)?'selected':''}>${escapeHTML(text)}</option>`).join('')}</select></label>`;}
+    function toggle(label,desc,key){return `<label class="toggle-row"><span><strong>${label}</strong><small>${desc}</small></span><span class="switch"><input type="checkbox" data-key="${key}" ${state[key]?'checked':''}><span class="track"></span></span></label>`;}
+    function section(title,description,body){return `<div class="content-head"><div><p class="eyebrow">PWEB SETTINGS</p><h2>${title}</h2><p>${description}</p></div></div>${body}`;}
+    function card(title,description,body){return `<article class="settings-card"><div class="card-head"><h3>${title}</h3>${description?`<p>${description}</p>`:''}</div><div class="card-body">${body}</div></article>`;}
+    function grid(...fields){return `<div class="field-grid">${fields.join('')}</div>`;}
+    function note(text){return `<div class="note">${text}</div>`;}
+    function renderNav(query=''){const q=query.toLowerCase();$('settingsNav').innerHTML=categories.filter(c=>(c.name+' '+c.desc).toLowerCase().includes(q)).map(c=>`<button type="button" class="nav-option ${active===c.id?'selected':''}" data-section="${c.id}" aria-current="${active===c.id?'page':'false'}">${icon(c.icon)}<span>${c.name}</span><span class="nav-chevron">›</span></button>`).join('')||'<p class="empty-search">No matching settings</p>';}
+    const days=[['30','30 minutes'],['60','1 hour'],['90','90 minutes'],['120','2 hours']];
+    function currentTheme() {
+      const saved = localStorage.getItem('pweb_theme');
+      return saved === 'light' || saved === 'dark' ? saved : 'system';
+    }
+    function applyTheme() {
+      const choice = currentTheme();
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = choice === 'system'
+        ? (systemDark ? 'dark' : 'light') : choice;
+      document.querySelectorAll('[data-theme-choice]').forEach(button => {
+        const selected = button.dataset.themeChoice === choice;
+        button.setAttribute('aria-pressed', String(selected));
+      });
+      const status = document.getElementById('themeStatus');
+      if (status) status.textContent = choice === 'system'
+        ? `Following system (${systemDark ? 'dark' : 'light'})`
+        : `${choice === 'dark' ? 'Dark' : 'Light'} mode selected`;
+    }
+    function setTheme(choice) {
+      if (!['system', 'light', 'dark'].includes(choice)) return;
+      if (choice === 'system') localStorage.removeItem('pweb_theme');
+      else localStorage.setItem('pweb_theme', choice);
+      applyTheme();
+      if (active === 'appearance') render();
+      showToast('Appearance updated.');
+    }
+    const pages={
+      appearance:()=>section('Appearance','Choose how Pweb looks on this device.',
+        card('Workspace appearance','The theme selector is at the bottom of Settings. System automatically follows your device preferences.',
+          `<p class="theme-help">Your choice applies immediately and is remembered in this browser.</p>`)),
+      hospital:()=>section('Hospital profile','Manage the information associated with this hospital workspace.',
+        card('Practice details','Visible to authorised staff and, where applicable, patients.',grid(field('Hospital / practice name','hospitalName'),field('Branch name','branch'),field('Contact email','hospitalEmail','email'),field('Contact phone','hospitalPhone','tel'),field('Street address / location','hospitalAddress'),select('Timezone','timezone',[['Africa/Johannesburg','South Africa (SAST)'],['Africa/Harare','Central Africa (CAT)']]))+note('Hospital identity and branch membership must eventually come from verified server records.'))),
+      staff:()=>section('Staff & access','Control which staff members may work in this hospital workspace.',
+        card('Team members','These entries are illustrative. Invites and role changes require a secure backend.',`<div class="table-scroll"><table class="data-table"><thead><tr><th>Staff member</th><th>Role</th><th>Status</th><th>Action</th></tr></thead><tbody>${state.staff.map((s,i)=>`<tr><td><strong>${escapeHTML(s.name)}</strong><small>${escapeHTML(s.email)}</small></td><td>${escapeHTML(s.role)}</td><td><span class="pill">${escapeHTML(s.status)}</span></td><td><button type="button" class="text-button" data-staff="${i}">Details</button></td></tr>`).join('')}</tbody></table></div><button type="button" class="btn btn-outline" id="inviteStaff">+ Add staff (prototype)</button>`)+
+        card('Permission model','Recommended roles for the future backend.',`<div class="role-list"><div><strong>Administrator</strong><small>Workspace configuration and approved staff management</small></div><div><strong>Receptionist</strong><small>Bookings, check-in and permitted patient information</small></div><div><strong>Billing officer</strong><small>Invoices, payments and claims within authorised scope</small></div><div><strong>Specialist</strong><small>Assigned appointments and permitted clinical workspace</small></div></div>`)+note('Never rely on these browser controls to grant or revoke real access. Enforce permissions for every server request and every hospital membership.')),
+      appointments:()=>section('Appointments','Set default booking and cancellation rules for your practice.',
+        card('Booking policies','These settings can guide future patient and admin booking forms.',grid(field('Advance booking window (days)','bookingWindow','number','min="1" max="365"'),select('Default consultation duration','appointmentDuration',[['15','15 minutes'],...days,['180','3 hours']]),field('Cancellation notice (hours)','cancellationHours','number','min="0" max="720"'))+toggle('Require approval for new bookings','Hold patient requests until staff confirmation.','requireApproval')+toggle('Allow patient cancellations','Enable eligible patients to cancel their own appointments.','allowPatientCancellation')+toggle('Enable waiting list','Track patients interested in newly available slots.','waitlist'))),
+      specialists:()=>section('Specialists & working hours','Configure schedule defaults used across the practice.',
+        card('Schedule defaults','Individual specialists can have different schedules.',grid(field('Default start time','workdayStart','time'),field('Default end time','workdayEnd','time'),select('Buffer between appointments','slotBuffer',[['0','None'],['5','5 minutes'],['10','10 minutes'],['15','15 minutes'],['30','30 minutes']]))+toggle('Allow leave requests','Enable staff to submit leave requests for approval.','allowLeaveRequests'))+note('Scheduled availability, booked hours, completed-appointment hours and actual attendance should remain separate metrics in Reports.')),
+      billing:()=>section('Billing & payments','Set which payment options the practice intends to offer.',
+        card('Accepted payment methods','Configure availability; real payments are not processed on this page.',toggle('Cash at reception','Record cash payments against invoices.','allowCash')+toggle('Card at reception','Record verified terminal payments.','allowCard')+toggle('Online checkout','Requires an authorised payment provider integration.','allowOnline')+toggle('Medical aid','Allow patients to supply medical aid information.','allowMedicalAid'))+
+        card('Default billing options','Fee estimates may change after the consultation.',grid(select('Currency','currency',[['ZAR','South African rand (ZAR)']]),field('Standard consultation fee','consultationFee','number','min="0" step="0.01"'),select('Payment provider','paymentProvider',[['none','Not connected'],['payfast','PayFast — planned'],['peach','Peach Payments — planned']]))+note('Provider selection does not connect an account. Merchant credentials, payment webhooks, claim submission and reconciliation belong on the backend.'))),
+      patients:()=>section('Patient management','Configure registration and patient-flow requirements.',
+        card('Registration requirements','Applied to future patient onboarding flows.',toggle('Require emergency contact','Request an emergency contact during registration.','requireEmergencyContact')+toggle('Require privacy consent','Record the appropriate consent and privacy notices.','requireConsent')+toggle('Enable document verification workflow','Flag patient documents for authorised review.','documentVerification'))+
+        card('Check-in and patient queue','Coordinate reception and specialists.',toggle('Enable patient queue','Display appointment arrival and consultation statuses.','patientQueue')+toggle('Enable queue alerts','Show notifications for delays and patient arrivals.','queueAlerts'))),
+      notifications:()=>section('Notifications','Configure patient communication preferences.',
+        card('Communication channels','Delivery requires separate integrations and patient communication preferences.',toggle('Email notifications','Allow authorised email reminders and updates.','notifyEmail')+toggle('SMS notifications','Requires an SMS provider.','notifySms')+toggle('WhatsApp notifications','Requires WhatsApp Business Platform approval and compliant templates.','notifyWhatsapp'))+
+        card('Reminder rules','Set a default lead time for appointment reminders.',grid(select('Send reminders before appointment','reminderHours',[['2','2 hours'],['12','12 hours'],['24','24 hours'],['48','48 hours']]))+toggle('Notify on cancellations','Prepare notifications when bookings are cancelled.','notifyCancellation'))),
+      security:()=>section('Security & privacy','Plan account protections and access governance.',
+        card('Access policies','Production policies must be implemented on the server.',toggle('Require multi-factor authentication','Recommended for privileged and sensitive workflows.','enforceMfa')+grid(select('Session timeout','sessionMinutes',[['15','15 minutes'],['30','30 minutes'],['60','1 hour'],['120','2 hours']]),select('Access review frequency','accessReviewDays',[['30','Every 30 days'],['90','Every 90 days'],['180','Every 180 days']]))+toggle('Record administrative activity','Maintain a server-side audit trail of sensitive changes.','auditEnabled'))+
+        note('Security settings shown here are UI preferences only. They do not activate MFA, expire sessions, protect patient data or implement POPIA compliance.')),
+      integrations:()=>section('Integrations','Connect Pweb to external services when backend support is available.',
+        card('Available integration areas','Connections are not yet active.',`<div class="integration-list">${[['Online payments','PayFast / Peach Payments','card'],['Medical aid claims','Claims switching or billing provider','clipboard'],['SMS & WhatsApp','Messaging service / WhatsApp Business','bell'],['Email delivery','Transactional email service','plug']].map(x=>`<div class="integration"><div class="integration-icon">${icon(x[2])}</div><div><strong>${x[0]}</strong><small>${x[1]}</small></div><span class="pill muted">Not connected</span></div>`).join('')}</div>`)+note('Do not place API keys or secret credentials in frontend HTML, JavaScript or localStorage.')),
+      audit:()=>section('Audit & activity','Review configuration changes made in this browser.',
+        card('Local configuration history','This is not a tamper-resistant or complete security audit log.',`<div class="audit-actions"><button type="button" class="btn btn-outline" id="exportSettings">Export settings JSON</button><button type="button" class="btn btn-outline" id="resetSettings">Reset local preferences</button></div><div class="activity-empty">For a real hospital, audit logs must be generated and protected by the backend, including who performed each action and which hospital record was affected.</div>`))
+    };
+    function render(){renderNav($('settingsSearch').value);$('settingsContent').innerHTML=pages[active]();}
+    function showToast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.classList.remove('show'),3500);}
+    function markDirty(){dirty=true;$('savedIndicator').textContent='Unsaved changes';$('savedIndicator').classList.add('unsaved');}
+    function save(){if(!state.hospitalName.trim()){showToast('Please enter a hospital name.');active='hospital';render();return;}if(Number(state.workdayStart.replace(':',''))>=Number(state.workdayEnd.replace(':',''))){showToast('Working day end time must be after start time.');active='specialists';render();return;}try{localStorage.setItem(STORE,JSON.stringify(state));dirty=false;$('savedIndicator').textContent='Changes saved locally';$('savedIndicator').classList.remove('unsaved');showToast('Settings saved in this browser.');}catch{showToast('Unable to save: browser storage is unavailable.');}}
+    $('settingsNav').addEventListener('click',event=>{const btn=event.target.closest('[data-section]');if(!btn)return;active=btn.dataset.section;render();window.scrollTo({top:0,behavior:'smooth'});});
+    $('settingsSearch').addEventListener('input',event=>{const query=event.target.value.toLowerCase();const found=categories.find(c=>(c.name+' '+c.desc).toLowerCase().includes(query));if(query&&found)active=found.id;render();});
+    document.querySelector('.tNav .seach-box')?.addEventListener('click',()=>{$('settingsSearch').focus();});
+    $('settingsContent').addEventListener('input',event=>{const input=event.target.closest('[data-key]');if(!input)return;state[input.dataset.key]=input.type==='checkbox'?input.checked:input.value;markDirty();});
+    $('settingsContent').addEventListener('change',event=>{const input=event.target.closest('[data-key]');if(!input)return;state[input.dataset.key]=input.type==='checkbox'?input.checked:input.value;markDirty();});
+    $('settingsContent').addEventListener('click',event=>{
+      if(event.target.closest('#inviteStaff')){const name=prompt('Staff member name:');if(!name?.trim())return;const email=prompt('Work email address:');if(!email?.trim())return;const role=prompt('Role: Administrator, Receptionist or Billing officer','Receptionist');if(!['Administrator','Receptionist','Billing officer'].includes(role)){showToast('Choose a listed role.');return;}state.staff.push({id:`ST-${Date.now()}`,name:name.trim(),email:email.trim(),role,status:'Draft — not invited'});markDirty();render();showToast('Draft staff entry added. No invitation was sent.');}
+      const staffBtn=event.target.closest('[data-staff]');if(staffBtn){const member=state.staff[Number(staffBtn.dataset.staff)];showToast(`${member.name} · ${member.role} · ${member.status}`);}
+      if(event.target.closest('#exportSettings')){const safe={...state,staff:state.staff.map(({name,email,role,status})=>({name,email,role,status}))};const blob=new Blob([JSON.stringify(safe,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='pweb-settings-local.json';a.click();URL.revokeObjectURL(url);}
+      if(event.target.closest('#resetSettings')&&confirm('Reset local settings to their initial values?')){state=structuredClone(defaultSettings);markDirty();render();showToast('Defaults restored. Select Save changes to keep them.');}
+    });
+    document.getElementById('themeChoices').addEventListener('click', event => {
+      const button = event.target.closest('[data-theme-choice]');
+      if (button) setTheme(button.dataset.themeChoice);
+    });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (currentTheme() === 'system') applyTheme();
+    });
+    window.addEventListener('storage', event => {
+      if (event.key === 'pweb_theme') applyTheme();
+    });
+    $('saveButton').addEventListener('click',save);
+    const burger = document.querySelector('.adm-doc-nav .burger');
+    const links = document.getElementById('dw-nav-links');
+    if (burger && links) burger.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      document.querySelector('.adm-doc-nav').classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    window.addEventListener('beforeunload',event=>{if(dirty){event.preventDefault();event.returnValue='';}});
+    applyTheme();
+    render();
+  </script>
+ </body>
+</html>
+
