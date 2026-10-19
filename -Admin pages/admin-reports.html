@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reports | Pweb Administration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../admin-home-font-fixed.css">
+  <link rel="stylesheet" href="../admin-reports.css">
+</head>
+<body class="dw dw-light adm rpt">
+<header class="nav nav-slim dw-nav adm-doc-nav">
+ <div class="tNav">
+  <a class="Emegerncy_contact" href="tel:+27000000000">
+   <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+   <span class="number">
+    Reception desk: 000 000 0000
+   </span>
+  </a>
+  <div class="t-nav-btns">
+   <div class="seach-box">
+    <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+    <span class="searchtext">
+     Search patients
+    </span>
+    <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
+    <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+   </div>
+   <div class="Pweb_login">
+    <a class="login" href="logout.html">
+     <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+     <span class="loginText">
+      Sign out
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <div class="bNav">
+  <a class="logoNbackBtn" href="index.html">
+   <!--Redirects Home-->
+   <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+   <div class="logo">
+    <img alt="" class="logoPGN" src="../src/ThePwebLogo.png"/>
+   </div>
+  </a>
+  <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+   <span>
+   </span>
+   <span>
+   </span>
+   <span>
+   </span>
+  </button>
+  <nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links">
+   <a class="" href="admin-home.html">
+    Home
+   </a>
+   <a class="" href="admin-calendar.html">
+    Calendar
+   </a>
+   <a class="" href="admin-bookings.html">
+    Bookings
+   </a>
+   <a class="" href="admin-patients.html">
+    Patients
+   </a>
+   <a class="" href="admin-specialists.html">
+    Specialists
+   </a>
+   <a class="" href="admin-messages.html">
+    Messages
+   </a>
+   <a aria-current="page" class="is-current" href="admin-reports.html">
+    Reports
+   </a>
+   <a class="" href="admin-settings.html">
+    Settings
+   </a>
+   <a class="navBtn" href="admin-bookings.html">
+    New booking
+   </a>
+  </nav>
+ </div>
+</header>
+
+<main class="rpt-main" id="main">
+  <header class="rpt-intro">
+    <div><p class="rpt-kicker">PRACTICE ADMINISTRATION</p><h1>Reports & analytics</h1><p>Monitor bookings, cancellations and specialist workload.</p></div>
+    <button class="rpt-btn rpt-primary" id="exportBtn" type="button">Export visible records · CSV</button>
+  </header>
+  <section class="rpt-toolbar" aria-label="Report filters">
+    <div class="rpt-segments" role="group" aria-label="Reporting period">
+      <button type="button" data-period="day">Day</button>
+      <button type="button" data-period="week" class="active">Week</button>
+      <button type="button" data-period="month">Month</button>
+    </div>
+    <div class="rpt-date"><button type="button" id="previous" aria-label="Previous period">‹</button><strong id="periodLabel"></strong><button type="button" id="next" aria-label="Next period">›</button><button type="button" id="today">Today</button></div>
+    <label class="rpt-filter">Specialist <select id="specialistFilter"><option value="all">All specialists</option></select></label>
+  </section>
+  <p class="rpt-notice" id="dataNotice"></p>
+  <section class="rpt-cards" aria-label="Summary statistics">
+    <button class="rpt-card" type="button" data-detail="all"><span>Appointments</span><strong id="totalBookings">0</strong><small>View records →</small></button>
+    <button class="rpt-card" type="button" data-detail="cancelled"><span>Cancellations</span><strong id="cancelledCount">0</strong><small id="cancelRate">View cancelled →</small></button>
+    <button class="rpt-card" type="button" data-detail="booked"><span>Booked hours</span><strong id="bookedHours">0h</strong><small>Appointment durations →</small></button>
+    <button class="rpt-card" type="button" data-detail="completed"><span>Completed visit hours</span><strong id="completedHours">0h</strong><small>Completed records →</small></button>
+  </section>
+  <div class="rpt-two-col">
+    <section class="rpt-panel">
+      <div class="rpt-panel-heading"><div><h2>Specialist hours</h2><p>Scheduled availability compared with booked appointment time</p></div></div>
+      <div id="workloadBars" class="rpt-bars"></div>
+      <p class="rpt-footnote">Scheduled hours are based on regular weekly availability. Leave and exceptional schedule changes are not included. Booked hours exclude cancelled appointments and blocked time.</p>
+    </section>
+    <section class="rpt-panel">
+      <div class="rpt-panel-heading"><div><h2>Appointment outcomes</h2><p>Click a status to inspect matching records</p></div></div>
+      <div id="statusBreakdown" class="rpt-breakdown"></div>
+      <div class="rpt-key"><span><i class="rpt-dot"></i> The appointment status must be kept up to date for accurate reports.</span></div>
+    </section>
+  </div>
+  <section class="rpt-panel rpt-records" id="recordsPanel">
+    <div class="rpt-panel-heading">
+      <div><p class="rpt-kicker">DRILL-DOWN</p><h2 id="detailTitle">Appointment records</h2><p id="detailSubtitle">Select a statistic to filter records.</p></div>
+      <label class="rpt-search">Search <input type="search" id="recordSearch" placeholder="Patient, specialist, ID..."></label>
+    </div>
+    <div class="rpt-table-wrap"><table><thead><tr><th>Appointment</th><th>Patient</th><th>Specialist</th><th>Time</th><th>Duration</th><th>Status</th><th>Open</th></tr></thead><tbody id="recordRows"></tbody></table></div>
+    <p class="rpt-footnote">Record details are shown only to authorised staff when connected to your backend.</p>
+  </section>
+</main>
+<script>
+(() => {
+  'use strict';
+
+  const $ = (id) => document.getElementById(id);
+  const pad = (n) => String(n).padStart(2, '0');
+  const iso = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  const dateFrom = (value) => { const [y, m, d] = value.split('-').map(Number); return new Date(y, m - 1, d); };
+  const plusDays = (date, n) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + n);
+  const minutes = (value) => { const [h, m] = value.split(':').map(Number); return h * 60 + m; };
+  const duration = (start, end) => Math.max(0, minutes(end) - minutes(start));
+  const hours = (value) => `${(value / 60).toFixed(1)}h`;
+  const text = (value) => String(value ?? '');
+
+  const today = new Date();
+  const todayKey = iso(today);
+  const specialistDefaults = [
+    { id: 'SP-1001', name: 'Dr. P. Surname', hours: { Mon: ['08:00','16:00'], Tue: ['08:00','16:00'], Wed: ['08:00','16:00'], Thu: ['08:00','16:00'], Fri: ['08:00','13:00'] } },
+    { id: 'SP-1002', name: 'Dr. N. Maseko', hours: { Mon: ['09:00','17:00'], Tue: ['09:00','17:00'], Thu: ['09:00','17:00'], Fri: ['09:00','15:00'] } },
+    { id: 'SP-1003', name: 'Dr. K. Lewis', hours: { Mon: ['08:00','15:00'], Tue: ['08:00','15:00'], Wed: ['08:00','15:00'], Fri: ['08:00','15:00'] } }
+  ];
+
+  // Reads the same local browser records as the Admin Bookings and Specialists pages.
+  // The Calendar currently uses a separate store; its entries are not merged to avoid double counting.
+  function readArray(key) {
+    try { const value = JSON.parse(localStorage.getItem(key)); return Array.isArray(value) ? value : null; }
+    catch { return null; }
+  }
+
+  const specialists = readArray('pweb-specialists-v1') || specialistDefaults;
+  const savedBookings = readArray('pweb-admin-bookings-v1');
+  const bookings = savedBookings || [
+    { id: 'PB-1001', patient: 'T. Mokoena', doctor: 'Dr. P. Surname', date: todayKey, start: '08:30', end: '09:15', status: 'checked-in' },
+    { id: 'PB-1002', patient: 'S. Khumalo', doctor: 'Dr. P. Surname', date: todayKey, start: '09:15', end: '10:00', status: 'confirmed' },
+    { id: 'PB-1003', patient: 'R. Adams', doctor: 'Dr. P. Surname', date: todayKey, start: '10:00', end: '10:45', status: 'confirmed' },
+    { id: 'PB-1004', patient: 'M. van der Merwe', doctor: 'Dr. P. Surname', date: todayKey, start: '10:45', end: '11:30', status: 'pending' },
+    { id: 'PB-1005', patient: 'C. Jacobs', doctor: 'Dr. N. Maseko', date: todayKey, start: '14:30', end: '15:15', status: 'pending' },
+    { id: 'PB-1006', patient: 'N. Dlamini', doctor: 'Dr. N. Maseko', date: iso(plusDays(today, 1)), start: '09:00', end: '09:45', status: 'confirmed' }
+  ];
+
+  let selected = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  let period = 'week';
+  let detail = 'all';
+  let filteredRecords = [];
+
+  function periodDates() {
+    let start;
+    let end;
+    if (period === 'day') { start = selected; end = selected; }
+    else if (period === 'week') {
+      start = plusDays(selected, -((selected.getDay() + 6) % 7));
+      end = plusDays(start, 6);
+    } else {
+      start = new Date(selected.getFullYear(), selected.getMonth(), 1);
+      end = new Date(selected.getFullYear(), selected.getMonth() + 1, 0);
+    }
+    return { start, end, first: iso(start), last: iso(end) };
+  }
+
+  function getPeriodBookings() {
+    const { first, last } = periodDates();
+    const specialist = $('specialistFilter').value;
+    return bookings.filter((item) => item.date >= first && item.date <= last &&
+      (specialist === 'all' || item.doctor === specialist));
+  }
+
+  function scheduledMinutes(specialist) {
+    const { start, end } = periodDates();
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let total = 0;
+    for (let date = new Date(start); date <= end; date = plusDays(date, 1)) {
+      const shift = specialist.hours?.[weekdays[date.getDay()]];
+      if (Array.isArray(shift) && shift.length === 2) total += duration(shift[0], shift[1]);
+    }
+    return total;
+  }
+
+  function isCancelled(item) { return ['cancelled', 'canceled'].includes(String(item.status).toLowerCase()); }
+  function isBlocked(item) { return item.kind === 'blocked' || item.type === 'blocked'; }
+  function isCompleted(item) { return ['completed', 'complete', 'done'].includes(String(item.status).toLowerCase()); }
+  function isBooked(item) { return !isCancelled(item) && !isBlocked(item); }
+
+  function make(tag, className, content) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (content !== undefined) node.textContent = text(content);
+    return node;
+  }
+
+  function renderWorkload(records) {
+    const container = $('workloadBars');
+    container.replaceChildren();
+    const chosen = $('specialistFilter').value;
+    const doctors = specialists.filter((item) => chosen === 'all' || item.name === chosen);
+    const values = doctors.map((doctor) => ({
+      doctor,
+      scheduled: scheduledMinutes(doctor),
+      booked: records.filter((item) => item.doctor === doctor.name && isBooked(item))
+        .reduce((sum, item) => sum + duration(item.start, item.end), 0)
+    }));
+    const max = Math.max(60, ...values.flatMap((item) => [item.scheduled, item.booked]));
+
+    values.forEach((item) => {
+      const row = make('div', 'rpt-bar-row');
+      const label = make('div', 'rpt-bar-label');
+      label.append(make('strong', '', item.doctor.name), make('span', '', `${hours(item.booked)} booked / ${hours(item.scheduled)} scheduled`));
+      row.append(label);
+      const track = make('div', 'rpt-bar-track');
+      const planned = make('div', 'rpt-bar-planned');
+      planned.style.width = `${item.scheduled / max * 100}%`;
+      const booked = make('div', 'rpt-bar-booked');
+      booked.style.width = `${item.booked / max * 100}%`;
+      track.append(planned, booked);
+      row.append(track);
+      const button = make('button', 'rpt-inline', 'View appointments →');
+      button.type = 'button';
+      button.addEventListener('click', () => {
+        $('specialistFilter').value = item.doctor.name;
+        detail = 'booked';
+        render();
+        $('recordsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      row.append(button);
+      container.append(row);
+    });
+    if (!values.length) container.append(make('p', 'rpt-empty', 'No specialists found.'));
+  }
+
+  function renderBreakdown(records) {
+    const groups = [
+      { key: 'confirmed', label: 'Confirmed', match: (r) => r.status === 'confirmed' },
+      { key: 'pending', label: 'Pending', match: (r) => r.status === 'pending' },
+      { key: 'completed', label: 'Completed', match: isCompleted },
+      { key: 'checked', label: 'Checked in', match: (r) => ['checked', 'checked-in'].includes(r.status) },
+      { key: 'cancelled', label: 'Cancelled', match: isCancelled }
+    ];
+    const container = $('statusBreakdown');
+    container.replaceChildren();
+    groups.forEach((group) => {
+      const count = records.filter(group.match).length;
+      const button = make('button', 'rpt-status-row');
+      button.type = 'button';
+      button.append(make('span', '', group.label), make('strong', '', count), make('span', '', 'View →'));
+      button.addEventListener('click', () => {
+        detail = group.key;
+        render();
+        $('recordsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      container.append(button);
+    });
+  }
+
+  function matchesDetail(item) {
+    switch (detail) {
+      case 'cancelled': return isCancelled(item);
+      case 'booked': return isBooked(item);
+      case 'completed': return isCompleted(item);
+      case 'checked': return ['checked', 'checked-in'].includes(item.status);
+      case 'confirmed': return item.status === 'confirmed';
+      case 'pending': return item.status === 'pending';
+      default: return true;
+    }
+  }
+
+  function renderRecords(records) {
+    const query = $('recordSearch').value.trim().toLowerCase();
+    const labels = { all: 'All appointments', cancelled: 'Cancelled appointments', booked: 'Booked appointments', completed: 'Completed visits', checked: 'Checked-in appointments', confirmed: 'Confirmed appointments', pending: 'Pending appointments' };
+    $('detailTitle').textContent = labels[detail] || 'Appointment records';
+    filteredRecords = records.filter(matchesDetail).filter((item) =>
+      [item.patient, item.doctor, item.id, item.date, item.status].some((value) => text(value).toLowerCase().includes(query))
+    ).sort((a, b) => `${b.date} ${b.start}`.localeCompare(`${a.date} ${a.start}`));
+    $('detailSubtitle').textContent = `${filteredRecords.length} matching records`;
+    const tbody = $('recordRows');
+    tbody.replaceChildren();
+    filteredRecords.forEach((item) => {
+      const row = document.createElement('tr');
+      const cells = [item.date, item.patient, item.doctor, `${item.start}–${item.end}`, hours(duration(item.start, item.end)), item.status];
+      cells.forEach((value) => row.append(make('td', '', value)));
+      const linkCell = document.createElement('td');
+      const link = make('a', 'rpt-link', 'Bookings ↗');
+      link.href = 'admin-bookings.html';
+      link.title = 'Open bookings page to locate this appointment';
+      linkCell.append(link);
+      row.append(linkCell);
+      tbody.append(row);
+    });
+    if (!filteredRecords.length) {
+      const row = document.createElement('tr');
+      const cell = make('td', 'rpt-empty', 'No matching appointments in this period.');
+      cell.colSpan = 7;
+      row.append(cell);
+      tbody.append(row);
+    }
+  }
+
+  function render() {
+    const { start, end } = periodDates();
+    const label = (date, opts) => date.toLocaleDateString('en-ZA', opts);
+    $('periodLabel').textContent = period === 'day' ? label(start, { day: 'numeric', month: 'short', year: 'numeric' })
+      : period === 'week' ? `${label(start, { day: 'numeric', month: 'short' })} – ${label(end, { day: 'numeric', month: 'short', year: 'numeric' })}`
+      : label(start, { month: 'long', year: 'numeric' });
+    document.querySelectorAll('[data-period]').forEach((button) => button.classList.toggle('active', button.dataset.period === period));
+    const records = getPeriodBookings();
+    const cancelled = records.filter(isCancelled).length;
+    const booked = records.filter(isBooked);
+    $('totalBookings').textContent = records.length;
+    $('cancelledCount').textContent = cancelled;
+    $('cancelRate').textContent = records.length ? `${(cancelled / records.length * 100).toFixed(1)}% cancellation rate →` : 'No cancellations →';
+    $('bookedHours').textContent = hours(booked.reduce((sum, item) => sum + duration(item.start, item.end), 0));
+    $('completedHours').textContent = hours(records.filter(isCompleted).reduce((sum, item) => sum + duration(item.start, item.end), 0));
+    renderWorkload(records);
+    renderBreakdown(records);
+    renderRecords(records);
+  }
+
+  function exportCsv() {
+    const fields = ['id', 'date', 'patient', 'doctor', 'start', 'end', 'status'];
+    const quote = (value) => `"${text(value).replace(/"/g, '""')}"`;
+    const csv = [fields.join(','), ...filteredRecords.map((item) => fields.map((field) => quote(item[field])).join(','))].join('\r\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `pweb-report-${period}-${todayKey}.csv`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  specialists.forEach((item) => $('specialistFilter').add(new Option(item.name, item.name)));
+  $('dataNotice').textContent = savedBookings
+    ? 'Reports use appointments saved in Admin Bookings in this browser. Calendar entries are not yet combined.'
+    : 'Showing illustrative booking records. Create bookings to populate reports with your saved data.';
+  document.querySelectorAll('[data-period]').forEach((button) => button.addEventListener('click', () => { period = button.dataset.period; render(); }));
+  document.querySelectorAll('[data-detail]').forEach((button) => button.addEventListener('click', () => {
+    detail = button.dataset.detail;
+    render();
+    $('recordsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+  $('previous').addEventListener('click', () => {
+    selected = period === 'month' ? new Date(selected.getFullYear(), selected.getMonth() - 1, 1) : plusDays(selected, period === 'week' ? -7 : -1);
+    render();
+  });
+  $('next').addEventListener('click', () => {
+    selected = period === 'month' ? new Date(selected.getFullYear(), selected.getMonth() + 1, 1) : plusDays(selected, period === 'week' ? 7 : 1);
+    render();
+  });
+  $('today').addEventListener('click', () => { selected = new Date(today); render(); });
+  $('specialistFilter').addEventListener('change', render);
+  $('recordSearch').addEventListener('input', () => renderRecords(getPeriodBookings()));
+  $('exportBtn').addEventListener('click', exportCsv);
+  const burger = document.querySelector('.adm-doc-nav .burger');
+  const links = $('dw-nav-links');
+  if (burger && links) burger.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    document.querySelector('.adm-doc-nav').classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  render();
+})();
+</script>
+</body>
+</html>
