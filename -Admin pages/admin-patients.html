@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../admin-home-font-fixed.css">
   <link rel="stylesheet" href="../admin-patients.css">
+
+    <script>
+   // Apply saved preference before rendering. No preference = follow the system.
+    (function () {
+      const saved = localStorage.getItem('pweb_theme');
+      const preference = ['light', 'dark'].includes(saved) ? saved : 'system';
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = preference === 'system'
+        ? (systemDark ? 'dark' : 'light') : preference;
+    })();
+  </script>
 </head>
 <body class="dw dw-light adm ap">
   <a class="skip" href="#main">Skip to content</a>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -22,7 +23,10 @@
     })();
   </script>
  </head>
+
+
  <body class="dw dw-light adm settings-page">
+
   <header class="nav nav-slim dw-nav adm-doc-nav">
    <div class="tNav">
     <a class="Emegerncy_contact" href="tel:+27000000000">
@@ -97,6 +101,8 @@
     </nav>
    </div>
   </header>
+
+
   <main class="settings-app" id="settingsApp">
    <div class="page-intro">
     <div>
@@ -106,6 +112,7 @@
      <h1>
       Settings
      </h1>
+
      <p>
       Configure how your hospital operates on Pweb.
      </p>
@@ -122,11 +129,13 @@
    <div class="settings-layout">
     <aside aria-label="Settings categories" class="settings-sidebar">
      <label class="search-wrap">
+
       <svg aria-hidden="true" viewbox="0 0 24 24">
        <circle cx="11" cy="11" r="7">
        </circle>
        <path d="m16 16 5 5">
        </path>
+
       </svg>
       <input aria-label="Find a setting" id="settingsSearch" placeholder="Find a setting…" type="search"/>
      </label>
@@ -144,7 +153,8 @@
     <section aria-live="polite" class="settings-content" id="settingsContent">
     </section>
    </div>
-   <section aria-labelledby="themeFooterTitle" class="settings-theme-footer">
+
+   <div aria-labelledby="themeFooterTitle" class="settings-theme-footer">
     <div>
      <h2 id="themeFooterTitle">
       Appearance
@@ -166,16 +176,19 @@
       ◐ System
      </button>
     </div>
-   </section>
+   </div>
   </main>
   <div aria-live="polite" class="toast" id="toast" role="status">
   </div>
+
+
+
   <script>
    // Pweb Admin Settings — front-end prototype. Production settings, permissions,
     // credentials, and audit records MUST be stored and enforced by a secure backend.
     const STORE = 'pweb_admin_settings_v1';
     const defaultSettings = {
-      hospitalName: 'Northfield Surgical Centre', hospitalEmail: 'reception@northfield.example', hospitalPhone: '+27 00 000 0000', hospitalAddress: 'Cape Town, South Africa', timezone: 'Africa/Johannesburg', branch: 'Main practice',
+      hospitalName: 'EmaC Surgical Centre', hospitalEmail: 'reception@emac.example', hospitalPhone: '+27 00 000 0000', hospitalAddress: 'Mpumalanga, South Africa', timezone: 'Africa/Johannesburg', branch: 'Main practice',
       bookingWindow: '60', appointmentDuration: '30', cancellationHours: '24', requireApproval: true, allowPatientCancellation: true, waitlist: true,
       allowCash: true, allowCard: true, allowOnline: false, allowMedicalAid: true, currency: 'ZAR', consultationFee: '850', paymentProvider: 'none',
       notifyEmail: true, notifySms: false, notifyWhatsapp: false, reminderHours: '24', notifyCancellation: true,
