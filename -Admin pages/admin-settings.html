@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -13,20 +12,19 @@
   <link href="../style.css" rel="stylesheet"/>
   <link href="../admin-settings.css" rel="stylesheet"/>
   <script>
-   // Apply saved preference before rendering. No preference = follow the system.
-    (function () {
-      const saved = localStorage.getItem('pweb_theme');
-      const preference = ['light', 'dark'].includes(saved) ? saved : 'system';
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.dataset.theme = preference === 'system'
-        ? (systemDark ? 'dark' : 'light') : preference;
-    })();
-  </script>
+  const savedTheme = localStorage.getItem("pweb_theme");
+
+  const systemDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+
+  document.documentElement.dataset.theme =
+    savedTheme === "light" || savedTheme === "dark"
+      ? savedTheme
+      : systemDark ? "dark" : "light";
+</script>
  </head>
-
-
  <body class="dw dw-light adm settings-page">
-
   <header class="nav nav-slim dw-nav adm-doc-nav">
    <div class="tNav">
     <a class="Emegerncy_contact" href="tel:+27000000000">
@@ -101,8 +99,6 @@
     </nav>
    </div>
   </header>
-
-
   <main class="settings-app" id="settingsApp">
    <div class="page-intro">
     <div>
@@ -112,7 +108,6 @@
      <h1>
       Settings
      </h1>
-
      <p>
       Configure how your hospital operates on Pweb.
      </p>
@@ -129,13 +124,11 @@
    <div class="settings-layout">
     <aside aria-label="Settings categories" class="settings-sidebar">
      <label class="search-wrap">
-
       <svg aria-hidden="true" viewbox="0 0 24 24">
        <circle cx="11" cy="11" r="7">
        </circle>
        <path d="m16 16 5 5">
        </path>
-
       </svg>
       <input aria-label="Find a setting" id="settingsSearch" placeholder="Find a setting…" type="search"/>
      </label>
@@ -154,41 +147,15 @@
     </section>
    </div>
 
-   <div aria-labelledby="themeFooterTitle" class="settings-theme-footer">
-    <div>
-     <h2 id="themeFooterTitle">
-      Appearance
-     </h2>
-     <p>
-      Choose your Pweb colour theme. System follows your device's light or dark setting.
-     </p>
-     <span aria-live="polite" class="theme-status" id="themeStatus">
-     </span>
-    </div>
-    <div aria-label="Colour theme" class="theme-choice" id="themeChoices" role="group">
-     <button aria-pressed="false" data-theme-choice="light" type="button">
-      ☀ Light
-     </button>
-     <button aria-pressed="false" data-theme-choice="dark" type="button">
-      ☾ Dark
-     </button>
-     <button aria-pressed="true" data-theme-choice="system" type="button">
-      ◐ System
-     </button>
-    </div>
-   </div>
   </main>
   <div aria-live="polite" class="toast" id="toast" role="status">
   </div>
-
-
-
   <script>
    // Pweb Admin Settings — front-end prototype. Production settings, permissions,
     // credentials, and audit records MUST be stored and enforced by a secure backend.
     const STORE = 'pweb_admin_settings_v1';
     const defaultSettings = {
-      hospitalName: 'EmaC Surgical Centre', hospitalEmail: 'reception@emac.example', hospitalPhone: '+27 00 000 0000', hospitalAddress: 'Mpumalanga, South Africa', timezone: 'Africa/Johannesburg', branch: 'Main practice',
+      hospitalName: 'Northfield Surgical Centre', hospitalEmail: 'reception@northfield.example', hospitalPhone: '+27 00 000 0000', hospitalAddress: 'Cape Town, South Africa', timezone: 'Africa/Johannesburg', branch: 'Main practice',
       bookingWindow: '60', appointmentDuration: '30', cancellationHours: '24', requireApproval: true, allowPatientCancellation: true, waitlist: true,
       allowCash: true, allowCard: true, allowOnline: false, allowMedicalAid: true, currency: 'ZAR', consultationFee: '850', paymentProvider: 'none',
       notifyEmail: true, notifySms: false, notifyWhatsapp: false, reminderHours: '24', notifyCancellation: true,
@@ -264,9 +231,23 @@
       showToast('Appearance updated.');
     }
     const pages={
-      appearance:()=>section('Appearance','Choose how Pweb looks on this device.',
-        card('Workspace appearance','The theme selector is at the bottom of Settings. System automatically follows your device preferences.',
-          `<p class="theme-help">Your choice applies immediately and is remembered in this browser.</p>`)),
+      appearance: () => section(
+        'Appearance',
+        'Choose how Pweb looks on this device.',
+        card(
+          'Workspace appearance',
+          'Choose Light, Dark, or System. System automatically follows your device preferences.',
+          `<div class="appearance-theme-control">
+            <div class="theme-choice" id="themeChoices" role="group" aria-label="Colour theme">
+              <button type="button" data-theme-choice="light" aria-pressed="false">☀ Light</button>
+              <button type="button" data-theme-choice="dark" aria-pressed="false">☾ Dark</button>
+              <button type="button" data-theme-choice="system" aria-pressed="true">◐ System</button>
+            </div>
+            <p class="theme-help">Your choice applies immediately and is remembered in this browser.</p>
+            <span class="theme-status" id="themeStatus" aria-live="polite"></span>
+          </div>`
+        )
+      ),
       hospital:()=>section('Hospital profile','Manage the information associated with this hospital workspace.',
         card('Practice details','Visible to authorised staff and, where applicable, patients.',grid(field('Hospital / practice name','hospitalName'),field('Branch name','branch'),field('Contact email','hospitalEmail','email'),field('Contact phone','hospitalPhone','tel'),field('Street address / location','hospitalAddress'),select('Timezone','timezone',[['Africa/Johannesburg','South Africa (SAST)'],['Africa/Harare','Central Africa (CAT)']]))+note('Hospital identity and branch membership must eventually come from verified server records.'))),
       staff:()=>section('Staff & access','Control which staff members may work in this hospital workspace.',
@@ -293,7 +274,7 @@
       audit:()=>section('Audit & activity','Review configuration changes made in this browser.',
         card('Local configuration history','This is not a tamper-resistant or complete security audit log.',`<div class="audit-actions"><button type="button" class="btn btn-outline" id="exportSettings">Export settings JSON</button><button type="button" class="btn btn-outline" id="resetSettings">Reset local preferences</button></div><div class="activity-empty">For a real hospital, audit logs must be generated and protected by the backend, including who performed each action and which hospital record was affected.</div>`))
     };
-    function render(){renderNav($('settingsSearch').value);$('settingsContent').innerHTML=pages[active]();}
+    function render(){renderNav($('settingsSearch').value);$('settingsContent').innerHTML=pages[active]();applyTheme();}
     function showToast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.classList.remove('show'),3500);}
     function markDirty(){dirty=true;$('savedIndicator').textContent='Unsaved changes';$('savedIndicator').classList.add('unsaved');}
     function save(){if(!state.hospitalName.trim()){showToast('Please enter a hospital name.');active='hospital';render();return;}if(Number(state.workdayStart.replace(':',''))>=Number(state.workdayEnd.replace(':',''))){showToast('Working day end time must be after start time.');active='specialists';render();return;}try{localStorage.setItem(STORE,JSON.stringify(state));dirty=false;$('savedIndicator').textContent='Changes saved locally';$('savedIndicator').classList.remove('unsaved');showToast('Settings saved in this browser.');}catch{showToast('Unable to save: browser storage is unavailable.');}}
@@ -308,7 +289,7 @@
       if(event.target.closest('#exportSettings')){const safe={...state,staff:state.staff.map(({name,email,role,status})=>({name,email,role,status}))};const blob=new Blob([JSON.stringify(safe,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='pweb-settings-local.json';a.click();URL.revokeObjectURL(url);}
       if(event.target.closest('#resetSettings')&&confirm('Reset local settings to their initial values?')){state=structuredClone(defaultSettings);markDirty();render();showToast('Defaults restored. Select Save changes to keep them.');}
     });
-    document.getElementById('themeChoices').addEventListener('click', event => {
+    document.getElementById('settingsContent').addEventListener('click', event => {
       const button = event.target.closest('[data-theme-choice]');
       if (button) setTheme(button.dataset.themeChoice);
     });

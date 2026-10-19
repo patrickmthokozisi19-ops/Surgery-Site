@@ -8,16 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
-  <script>
-   // Apply saved preference before rendering. No preference = follow the system.
-    (function () {
-      const saved = localStorage.getItem('pweb_theme');
-      const preference = ['light', 'dark'].includes(saved) ? saved : 'system';
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.dataset.theme = preference === 'system'
-        ? (systemDark ? 'dark' : 'light') : preference;
-    })();
-  </script>
+<script>
+  const savedTheme = localStorage.getItem("pweb_theme");
+
+  const systemDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+
+  document.documentElement.dataset.theme =
+    savedTheme === "light" || savedTheme === "dark"
+      ? savedTheme
+      : systemDark ? "dark" : "light";
+</script>
 </head>
 <body class="dw dw-light adm ab-page">
   <a class="skip visibly-hidden" href="#main">
