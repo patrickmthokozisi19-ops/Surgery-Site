@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patients | Pweb Administration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../admin-home-font-fixed.css">
+  <link rel="stylesheet" href="../admin-patients.css">
+</head>
+<body class="dw dw-light adm ap">
+  <a class="skip" href="#main">Skip to content</a>
+<header class="nav nav-slim dw-nav adm-doc-nav">
+ <div class="tNav">
+  <a class="Emegerncy_contact" href="tel:+27000000000">
+   <img alt="" src="../assets/icons/phone.svg"/>
+   <span class="number">
+    Reception desk: 000 000 0000
+   </span>
+  </a>
+  <div class="t-nav-btns">
+      <div class="seach-box">
+      <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+     </div>
+   <div class="Pweb_login">
+    <a class="login" href="logout.html">
+     <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+     <span class="loginText">
+      Sign out
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <div class="bNav">
+  <a class="logoNbackBtn" href="index.html">
+   <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+   <div class="logo">
+    <img alt="" class="logoPGN" src="../src/ThePwebLogo.png"/>
+   </div>
+  </a>
+  <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+   <span>
+   </span>
+   <span>
+   </span>
+   <span>
+   </span>
+  </button>
+  <nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links">
+   <a href="admin-home.html">
+    Home
+   </a>
+   <a href="admin-calendar.html">
+    Calendar
+   </a>
+   <a href="admin-bookings.html">
+    Bookings
+   </a>
+   <a aria-current="page" class="is-current" href="admin-patients.html">
+    Patients
+   </a>
+   <a href="admin-specialists.html">
+    Specialists
+   </a>
+   <a href="admin-messages.html">
+    Messages
+   </a>
+   <a href="admin-reports.html">
+    Reports
+   </a>
+   <a href="admin-settings.html">
+    Settings
+   </a>
+   <a class="navBtn" href="admin-bookings.html">
+    New booking
+   </a>
+  </nav>
+ </div>
+</header>
+
+  <main class="ap-main" id="main">
+    <section class="ap-page-head">
+      <div>
+        <p class="ap-eyebrow">PRACTICE ADMINISTRATION</p>
+        <h1>Patients</h1>
+        <p class="ap-subtitle">Find patient records and manage registration details.</p>
+      </div>
+      <button class="ap-btn ap-btn-primary" id="addPatient" type="button">+ Register patient</button>
+    </section>
+
+    <section class="ap-summary" aria-label="Patient summary">
+      <article class="ap-stat"><span>Total patients</span><strong id="totalPatients">0</strong></article>
+      <article class="ap-stat"><span>Active patients</span><strong id="activePatients">0</strong></article>
+      <article class="ap-stat"><span>Pending verification</span><strong id="pendingPatients">0</strong></article>
+    </section>
+
+    <section class="ap-panel" aria-label="Patient directory">
+      <div class="ap-panel-heading">
+        <div>
+          <h2>Patient directory</h2>
+          <p>Search by patient name, patient number or contact details.</p>
+        </div>
+        <span class="ap-count" id="resultCount"></span>
+      </div>
+
+      <div class="ap-toolbar">
+        <label class="ap-search-field">
+          <span class="ap-visually-hidden">Search patients</span>
+          <input id="patientSearch" type="search" placeholder="Search patients..." autocomplete="off">
+        </label>
+        <label class="ap-filter-label">
+          <span>Status</span>
+          <select id="statusFilter">
+            <option value="all">All patients</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </label>
+        <label class="ap-filter-label">
+          <span>Documents</span>
+          <select id="documentFilter">
+            <option value="all">All statuses</option>
+            <option value="Verified">Verified</option>
+            <option value="Pending review">Pending review</option>
+            <option value="Not uploaded">Not uploaded</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="ap-table-wrap">
+        <table class="ap-table">
+          <thead>
+            <tr>
+              <th scope="col">Patient</th>
+              <th scope="col">Patient number</th>
+              <th scope="col">Contact</th>
+              <th scope="col">ID verification</th>
+              <th scope="col">Status</th>
+              <th scope="col">Record</th>
+            </tr>
+          </thead>
+          <tbody id="patientRows"></tbody>
+        </table>
+      </div>
+      <p class="ap-empty" id="emptyResults" hidden>No patients match your search.</p>
+    </section>
+  </main>
+
+  <dialog class="ap-dialog" id="registerDialog" aria-labelledby="registerTitle">
+    <form id="registerForm">
+      <div class="ap-dialog-header">
+        <div>
+          <p class="ap-eyebrow">PATIENT REGISTRATION</p>
+          <h2 id="registerTitle">Register patient</h2>
+        </div>
+        <button class="ap-icon-button" type="button" id="closeRegister" aria-label="Close registration">×</button>
+      </div>
+      <div class="ap-form-grid">
+        <label>Full name<input name="name" required maxlength="100" autocomplete="name"></label>
+        <label>Date of birth<input name="dob" type="date" required></label>
+        <label>Contact number<input name="phone" type="tel" required maxlength="30" autocomplete="tel"></label>
+        <label>Email<input name="email" type="email" autocomplete="email"></label>
+      </div>
+      <div class="ap-dialog-actions">
+        <button class="ap-btn" type="button" id="cancelRegister">Cancel</button>
+        <button class="ap-btn ap-btn-primary" type="submit">Create record</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const initialPatients = [
+      {
+            "id": "PT-1001",
+            "name": "Thandi Mokoena",
+            "initials": "TM",
+            "phone": "071 000 1201",
+            "email": "thandi.mokoena@example.com",
+            "dob": "1988-04-12",
+            "registered": "2026-08-21",
+            "verification": "Verified",
+            "status": "Active",
+            "emergencyName": "N. Mokoena",
+            "emergencyPhone": "072 000 2101"
+      },
+      {
+            "id": "PT-1002",
+            "name": "Sipho Khumalo",
+            "initials": "SK",
+            "phone": "072 000 1202",
+            "email": "sipho.khumalo@example.com",
+            "dob": "1994-11-03",
+            "registered": "2026-09-06",
+            "verification": "Pending review",
+            "status": "Active",
+            "emergencyName": "L. Khumalo",
+            "emergencyPhone": "073 000 2102"
+      },
+      {
+            "id": "PT-1003",
+            "name": "Ruth Adams",
+            "initials": "RA",
+            "phone": "073 000 1203",
+            "email": "ruth.adams@example.com",
+            "dob": "1976-06-19",
+            "registered": "2026-07-14",
+            "verification": "Verified",
+            "status": "Active",
+            "emergencyName": "J. Adams",
+            "emergencyPhone": "074 000 2103"
+      },
+      {
+            "id": "PT-1004",
+            "name": "Maria van der Merwe",
+            "initials": "MV",
+            "phone": "074 000 1204",
+            "email": "maria.vdm@example.com",
+            "dob": "1969-02-25",
+            "registered": "2026-06-29",
+            "verification": "Verified",
+            "status": "Active",
+            "emergencyName": "P. van der Merwe",
+            "emergencyPhone": "075 000 2104"
+      },
+      {
+            "id": "PT-1005",
+            "name": "Zanele Ndlovu",
+            "initials": "ZN",
+            "phone": "075 000 1205",
+            "email": "zanele.ndlovu@example.com",
+            "dob": "1999-09-10",
+            "registered": "2026-10-02",
+            "verification": "Not uploaded",
+            "status": "Active",
+            "emergencyName": "B. Ndlovu",
+            "emergencyPhone": "076 000 2105"
+      },
+      {
+            "id": "PT-1006",
+            "name": "Cameron Jacobs",
+            "initials": "CJ",
+            "phone": "076 000 1206",
+            "email": "cameron.jacobs@example.com",
+            "dob": "1981-01-08",
+            "registered": "2026-09-23",
+            "verification": "Pending review",
+            "status": "Inactive",
+            "emergencyName": "E. Jacobs",
+            "emergencyPhone": "077 000 2106"
+      }
+];
+    const storageKey = 'pweb-patient-directory-v1';
+    const get = (id) => document.getElementById(id);
+    const safe = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+
+    let patients = initialPatients;
+    try {
+      const stored = JSON.parse(localStorage.getItem(storageKey));
+      if (Array.isArray(stored)) patients = stored;
+    } catch (error) {
+      console.warn('Patient directory storage is unavailable.', error);
+    }
+
+    function persist() {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(patients));
+      } catch (error) {
+        console.warn('Unable to save patient directory.', error);
+      }
+    }
+
+    function badge(value) {
+      const name = value === 'Verified' ? 'verified' :
+        value === 'Pending review' ? 'pending' :
+        value === 'Active' ? 'active' : 'neutral';
+      return `<span class="ap-badge ${name}">${safe(value)}</span>`;
+    }
+
+    function renderPatients() {
+      const query = get('patientSearch').value.trim().toLowerCase();
+      const status = get('statusFilter').value;
+      const documents = get('documentFilter').value;
+      const visible = patients.filter((patient) => {
+        const searchText = [patient.name, patient.id, patient.phone, patient.email]
+          .join(' ').toLowerCase();
+        return searchText.includes(query) &&
+          (status === 'all' || patient.status === status) &&
+          (documents === 'all' || patient.verification === documents);
+      });
+
+      get('patientRows').innerHTML = visible.map((patient) => `
+        <tr>
+          <td>
+            <div class="ap-person">
+              <span class="ap-avatar">${safe(patient.initials)}</span>
+              <strong>${safe(patient.name)}</strong>
+            </div>
+          </td>
+          <td class="ap-number">${safe(patient.id)}</td>
+          <td><span class="ap-contact">${safe(patient.phone)}</span></td>
+          <td>${badge(patient.verification)}</td>
+          <td>${badge(patient.status)}</td>
+          <td><a class="ap-record-link" href="admin-patient-record.html?id=${encodeURIComponent(patient.id)}">Open record →</a></td>
+        </tr>
+      `).join('');
+
+      get('resultCount').textContent = `${visible.length} records`;
+      get('emptyResults').hidden = visible.length !== 0;
+      get('totalPatients').textContent = patients.length;
+      get('activePatients').textContent = patients.filter((p) => p.status === 'Active').length;
+      get('pendingPatients').textContent = patients.filter((p) => p.verification === 'Pending review').length;
+    }
+
+    ['patientSearch', 'statusFilter', 'documentFilter'].forEach((id) => {
+      get(id).addEventListener(id === 'patientSearch' ? 'input' : 'change', renderPatients);
+    });
+
+    const dialog = get('registerDialog');
+    get('addPatient').addEventListener('click', () => dialog.showModal());
+    get('closeRegister').addEventListener('click', () => dialog.close());
+    get('cancelRegister').addEventListener('click', () => dialog.close());
+
+    get('registerForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const values = new FormData(event.currentTarget);
+      const name = String(values.get('name')).trim();
+      const phone = String(values.get('phone')).trim();
+      if (!name || !phone) return;
+
+      const maxNumber = Math.max(1000, ...patients.map((p) => Number(p.id.split('-')[1]) || 0));
+      const patient = {
+        id: `PT-${maxNumber + 1}`,
+        name,
+        initials: name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase(),
+        phone,
+        email: String(values.get('email') || '').trim(),
+        dob: String(values.get('dob') || ''),
+        registered: new Date().toISOString().slice(0, 10),
+        verification: 'Not uploaded',
+        status: 'Active',
+        emergencyName: '',
+        emergencyPhone: ''
+      };
+      patients.push(patient);
+      persist();
+      dialog.close();
+      window.location.href = `admin-patient-record.html?id=${encodeURIComponent(patient.id)}`;
+    });
+
+    const menuButton = document.querySelector('.adm-doc-nav .burger');
+    const menuLinks = document.getElementById('dw-nav-links');
+
+    if (menuButton && menuLinks) {
+      menuButton.addEventListener('click', () => {
+        const isOpen = menuLinks.classList.toggle('open');
+        menuButton.classList.toggle('open', isOpen);
+        document.querySelector('.adm-doc-nav').classList.toggle('open', isOpen);
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    renderPatients();
+  })();
+  </script>
+</body>
+</html>

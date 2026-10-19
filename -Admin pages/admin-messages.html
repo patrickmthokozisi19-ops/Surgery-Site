@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Messages | Pweb Administration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../admin-home-font-fixed.css">
+  <link rel="stylesheet" href="../admin-messages.css">
+</head>
+<body class="dw dw-light adm msg">
+  <a class="msg-skip" href="#main">Skip to content</a>
+<header class="nav nav-slim dw-nav adm-doc-nav">
+ <div class="tNav">
+  <a class="Emegerncy_contact" href="tel:+27000000000">
+   <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+   <span class="number">
+    Reception desk: 000 000 0000
+   </span>
+  </a>
+  <div class="t-nav-btns">
+   <div class="seach-box">
+    <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+    <span class="searchtext">
+     Search patients
+    </span>
+    <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+   </div>
+   <div class="Pweb_login">
+    <a class="login" href="logout.html">
+     <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+     <span class="loginText">
+      Sign out
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <div class="bNav">
+  <a class="logoNbackBtn" href="index.html">
+   <!--Redirects Home-->
+   <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+   <div class="logo">
+    <img alt="" class="logoPGN" src="../src/ThePwebLogo.png"/>
+   </div>
+  </a>
+  <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+   <span>
+   </span>
+   <span>
+   </span>
+   <span>
+   </span>
+  </button>
+  <nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links">
+   <a class="" href="admin-home.html">
+    Home
+   </a>
+   <a class="" href="admin-calendar.html">
+    Calendar
+   </a>
+   <a class="" href="admin-bookings.html">
+    Bookings
+   </a>
+   <a class="" href="admin-patients.html">
+    Patients
+   </a>
+   <a class="" href="admin-specialists.html">
+    Specialists
+   </a>
+   <a aria-current="page" class="is-current" href="admin-messages.html">
+    Messages
+   </a>
+   <a class="" href="admin-reports.html">
+    Reports
+   </a>
+   <a class="" href="admin-settings.html">
+    Settings
+   </a>
+   <a class="navBtn" href="admin-bookings.html">
+    New booking
+   </a>
+  </nav>
+ </div>
+</header>
+
+  <main class="msg-main" id="main">
+    <div class="msg-heading">
+      <div>
+        <p class="msg-eyebrow">PRACTICE COMMUNICATIONS</p>
+        <h1>Messages</h1>
+        <p>Prepare patient communications, manage reusable templates and review drafts.</p>
+      </div>
+      <button class="msg-button primary" id="newMessage" type="button">+ New message</button>
+    </div>
+
+    <div class="msg-stats" aria-label="Communication summary">
+      <div class="msg-stat"><span>Saved drafts</span><strong id="draftCount">0</strong></div>
+      <div class="msg-stat"><span>Message templates</span><strong id="templateCount">0</strong></div>
+      <div class="msg-stat"><span>Prepared messages</span><strong id="preparedCount">0</strong></div>
+    </div>
+
+    <div class="msg-layout">
+      <aside class="msg-sidebar" aria-label="Message sections">
+        <h2>Workspace</h2>
+        <button class="msg-side active" data-view="compose" type="button">Compose <span>↗</span></button>
+        <button class="msg-side" data-view="drafts" type="button">Drafts <span id="sideDrafts">0</span></button>
+        <button class="msg-side" data-view="prepared" type="button">Prepared <span id="sidePrepared">0</span></button>
+        <button class="msg-side" data-view="templates" type="button">Templates <span id="sideTemplates">0</span></button>
+        <div class="msg-sidebar-note">
+          <strong>Communication policy</strong>
+          <p>Use the minimum necessary patient information. Avoid medical details in ordinary SMS or email.</p>
+        </div>
+      </aside>
+
+      <section class="msg-panel" id="composeView" aria-labelledby="composeTitle">
+        <div class="msg-panel-heading">
+          <div>
+            <p class="msg-eyebrow">NEW COMMUNICATION</p>
+            <h2 id="composeTitle">Compose a message</h2>
+          </div>
+          <button class="msg-button subtle" id="resetComposer" type="button">Clear form</button>
+        </div>
+        <form id="messageForm">
+          <div class="msg-fields two">
+            <label>Recipient name <input id="recipient" name="recipient" placeholder="e.g. Patient name" maxlength="100" autocomplete="off" required></label>
+            <label>Destination <input id="destination" name="destination" placeholder="Phone number or email address" maxlength="150" autocomplete="off" required></label>
+          </div>
+          <div class="msg-fields two">
+            <label>Channel
+              <select id="channel" name="channel">
+                <option value="SMS">SMS</option>
+                <option value="Email">Email</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="All">All channels</option>
+              </select>
+            </label>
+            <label>Start from template
+              <select id="templatePicker" name="templatePicker">
+                <option value="">Write a custom message</option>
+              </select>
+            </label>
+          </div>
+          <label class="msg-field">Subject <input id="subject" name="subject" maxlength="150" placeholder="Appointment reminder"></label>
+          <label class="msg-field">Message
+            <textarea id="messageBody" name="messageBody" rows="9" maxlength="3000" placeholder="Write your message here..." required></textarea>
+          </label>
+          <div class="msg-helper">
+            <span id="charCount">0 characters</span>
+            <span>Template placeholders: {patient_name}, {date}, {time}, {specialist}, {practice_name}</span>
+          </div>
+          <p class="msg-feedback" id="composeFeedback" role="status" aria-live="polite"></p>
+          <div class="msg-actions">
+            <button class="msg-button" id="saveDraft" type="button">Save draft</button>
+            <button class="msg-button" id="copyMessage" type="button">Copy message</button>
+            <button class="msg-button primary" id="prepareMessage" type="submit">Mark prepared</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="msg-panel" id="listView" hidden aria-labelledby="listTitle">
+        <div class="msg-panel-heading">
+          <div>
+            <p class="msg-eyebrow" id="listEyebrow">SAVED COMMUNICATIONS</p>
+            <h2 id="listTitle">Drafts</h2>
+          </div>
+          <input type="search" id="listSearch" placeholder="Search messages" aria-label="Search saved messages">
+        </div>
+        <div id="messageList" class="msg-items"></div>
+      </section>
+
+      <section class="msg-panel" id="templatesView" hidden aria-labelledby="templatesTitle">
+        <div class="msg-panel-heading">
+          <div>
+            <p class="msg-eyebrow">REUSABLE MESSAGES</p>
+            <h2 id="templatesTitle">Templates</h2>
+          </div>
+          <button class="msg-button primary" id="newTemplate" type="button">+ New template</button>
+        </div>
+        <div class="msg-template-layout">
+          <div id="templateList" class="msg-items" aria-label="Saved templates"></div>
+          <form id="templateForm" class="msg-template-editor">
+            <h3 id="templateEditorTitle">Edit template</h3>
+            <input type="hidden" id="templateId">
+            <label>Template name <input id="templateName" maxlength="90" required></label>
+            <label>Category
+              <select id="templateCategory">
+                <option>Appointments</option>
+                <option>Registration</option>
+                <option>Follow-up</option>
+                <option>General</option>
+              </select>
+            </label>
+            <label>Subject <input id="templateSubject" maxlength="150"></label>
+            <label>Message <textarea id="templateBody" rows="9" maxlength="3000" required></textarea></label>
+            <p class="msg-feedback" id="templateFeedback" role="status"></p>
+            <div class="msg-actions">
+              <button class="msg-button danger" id="deleteTemplate" type="button">Delete</button>
+              <button class="msg-button primary" type="submit">Save template</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script>
+
+    (() => {
+      'use strict';
+
+      const $ = (id) => document.getElementById(id);
+      const STORAGE_KEY = 'pweb-admin-messages-v1';
+
+      const starterTemplates = [
+        { id: 't1', name: 'Appointment confirmation', category: 'Appointments', subject: 'Appointment confirmed', body: 'Hello {patient_name}, your appointment at {practice_name} with {specialist} is confirmed for {date} at {time}. Please contact reception if you need assistance.' },
+        { id: 't2', name: 'Appointment reminder', category: 'Appointments', subject: 'Appointment reminder', body: 'Hello {patient_name}, this is a reminder of your appointment at {practice_name} on {date} at {time}. Please contact reception if you need to reschedule.' },
+        { id: 't3', name: 'Rescheduling notice', category: 'Appointments', subject: 'Appointment schedule update', body: 'Hello {patient_name}, we need to update your appointment at {practice_name}. Please contact reception to arrange a suitable time.' },
+        { id: 't4', name: 'Registration information', category: 'Registration', subject: 'Registration information', body: 'Hello {patient_name}, please contact {practice_name} reception regarding the information needed for your registration. Do not send identity documents by reply unless an approved secure channel has been arranged.' },
+        { id: 't5', name: 'Follow-up booking', category: 'Follow-up', subject: 'Follow-up appointment', body: 'Hello {patient_name}, please contact {practice_name} reception to arrange your follow-up appointment. Thank you.' },
+        { id: 't6', name: 'General office notice', category: 'General', subject: 'Notice from {practice_name}', body: 'Hello {patient_name}, we have an update from {practice_name}. Please contact reception for further information.' }
+      ];
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          if (saved && Array.isArray(saved.templates) && Array.isArray(saved.messages)) return saved;
+        } catch (error) {
+          console.warn('Could not read saved messages.', error);
+        }
+        return { templates: starterTemplates, messages: [] };
+      };
+
+      let state = loadState();
+      let editingMessageId = null;
+      let activeView = 'compose';
+
+      const saveState = () => {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          return true;
+        } catch {
+          $('composeFeedback').textContent = 'Unable to save in this browser.';
+          return false;
+        }
+      };
+
+      const uid = () => crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+      const formatDate = (value) => new Date(value).toLocaleString('en-ZA', { dateStyle: 'medium', timeStyle: 'short' });
+
+      const el = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      };
+
+      const setView = (view) => {
+        activeView = view;
+        $('composeView').hidden = view !== 'compose';
+        $('listView').hidden = !['drafts', 'prepared'].includes(view);
+        $('templatesView').hidden = view !== 'templates';
+
+        document.querySelectorAll('.msg-side').forEach((button) => {
+          button.classList.toggle('active', button.dataset.view === view);
+        });
+
+        if (view === 'drafts' || view === 'prepared') {
+          $('listTitle').textContent = view === 'drafts' ? 'Drafts' : 'Prepared messages';
+          $('listEyebrow').textContent = view === 'drafts' ? 'WORK IN PROGRESS' : 'READY FOR DELIVERY';
+          renderMessages();
+        }
+
+        if (view === 'templates') renderTemplates();
+      };
+
+      const updateCounts = () => {
+        const drafts = state.messages.filter((item) => item.status === 'draft').length;
+        const prepared = state.messages.filter((item) => item.status === 'prepared').length;
+        $('draftCount').textContent = $('sideDrafts').textContent = drafts;
+        $('preparedCount').textContent = $('sidePrepared').textContent = prepared;
+        $('templateCount').textContent = $('sideTemplates').textContent = state.templates.length;
+      };
+
+      const renderTemplatePicker = () => {
+        const current = $('templatePicker').value;
+        $('templatePicker').replaceChildren(new Option('Write a custom message', ''));
+        state.templates.forEach((item) => $('templatePicker').add(new Option(item.name, item.id)));
+        if (state.templates.some((item) => item.id === current)) $('templatePicker').value = current;
+      };
+
+      const clearComposer = () => {
+        $('messageForm').reset();
+        editingMessageId = null;
+        $('composeTitle').textContent = 'Compose a message';
+        $('composeFeedback').textContent = '';
+        $('charCount').textContent = '0 characters';
+      };
+
+      const collectMessage = (status) => ({
+        id: editingMessageId || uid(),
+        recipient: $('recipient').value.trim(),
+        destination: $('destination').value.trim(),
+        channel: $('channel').value,
+        subject: $('subject').value.trim(),
+        body: $('messageBody').value.trim(),
+        status,
+        updatedAt: new Date().toISOString()
+      });
+
+      const storeMessage = (status) => {
+        if (!$('messageForm').reportValidity()) return;
+        const item = collectMessage(status);
+        const index = state.messages.findIndex((saved) => saved.id === item.id);
+        if (index === -1) state.messages.push(item);
+        else state.messages[index] = item;
+
+        if (!saveState()) return;
+        editingMessageId = item.id;
+        updateCounts();
+        $('composeFeedback').textContent = status === 'draft'
+          ? 'Draft saved in this browser.'
+          : 'Message marked prepared. It has not been sent.';
+      };
+
+      const openMessage = (id) => {
+        const item = state.messages.find((entry) => entry.id === id);
+        if (!item) return;
+        editingMessageId = item.id;
+        $('recipient').value = item.recipient;
+        $('destination').value = item.destination;
+        $('channel').value = item.channel;
+        $('subject').value = item.subject;
+        $('messageBody').value = item.body;
+        $('templatePicker').value = '';
+        $('composeTitle').textContent = 'Edit message';
+        $('charCount').textContent = `${item.body.length} characters`;
+        $('composeFeedback').textContent = '';
+        setView('compose');
+      };
+
+      const renderMessages = () => {
+        const query = $('listSearch').value.toLowerCase().trim();
+        const list = $('messageList');
+        list.replaceChildren();
+
+        const items = state.messages
+          .filter((item) => item.status === activeView)
+          .filter((item) => [item.recipient, item.destination, item.subject, item.body].some((value) => value.toLowerCase().includes(query)))
+          .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+
+        if (!items.length) {
+          list.append(el('p', 'msg-empty', activeView === 'drafts' ? 'No saved drafts found.' : 'No prepared messages found.'));
+          return;
+        }
+
+        items.forEach((item) => {
+          const card = el('article', 'msg-item');
+          const details = el('div', 'msg-item-copy');
+          details.append(
+            el('strong', '', item.subject || '(No subject)'),
+            el('span', '', `${item.recipient} · ${item.channel} · ${formatDate(item.updatedAt)}`),
+            el('p', '', item.body)
+          );
+          const actions = el('div', 'msg-item-actions');
+          const edit = el('button', 'msg-button', 'Open');
+          edit.type = 'button';
+          edit.addEventListener('click', () => openMessage(item.id));
+          const remove = el('button', 'msg-button subtle', 'Delete');
+          remove.type = 'button';
+          remove.addEventListener('click', () => {
+            if (!confirm('Delete this saved message?')) return;
+            state.messages = state.messages.filter((entry) => entry.id !== item.id);
+            saveState();
+            updateCounts();
+            renderMessages();
+          });
+          actions.append(edit, remove);
+          card.append(details, actions);
+          list.append(card);
+        });
+      };
+
+      const selectTemplate = (id) => {
+        const item = state.templates.find((template) => template.id === id);
+        if (!item) return;
+        $('templateId').value = item.id;
+        $('templateName').value = item.name;
+        $('templateCategory').value = item.category;
+        $('templateSubject').value = item.subject;
+        $('templateBody').value = item.body;
+        $('templateEditorTitle').textContent = 'Edit template';
+        $('deleteTemplate').hidden = false;
+        $('templateFeedback').textContent = '';
+      };
+
+      const newTemplate = () => {
+        $('templateForm').reset();
+        $('templateId').value = '';
+        $('templateEditorTitle').textContent = 'New template';
+        $('deleteTemplate').hidden = true;
+        $('templateFeedback').textContent = '';
+        $('templateName').focus();
+      };
+
+      const renderTemplates = () => {
+        const list = $('templateList');
+        const selected = $('templateId').value;
+        list.replaceChildren();
+
+        state.templates.forEach((item) => {
+          const button = el('button', `msg-template-card${item.id === selected ? ' selected' : ''}`);
+          button.type = 'button';
+          button.append(el('strong', '', item.name), el('span', '', item.category), el('p', '', item.body));
+          button.addEventListener('click', () => {
+            selectTemplate(item.id);
+            renderTemplates();
+          });
+          list.append(button);
+        });
+
+        if (!state.templates.length) list.append(el('p', 'msg-empty', 'No templates saved.'));
+        else if (!state.templates.some((item) => item.id === selected)) selectTemplate(state.templates[0].id);
+      };
+
+      document.querySelectorAll('.msg-side').forEach((button) => {
+        button.addEventListener('click', () => setView(button.dataset.view));
+      });
+
+      $('newMessage').addEventListener('click', () => {
+        clearComposer();
+        setView('compose');
+        $('recipient').focus();
+      });
+
+      $('resetComposer').addEventListener('click', clearComposer);
+      $('saveDraft').addEventListener('click', () => storeMessage('draft'));
+
+      $('messageForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        storeMessage('prepared');
+      });
+
+      $('messageBody').addEventListener('input', () => {
+        $('charCount').textContent = `${$('messageBody').value.length} characters`;
+      });
+
+  $('channel').addEventListener('change', () => {
+  const channel = $('channel').value;
+
+  $('subject').closest('label').hidden =
+    channel === 'SMS' || channel === 'WhatsApp';
+});
+
+      $('templatePicker').addEventListener('change', () => {
+        const template = state.templates.find((item) => item.id === $('templatePicker').value);
+        if (!template) return;
+        $('subject').value = template.subject;
+        $('messageBody').value = template.body;
+        $('charCount').textContent = `${template.body.length} characters`;
+      });
+
+      $('copyMessage').addEventListener('click', async () => {
+        const body = $('messageBody').value;
+        if (!body.trim()) {
+          $('composeFeedback').textContent = 'Write a message before copying.';
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(body);
+          $('composeFeedback').textContent = 'Message text copied.';
+        } catch {
+          $('composeFeedback').textContent = 'Copy is unavailable in this browser.';
+        }
+      });
+
+      $('listSearch').addEventListener('input', renderMessages);
+      $('newTemplate').addEventListener('click', newTemplate);
+
+      $('templateForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!$('templateForm').reportValidity()) return;
+
+        const id = $('templateId').value || uid();
+        const item = {
+          id,
+          name: $('templateName').value.trim(),
+          category: $('templateCategory').value,
+          subject: $('templateSubject').value.trim(),
+          body: $('templateBody').value.trim()
+        };
+        const index = state.templates.findIndex((template) => template.id === id);
+        if (index < 0) state.templates.push(item);
+        else state.templates[index] = item;
+
+        if (!saveState()) {
+          $('templateFeedback').textContent = 'Unable to save in this browser.';
+          return;
+        }
+        $('templateId').value = id;
+        $('templateFeedback').textContent = 'Template saved.';
+        updateCounts();
+        renderTemplatePicker();
+        renderTemplates();
+      });
+
+      $('deleteTemplate').addEventListener('click', () => {
+        const id = $('templateId').value;
+        if (!id || !confirm('Delete this template?')) return;
+        state.templates = state.templates.filter((item) => item.id !== id);
+        saveState();
+        updateCounts();
+        renderTemplatePicker();
+        $('templateId').value = '';
+        renderTemplates();
+      });
+
+      const burger = document.querySelector('.adm-doc-nav .burger');
+      const navLinks = $('dw-nav-links');
+
+      if (burger && navLinks) {
+        burger.addEventListener('click', () => {
+          const open = navLinks.classList.toggle('open');
+          burger.classList.toggle('open', open);
+          document.querySelector('.adm-doc-nav').classList.toggle('open', open);
+          burger.setAttribute('aria-expanded', String(open));
+          burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        });
+      }
+
+      renderTemplatePicker();
+      updateCounts();
+      selectTemplate(state.templates[0].id);
+      $('subject').closest('label').hidden = true;
+    })();
+
+  </script>
+</body>
+</html>
