@@ -7729,7 +7729,6 @@ html[data-theme="dark"] body.settings-page .settings-app {
 }}
 
 
-
 @layer ClientDashboard {
   .client-dashboard {
     --ad-bg: #F5F7FA;
@@ -7762,23 +7761,9 @@ html[data-theme="dark"] body.settings-page .settings-app {
       flex-direction: column;
       overflow: hidden;
       transition: width .25s ease;
+      padding-top: 24px;
 
-      &:hover, &:focus-within { width: 238px; box-shadow: 10px 0 30px rgba(23,32,51,.06); 
-        .client-brand {
-          .client-logo {
-            display: block;
-          }}}
-
-      .client-brand {
-        min-height: 106px;
-        padding: 24px 10px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-
-        a { display: flex; align-items: center; min-width: 0; }
-        .client-logo { display: none; width: 9rem; max-width: none; height: auto; max-height: 58px; object-fit: contain; border-radius: 12px; }
-      }
+      &:hover, &:focus-within { width: 238px; box-shadow: 10px 0 30px rgba(23,32,51,.06); }
 
       .client-nav, .client-nav-bottom { display: grid; gap: 6px; padding: 0 12px; }
       .client-nav-bottom { margin-top: auto; margin-bottom: 22px; }
@@ -7810,18 +7795,57 @@ html[data-theme="dark"] body.settings-page .settings-app {
     .client-topbar {
       min-height: 82px;
       padding: 15px clamp(20px, 3.5vw, 50px);
-      background: var(--ad-panel);
-      border-bottom: 1px solid var(--ad-line);
+      background: var(--ad-primary);
+      border-bottom: 1px solid #475569;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
 
-      .client-topbar-title { display: grid; gap: 3px; strong { font-size: 16px; } }
-      .client-topbar-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .14em; color: var(--ad-muted); }
-      .client-topbar-actions { display: flex; align-items: center; gap: 20px; }
-      .client-header-icon, .client-account { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; }
-      .client-header-img { width: 22px; height: 22px; object-fit: contain; }
+      .client-topbar-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 19px;
+        min-width: 0;
+      }
+      .client-topbar-logo {
+        display: block;
+        width: 9rem;
+        max-width: 100%;
+        max-height: 52px;
+        object-fit: contain;
+        padding: 5px;
+        border-radius: 1.1rem;
+  
+      }
+      .client-topbar-divider {
+        height: 27px;
+        width: 1px;
+        flex: 0 0 1px;
+        background: #94a3b8;
+      }
+      .client-topbar-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #f8fafc;
+        white-space: nowrap;
+      }
+      .client-user-avatar {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        border-radius: 50%;
+        background: #475569;
+        border: 1px solid #94a3b8;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .03em;
+        transition: background .2s ease;
+        &:hover, &:focus-visible { background: #64748b; }
+      }
     }
     .client-main { width: min(1320px, calc(100% - 64px)); margin: 0 auto; padding: 36px 0 80px; }
     .client-intro {
@@ -7885,7 +7909,6 @@ html[data-theme="dark"] body.settings-page .settings-app {
     @media (max-width: 720px) {
       --client-sidebar-width: 58px;
       .client-sidebar {
-        .client-brand { padding: 18px 7px; min-height: 80px; .client-logo { width: 9rem; } }
         .client-nav, .client-nav-bottom { padding: 0 6px; }
         .client-nav-link { padding: 0 10px; }
         &:hover, &:focus-within { width: 218px; }
@@ -7894,10 +7917,15 @@ html[data-theme="dark"] body.settings-page .settings-app {
       .client-intro { flex-direction: column; align-items: flex-start; }
       .client-summary { grid-template-columns: 1fr; gap: 10px; }
       .client-panel { padding: 18px; }
-      .client-header-search-label, .client-account span { display: none; }
+      .client-topbar { gap: 10px; padding-inline: 14px; }
+      .client-topbar-brand { gap: 10px; }
+      .client-topbar-logo { width: 6.5rem; }
+      .client-topbar-name { font-size: 12px; }
+      .client-user-avatar { width: 36px; height: 36px; flex-basis: 36px; }
     }
   }
 }
+
 
 
 

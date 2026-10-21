@@ -8,16 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="client-dashboard.css">
 </head>
 <body>
   <div class="client-dashboard" id="clientDashboard">
     <aside class="client-sidebar" id="clientSidebar" aria-label="Patient navigation">
-      <div class="client-brand">
-        <a href="dashboard.html" aria-label="Pweb patient dashboard">
-          <img src="../src/ThePwebLogo.png" alt="Pweb" class="client-logo">
-        </a>
-      </div>
       <nav class="client-nav" aria-label="Main navigation">
         <a href="dashboard.html" class="client-nav-link active" aria-current="page" title="Dashboard"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></span><span class="client-nav-label">Dashboard</span></a>
         <a href="appointments.html" class="client-nav-link" title="Appointments"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 15h3"/></svg></span><span class="client-nav-label">Appointments</span></a>
@@ -29,8 +23,12 @@
     </aside>
     <div class="client-shell">
       <header class="client-topbar">
-        <div class="client-topbar-title"><span class="client-topbar-eyebrow">PATIENT PORTAL</span><strong>Dashboard</strong></div>
-        <div class="client-topbar-actions"><a href="messages.html" class="client-header-icon" aria-label="Messages"><img src="../public/search-finder-magnifying-glass-svgrepo-com.svg" alt="" class="client-header-img" id="searchIcon"><span class="client-header-search-label">Search</span></a><a href="settings.html" class="client-account" aria-label="Account settings"><img src="../public/account-avatar-person-svgrepo-com.svg" alt="" class="client-header-img"><span>My account</span></a></div>
+        <a href="dashboard.html" class="client-topbar-brand" aria-label="Pweb Patient Portal home">
+          <img src="../src/ThePwebLogo.png" alt="Pweb" class="client-topbar-logo">
+          <span class="client-topbar-divider" aria-hidden="true"></span>
+          <span class="client-topbar-name">Patient Portal</span>
+        </a>
+        <a href="settings.html" class="client-user-avatar" aria-label="Account settings" title="Account settings"><span id="clientUserInitials">AM</span></a>
       </header>
       <main class="client-main">
         <section class="client-intro"><div><p class="client-overline">OVERVIEW</p><h1>Good morning</h1><p>Manage your appointments and stay up to date with your care.</p></div><a class="client-button client-button-primary" href="appointments.html">Book an appointment <span aria-hidden="true">→</span></a></section>
