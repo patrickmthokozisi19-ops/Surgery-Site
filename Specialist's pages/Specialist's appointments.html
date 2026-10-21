@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Specialist's Appointments | Pweb
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="../style.css" rel="stylesheet"/>
+  <link href="../admin-home-font-fixed.css" rel="stylesheet"/>
+  <link href="../specialist-appointments.css" rel="stylesheet"/>
+ </head>
+ <body class="dw dw-light adm sa-page">
+  <a class="skip" href="#main">
+   Skip to content
+  </a>
+  <header class="nav nav-slim dw-nav adm-doc-nav">
+   <div class="tNav">
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+     <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+     <span class="number">
+      Reception desk: 000 000 0000
+     </span>
+    </a>
+    <div class="t-nav-btns">
+     <div class="seach-box">
+      <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or appointments" class="searchPlaceHolder" placeholder="Search patients or appointments" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+     </div>
+     <div class="Pweb_login">
+      <a class="login" href="logout.html">
+       <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+       <span class="loginText">
+        Sign out
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="bNav">
+    <a class="logoNbackBtn" href="Specialist's Home.html">
+     <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+     <div class="logo">
+      <img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+     </div>
+    </a>
+    <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <nav aria-label="Specialist workspace" class="bnavLinks" id="dw-nav-links">
+     <a class="" href="Specialist's Home.html">
+      Home
+     </a>
+     <a class="" href="Specialist's calendar.html">
+      Calendar
+     </a>
+     <a aria-current="page" class="is-current" href="Specialist's appointments.html">
+      Appointments
+     </a>
+     <a class="" href="Specialist's patients.html">
+      My Patients
+     </a>
+     <a class="" href="Specialist's messages.html">
+      Messages
+     </a>
+     <a class="" href="Specialist's reports.html">
+      Reports
+     </a>
+     <a class="" href="Specialist's settings.html">
+      Settings
+     </a>
+     <a class="navBtn" href="Specialist's calendar.html">
+      Manage availability
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="adm-main specialist-main" id="main">
+   <section class="sa-intro">
+    <div>
+     <p class="sa-eyebrow">
+      SPECIALIST WORKSPACE / APPOINTMENTS
+     </p>
+     <h1>
+      My appointments
+     </h1>
+     <p>
+      Review your consultations, update appointment progress and prepare for upcoming visits.
+     </p>
+    </div>
+    <div class="sa-actions">
+     <a class="sa-btn sa-btn-primary" href="Specialist's calendar.html">
+      Open calendar
+     </a>
+    </div>
+   </section>
+   <section aria-label="Appointment summary" class="sa-metrics">
+    <article class="sa-card sa-metric">
+     <span>
+      Today's appointments
+     </span>
+     <strong id="sa-today">
+      0
+     </strong>
+     <small>
+      All statuses
+     </small>
+    </article>
+    <article class="sa-card sa-metric">
+     <span>
+      Upcoming
+     </span>
+     <strong id="sa-upcoming">
+      0
+     </strong>
+     <small>
+      Confirmed and pending
+     </small>
+    </article>
+    <article class="sa-card sa-metric">
+     <span>
+      Completed
+     </span>
+     <strong id="sa-completed">
+      0
+     </strong>
+     <small>
+      Recorded consultations
+     </small>
+    </article>
+    <article class="sa-card sa-metric">
+     <span>
+      Needs attention
+     </span>
+     <strong id="sa-attention">
+      0
+     </strong>
+     <small>
+      Pending requests
+     </small>
+    </article>
+   </section>
+   <section class="sa-card sa-list-panel">
+    <div class="sa-list-heading">
+     <div>
+      <h2>
+       Appointment list
+      </h2>
+      <p>
+       Search, filter and review consultations assigned to you.
+      </p>
+     </div>
+     <span class="sa-count" id="sa-result-count">
+     </span>
+    </div>
+    <div class="sa-toolbar">
+     <label class="sa-search-label">
+      <svg aria-hidden="true" viewbox="0 0 24 24">
+       <circle cx="11" cy="11" r="7">
+       </circle>
+       <path d="m16 16 5 5">
+       </path>
+      </svg>
+      <input aria-label="Search appointments" id="sa-search" placeholder="Search patient, reference or visit type" type="search"/>
+     </label>
+     <label class="sa-filter-label">
+      Date
+      <select id="sa-date">
+       <option value="all">
+        All dates
+       </option>
+       <option value="today">
+        Today
+       </option>
+       <option value="week">
+        Next 7 days
+       </option>
+       <option value="past">
+        Past
+       </option>
+      </select>
+     </label>
+     <label class="sa-filter-label">
+      Status
+      <select id="sa-status">
+       <option value="all">
+        All statuses
+       </option>
+       <option value="Pending">
+        Pending
+       </option>
+       <option value="Confirmed">
+        Confirmed
+       </option>
+       <option value="Checked in">
+        Checked in
+       </option>
+       <option value="In progress">
+        In progress
+       </option>
+       <option value="Completed">
+        Completed
+       </option>
+       <option value="Cancelled">
+        Cancelled
+       </option>
+      </select>
+     </label>
+    </div>
+    <div class="sa-table-scroll">
+     <table class="sa-table">
+      <thead>
+       <tr>
+        <th>
+         Patient
+        </th>
+        <th>
+         Date &amp; time
+        </th>
+        <th>
+         Consultation
+        </th>
+        <th>
+         Duration
+        </th>
+        <th>
+         Status
+        </th>
+        <th>
+        </th>
+       </tr>
+      </thead>
+      <tbody id="sa-table-body">
+      </tbody>
+     </table>
+    </div>
+    <p class="sa-empty" hidden="" id="sa-empty">
+     No appointments match your filters.
+    </p>
+    <div class="sa-pagination">
+     <span id="sa-page-info">
+     </span>
+     <div>
+      <button class="sa-btn" id="sa-prev" type="button">
+       Previous
+      </button>
+      <button class="sa-btn" id="sa-next" type="button">
+       Next
+      </button>
+     </div>
+    </div>
+   </section>
+   <dialog aria-labelledby="sa-details-title" class="sa-dialog" id="sa-details">
+    <div class="sa-dialog-header">
+     <div>
+      <p class="sa-eyebrow">
+       APPOINTMENT DETAILS
+      </p>
+      <h2 id="sa-details-title">
+       Consultation
+      </h2>
+     </div>
+     <button aria-label="Close appointment details" class="sa-close" id="sa-close" type="button">
+      &times;
+     </button>
+    </div>
+    <div class="sa-details-grid" id="sa-details-grid">
+    </div>
+    <div class="sa-detail-section">
+     <h3>
+      Appointment status
+     </h3>
+     <p>
+      Update the visit progress for this consultation. Changes are local until the scheduling backend is connected.
+     </p>
+     <label class="sa-filter-label">
+      Status
+      <select id="sa-edit-status">
+       <option>
+        Pending
+       </option>
+       <option>
+        Confirmed
+       </option>
+       <option>
+        Checked in
+       </option>
+       <option>
+        In progress
+       </option>
+       <option>
+        Completed
+       </option>
+       <option>
+        Cancelled
+       </option>
+      </select>
+     </label>
+    </div>
+    <div class="sa-dialog-actions">
+     <button class="sa-btn" id="sa-dismiss" type="button">
+      Close
+     </button>
+     <button class="sa-btn sa-btn-primary" id="sa-save" type="button">
+      Save status
+     </button>
+    </div>
+    <p class="sa-feedback" id="sa-feedback" role="status">
+    </p>
+   </dialog>
+  </main>
+  <script>
+   (() => {
+'use strict';
+const nav = document.querySelector('.adm-doc-nav');
+const burger = nav?.querySelector('.burger');
+const links = nav?.querySelector('.bnavLinks');
+function setMenu(open) {
+ if (!nav || !burger || !links) return;
+ nav.classList.toggle('open', open);
+ nav.classList.toggle('active', open);
+ links.classList.toggle('open', open);
+ burger.setAttribute('aria-expanded', String(open));
+ burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+burger?.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+links?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+const el = id => document.getElementById(id);
+const dateKey = d => { const x = new Date(d.getTime() - d.getTimezoneOffset() * 60000); return x.toISOString().slice(0,10); };
+const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const now = new Date();
+const today = dateKey(now);
+const records = [
+ { id:'APT-2401',offset:0,time:'08:30',name:'Thandi Dlamini',type:'Initial consultation',duration:30,status:'Completed' },
+ { id:'APT-2402',offset:0,time:'10:00',name:'Sipho Nkosi',type:'Follow-up consultation',duration:45,status:'Checked in' },
+ { id:'APT-2403',offset:0,time:'13:30',name:'Lerato Maseko',type:'Pre-operative assessment',duration:60,status:'Pending' },
+ { id:'APT-2404',offset:1,time:'09:00',name:'James Khumalo',type:'Post-operative review',duration:30,status:'Confirmed' },
+ { id:'APT-2405',offset:2,time:'11:15',name:'Naledi Molefe',type:'Consultation',duration:45,status:'Confirmed' },
+ { id:'APT-2406',offset:3,time:'14:00',name:'Anele Zulu',type:'Follow-up consultation',duration:30,status:'Pending' },
+ { id:'APT-2407',offset:-1,time:'09:30',name:'Mandla Ndlovu',type:'Initial consultation',duration:45,status:'Completed' },
+ { id:'APT-2408',offset:5,time:'08:00',name:'Zanele Sithole',type:'Pre-operative assessment',duration:60,status:'Confirmed' },
+ { id:'APT-2409',offset:6,time:'11:30',name:'Palesa Mokoena',type:'Consultation',duration:30,status:'Confirmed' },
+ { id:'APT-2410',offset:-2,time:'12:00',name:'Bongani Mthembu',type:'Follow-up consultation',duration:30,status:'Cancelled' }
+].map(a => ({...a,date:dateKey(addDays(now,a.offset))}));
+const external = window.PwebSpecialistAppointmentsData;
+const appointments = Array.isArray(external?.appointments) ? external.appointments.map(x=>({...x})) : records;
+let page=0, selected=null;
+const perPage=6;
+const fmt = d => new Intl.DateTimeFormat('en-ZA',{day:'numeric',month:'short',year:'numeric'}).format(new Date(`${d}T12:00:00`));
+const node = (tag, cls, val) => { const x=document.createElement(tag); if(cls)x.className=cls; if(val!==undefined)x.textContent=String(val);return x; };
+function badge(status){ return node('span',`sa-status sa-${String(status).toLowerCase().replace(/\s+/g,'-')}`,status); }
+function filtered(){
+ const query=el('sa-search').value.toLowerCase().trim(), status=el('sa-status').value, date=el('sa-date').value;
+ return appointments.filter(a=>{
+  if(query && ![a.name,a.patientName,a.id,a.type].some(x=>String(x||'').toLowerCase().includes(query)))return false;
+  if(status!=='all' && a.status!==status)return false;
+  if(date==='today' && a.date!==today)return false;
+  if(date==='week' && !(a.date>=today && a.date<=dateKey(addDays(now,7))))return false;
+  if(date==='past' && !(a.date<today))return false;
+  return true;
+ }).sort((a,b)=>String(b.date).localeCompare(String(a.date)) || String(a.time).localeCompare(String(b.time)));
+}
+function render(){
+ el('sa-today').textContent=appointments.filter(a=>a.date===today).length;
+ el('sa-upcoming').textContent=appointments.filter(a=>a.date>=today && ['Confirmed','Pending','Checked in','In progress'].includes(a.status)).length;
+ el('sa-completed').textContent=appointments.filter(a=>a.status==='Completed').length;
+ el('sa-attention').textContent=appointments.filter(a=>a.status==='Pending').length;
+ const rows=filtered(), maxPage=Math.max(0,Math.ceil(rows.length/perPage)-1);page=Math.min(page,maxPage);
+ el('sa-result-count').textContent=`${rows.length} appointment${rows.length===1?'':'s'}`;
+ const tbody=el('sa-table-body');tbody.replaceChildren();
+ rows.slice(page*perPage,(page+1)*perPage).forEach(a=>{
+  const tr=node('tr');
+  const patient=node('td');const name=node('strong','sa-patient-name',a.name||a.patientName||'Patient');patient.append(name,node('span','sa-ref',a.id));
+  const when=node('td');when.append(node('strong','',fmt(a.date)),node('span','sa-ref',a.time||'—'));
+  const kind=node('td','',a.type||'Consultation');
+  const duration=node('td','',`${a.duration??a.durationMinutes??0} min`);
+  const state=node('td');state.append(badge(a.status||'Pending'));
+  const action=node('td');const btn=node('button','sa-view','View details');btn.type='button';btn.addEventListener('click',()=>openDetails(a));action.append(btn);
+  tr.append(patient,when,kind,duration,state,action);tbody.append(tr);
+ });
+ el('sa-empty').hidden=rows.length!==0;
+ el('sa-page-info').textContent=rows.length?`Showing ${page*perPage+1}–${Math.min(rows.length,(page+1)*perPage)} of ${rows.length}`:'0 results';
+ el('sa-prev').disabled=page===0;el('sa-next').disabled=page>=maxPage;
+}
+function openDetails(a){
+ selected=a;
+ el('sa-details-title').textContent=a.name||a.patientName||'Patient';
+ const grid=el('sa-details-grid');grid.replaceChildren();
+ [['Reference',a.id],['Date',fmt(a.date)],['Time',a.time],['Visit type',a.type],['Duration',`${a.duration??a.durationMinutes??0} minutes`],['Current status',a.status]].forEach(([label,value])=>{
+  const cell=node('div','sa-detail-field');cell.append(node('span','',label),node('strong','',value));grid.append(cell);
+ });
+ el('sa-edit-status').value=a.status||'Pending';
+ el('sa-feedback').textContent='';
+ el('sa-details').showModal();
+}
+el('sa-close').addEventListener('click',()=>el('sa-details').close());
+el('sa-dismiss').addEventListener('click',()=>el('sa-details').close());
+el('sa-save').addEventListener('click',()=>{
+ if(!selected)return;
+ selected.status=el('sa-edit-status').value;
+ el('sa-feedback').textContent='Status updated in this page. Backend saving is not yet connected.';
+ render();
+});
+['sa-search','sa-date','sa-status'].forEach(id=>el(id).addEventListener(id==='sa-search'?'input':'change',()=>{page=0;render();}));
+el('sa-prev').addEventListener('click',()=>{page--;render();});
+el('sa-next').addEventListener('click',()=>{page++;render();});
+render();
+})();
+  </script>
+ </body>
+</html>
