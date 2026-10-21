@@ -9046,7 +9046,7 @@ html[data-theme="dark"] body.settings-page .settings-app {
       .specialist-appointment-row .specialist-status { margin-left: auto; }
     }
   }
-}
+
 
 
 /* Specialist Home: Admin navigation mobile behaviour.
@@ -9117,9 +9117,115 @@ body.sp-page .specialist-demo-label {
   color: #64748B;
   font-size: 11px;
   font-weight: 700;
-}
+}}
 
-
+/* Calendar-specific styles. Admin header/navigation are inherited from
+   ../style.css and ../admin-home-font-fixed.css. */
+   @layer SpecialistCalendar {
+    .sc-page {
+      --sc-ink: #172033;
+      --sc-muted: #64748b;
+      --sc-line: #e2e8f0;
+      --sc-blue: #334155;
+      background: #f5f7fa;
+      color: var(--sc-ink);
+      font-family: "DM Sans", Arial, sans-serif;
+  
+      .adm-main { width: min(1500px, 100%); max-width: 1500px; margin: 0 auto; padding: 30px clamp(15px,3vw,45px) 55px; }
+      .sc-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+      .sc-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .11em; color: #64748b; margin: 0 0 10px; }
+      .sc-intro h1 { margin: 0 0 8px; font-size: clamp(29px,3.2vw,43px); line-height: 1.15; color: #172033; }
+      .sc-intro p:not(.sc-eyebrow) { margin: 0; color: var(--sc-muted); font-size: 14px; }
+      .sc-header-actions, .sc-controls { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+      .sc-demo { font-size: 11px; color: #64748b; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; }
+      .sc-btn, .sc-icon-btn { border: 1px solid #cbd5e1; background: #fff; color: #334155; font: inherit; font-size: 12px; font-weight: 700; border-radius: 8px; padding: 10px 13px; cursor: pointer; }
+      .sc-btn:hover, .sc-icon-btn:hover { background: #f1f5f9; }
+      .sc-btn-primary { background: #334155; border-color: #334155; color: #fff; }
+      .sc-btn-primary:hover { background: #475569; color: #fff; }
+      .sc-icon-btn { font-size: 23px; line-height: 15px; width: 35px; height: 35px; padding: 0; }
+      .sc-summary { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin-bottom: 20px; }
+      .sc-card { min-width: 0; background: #fff; border: 1px solid var(--sc-line); border-radius: 13px; padding: 20px; }
+      .sc-summary .sc-card { display: flex; flex-direction: column; gap: 10px; }
+      .sc-summary span { font-size: 12px; font-weight: 700; color: #64748b; }
+      .sc-summary strong { font-size: 31px; line-height: 1; color: #172033; }
+      .sc-summary small { color: #64748b; font-size: 11px; }
+      .sc-calendar { margin-bottom: 20px; }
+      .sc-calendar-top, .sc-section-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+      .sc-calendar-heading h2, .sc-section-heading h2 { font-size: 17px; margin: 0 0 5px; }
+      .sc-calendar-heading p, .sc-section-heading span { font-size: 12px; color: var(--sc-muted); margin: 0; }
+      .sc-switch { display: flex; gap: 3px; background: #f1f5f9; border-radius: 8px; padding: 3px; }
+      .sc-switch button { border: 0; padding: 7px 13px; border-radius: 6px; font: inherit; font-size: 12px; font-weight: 700; color: #64748b; background: transparent; cursor: pointer; }
+      .sc-switch button.selected { background: #fff; color: #172033; box-shadow: 0 1px 4px #0001; }
+      .sc-legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0 14px; color: #64748b; font-size: 11px; }
+      .sc-legend span { display: flex; align-items: center; gap: 6px; }
+      .sc-dot { width: 8px; height: 8px; display: inline-block; border-radius: 50%; }
+      .sc-dot.confirmed { background: #2563eb; }
+      .sc-dot.pending { background: #d97706; }
+      .sc-dot.completed { background: #059669; }
+      .sc-dot.blocked { background: #dc2626; }
+      .sc-calendar-body { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); border: 1px solid var(--sc-line); border-radius: 9px; overflow: hidden; }
+      .sc-weekday { background: #f1f5f9; color: #64748b; text-align: center; padding: 12px 3px; font-size: 11px; font-weight: 800; }
+      .sc-day { display: flex; flex-direction: column; text-align: left; gap: 10px; min-width: 0; min-height: 155px; padding: 11px 8px; border: 0; border-top: 1px solid var(--sc-line); border-right: 1px solid var(--sc-line); background: #fff; cursor: pointer; font: inherit; color: #172033; }
+      .sc-day:nth-child(7n) { border-right: 0; }
+      .sc-day:hover { background: #f8fafc; }
+      .sc-day.is-selected { background: #eff6ff; box-shadow: inset 0 0 0 2px #64748b; }
+      .sc-day.is-today .sc-day-number { color: #1d4ed8; font-weight: 800; }
+      .sc-day-number { font-size: 12px; font-weight: 700; }
+      .sc-day-items { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+      .sc-event { display: block; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 4px; padding: 6px 5px; font-size: 10px; background: #dbeafe; color: #1e40af; }
+      .sc-event.pending { background: #fef3c7; color: #92400e; }
+      .sc-event.completed { background: #d1fae5; color: #065f46; }
+      .sc-day-blocked { font-size: 10px; color: #991b1b; background: #fee2e2; padding: 5px; border-radius: 4px; }
+      .sc-more { font-size: 10px; color: #64748b; }
+      .sc-day-month { min-height: 90px; }
+      .sc-other-month { opacity: .45; }
+      .sc-lower { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 20px; }
+      .sc-section-heading { margin-bottom: 16px; }
+      .sc-appointment-row { display: flex; align-items: center; gap: 15px; padding: 14px 0; border-top: 1px solid var(--sc-line); }
+      .sc-appointment-row time { font-weight: 800; font-size: 12px; color: #334155; min-width: 45px; }
+      .sc-appointment-info { display: flex; flex-direction: column; flex: 1; gap: 4px; min-width: 0; }
+      .sc-appointment-info strong { font-size: 12px; }
+      .sc-appointment-info span { font-size: 11px; color: #64748b; }
+      .sc-status { font-size: 10px; font-weight: 800; border-radius: 5px; padding: 6px 8px; color: #1e40af; background: #dbeafe; }
+      .sc-status.pending { color: #92400e; background: #fef3c7; }
+      .sc-status.completed { color: #065f46; background: #d1fae5; }
+      .sc-hours-row { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid var(--sc-line); font-size: 12px; }
+      .sc-hours-row strong { font-size: 12px; color: #334155; }
+      .sc-hours-row .sc-closed { color: #94a3b8; }
+      .sc-empty, .sc-unavailable { color: #64748b; font-size: 12px; padding: 16px 0; }
+      .sc-unavailable { color: #b91c1c; }
+      .sc-note { margin: 17px 0 0; color: #64748b; font-size: 11px; line-height: 1.6; }
+      .sc-dialog { border: 1px solid #cbd5e1; border-radius: 13px; padding: 25px; width: min(420px,calc(100% - 24px)); box-shadow: 0 24px 65px #0f172a40; color: #172033; }
+      .sc-dialog::backdrop { background: #0f172a80; }
+      .sc-dialog h2 { font-size: 20px; margin: 0 0 7px; }
+      .sc-dialog p { color: #64748b; font-size: 12px; }
+      .sc-dialog label { display: block; font-size: 12px; font-weight: 700; margin: 14px 0 6px; }
+      .sc-dialog input, .sc-dialog select { display: block; width: 100%; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; background: #fff; color: #172033; font: inherit; font-size: 13px; }
+      .sc-dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+      #sc-block-error { color: #b91c1c; }
+      @media (max-width: 1050px) {
+        .sc-summary { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .sc-lower { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 650px) {
+        .adm-main { padding: 20px 12px 40px; }
+        .sc-card { padding: 13px; }
+        .sc-summary { gap: 9px; }
+        .sc-summary strong { font-size: 25px; }
+        .sc-calendar-top { align-items: stretch; }
+        .sc-controls { width: 100%; }
+        .sc-calendar-body { overflow-x: auto; }
+        .sc-weekday { font-size: 10px; }
+        .sc-day { min-height: 120px; padding: 7px 3px; }
+        .sc-day-month { min-height: 75px; }
+        .sc-event { font-size: 9px; padding: 4px 2px; }
+        .sc-appointment-row { gap: 7px; }
+        .sc-status { padding: 5px; }
+      }
+    }
+  
+  }
+  
 
 
 
