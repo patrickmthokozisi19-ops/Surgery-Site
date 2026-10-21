@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   Specialist's Patients | Pweb
+  </title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<link href="../admin-home-font-fixed.css" rel="stylesheet"/>
+<link href="../specialist-patients.css" rel="stylesheet"/>
+</head>
+<body class="dw dw-light adm spt-page">
+<a class="skip" href="#main">
+   Skip to content
+  </a>
+<header class="nav nav-slim dw-nav adm-doc-nav">
+<div class="tNav">
+<a class="Emegerncy_contact" href="tel:+27000000000">
+<img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+<span class="number">
+      Reception desk: 000 000 0000
+     </span>
+</a>
+<div class="t-nav-btns">
+<div class="seach-box">
+<img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+<span class="searchtext">
+       Search patients
+      </span>
+<input aria-label="Search patients or appointments" class="searchPlaceHolder" placeholder="Search patients or appointments" type="search"/>
+<img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+</div>
+<div class="Pweb_login">
+<a class="login" href="logout.html">
+<img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+<span class="loginText">
+        Sign out
+       </span>
+</a>
+</div>
+</div>
+</div>
+<div class="bNav">
+<a class="logoNbackBtn" href="Specialist's Home.html">
+<img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+<div class="logo">
+<img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+</div>
+</a>
+<button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav aria-label="Specialist workspace" class="bnavLinks" id="dw-nav-links">
+<a class="" href="Specialist's Home.html">
+      Home
+     </a>
+<a class="" href="Specialist's calendar.html">
+      Calendar
+     </a>
+<a class="" href="Specialist's appointments.html">
+      Appointments
+     </a>
+<a aria-current="page" class="is-current" href="Specialist's patients.html">
+      My Patients
+     </a>
+<a class="" href="Specialist's messages.html">
+      Messages
+     </a>
+<a class="" href="Specialist's reports.html">
+      Reports
+     </a>
+<a class="" href="Specialist's settings.html">
+      Settings
+     </a>
+<a class="navBtn" href="Specialist's calendar.html">
+      Manage availability
+     </a>
+</nav>
+</div>
+</header>
+<main class="adm-main specialist-main" id="main">
+<section class="spt-intro">
+<div>
+<p class="spt-eyebrow">
+      SPECIALIST WORKSPACE / PATIENTS
+     </p>
+<h1>
+      My patients
+     </h1>
+<p>
+      View patients assigned to your care, their appointments and care status.
+     </p>
+</div>
+<a class="spt-btn spt-primary" href="Specialist's appointments.html">
+     View appointments
+    </a>
+</section>
+<section aria-label="Patient overview" class="spt-stats">
+<article class="spt-card spt-stat">
+<span>
+      Assigned patients
+     </span>
+<strong id="spt-total">
+      0
+     </strong>
+<small>
+      Currently in your care
+     </small>
+</article>
+<article class="spt-card spt-stat">
+<span>
+      Active care
+     </span>
+<strong id="spt-active">
+      0
+     </strong>
+<small>
+      Ongoing consultations
+     </small>
+</article>
+<article class="spt-card spt-stat">
+<span>
+      Follow-ups due
+     </span>
+<strong id="spt-followups">
+      0
+     </strong>
+<small>
+      Upcoming reviews
+     </small>
+</article>
+<article class="spt-card spt-stat">
+<span>
+      New referrals
+     </span>
+<strong id="spt-referrals">
+      0
+     </strong>
+<small>
+      Awaiting first consultation
+     </small>
+</article>
+</section>
+<section class="spt-card spt-panel">
+<div class="spt-panel-heading">
+<div>
+<h2>
+       Patient directory
+      </h2>
+<p>
+       Only patients assigned to the signed-in specialist should appear here.
+      </p>
+</div>
+<span class="spt-count" id="spt-count">
+</span>
+</div>
+<div class="spt-tools">
+<label class="spt-search">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="7">
+</circle>
+<path d="m16 16 5 5">
+</path>
+</svg>
+<input aria-label="Search assigned patients" id="spt-search" placeholder="Search patient name or reference" type="search"/>
+</label>
+<label class="spt-select">
+      Care status
+      <select id="spt-status">
+<option value="all">
+        All statuses
+       </option>
+<option value="Active">
+        Active
+       </option>
+<option value="Follow-up due">
+        Follow-up due
+       </option>
+<option value="New referral">
+        New referral
+       </option>
+<option value="Discharged">
+        Discharged
+       </option>
+</select>
+</label>
+<label class="spt-select">
+      Sort
+      <select id="spt-sort">
+<option value="name">
+        Name A–Z
+       </option>
+<option value="recent">
+        Recent visit
+       </option>
+<option value="upcoming">
+        Next appointment
+       </option>
+</select>
+</label>
+</div>
+<div class="spt-table-wrap">
+<table class="spt-table">
+<thead>
+<tr>
+<th>
+         Patient
+        </th>
+<th>
+         Reference
+        </th>
+<th>
+         Care status
+        </th>
+<th>
+         Last visit
+        </th>
+<th>
+         Next appointment
+        </th>
+<th>
+</th>
+</tr>
+</thead>
+<tbody id="spt-body">
+</tbody>
+</table>
+</div>
+<p class="spt-empty" hidden="" id="spt-empty">
+     No patients match your search.
+    </p>
+<div class="spt-pagination">
+<span id="spt-range">
+</span>
+<div>
+<button class="spt-btn" id="spt-prev" type="button">
+       Previous
+      </button>
+<button class="spt-btn" id="spt-next" type="button">
+       Next
+      </button>
+</div>
+</div>
+</section>
+<dialog aria-labelledby="spt-dialog-title" class="spt-dialog" id="spt-dialog">
+<div class="spt-dialog-heading">
+<div>
+<p class="spt-eyebrow">
+       PATIENT OVERVIEW
+      </p>
+<h2 id="spt-dialog-title">
+       Patient
+      </h2>
+<p id="spt-dialog-ref">
+</p>
+</div>
+<button aria-label="Close patient overview" class="spt-close" id="spt-close" type="button">
+      ×
+     </button>
+</div>
+<div class="spt-detail-grid" id="spt-detail-grid">
+</div>
+<div class="spt-care-note">
+<h3>
+      Care summary
+     </h3>
+<p id="spt-care-text">
+</p>
+<p class="spt-disclaimer">Visit history shown here uses fictional information. Real clinical notes require authorised access and secure backend storage.</p>
+</div><section aria-label="Patient visit history" class="spt-visit-section"><button aria-controls="spt-visit-panel" aria-expanded="false" class="spt-visit-toggle" id="spt-visit-toggle" type="button"><span class="spt-visit-toggle-label"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg><span>Visit history <span class="spt-visit-count" id="spt-visit-count"></span></span></span><svg aria-hidden="true" class="spt-chevron" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></button><div class="spt-visit-panel" hidden="" id="spt-visit-panel"><div class="spt-visit-list" id="spt-visit-list"></div></div></section>
+<div class="spt-dialog-actions">
+<button class="spt-btn" id="spt-dismiss" type="button">
+      Close
+     </button>
+<a class="spt-btn spt-primary" href="Specialist's appointments.html">
+      Appointments
+     </a>
+</div>
+</dialog>
+</main>
+<script>
+   (() => {
+ 'use strict';
+ const nav=document.querySelector('.adm-doc-nav'),burger=nav?.querySelector('.burger'),links=nav?.querySelector('.bnavLinks');
+ function setMenu(open){if(!nav||!burger||!links)return;nav.classList.toggle('open',open);nav.classList.toggle('active',open);links.classList.toggle('open',open);burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?'Close menu':'Open menu');}
+ burger?.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
+ links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+ const $=id=>document.getElementById(id);
+ const day=(n)=>{const d=new Date();d.setDate(d.getDate()+n);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
+ // Fictional UI placeholders only; backend must enforce hospital membership,
+ // specialist assignment and patient-specific access controls on every request.
+ const sample=[
+  {id:'PT-1042',name:'Thandi Dlamini',status:'Active',lastVisit:day(-2),nextVisit:day(14),care:'Ongoing consultation and review.'},
+  {id:'PT-1043',name:'Sipho Nkosi',status:'Follow-up due',lastVisit:day(-21),nextVisit:day(1),care:'Follow-up consultation scheduled.'},
+  {id:'PT-1044',name:'Lerato Maseko',status:'New referral',lastVisit:null,nextVisit:day(3),care:'Awaiting first specialist consultation.'},
+  {id:'PT-1045',name:'James Khumalo',status:'Active',lastVisit:day(-8),nextVisit:day(9),care:'Continuing specialist care.'},
+  {id:'PT-1046',name:'Naledi Molefe',status:'Follow-up due',lastVisit:day(-30),nextVisit:day(5),care:'Review appointment required.'},
+  {id:'PT-1047',name:'Anele Zulu',status:'Active',lastVisit:day(-5),nextVisit:day(11),care:'Regular follow-up planned.'},
+  {id:'PT-1048',name:'Mandla Ndlovu',status:'Discharged',lastVisit:day(-45),nextVisit:null,care:'Care episode completed.'},
+  {id:'PT-1049',name:'Zanele Sithole',status:'New referral',lastVisit:null,nextVisit:day(7),care:'Awaiting initial assessment.'},
+  {id:'PT-1050',name:'Palesa Mokoena',status:'Active',lastVisit:day(-12),nextVisit:day(20),care:'Continuing specialist care.'}
+ ];
+
+ // Fictional visit history keyed to patient reference. Real data may be supplied as
+ // p.visits: [{date,type,reason,outcome,notes,status}]. Never store clinical data here.
+ const sampleVisits={
+  'PT-1042':[{date:day(-2),type:'Post-operative review',reason:'Follow-up after surgery',outcome:'Recovery progressing as expected',status:'Completed',notes:'Recovery reviewed. Follow-up care discussed.'},{date:day(-16),type:'Surgical consultation',reason:'Persistent abdominal discomfort',outcome:'Further investigation recommended',status:'Completed',notes:'Symptoms assessed and investigations discussed.'},{date:day(-38),type:'Initial assessment',reason:'Referral for abdominal pain',outcome:'Diagnostic tests requested',status:'Completed',notes:'Referral reviewed and initial assessment completed.'}],
+  'PT-1043':[{date:day(-21),type:'Follow-up consultation',reason:'Review of previous symptoms',outcome:'Further follow-up scheduled',status:'Completed',notes:'Progress reviewed during consultation.'},{date:day(-55),type:'Initial consultation',reason:'Specialist assessment',outcome:'Follow-up advised',status:'Completed'}],
+  'PT-1045':[{date:day(-8),type:'Post-operative review',reason:'Recovery assessment',outcome:'Care plan continued',status:'Completed'},{date:day(-32),type:'Pre-operative consultation',reason:'Surgical assessment',outcome:'Procedure discussed',status:'Completed'}],
+  'PT-1046':[{date:day(-30),type:'Consultation',reason:'Clinical review',outcome:'Follow-up required',status:'Completed'}],
+  'PT-1047':[{date:day(-5),type:'Follow-up consultation',reason:'Ongoing care review',outcome:'Next review planned',status:'Completed'}],
+  'PT-1048':[{date:day(-45),type:'Final review',reason:'Treatment completion assessment',outcome:'Discharged from care',status:'Completed'}],
+  'PT-1050':[{date:day(-12),type:'Specialist consultation',reason:'Ongoing clinical assessment',outcome:'Review appointment arranged',status:'Completed'}]
+ };
+ const supplied=window.PwebSpecialistPatientsData;
+ const patients=Array.isArray(supplied?.patients)?supplied.patients:sample;
+ const fmt=value=>value?new Intl.DateTimeFormat('en-ZA',{day:'numeric',month:'short',year:'numeric'}).format(new Date(value+'T12:00:00')):'—';
+ const node=(tag,cls,value)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(value!==undefined)e.textContent=String(value);return e};
+ let page=0;const pageSize=6;
+ const statusClass=value=>'spt-'+String(value||'Active').toLowerCase().replace(/\s+/g,'-');
+ function filtered(){const q=$('spt-search').value.trim().toLowerCase(),status=$('spt-status').value,sort=$('spt-sort').value;
+ const result=patients.filter(p=>(status==='all'||p.status===status)&&(!q||[p.name,p.id].some(v=>String(v||'').toLowerCase().includes(q))));
+ result.sort((a,b)=>sort==='recent'?String(b.lastVisit||'').localeCompare(String(a.lastVisit||'')):sort==='upcoming'?String(a.nextVisit||'9999').localeCompare(String(b.nextVisit||'9999')):String(a.name).localeCompare(String(b.name)));
+ return result;}
+ function render(){
+ $('spt-total').textContent=patients.length;
+ $('spt-active').textContent=patients.filter(p=>p.status==='Active').length;
+ $('spt-followups').textContent=patients.filter(p=>p.status==='Follow-up due').length;
+ $('spt-referrals').textContent=patients.filter(p=>p.status==='New referral').length;
+ const items=filtered();page=Math.min(page,Math.max(0,Math.ceil(items.length/pageSize)-1));$('spt-count').textContent=`${items.length} patients`;
+ const body=$('spt-body');body.replaceChildren();items.slice(page*pageSize,(page+1)*pageSize).forEach(p=>{
+  const tr=node('tr');const patient=node('td');const avatar=node('span','spt-avatar',String(p.name||'P').split(' ').map(x=>x[0]).slice(0,2).join(''));const name=node('strong','spt-name',p.name||'Patient');patient.append(avatar,name);
+  const status=node('td');status.append(node('span','spt-status '+statusClass(p.status),p.status||'Active'));
+  const action=node('td');const button=node('button','spt-view','View profile');button.type='button';button.addEventListener('click',()=>openProfile(p));action.append(button);
+  tr.append(patient,node('td','',p.id||'—'),status,node('td','',fmt(p.lastVisit)),node('td','',fmt(p.nextVisit)),action);body.append(tr);
+ });
+ $('spt-empty').hidden=items.length!==0;$('spt-range').textContent=items.length?`Showing ${page*pageSize+1}–${Math.min((page+1)*pageSize,items.length)} of ${items.length}`:'0 results';$('spt-prev').disabled=page===0;$('spt-next').disabled=(page+1)*pageSize>=items.length;
+ }
+ function openProfile(p){$('spt-dialog-title').textContent=p.name||'Patient';$('spt-dialog-ref').textContent=p.id||'';
+ const grid=$('spt-detail-grid');grid.replaceChildren();[['Patient reference',p.id],['Care status',p.status],['Last visit',fmt(p.lastVisit)],['Next appointment',fmt(p.nextVisit)]].forEach(([label,value])=>{const item=node('div','spt-detail');item.append(node('span','',label),node('strong','',value||'—'));grid.append(item)});
+ $('spt-care-text').textContent=p.care||'No care summary available.';
+ const visits=Array.isArray(p.visits)?p.visits:(Array.isArray(supplied?.visitsByPatient?.[p.id])?supplied.visitsByPatient[p.id]:(sampleVisits[p.id]||[]));
+ const list=$('spt-visit-list');list.replaceChildren();
+ $('spt-visit-count').textContent=`(${visits.length})`;
+ $('spt-visit-panel').hidden=true;$('spt-visit-toggle').setAttribute('aria-expanded','false');
+ if(!visits.length){list.append(node('p','spt-no-visits','No previous visits recorded for this patient.'));}
+ visits.slice().sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))).forEach(v=>{
+  const item=node('article','spt-visit-item');
+  const top=node('div','spt-visit-top');top.append(node('strong','',v.type||'Consultation'),node('span','spt-visit-date',fmt(v.date)));
+  item.append(top);
+  if(v.status)item.append(node('span','spt-visit-badge',v.status));
+  [['Reason',v.reason],['Outcome',v.outcome]].forEach(([label,value])=>{if(value){const row=node('p','spt-visit-meta');row.append(node('strong','',label+': '),document.createTextNode(String(value)));item.append(row);}});
+  if(v.notes){const detail=node('details','spt-visit-notes');detail.append(node('summary','','View consultation notes'),node('p','',v.notes));item.append(detail);}
+  list.append(item);
+ });
+ $('spt-dialog').showModal();}
+ $('spt-visit-toggle').addEventListener('click',()=>{const panel=$('spt-visit-panel');panel.hidden=!panel.hidden;$('spt-visit-toggle').setAttribute('aria-expanded',String(!panel.hidden));});
+ $('spt-close').addEventListener('click',()=>$('spt-dialog').close());$('spt-dismiss').addEventListener('click',()=>$('spt-dialog').close());
+ $('spt-search').addEventListener('input',()=>{page=0;render()});['spt-status','spt-sort'].forEach(id=>$(id).addEventListener('change',()=>{page=0;render()}));
+ $('spt-prev').addEventListener('click',()=>{page--;render()});$('spt-next').addEventListener('click',()=>{page++;render()});render();
+})();
+  </script>
+</body>
+</html>
