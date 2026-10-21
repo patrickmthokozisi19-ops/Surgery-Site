@@ -129,7 +129,7 @@
         Personal information
        </h2>
        <p>
-        Details shown to your practice administrators and, where enabled, patients.
+        View your details and edit individual fields, just like a social profile. Changes are saved in this browser, not on a hospital server.
        </p>
       </div>
       <form class="ss-form" data-save="profile">
@@ -142,38 +142,131 @@
           Specialist profile
          </strong>
          <p>
-          Profile photo upload will be available after backend integration.
+          Select Edit next to a profile detail, then Save to keep your changes on this device.
          </p>
         </div>
        </div>
-       <div class="ss-grid">
-        <label>
-         First name
-         <input autocomplete="given-name" maxlength="80" name="firstName" required="" value="Sam"/>
+       <div class="ss-edit-list">
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           First name
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-firstName" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-firstName">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input autocomplete="given-name" class="ss-inline-input" disabled="" id="ss-field-firstName" maxlength="80" name="firstName" required="" value="Sam"/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label>
-         Last name
-         <input autocomplete="family-name" maxlength="80" name="lastName" required="" value="Mokoena"/>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Last name
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-lastName" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-lastName">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input autocomplete="family-name" class="ss-inline-input" disabled="" id="ss-field-lastName" maxlength="80" name="lastName" required="" value="Mokoena"/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label>
-         Email address
-         <input autocomplete="email" name="email" required="" type="email" value="sam.mokoena@example.com"/>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Email address
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-email" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-email">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input autocomplete="email" class="ss-inline-input" disabled="" id="ss-field-email" name="email" required="" type="email" value="sam.mokoena@example.com"/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label>
-         Contact number
-         <input autocomplete="tel" name="phone" type="tel" value="+27 11 000 0000"/>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Contact number
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-phone" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-phone">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input autocomplete="tel" class="ss-inline-input" disabled="" id="ss-field-phone" name="phone" type="tel" value="+27 11 000 0000"/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label class="ss-wide">
-         Professional biography
-         <textarea maxlength="700" name="bio" rows="4">Specialist committed to patient-centred surgical care.</textarea>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Professional biography
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-bio" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-bio">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <textarea class="ss-inline-input" disabled="" id="ss-field-bio" maxlength="700" name="bio" rows="4">Specialist committed to patient-centred surgical care.</textarea>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
        </div>
        <div class="ss-form-actions">
         <span class="ss-feedback" role="status">
+         Select Edit beside any detail to update it.
         </span>
-        <button class="ss-btn ss-primary" type="submit">
-         Save profile
-        </button>
        </div>
       </form>
      </section>
@@ -187,57 +280,146 @@
        </p>
       </div>
       <form class="ss-form" data-save="practice">
-       <div class="ss-grid">
-        <label>
-         Specialty
-         <select name="specialty">
-          <option>
-           General Surgery
-          </option>
-          <option>
-           Orthopaedic Surgery
-          </option>
-          <option>
-           Gynaecology
-          </option>
-          <option>
-           Paediatrics
-          </option>
-          <option>
-           ENT
-          </option>
-          <option>
-           Urology
-          </option>
-          <option>
-           Ophthalmology
-          </option>
-          <option>
-           Neurosurgery
-          </option>
-          <option>
-           Cardiothoracic Surgery
-          </option>
-          <option>
-           Plastic Surgery
-          </option>
-         </select>
+       <div class="ss-edit-list">
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Specialty
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-specialty" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-specialty">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <select class="ss-inline-input" disabled="" id="ss-field-specialty" name="specialty">
+           <option>
+            General Surgery
+           </option>
+           <option>
+            Orthopaedic Surgery
+           </option>
+           <option>
+            Gynaecology
+           </option>
+           <option>
+            Paediatrics
+           </option>
+           <option>
+            ENT
+           </option>
+           <option>
+            Urology
+           </option>
+           <option>
+            Ophthalmology
+           </option>
+           <option>
+            Neurosurgery
+           </option>
+           <option>
+            Cardiothoracic Surgery
+           </option>
+           <option>
+            Plastic Surgery
+           </option>
+          </select>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label>
-         Professional registration number
-         <input name="registration" placeholder="Enter registration number" value=""/>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Professional registration number
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-registration" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-registration">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input class="ss-inline-input" disabled="" id="ss-field-registration" name="registration" placeholder="Enter registration number" value=""/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label>
-         Practice / hospital
-         <input disabled="" value="Riverside Surgical Centre"/>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Practice / hospital
+          </span>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-practice-/-hospital">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input class="ss-inline-input" disabled="" id="ss-field-practice-/-hospital" value="Riverside Surgical Centre"/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label>
-         Account role
-         <input disabled="" value="Specialist"/>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Account role
+          </span>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-account-role">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input class="ss-inline-input" disabled="" id="ss-field-account-role" value="Specialist"/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
-        <label class="ss-wide">
-         Consultation room
-         <input name="room" value="Consultation Room 4"/>
+        <label class="ss-edit-row">
+         <div class="ss-edit-row-head">
+          <span class="ss-edit-label">
+           Consultation room
+          </span>
+          <button class="ss-edit-btn" data-edit="ss-field-room" type="button">
+           Edit
+          </button>
+         </div>
+         <div class="ss-field-display" data-display="ss-field-room">
+         </div>
+         <div class="ss-field-editor" hidden="">
+          <input class="ss-inline-input" disabled="" id="ss-field-room" name="room" value="Consultation Room 4"/>
+          <div class="ss-inline-actions">
+           <button class="ss-btn ss-inline-cancel" type="button">
+            Cancel
+           </button>
+           <button class="ss-btn ss-primary ss-inline-save" type="button">
+            Save
+           </button>
+          </div>
+         </div>
         </label>
        </div>
        <div class="ss-info">
@@ -245,10 +427,8 @@
        </div>
        <div class="ss-form-actions">
         <span class="ss-feedback" role="status">
+         Select Edit beside any detail to update it.
         </span>
-        <button class="ss-btn ss-primary" type="submit">
-         Save details
-        </button>
        </div>
       </form>
      </section>
@@ -419,10 +599,103 @@ const tabs=[...document.querySelectorAll('.ss-tab')];function show(id){tabs.forE
 tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.tab)));
 const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],host=document.getElementById('ss-days');
 days.forEach((day,i)=>{const row=document.createElement('div');row.className='ss-day';const check=document.createElement('label');check.className='ss-day-check';const toggle=document.createElement('input');toggle.type='checkbox';toggle.name='day'+i;toggle.checked=i<5;const text=document.createElement('span');text.textContent=day;check.append(toggle,text);const hours=document.createElement('div');hours.className='ss-day-times';for(const [label,val,suffix] of [['From','08:00','start'],['To','17:00','end']]){const wrap=document.createElement('label');wrap.textContent=label;const input=document.createElement('input');input.type='time';input.name='day'+i+suffix;input.value=val;input.disabled=!toggle.checked;wrap.append(input);hours.append(wrap);}toggle.addEventListener('change',()=>hours.querySelectorAll('input').forEach(input=>input.disabled=!toggle.checked));row.append(check,hours);host.append(row);});
-const prefix='pweb-specialist-settings-preview-v1:';
-document.querySelectorAll('form[data-save]').forEach(form=>{const key=prefix+form.dataset.save;try{const saved=JSON.parse(sessionStorage.getItem(key)||'null');if(saved&&typeof saved==='object'){[...form.elements].forEach(input=>{if(!input.name||!(input.name in saved))return;if(input.type==='checkbox')input.checked=!!saved[input.name];else if(!input.disabled)input.value=String(saved[input.name]);});form.querySelectorAll('.ss-day').forEach(row=>{const toggle=row.querySelector('input[type=checkbox]');row.querySelectorAll('input[type=time]').forEach(input=>input.disabled=!toggle.checked);});}}catch{}
-form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const data={};[...form.elements].forEach(input=>{if(!input.name)return;data[input.name]=input.type==='checkbox'?input.checked:input.value;});if(form.dataset.save==='hours'){for(let i=0;i<7;i++){if(data['day'+i]&&data['day'+i+'start']>=data['day'+i+'end']){form.querySelector('.ss-feedback').textContent='End time must be later than start time for '+days[i]+'.';return;}}}
-try{sessionStorage.setItem(key,JSON.stringify(data));form.querySelector('.ss-feedback').textContent='Saved for this browser tab only. Backend syncing is not connected.';}catch{form.querySelector('.ss-feedback').textContent='Changes are visible on this page but could not be saved.';}});});
+
+const prefix='pweb-specialist-settings-v2:';
+function updateAvatar(){
+ const first=document.querySelector('[name="firstName"]')?.value.trim()||'';
+ const last=document.querySelector('[name="lastName"]')?.value.trim()||'';
+ const avatar=document.querySelector('.ss-avatar');
+ if(avatar)avatar.textContent=((first[0]||'S')+(last[0]||'')).toUpperCase();
+}
+function renderDisplay(row){
+ const input=row.querySelector('.ss-inline-input');
+ const output=row.querySelector('.ss-field-display');
+ if(!input||!output)return;
+ const value=input.tagName==='SELECT'?input.options[input.selectedIndex]?.text:input.value.trim();
+ output.textContent=value||'Not provided';
+ output.classList.toggle('ss-placeholder',!value);
+}
+function saveData(form){
+ const data={};
+ [...form.elements].forEach(input=>{
+  if(!input.name)return;
+  data[input.name]=input.type==='checkbox'?input.checked:input.value;
+ });
+ try{
+  localStorage.setItem(prefix+form.dataset.save,JSON.stringify(data));
+  return true;
+ }catch{return false;}
+}
+document.querySelectorAll('form[data-save]').forEach(form=>{
+ const key=prefix+form.dataset.save;
+ try{
+  const saved=JSON.parse(localStorage.getItem(key)||'null');
+  if(saved&&typeof saved==='object'){
+   [...form.elements].forEach(input=>{
+    if(!input.name||!(input.name in saved))return;
+    if(input.type==='checkbox')input.checked=!!saved[input.name];
+    else if(!input.hasAttribute('readonly'))input.value=String(saved[input.name]);
+   });
+  }
+ }catch{}
+ form.querySelectorAll('.ss-day').forEach(row=>{
+  const toggle=row.querySelector('input[type=checkbox]');
+  row.querySelectorAll('input[type=time]').forEach(input=>input.disabled=!toggle.checked);
+ });
+ form.querySelectorAll('.ss-edit-row').forEach(row=>{
+  const input=row.querySelector('.ss-inline-input');
+  const edit=row.querySelector('.ss-edit-btn');
+  const editor=row.querySelector('.ss-field-editor');
+  if(!input||!edit||!editor)return;
+  renderDisplay(row);
+  let previous=input.value;
+  function close(){
+   input.disabled=true;
+   editor.hidden=true;
+   row.querySelector('.ss-field-display').hidden=false;
+   edit.hidden=false;
+  }
+  edit.addEventListener('click',()=>{
+   // Keep only one editor open at a time.
+   form.querySelectorAll('.ss-inline-cancel').forEach(cancel=>{
+    if(!cancel.closest('.ss-edit-row').querySelector('.ss-field-editor').hidden)cancel.click();
+   });
+   previous=input.value;
+   input.disabled=false;
+   editor.hidden=false;
+   row.querySelector('.ss-field-display').hidden=true;
+   edit.hidden=true;
+   input.focus();
+  });
+  row.querySelector('.ss-inline-cancel').addEventListener('click',()=>{
+   input.value=previous;close();
+  });
+  row.querySelector('.ss-inline-save').addEventListener('click',()=>{
+   if(!input.checkValidity()){input.reportValidity();return;}
+   const saved=saveData(form);
+   renderDisplay(row);close();updateAvatar();
+   const feedback=form.querySelector('.ss-feedback');
+   if(feedback)feedback.textContent=saved?'Changes saved on this device.':'Could not save changes on this device.';
+  });
+ });
+ form.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!form.reportValidity())return;
+  const data={};
+  [...form.elements].forEach(input=>{if(input.name)data[input.name]=input.type==='checkbox'?input.checked:input.value;});
+  if(form.dataset.save==='hours'){
+   for(let i=0;i<7;i++){
+    if(data['day'+i]&&data['day'+i+'start']>=data['day'+i+'end']){
+     form.querySelector('.ss-feedback').textContent='End time must be later than start time for '+days[i]+'.';
+     return;
+    }
+   }
+  }
+  const saved=saveData(form);
+  form.querySelector('.ss-feedback').textContent=saved?'Preferences saved on this device. Administrator approval is still required for schedule changes.':'Could not save preferences.';
+ });
+});
+updateAvatar();
 })();
   </script>
  </body>

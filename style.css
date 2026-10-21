@@ -9619,9 +9619,29 @@ body.sp-page .specialist-demo-label {
     }
     
     @media(max-width:900px){body.ss-page .adm-doc-nav .bNav{position:relative;}body.ss-page .adm-doc-nav .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;position:relative;z-index:102;}body.ss-page .adm-doc-nav .burger span{display:block;width:23px;height:2px;background:#fff;border-radius:3px;transition:transform .2s,opacity .2s;}body.ss-page .adm-doc-nav .bNav .bnavLinks{display:none;}body.ss-page .adm-doc-nav.open .bNav .bnavLinks,body.ss-page .adm-doc-nav.active .bNav .bnavLinks,body.ss-page .adm-doc-nav .bNav .bnavLinks.open{display:flex;flex-direction:column;align-items:stretch;position:absolute;top:100%;left:0;right:0;width:100%;padding:14px;background:#334155;border:1px solid #475569;z-index:101;box-shadow:0 18px 30px #0f172a38;}body.ss-page .adm-doc-nav.open .burger span:first-child{transform:translateY(7px) rotate(45deg);}body.ss-page .adm-doc-nav.open .burger span:nth-child(2){opacity:0;}body.ss-page .adm-doc-nav.open .burger span:last-child{transform:translateY(-7px) rotate(-45deg);}}
-   } 
+    
+    
+    /* Individual field editing — Facebook-style view / edit / save */
+    .ss-page .ss-edit-list{display:flex;flex-direction:column;gap:0;width:100%}
+    .ss-page .ss-edit-row{display:block;width:100%;padding:17px 0;border-bottom:1px solid #e2e8f0}
+    .ss-page .ss-edit-row:last-child{border-bottom:0}
+    .ss-page .ss-edit-row-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:7px}
+    .ss-page .ss-edit-label{font-size:12px;font-weight:800;color:#64748b}
+    .ss-page .ss-edit-btn{background:transparent;border:1px solid #cbd5e1;border-radius:7px;padding:7px 15px;color:#334155;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+    .ss-page .ss-edit-btn:hover{background:#f1f5f9}
+    .ss-page .ss-field-display{font-size:14px;color:#172033;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+    .ss-page .ss-field-display.ss-placeholder{color:#94a3b8;font-style:italic}
+    .ss-page .ss-field-editor[hidden],.ss-page .ss-field-display[hidden],.ss-page .ss-edit-btn[hidden]{display:none!important}
+    .ss-page .ss-field-editor{margin-top:10px;max-width:650px}
+    .ss-page .ss-field-editor .ss-inline-input{display:block;box-sizing:border-box;width:100%;max-width:100%;background:#fff;color:#172033;border:1px solid #94a3b8;border-radius:8px;padding:11px 12px;font:inherit;font-size:13px}
+    .ss-page .ss-field-editor textarea.ss-inline-input{min-height:115px;resize:vertical}
+    .ss-page .ss-field-editor .ss-inline-input:focus{outline:2px solid #2563eb;outline-offset:2px}
+    .ss-page .ss-inline-actions{display:flex;gap:9px;justify-content:flex-start;margin-top:11px}
+    .ss-page .ss-edit-list + .ss-form-actions{margin-top:16px}
+    @media(max-width:550px){.ss-page .ss-edit-row{padding:14px 0}.ss-page .ss-inline-actions .ss-btn{flex:1}}
+    
 
-
+  }
 @layer Theme-mode {
   /* PWEB — ADMIN DARK MODE | 19 OCT 2026
    One stylesheet, NO @layer: normal unlayered declarations override
