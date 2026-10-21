@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Specialist's Settings | Pweb
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="../style.css" rel="stylesheet"/>
+  <link href="../admin-home-font-fixed.css" rel="stylesheet"/>
+  <link href="../specialist-settings.css" rel="stylesheet"/>
+ </head>
+ <body class="dw dw-light adm ss-page">
+  <a class="skip" href="#main">
+   Skip to content
+  </a>
+  <header class="nav nav-slim dw-nav adm-doc-nav">
+   <div class="tNav">
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+     <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+     <span class="number">
+      Reception desk: 000 000 0000
+     </span>
+    </a>
+    <div class="t-nav-btns">
+     <div class="seach-box">
+      <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or appointments" class="searchPlaceHolder" placeholder="Search patients or appointments" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+     </div>
+     <div class="Pweb_login">
+      <a class="login" href="logout.html">
+       <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+       <span class="loginText">
+        Sign out
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="bNav">
+    <a class="logoNbackBtn" href="Specialist's Home.html">
+     <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+     <div class="logo">
+      <img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+     </div>
+    </a>
+    <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <nav aria-label="Specialist workspace" class="bnavLinks" id="dw-nav-links">
+     <a class="" href="Specialist's Home.html">
+      Home
+     </a>
+     <a class="" href="Specialist's calendar.html">
+      Calendar
+     </a>
+     <a class="" href="Specialist's appointments.html">
+      Appointments
+     </a>
+     <a class="" href="Specialist's patients.html">
+      My Patients
+     </a>
+     <a class="" href="Specialist's messages.html">
+      Messages
+     </a>
+     <a class="" href="Specialist's reports.html">
+      Reports
+     </a>
+     <a aria-current="page" class="is-current" href="Specialist's settings.html">
+      Settings
+     </a>
+     <a class="navBtn" href="Specialist's calendar.html">
+      Manage availability
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="adm-main specialist-main" id="main">
+   <section class="ss-intro">
+    <div>
+     <p class="ss-eyebrow">
+      SPECIALIST WORKSPACE / SETTINGS
+     </p>
+     <h1>
+      Settings
+     </h1>
+     <p>
+      Manage your professional profile, availability and notification preferences.
+     </p>
+    </div>
+    <span class="ss-role">
+     Specialist account
+    </span>
+   </section>
+   <div class="ss-layout">
+    <nav aria-label="Settings sections" class="ss-tabs">
+     <button aria-selected="true" class="ss-tab is-active" data-tab="profile" type="button">
+      Profile details
+     </button>
+     <button aria-selected="false" class="ss-tab" data-tab="practice" type="button">
+      Practice &amp; specialty
+     </button>
+     <button aria-selected="false" class="ss-tab" data-tab="hours" type="button">
+      Working hours
+     </button>
+     <button aria-selected="false" class="ss-tab" data-tab="notifications" type="button">
+      Notifications
+     </button>
+     <button aria-selected="false" class="ss-tab" data-tab="security" type="button">
+      Account &amp; security
+     </button>
+    </nav>
+    <div class="ss-content">
+     <section class="ss-panel" id="ss-profile">
+      <div class="ss-panel-head">
+       <h2>
+        Personal information
+       </h2>
+       <p>
+        Details shown to your practice administrators and, where enabled, patients.
+       </p>
+      </div>
+      <form class="ss-form" data-save="profile">
+       <div class="ss-avatar-row">
+        <div aria-hidden="true" class="ss-avatar">
+         SM
+        </div>
+        <div>
+         <strong>
+          Specialist profile
+         </strong>
+         <p>
+          Profile photo upload will be available after backend integration.
+         </p>
+        </div>
+       </div>
+       <div class="ss-grid">
+        <label>
+         First name
+         <input autocomplete="given-name" maxlength="80" name="firstName" required="" value="Sam"/>
+        </label>
+        <label>
+         Last name
+         <input autocomplete="family-name" maxlength="80" name="lastName" required="" value="Mokoena"/>
+        </label>
+        <label>
+         Email address
+         <input autocomplete="email" name="email" required="" type="email" value="sam.mokoena@example.com"/>
+        </label>
+        <label>
+         Contact number
+         <input autocomplete="tel" name="phone" type="tel" value="+27 11 000 0000"/>
+        </label>
+        <label class="ss-wide">
+         Professional biography
+         <textarea maxlength="700" name="bio" rows="4">Specialist committed to patient-centred surgical care.</textarea>
+        </label>
+       </div>
+       <div class="ss-form-actions">
+        <span class="ss-feedback" role="status">
+        </span>
+        <button class="ss-btn ss-primary" type="submit">
+         Save profile
+        </button>
+       </div>
+      </form>
+     </section>
+     <section class="ss-panel" hidden="" id="ss-practice">
+      <div class="ss-panel-head">
+       <h2>
+        Practice &amp; specialty
+       </h2>
+       <p>
+        Professional credentials and the institution linked to your account.
+       </p>
+      </div>
+      <form class="ss-form" data-save="practice">
+       <div class="ss-grid">
+        <label>
+         Specialty
+         <select name="specialty">
+          <option>
+           General Surgery
+          </option>
+          <option>
+           Orthopaedic Surgery
+          </option>
+          <option>
+           Gynaecology
+          </option>
+          <option>
+           Paediatrics
+          </option>
+          <option>
+           ENT
+          </option>
+          <option>
+           Urology
+          </option>
+          <option>
+           Ophthalmology
+          </option>
+          <option>
+           Neurosurgery
+          </option>
+          <option>
+           Cardiothoracic Surgery
+          </option>
+          <option>
+           Plastic Surgery
+          </option>
+         </select>
+        </label>
+        <label>
+         Professional registration number
+         <input name="registration" placeholder="Enter registration number" value=""/>
+        </label>
+        <label>
+         Practice / hospital
+         <input disabled="" value="Riverside Surgical Centre"/>
+        </label>
+        <label>
+         Account role
+         <input disabled="" value="Specialist"/>
+        </label>
+        <label class="ss-wide">
+         Consultation room
+         <input name="room" value="Consultation Room 4"/>
+        </label>
+       </div>
+       <div class="ss-info">
+        Hospital membership, role assignments and verified professional credentials must be managed or approved by authorised administrators. Changes here do not grant access to another institution.
+       </div>
+       <div class="ss-form-actions">
+        <span class="ss-feedback" role="status">
+        </span>
+        <button class="ss-btn ss-primary" type="submit">
+         Save details
+        </button>
+       </div>
+      </form>
+     </section>
+     <section class="ss-panel" hidden="" id="ss-hours">
+      <div class="ss-panel-head">
+       <h2>
+        Working hours
+       </h2>
+       <p>
+        Set your preferred recurring consultation hours. Leave and exceptional closures require admin approval in the Calendar.
+       </p>
+      </div>
+      <form class="ss-form" data-save="hours">
+       <div class="ss-days" id="ss-days">
+       </div>
+       <div class="ss-info">
+        These are proposed regular hours for your profile. They do not immediately change the shared hospital booking calendar. Administrator approval or scheduling integration is required.
+       </div>
+       <div class="ss-form-actions">
+        <a class="ss-btn" href="Specialist's calendar.html">
+         View calendar &amp; approvals
+        </a>
+        <span class="ss-feedback" role="status">
+        </span>
+        <button class="ss-btn ss-primary" type="submit">
+         Save preferred hours
+        </button>
+       </div>
+      </form>
+     </section>
+     <section class="ss-panel" hidden="" id="ss-notifications">
+      <div class="ss-panel-head">
+       <h2>
+        Notification preferences
+       </h2>
+       <p>
+        Choose the events you would like Pweb to notify you about.
+       </p>
+      </div>
+      <form class="ss-form" data-save="notifications">
+       <div class="ss-toggle-list">
+        <label class="ss-toggle">
+         <span>
+          <strong>
+           New appointments
+          </strong>
+          <small>
+           Receive an alert when an appointment is assigned to you.
+          </small>
+         </span>
+         <input checked="" name="newAppointments" type="checkbox"/>
+        </label>
+        <label class="ss-toggle">
+         <span>
+          <strong>
+           Appointment changes
+          </strong>
+          <small>
+           Be notified about rescheduling or cancellations.
+          </small>
+         </span>
+         <input checked="" name="appointmentChanges" type="checkbox"/>
+        </label>
+        <label class="ss-toggle">
+         <span>
+          <strong>
+           New messages
+          </strong>
+          <small>
+           Alerts for patient and practice messages.
+          </small>
+         </span>
+         <input checked="" name="newMessages" type="checkbox"/>
+        </label>
+        <label class="ss-toggle">
+         <span>
+          <strong>
+           Leave request decisions
+          </strong>
+          <small>
+           Admin approval or rejection of your time-off requests.
+          </small>
+         </span>
+         <input checked="" name="leaveDecisions" type="checkbox"/>
+        </label>
+        <label class="ss-toggle">
+         <span>
+          <strong>
+           Weekly summary
+          </strong>
+          <small>
+           A digest of upcoming consultations and scheduled hours.
+          </small>
+         </span>
+         <input name="weeklySummary" type="checkbox"/>
+        </label>
+       </div>
+       <div class="ss-form-actions">
+        <span class="ss-feedback" role="status">
+        </span>
+        <button class="ss-btn ss-primary" type="submit">
+         Save preferences
+        </button>
+       </div>
+      </form>
+     </section>
+     <section class="ss-panel" hidden="" id="ss-security">
+      <div class="ss-panel-head">
+       <h2>
+        Account &amp; security
+       </h2>
+       <p>
+        Protect access to patient and practice information.
+       </p>
+      </div>
+      <div class="ss-security-row">
+       <div>
+        <strong>
+         Password
+        </strong>
+        <p>
+         Change your password through your hospital's secure identity service.
+        </p>
+       </div>
+       <span class="ss-chip">
+        Backend required
+       </span>
+      </div>
+      <div class="ss-security-row">
+       <div>
+        <strong>
+         Two-factor authentication
+        </strong>
+        <p>
+         Use an additional verification step when signing in.
+        </p>
+       </div>
+       <span class="ss-chip">
+        Backend required
+       </span>
+      </div>
+      <div class="ss-security-row">
+       <div>
+        <strong>
+         Active sessions
+        </strong>
+        <p>
+         Review and revoke sessions when the authentication service is connected.
+        </p>
+       </div>
+       <span class="ss-chip">
+        Backend required
+       </span>
+      </div>
+      <div class="ss-info">
+       For safety, this page does not collect passwords or simulate account security changes. Clinical records must be protected with server-side access controls and audit logs.
+      </div>
+     </section>
+    </div>
+   </div>
+  </main>
+  <script>
+   (()=>{'use strict';
+const nav=document.querySelector('.adm-doc-nav'),burger=nav?.querySelector('.burger'),links=nav?.querySelector('.bnavLinks');
+function menu(open){nav?.classList.toggle('open',open);nav?.classList.toggle('active',open);links?.classList.toggle('open',open);burger?.setAttribute('aria-expanded',String(open));burger?.setAttribute('aria-label',open?'Close menu':'Open menu');}
+burger?.addEventListener('click',()=>menu(!nav.classList.contains('open')));links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu(false)));document.addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
+const tabs=[...document.querySelectorAll('.ss-tab')];function show(id){tabs.forEach(t=>{const active=t.dataset.tab===id;t.classList.toggle('is-active',active);t.setAttribute('aria-selected',String(active));document.getElementById('ss-'+t.dataset.tab).hidden=!active;});}
+tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.tab)));
+const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],host=document.getElementById('ss-days');
+days.forEach((day,i)=>{const row=document.createElement('div');row.className='ss-day';const check=document.createElement('label');check.className='ss-day-check';const toggle=document.createElement('input');toggle.type='checkbox';toggle.name='day'+i;toggle.checked=i<5;const text=document.createElement('span');text.textContent=day;check.append(toggle,text);const hours=document.createElement('div');hours.className='ss-day-times';for(const [label,val,suffix] of [['From','08:00','start'],['To','17:00','end']]){const wrap=document.createElement('label');wrap.textContent=label;const input=document.createElement('input');input.type='time';input.name='day'+i+suffix;input.value=val;input.disabled=!toggle.checked;wrap.append(input);hours.append(wrap);}toggle.addEventListener('change',()=>hours.querySelectorAll('input').forEach(input=>input.disabled=!toggle.checked));row.append(check,hours);host.append(row);});
+const prefix='pweb-specialist-settings-preview-v1:';
+document.querySelectorAll('form[data-save]').forEach(form=>{const key=prefix+form.dataset.save;try{const saved=JSON.parse(sessionStorage.getItem(key)||'null');if(saved&&typeof saved==='object'){[...form.elements].forEach(input=>{if(!input.name||!(input.name in saved))return;if(input.type==='checkbox')input.checked=!!saved[input.name];else if(!input.disabled)input.value=String(saved[input.name]);});form.querySelectorAll('.ss-day').forEach(row=>{const toggle=row.querySelector('input[type=checkbox]');row.querySelectorAll('input[type=time]').forEach(input=>input.disabled=!toggle.checked);});}}catch{}
+form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const data={};[...form.elements].forEach(input=>{if(!input.name)return;data[input.name]=input.type==='checkbox'?input.checked:input.value;});if(form.dataset.save==='hours'){for(let i=0;i<7;i++){if(data['day'+i]&&data['day'+i+'start']>=data['day'+i+'end']){form.querySelector('.ss-feedback').textContent='End time must be later than start time for '+days[i]+'.';return;}}}
+try{sessionStorage.setItem(key,JSON.stringify(data));form.querySelector('.ss-feedback').textContent='Saved for this browser tab only. Backend syncing is not connected.';}catch{form.querySelector('.ss-feedback').textContent='Changes are visible on this page but could not be saved.';}});});
+})();
+  </script>
+ </body>
+</html>
