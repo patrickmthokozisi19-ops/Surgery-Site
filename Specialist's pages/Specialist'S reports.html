@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Specialist's Reports | Pweb
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="../style.css" rel="stylesheet"/>
+  <link href="../admin-home-font-fixed.css" rel="stylesheet"/>
+  <link href="../specialist-reports.css" rel="stylesheet"/>
+ </head>
+ <body class="dw dw-light adm sr-page">
+  <a class="skip" href="#main">
+   Skip to content
+  </a>
+  <header class="nav nav-slim dw-nav adm-doc-nav">
+   <div class="tNav">
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+     <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+     <span class="number">
+      Reception desk: 000 000 0000
+     </span>
+    </a>
+    <div class="t-nav-btns">
+     <div class="seach-box">
+      <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or appointments" class="searchPlaceHolder" placeholder="Search patients or appointments" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+     </div>
+     <div class="Pweb_login">
+      <a class="login" href="logout.html">
+       <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+       <span class="loginText">
+        Sign out
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="bNav">
+    <a class="logoNbackBtn" href="Specialist's Home.html">
+     <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+     <div class="logo">
+      <img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+     </div>
+    </a>
+    <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <nav aria-label="Specialist workspace" class="bnavLinks" id="dw-nav-links">
+     <a class="" href="Specialist's Home.html">
+      Home
+     </a>
+     <a class="" href="Specialist's calendar.html">
+      Calendar
+     </a>
+     <a class="" href="Specialist's appointments.html">
+      Appointments
+     </a>
+     <a class="" href="Specialist's patients.html">
+      My Patients
+     </a>
+     <a class="" href="Specialist's messages.html">
+      Messages
+     </a>
+     <a aria-current="page" class="is-current" href="Specialist's reports.html">
+      Reports
+     </a>
+     <a class="" href="Specialist's settings.html">
+      Settings
+     </a>
+     <a class="navBtn" href="Specialist's calendar.html">
+      Manage availability
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="adm-main specialist-main" id="main">
+   <section class="sr-intro">
+    <div>
+     <p class="sr-eyebrow">
+      SPECIALIST WORKSPACE / REPORTS
+     </p>
+     <h1>
+      My reports
+     </h1>
+     <p>
+      Track consultations, appointment outcomes and clinical working hours.
+     </p>
+    </div>
+    <div class="sr-actions">
+     <button class="sr-btn" id="sr-print" type="button">
+      Print report
+     </button>
+     <button class="sr-btn sr-primary" id="sr-export" type="button">
+      Export CSV
+     </button>
+    </div>
+   </section>
+   <div class="sr-notice">
+    <strong>
+     Report preview
+    </strong>
+    <span>
+     Figures below use fictional appointment records until Pweb is connected to your hospital's scheduling system.
+    </span>
+   </div>
+   <section aria-label="Report filters" class="sr-filters">
+    <label>
+     Reporting period
+     <select id="sr-period">
+      <option value="month">
+       This month
+      </option>
+      <option value="quarter">
+       Last 3 months
+      </option>
+      <option value="year">
+       Last 12 months
+      </option>
+     </select>
+    </label>
+    <label>
+     Appointment type
+     <select id="sr-type">
+      <option value="all">
+       All consultations
+      </option>
+      <option value="Initial consultation">
+       Initial consultation
+      </option>
+      <option value="Follow-up consultation">
+       Follow-up consultation
+      </option>
+      <option value="Pre-operative assessment">
+       Pre-operative assessment
+      </option>
+      <option value="Post-operative review">
+       Post-operative review
+      </option>
+     </select>
+    </label>
+    <span class="sr-period-label" id="sr-period-label">
+    </span>
+   </section>
+   <section aria-label="Key performance metrics" class="sr-metrics">
+    <article class="sr-card sr-metric">
+     <span>
+      Appointments booked
+     </span>
+     <strong id="sr-booked">
+      &mdash;
+     </strong>
+     <small>
+      All statuses in period
+     </small>
+    </article>
+    <article class="sr-card sr-metric">
+     <span>
+      Completed consultations
+     </span>
+     <strong id="sr-completed">
+      &mdash;
+     </strong>
+     <small id="sr-completion-rate">
+      &mdash;
+     </small>
+    </article>
+    <article class="sr-card sr-metric">
+     <span>
+      Booked hours
+     </span>
+     <strong id="sr-hours">
+      &mdash;
+     </strong>
+     <small>
+      Scheduled consultation time
+     </small>
+    </article>
+    <article class="sr-card sr-metric">
+     <span>
+      Completed hours
+     </span>
+     <strong id="sr-done-hours">
+      &mdash;
+     </strong>
+     <small>
+      Completed consultation time
+     </small>
+    </article>
+   </section>
+   <section class="sr-chart-grid">
+    <article class="sr-card sr-panel">
+     <div class="sr-panel-head">
+      <div>
+       <h2>
+        Appointment activity
+       </h2>
+       <p>
+        Booked and completed consultations by month
+       </p>
+      </div>
+     </div>
+     <div class="sr-chart-legend">
+      <span>
+       <i class="sr-dot sr-dot-booked">
+       </i>
+       Booked
+      </span>
+      <span>
+       <i class="sr-dot sr-dot-completed">
+       </i>
+       Completed
+      </span>
+     </div>
+     <div aria-label="Monthly appointment activity chart" class="sr-activity" id="sr-activity" role="img">
+     </div>
+    </article>
+    <article class="sr-card sr-panel">
+     <div class="sr-panel-head">
+      <div>
+       <h2>
+        Appointment outcomes
+       </h2>
+       <p>
+        Distribution by appointment status
+       </p>
+      </div>
+     </div>
+     <div class="sr-outcomes" id="sr-outcomes">
+     </div>
+    </article>
+   </section>
+   <section class="sr-card sr-panel sr-table-panel">
+    <div class="sr-panel-head">
+     <div>
+      <h2>
+       Consultation breakdown
+      </h2>
+      <p>
+       Visits and hours grouped by consultation type
+      </p>
+     </div>
+     <span class="sr-pill" id="sr-total-types">
+      &mdash;
+     </span>
+    </div>
+    <div class="sr-table-wrap">
+     <table class="sr-table">
+      <thead>
+       <tr>
+        <th>
+         Consultation type
+        </th>
+        <th>
+         Booked
+        </th>
+        <th>
+         Completed
+        </th>
+        <th>
+         Cancelled
+        </th>
+        <th>
+         Booked hours
+        </th>
+        <th>
+         Completed hours
+        </th>
+       </tr>
+      </thead>
+      <tbody id="sr-breakdown">
+      </tbody>
+     </table>
+    </div>
+   </section>
+   <section class="sr-bottom-grid">
+    <article class="sr-card sr-panel">
+     <div class="sr-panel-head">
+      <div>
+       <h2>
+        Hours overview
+       </h2>
+       <p>
+        Consultation time for the selected period
+       </p>
+      </div>
+     </div>
+     <div class="sr-hour-row">
+      <span>
+       Booked hours
+      </span>
+      <strong id="sr-hour-booked">
+       &mdash;
+      </strong>
+     </div>
+     <div class="sr-meter">
+      <div id="sr-meter-booked">
+      </div>
+     </div>
+     <div class="sr-hour-row">
+      <span>
+       Completed hours
+      </span>
+      <strong id="sr-hour-completed">
+       &mdash;
+      </strong>
+     </div>
+     <div class="sr-meter">
+      <div class="sr-meter-done" id="sr-meter-completed">
+      </div>
+     </div>
+     <p class="sr-footnote">
+      Hours are calculated from appointment durations, not from clock-in records or theatre time.
+     </p>
+    </article>
+    <article class="sr-card sr-panel">
+     <div class="sr-panel-head">
+      <div>
+       <h2>
+        Reporting notes
+       </h2>
+       <p>
+        How to interpret these figures
+       </p>
+      </div>
+     </div>
+     <ul class="sr-notes">
+      <li>
+       Booked hours include all appointment statuses, including cancellations.
+      </li>
+      <li>
+       Completed hours count only appointments marked Completed.
+      </li>
+      <li>
+       Reports are scoped to the signed-in specialist once authentication and backend filtering are implemented.
+      </li>
+      <li>
+       Financial and billing information is not included in this report.
+      </li>
+     </ul>
+    </article>
+   </section>
+  </main>
+  <script>
+   (() => {
+'use strict';
+const $=id=>document.getElementById(id);
+const nav=document.querySelector('.adm-doc-nav'),burger=nav?.querySelector('.burger'),links=nav?.querySelector('.bnavLinks');
+function menu(open){nav?.classList.toggle('open',open);nav?.classList.toggle('active',open);links?.classList.toggle('open',open);burger?.setAttribute('aria-expanded',String(open));burger?.setAttribute('aria-label',open?'Close menu':'Open menu');}
+burger?.addEventListener('click',()=>menu(!nav.classList.contains('open')));
+links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')menu(false);});
+const types=['Initial consultation','Follow-up consultation','Pre-operative assessment','Post-operative review'];
+const statuses=['Completed','Confirmed','Pending','Cancelled','Checked in'];
+const now=new Date();
+const monthsAgo=(n)=>{const d=new Date(now.getFullYear(),now.getMonth()-n,1);return d;};
+const monthKey=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+const formatMonth=d=>new Intl.DateTimeFormat('en-ZA',{month:'short',year:'numeric'}).format(d);
+const mock=[];
+for(let m=0;m<12;m++){const d=monthsAgo(m),count=14+(m*7%11)+(m%3)*2;for(let i=0;i<count;i++){const type=types[(i+m)%4],status=statuses[(i*3+m)%5];mock.push({id:`R-${m}-${i}`,date:`${monthKey(d)}-${String(1+i%27).padStart(2,'0')}`,type,status,duration:[30,45,60,30][(i+m)%4]});}}
+const supplied=window.PwebSpecialistReportsData?.appointments;
+const appointments=Array.isArray(supplied)?supplied:mock;
+const hour=v=>(v/60).toFixed(1)+' h';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let report=[];
+function draw(){
+ const span={month:1,quarter:3,year:12}[$('sr-period').value]||1;
+ const keys=Array.from({length:span},(_,i)=>monthKey(monthsAgo(span-1-i)));
+ const allowed=new Set(keys), type=$('sr-type').value;
+ report=appointments.filter(a=>allowed.has(String(a.date||'').slice(0,7))&&(type==='all'||a.type===type));
+ const completed=report.filter(a=>a.status==='Completed');
+ const sum=a=>a.reduce((s,x)=>s+(Number(x.duration??x.durationMinutes)||0),0);
+ $('sr-booked').textContent=report.length;
+ $('sr-completed').textContent=completed.length;
+ $('sr-completion-rate').textContent=report.length?`${Math.round(completed.length/report.length*100)}% of booked appointments`:'No appointments';
+ $('sr-hours').textContent=hour(sum(report));
+ $('sr-done-hours').textContent=hour(sum(completed));
+ $('sr-period-label').textContent=`${formatMonth(monthsAgo(span-1))} – ${formatMonth(now)}`;
+ const totals=keys.map(k=>({key:k,label:new Intl.DateTimeFormat('en-ZA',{month:'short'}).format(new Date(k+'-01T12:00:00')),booked:report.filter(a=>a.date.startsWith(k)).length,completed:completed.filter(a=>a.date.startsWith(k)).length}));
+ const max=Math.max(1,...totals.map(x=>x.booked));
+ $('sr-activity').replaceChildren();
+ totals.forEach(t=>{
+  const group=document.createElement('div');group.className='sr-bar-group';group.title=`${t.key}: ${t.booked} booked, ${t.completed} completed`;
+  const bars=document.createElement('div');bars.className='sr-bars';
+  for(const [name,value] of [['booked',t.booked],['completed',t.completed]]){
+   const b=document.createElement('div');b.className=`sr-bar sr-bar-${name}`;b.style.height=`${Math.max(value?3:0,value/max*100)}%`;b.title=`${name}: ${value}`;bars.append(b);
+  }
+  const label=document.createElement('span');label.textContent=t.label;group.append(bars,label);$('sr-activity').append(group);
+ });
+ $('sr-activity').setAttribute('aria-label',totals.map(t=>`${t.key}: ${t.booked} booked, ${t.completed} completed`).join('; '));
+ const outcome=$('sr-outcomes');outcome.replaceChildren();
+ const colors={Completed:'#059669',Confirmed:'#2563eb',Pending:'#d97706',Cancelled:'#dc2626','Checked in':'#7c3aed','In progress':'#0891b2'};
+ const all=[...new Set([...statuses,...report.map(a=>a.status)])];
+ all.forEach(s=>{
+  const n=report.filter(a=>a.status===s).length,pct=report.length?Math.round(n/report.length*100):0;
+  const row=document.createElement('div');row.className='sr-outcome-row';
+  const top=document.createElement('div');top.className='sr-outcome-top';
+  const name=document.createElement('span');name.textContent=s;const value=document.createElement('strong');value.textContent=`${n} · ${pct}%`;top.append(name,value);
+  const track=document.createElement('div');track.className='sr-outcome-track';const fill=document.createElement('div');fill.style.width=pct+'%';fill.style.background=colors[s]||'#64748b';track.append(fill);row.append(top,track);outcome.append(row);
+ });
+ const tbody=$('sr-breakdown');tbody.replaceChildren();
+ const groupTypes=type==='all'?[...new Set([...types,...report.map(a=>a.type)])]:[type];
+ groupTypes.forEach(t=>{
+  const a=report.filter(x=>x.type===t),done=a.filter(x=>x.status==='Completed'),cancelled=a.filter(x=>x.status==='Cancelled');
+  const tr=document.createElement('tr');
+  [t,a.length,done.length,cancelled.length,hour(sum(a)),hour(sum(done))].forEach((value,i)=>{const td=document.createElement('td');td.textContent=value;if(i===0)td.className='sr-type-name';tr.append(td);});tbody.append(tr);
+ });
+ $('sr-total-types').textContent=`${groupTypes.length} consultation type${groupTypes.length===1?'':'s'}`;
+ $('sr-hour-booked').textContent=hour(sum(report));$('sr-hour-completed').textContent=hour(sum(completed));
+ $('sr-meter-booked').style.width=report.length?'100%':'0%';
+ $('sr-meter-completed').style.width=sum(report)?(sum(completed)/sum(report)*100).toFixed(1)+'%':'0%';
+}
+function csv(){
+ const rows=[['Date','Appointment reference','Consultation type','Status','Duration (minutes)'],...report.map(a=>[a.date,a.id||'',a.type,a.status,a.duration??a.durationMinutes??0])];
+ const text=rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ const blob=new Blob(['\uFEFF'+text],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+ link.href=url;link.download=`pweb-specialist-report-${$('sr-period').value}.csv`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+$('sr-period').addEventListener('change',draw);$('sr-type').addEventListener('change',draw);
+$('sr-export').addEventListener('click',csv);$('sr-print').addEventListener('click',()=>window.print());draw();
+})();
+  </script>
+ </body>
+</html>
