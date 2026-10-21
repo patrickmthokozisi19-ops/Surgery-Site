@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Specialist's Calendar | Pweb
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="../style.css" rel="stylesheet"/>
+  <link href="../admin-home-font-fixed.css" rel="stylesheet"/>
+  <link href="../specialist-calendar.css" rel="stylesheet"/>
+ </head>
+ <body class="dw dw-light adm sc-page">
+  <a class="skip" href="#main">
+   Skip to content
+  </a>
+  <header class="nav nav-slim dw-nav adm-doc-nav">
+   <div class="tNav">
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+     <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+     <span class="number">
+      Reception desk: 000 000 0000
+     </span>
+    </a>
+    <div class="t-nav-btns">
+     <div class="seach-box">
+      <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or appointments" class="searchPlaceHolder" placeholder="Search patients or appointments" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+     </div>
+     <div class="Pweb_login">
+      <a class="login" href="logout.html">
+       <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+       <span class="loginText">
+        Sign out
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="bNav">
+    <a class="logoNbackBtn" href="Specialist's Home.html">
+     <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+     <div class="logo">
+      <img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+     </div>
+    </a>
+    <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <nav aria-label="Specialist workspace" class="bnavLinks" id="dw-nav-links">
+     <a class="" href="Specialist's Home.html">
+      Home
+     </a>
+     <a aria-current="page" class="is-current" href="Specialist's calendar.html">
+      Calendar
+     </a>
+     <a class="" href="Specialist's appointments.html">
+      Appointments
+     </a>
+     <a class="" href="Specialist's patients.html">
+      My Patients
+     </a>
+     <a class="" href="Specialist's messages.html">
+      Messages
+     </a>
+     <a class="" href="Specialist's reports.html">
+      Reports
+     </a>
+     <a class="" href="Specialist's settings.html">
+      Settings
+     </a>
+     <a aria-current="page" class="navBtn is-current" href="Specialist's calendar.html">
+      Manage availability
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="adm-main specialist-main" id="main">
+   <section class="sc-intro">
+    <div>
+     <p class="sc-eyebrow">
+      SPECIALIST WORKSPACE / CALENDAR
+     </p>
+     <h1>
+      My calendar
+     </h1>
+     <p>
+      Review appointments, manage your working hours and mark unavailable dates.
+     </p>
+    </div>
+    <div class="sc-header-actions">
+     <span class="sc-demo">
+      Sample schedule
+     </span>
+     <button class="sc-btn sc-btn-primary" id="addBlockBtn" type="button">
+      Block time
+     </button>
+    </div>
+   </section>
+   <section aria-label="Calendar summary" class="sc-summary">
+    <article class="sc-card">
+     <span>
+      Appointments this week
+     </span>
+     <strong id="sc-week-count">
+      0
+     </strong>
+     <small>
+      Scheduled consultations
+     </small>
+    </article>
+    <article class="sc-card">
+     <span>
+      Booked this week
+     </span>
+     <strong id="sc-week-hours">
+      0h
+     </strong>
+     <small>
+      Consultation hours
+     </small>
+    </article>
+    <article class="sc-card">
+     <span>
+      Available days
+     </span>
+     <strong id="sc-open-days">
+      0
+     </strong>
+     <small>
+      In the selected week
+     </small>
+    </article>
+    <article class="sc-card">
+     <span>
+      Blocked dates
+     </span>
+     <strong id="sc-block-count">
+      0
+     </strong>
+     <small>
+      Across this demo schedule
+     </small>
+    </article>
+   </section>
+   <section class="sc-card sc-calendar">
+    <div class="sc-calendar-top">
+     <div class="sc-calendar-heading">
+      <h2>
+       Schedule
+      </h2>
+      <p id="sc-period">
+      </p>
+     </div>
+     <div class="sc-controls">
+      <button aria-label="Previous period" class="sc-icon-btn" id="sc-prev" type="button">
+       &lsaquo;
+      </button>
+      <button class="sc-btn" id="sc-today" type="button">
+       Today
+      </button>
+      <button aria-label="Next period" class="sc-icon-btn" id="sc-next" type="button">
+       &rsaquo;
+      </button>
+      <div aria-label="Calendar view" class="sc-switch" role="group">
+       <button aria-pressed="true" class="selected" data-view="week" type="button">
+        Week
+       </button>
+       <button aria-pressed="false" data-view="month" type="button">
+        Month
+       </button>
+      </div>
+     </div>
+    </div>
+    <div class="sc-legend">
+     <span>
+      <i class="sc-dot confirmed">
+      </i>
+      Confirmed
+     </span>
+     <span>
+      <i class="sc-dot pending">
+      </i>
+      Pending
+     </span>
+     <span>
+      <i class="sc-dot completed">
+      </i>
+      Completed
+     </span>
+     <span>
+      <i class="sc-dot blocked">
+      </i>
+      Unavailable
+     </span>
+    </div>
+    <div aria-live="polite" class="sc-calendar-body" id="sc-grid">
+    </div>
+   </section>
+   <section class="sc-lower">
+    <article class="sc-card">
+     <div class="sc-section-heading">
+      <h2>
+       Appointments for selected date
+      </h2>
+      <span id="sc-selected-date">
+      </span>
+     </div>
+     <div class="sc-day-appointments" id="sc-day-appointments">
+     </div>
+    </article>
+    <article class="sc-card">
+     <div class="sc-section-heading">
+      <h2>
+       Working hours
+      </h2>
+      <span>
+       Weekly template
+      </span>
+     </div>
+     <div class="sc-working-hours" id="sc-working-hours">
+     </div>
+     <p class="sc-note">
+      Template settings are local to this page. Connect the calendar to authenticated scheduling APIs before using it in a practice.
+     </p>
+    </article>
+   </section>
+   <dialog aria-labelledby="sc-block-title" class="sc-dialog" id="sc-block-dialog">
+    <form id="sc-block-form" method="dialog">
+     <h2 id="sc-block-title">
+      Block a date
+     </h2>
+     <p>
+      Mark a date as unavailable in this preview.
+     </p>
+     <label for="sc-block-date">
+      Date
+     </label>
+     <input id="sc-block-date" name="date" required="" type="date"/>
+     <label for="sc-block-reason">
+      Reason
+     </label>
+     <select id="sc-block-reason" name="reason">
+      <option>
+       Unavailable
+      </option>
+      <option>
+       Leave
+      </option>
+      <option>
+       Conference
+      </option>
+      <option>
+       Theatre commitment
+      </option>
+     </select>
+     <div class="sc-dialog-actions">
+      <button class="sc-btn" id="sc-cancel" type="button">
+       Cancel
+      </button>
+      <button class="sc-btn sc-btn-primary" type="submit">
+       Block date
+      </button>
+     </div>
+     <p id="sc-block-error" role="alert">
+     </p>
+    </form>
+   </dialog>
+  </main>
+  <script>
+   (() => {
+  'use strict';
+  const nav = document.querySelector('.adm-doc-nav');
+  const burger = nav?.querySelector('.burger');
+  const links = nav?.querySelector('.bnavLinks');
+  function setMenu(open) {
+    nav.classList.toggle('open', open);
+    nav.classList.toggle('active', open);
+    links.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  burger?.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+  links?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+
+  // Fictional template records. Replace window.PwebSpecialistCalendarData
+  // with authenticated, specialist-scoped data from the Pweb backend.
+  const key = date => {
+    const d = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return d.toISOString().slice(0, 10);
+  };
+  const parse = value => new Date(`${value}T12:00:00`);
+  const addDays = (date, n) => { const d = new Date(date); d.setDate(d.getDate() + n); return d; };
+  const monday = date => addDays(date, -((date.getDay() + 6) % 7));
+  const today = new Date();
+  const demoAppointments = [
+    { offset: 0, time: '08:30', patientName: 'Thandi Dlamini', type: 'Initial consultation', status: 'Completed', durationMinutes: 30 },
+    { offset: 0, time: '10:00', patientName: 'Sipho Nkosi', type: 'Follow-up consultation', status: 'Confirmed', durationMinutes: 45 },
+    { offset: 0, time: '13:30', patientName: 'Lerato Maseko', type: 'Pre-operative assessment', status: 'Pending', durationMinutes: 60 },
+    { offset: 1, time: '09:00', patientName: 'James Khumalo', type: 'Post-operative review', status: 'Confirmed', durationMinutes: 30 },
+    { offset: 2, time: '11:15', patientName: 'Naledi Molefe', type: 'Consultation', status: 'Confirmed', durationMinutes: 45 },
+    { offset: 4, time: '14:00', patientName: 'Anele Zulu', type: 'Follow-up consultation', status: 'Pending', durationMinutes: 30 }
+  ].map((item, i) => ({ ...item, id: `DEMO-${i + 1}`, date: key(addDays(today, item.offset)) }));
+  const defaults = [
+    { day: 'Monday', hours: '08:00 – 16:30', available: true },
+    { day: 'Tuesday', hours: '08:00 – 16:30', available: true },
+    { day: 'Wednesday', hours: '09:00 – 15:00', available: true },
+    { day: 'Thursday', hours: '08:00 – 16:30', available: true },
+    { day: 'Friday', hours: '08:00 – 14:00', available: true },
+    { day: 'Saturday', hours: 'Closed', available: false },
+    { day: 'Sunday', hours: 'Closed', available: false }
+  ];
+  const supplied = window.PwebSpecialistCalendarData;
+  const appointments = Array.isArray(supplied?.appointments) ? supplied.appointments : demoAppointments;
+  const workingHours = Array.isArray(supplied?.workingHours) ? supplied.workingHours : defaults;
+  const blocked = new Map((supplied?.blockedDates || []).map(item => [item.date, item.reason || 'Unavailable']));
+  if (supplied) document.querySelector('.sc-demo')?.remove();
+  let cursor = new Date(today);
+  let selected = key(today);
+  let view = 'week';
+  const el = id => document.getElementById(id);
+  const dateFmt = new Intl.DateTimeFormat('en-ZA', { day: 'numeric', month: 'short' });
+  const fullFmt = new Intl.DateTimeFormat('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  const text = (tag, className, content) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    node.textContent = String(content ?? '');
+    return node;
+  };
+  function renderDay() {
+    el('sc-selected-date').textContent = fullFmt.format(parse(selected));
+    const items = appointments.filter(item => item.date === selected).sort((a, b) => String(a.time).localeCompare(String(b.time)));
+    const box = el('sc-day-appointments');
+    box.replaceChildren();
+    if (blocked.has(selected)) box.append(text('p', 'sc-unavailable', `Unavailable: ${blocked.get(selected)}`));
+    if (!items.length) box.append(text('p', 'sc-empty', 'No appointments scheduled for this date.'));
+    items.forEach(item => {
+      const row = text('div', 'sc-appointment-row', '');
+      const info = text('div', 'sc-appointment-info', '');
+      info.append(text('strong', '', item.patientName || 'Patient'), text('span', '', item.type || 'Consultation'));
+      row.append(text('time', '', item.time || '—'), info, text('span', `sc-status ${String(item.status || 'confirmed').toLowerCase()}`, item.status || 'Confirmed'));
+      box.append(row);
+    });
+  }
+  function dayCell(date, compact) {
+    const dateString = key(date);
+    const items = appointments.filter(item => item.date === dateString);
+    const cell = text('button', `sc-day ${dateString === selected ? 'is-selected' : ''} ${dateString === key(today) ? 'is-today' : ''} ${compact ? 'sc-day-month' : ''}`, '');
+    cell.type = 'button';
+    cell.setAttribute('aria-label', `${fullFmt.format(date)}: ${items.length} appointments`);
+    cell.append(text('span', 'sc-day-number', compact ? date.getDate() : dateFmt.format(date)));
+    if (blocked.has(dateString)) cell.append(text('span', 'sc-day-blocked', blocked.get(dateString)));
+    const preview = text('div', 'sc-day-items', '');
+    items.slice(0, compact ? 2 : 5).forEach(item => preview.append(text('span', `sc-event ${String(item.status || 'confirmed').toLowerCase()}`, `${item.time} ${item.patientName}`)));
+    if (items.length > (compact ? 2 : 5)) preview.append(text('span', 'sc-more', `+${items.length - (compact ? 2 : 5)} more`));
+    cell.append(preview);
+    cell.addEventListener('click', () => { selected = dateString; render(); });
+    return cell;
+  }
+  function render() {
+    const start = view === 'week' ? monday(cursor) : new Date(cursor.getFullYear(), cursor.getMonth(), 1);
+    const end = view === 'week' ? addDays(start, 6) : new Date(cursor.getFullYear(), cursor.getMonth() + 1, 0);
+    el('sc-period').textContent = view === 'week'
+      ? `${dateFmt.format(start)} – ${fullFmt.format(end)}`
+      : new Intl.DateTimeFormat('en-ZA', { month: 'long', year: 'numeric' }).format(cursor);
+    const weekStart = monday(cursor);
+    const weekEnd = addDays(weekStart, 6);
+    const weekItems = appointments.filter(item => item.date >= key(weekStart) && item.date <= key(weekEnd) && item.status !== 'Cancelled');
+    el('sc-week-count').textContent = weekItems.length;
+    el('sc-week-hours').textContent = `${(weekItems.reduce((n, item) => n + (Number(item.durationMinutes) || 0), 0) / 60).toFixed(1)}h`;
+    el('sc-open-days').textContent = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i)).filter((d, i) => workingHours[i]?.available && !blocked.has(key(d))).length;
+    el('sc-block-count').textContent = blocked.size;
+    const grid = el('sc-grid');
+    grid.replaceChildren();
+    const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    weekdays.forEach(day => grid.append(text('div', 'sc-weekday', day)));
+    const first = view === 'week' ? start : monday(start);
+    const days = view === 'week' ? 7 : Math.ceil((Math.round((end - first) / 86400000) + 1) / 7) * 7;
+    for (let i = 0; i < days; i++) {
+      const date = addDays(first, i);
+      const cell = dayCell(date, view === 'month');
+      if (view === 'month' && date.getMonth() !== cursor.getMonth()) cell.classList.add('sc-other-month');
+      grid.append(cell);
+    }
+    grid.classList.toggle('sc-month-grid', view === 'month');
+    renderDay();
+  }
+  const hoursBox = el('sc-working-hours');
+  workingHours.forEach(item => {
+    const row = text('div', 'sc-hours-row', '');
+    row.append(text('span', '', item.day), text('strong', item.available ? '' : 'sc-closed', item.hours));
+    hoursBox.append(row);
+  });
+  el('sc-prev').addEventListener('click', () => { cursor = view === 'week' ? addDays(cursor, -7) : new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1); render(); });
+  el('sc-next').addEventListener('click', () => { cursor = view === 'week' ? addDays(cursor, 7) : new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1); render(); });
+  el('sc-today').addEventListener('click', () => { cursor = new Date(); selected = key(cursor); render(); });
+  document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
+    view = button.dataset.view;
+    document.querySelectorAll('[data-view]').forEach(b => {
+      b.classList.toggle('selected', b === button);
+      b.setAttribute('aria-pressed', String(b === button));
+    });
+    render();
+  }));
+  const dialog = el('sc-block-dialog');
+  el('addBlockBtn').addEventListener('click', () => {
+    el('sc-block-date').value = selected;
+    el('sc-block-error').textContent = '';
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+  });
+  el('sc-cancel').addEventListener('click', () => dialog.close());
+  el('sc-block-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const date = el('sc-block-date').value;
+    if (!date) { el('sc-block-error').textContent = 'Please choose a date.'; return; }
+    if (appointments.some(item => item.date === date && item.status !== 'Cancelled')) {
+      el('sc-block-error').textContent = 'This date has booked appointments. Resolve these before blocking it.';
+      return;
+    }
+    blocked.set(date, el('sc-block-reason').value);
+    selected = date;
+    cursor = parse(date);
+    dialog.close();
+    render();
+  });
+  render();
+})();
+  </script>
+ </body>
+</html>
