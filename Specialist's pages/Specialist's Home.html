@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Specialist's Home | Pweb
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="../style.css" rel="stylesheet"/>
+  <link href="../admin-home-font-fixed.css" rel="stylesheet"/>
+  <link href="../specialist-home.css" rel="stylesheet"/>
+ </head>
+ <body class="dw dw-light adm sp-page">
+  <a class="skip" href="#main">
+   Skip to content
+  </a>
+  <header class="nav nav-slim dw-nav adm-doc-nav">
+   <div class="tNav">
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+     <img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+     <span class="number">
+      Reception desk: 000 000 0000
+     </span>
+    </a>
+    <div class="t-nav-btns">
+     <div class="seach-box">
+      <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+      <span class="searchtext">
+       Search patients
+      </span>
+      <input aria-label="Search patients or appointments" class="searchPlaceHolder" placeholder="Search patients or appointments" type="search"/>
+      <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+     </div>
+     <div class="Pweb_login">
+      <a class="login" href="logout.html">
+       <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+       <span class="loginText">
+        Sign out
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="bNav">
+    <a class="logoNbackBtn" href="Specialist's Home.html">
+     <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+     <div class="logo">
+      <img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+     </div>
+    </a>
+    <button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <nav aria-label="Specialist workspace" class="bnavLinks" id="dw-nav-links">
+     <a aria-current="page" class="is-current" href="Specialist's Home.html">
+      Home
+     </a>
+     <a href="Specialist's calendar.html">
+      Calendar
+     </a>
+     <a href="Specialist's appointments.html">
+      Appointments
+     </a>
+     <a href="Specialist's patients.html">
+      My Patients
+     </a>
+     <a href="Specialist's messages.html">
+      Messages
+     </a>
+     <a href="Specialist's reports.html">
+      Reports
+     </a>
+     <a href="Specialist's settings.html">
+      Settings
+     </a>
+     <a class="navBtn" href="Specialist's calendar.html">
+      Manage availability
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="adm-main specialist-main" id="main">
+   <section class="specialist-heading">
+    <div>
+     <p class="specialist-eyebrow">
+      SPECIALIST WORKSPACE
+     </p>
+     <h1 id="welcomeHeading">
+      Good day, Specialist
+     </h1>
+     <p>
+      Here is your clinical schedule and practice overview.
+     </p>
+    </div>
+    <div class="specialist-heading-actions">
+     <span class="specialist-today" id="todayLabel">
+     </span>
+     <a class="specialist-primary-button" href="Specialist's calendar.html">
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+       <path d="M12 5v14M5 12h14">
+       </path>
+      </svg>
+      Manage availability
+     </a>
+    </div>
+   </section>
+   <section aria-label="Work summary" class="specialist-stats">
+    <article class="specialist-panel specialist-stat">
+     <div class="specialist-stat-top">
+      <span>
+       Appointments today
+      </span>
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <rect height="16" rx="2" width="18" x="3" y="5">
+       </rect>
+       <path d="M7 3v4M17 3v4M3 10h18">
+       </path>
+      </svg>
+     </div>
+     <strong id="statAppointments">
+      0
+     </strong>
+     <small>
+      Scheduled consultations
+     </small>
+    </article>
+    <article class="specialist-panel specialist-stat">
+     <div class="specialist-stat-top">
+      <span>
+       Completed today
+      </span>
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <circle cx="12" cy="12" r="9">
+       </circle>
+       <path d="m8 12 3 3 5-6">
+       </path>
+      </svg>
+     </div>
+     <strong id="statCompleted">
+      0
+     </strong>
+     <small>
+      Finished consultations
+     </small>
+    </article>
+    <article class="specialist-panel specialist-stat">
+     <div class="specialist-stat-top">
+      <span>
+       Booked hours
+      </span>
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <circle cx="12" cy="12" r="9">
+       </circle>
+       <path d="M12 7v5l3 2">
+       </path>
+      </svg>
+     </div>
+     <strong id="statBooked">
+      0h
+     </strong>
+     <small>
+      Today's scheduled time
+     </small>
+    </article>
+    <article class="specialist-panel specialist-stat">
+     <div class="specialist-stat-top">
+      <span>
+       Pending requests
+      </span>
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <rect height="18" rx="2" width="16" x="4" y="3">
+       </rect>
+       <path d="M8 9h8M8 13h5">
+       </path>
+      </svg>
+     </div>
+     <strong id="statPending">
+      0
+     </strong>
+     <small>
+      Require your attention
+     </small>
+    </article>
+   </section>
+   <div class="specialist-dashboard-grid">
+    <section aria-labelledby="scheduleTitle" class="specialist-panel specialist-appointments-panel">
+     <div class="specialist-panel-heading">
+      <div>
+       <h2 id="scheduleTitle">
+        Today's schedule
+       </h2>
+       <p>
+        Consultations assigned to your account
+       </p>
+      </div>
+      <a href="Specialist's appointments.html">
+       View appointments
+       <span aria-hidden="true">
+        &rarr;
+       </span>
+      </a>
+     </div>
+     <div aria-label="Filter schedule" class="specialist-filter-row" role="group">
+      <button aria-pressed="true" class="active" data-filter="all" type="button">
+       All
+      </button>
+      <button aria-pressed="false" data-filter="upcoming" type="button">
+       Upcoming
+      </button>
+      <button aria-pressed="false" data-filter="completed" type="button">
+       Completed
+      </button>
+     </div>
+     <div aria-live="polite" class="specialist-schedule-list" id="scheduleList">
+      <p class="specialist-empty">
+       No appointments scheduled for today.
+      </p>
+     </div>
+    </section>
+    <div class="specialist-side-column">
+     <section aria-labelledby="nextTitle" class="specialist-panel">
+      <div class="specialist-panel-heading">
+       <div>
+        <h2 id="nextTitle">
+         Next consultation
+        </h2>
+        <p>
+         Your next upcoming appointment
+        </p>
+       </div>
+      </div>
+      <div id="nextConsultation">
+       <p class="specialist-empty">
+        No upcoming consultation.
+       </p>
+      </div>
+     </section>
+     <section aria-labelledby="noticeTitle" class="specialist-panel">
+      <div class="specialist-panel-heading">
+       <div>
+        <h2 id="noticeTitle">
+         Practice notices
+        </h2>
+        <p>
+         Updates from your institution
+        </p>
+       </div>
+      </div>
+      <div id="noticeList">
+       <p class="specialist-empty">
+        No new notices.
+       </p>
+      </div>
+     </section>
+    </div>
+   </div>
+   <section aria-labelledby="quickTitle" class="specialist-panel specialist-quick-links">
+    <div class="specialist-panel-heading">
+     <div>
+      <h2 id="quickTitle">
+       Quick access
+      </h2>
+      <p>
+       Common specialist tasks
+      </p>
+     </div>
+    </div>
+    <div class="specialist-shortcuts">
+     <a href="Specialist's calendar.html">
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <rect height="16" rx="2" width="18" x="3" y="5">
+       </rect>
+       <path d="M7 3v4M17 3v4M3 10h18">
+       </path>
+      </svg>
+      <span>
+       My calendar
+      </span>
+     </a>
+     <a href="Specialist's patients.html">
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <circle cx="12" cy="8" r="4">
+       </circle>
+       <path d="M4 21v-2a8 8 0 0 1 16 0v2">
+       </path>
+      </svg>
+      <span>
+       My patients
+      </span>
+     </a>
+     <a href="Specialist's messages.html">
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5A9 9 0 1 1 21 11.5Z">
+       </path>
+      </svg>
+      <span>
+       Messages
+      </span>
+     </a>
+     <a href="Specialist's reports.html">
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+       <path d="M4 20V11M10 20V4M16 20v-9M22 20v-5M2 20h21">
+       </path>
+      </svg>
+      <span>
+       My reports
+      </span>
+     </a>
+    </div>
+   </section>
+  </main>
+  <script>
+   (() => {
+      'use strict';
+
+      // Authenticated backend integration:
+      // window.PwebSpecialistHomeData = {
+      //   specialist: { name: 'Dr ...', initials: '...' },
+      //   practiceName: '...',
+      //   appointments: [{ id, date, time, patientName, type, status, durationMinutes }],
+      //   notices: [{ title, description, date }],
+      //   notifications: []
+      // };
+      const data = window.PwebSpecialistHomeData || {};
+      const appointments = Array.isArray(data.appointments) ? data.appointments : [];
+      const notices = Array.isArray(data.notices) ? data.notices : [];
+      const now = new Date();
+      const dateKey = date => {
+        const d = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+        return d.toISOString().slice(0, 10);
+      };
+      const today = dateKey(now);
+      const todayAppointments = appointments.filter(item => item.date === today);
+      const isCompleted = item => String(item.status || '').toLowerCase() === 'completed';
+      const isPending = item => ['pending', 'requested', 'awaiting confirmation'].includes(String(item.status || '').toLowerCase());
+      const isUpcoming = item => !isCompleted(item) && !['cancelled', 'no-show'].includes(String(item.status || '').toLowerCase());
+      const make = (tag, className, value) => {
+        const el = document.createElement(tag);
+        if (className) el.className = className;
+        if (value !== undefined) el.textContent = String(value);
+        return el;
+      };
+
+      document.getElementById('todayLabel').textContent =
+        new Intl.DateTimeFormat('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(now);
+      if (data.specialist?.name) document.getElementById('welcomeHeading').textContent = `Good day, ${data.specialist.name}`;
+
+      document.getElementById('statAppointments').textContent = todayAppointments.length;
+      document.getElementById('statCompleted').textContent = todayAppointments.filter(isCompleted).length;
+      const bookedMinutes = todayAppointments
+        .filter(item => !['cancelled', 'no-show'].includes(String(item.status || '').toLowerCase()))
+        .reduce((total, item) => total + Math.max(0, Number(item.durationMinutes) || 0), 0);
+      document.getElementById('statBooked').textContent = `${(bookedMinutes / 60).toFixed(1)}h`;
+      document.getElementById('statPending').textContent = appointments.filter(isPending).length;
+
+      const sorted = [...todayAppointments].sort((a, b) => String(a.time || '').localeCompare(String(b.time || '')));
+      let filter = 'all';
+      const scheduleList = document.getElementById('scheduleList');
+
+      function appointmentRow(item) {
+        const row = make('article', 'specialist-appointment-row');
+        const time = make('span', 'specialist-appointment-time', item.time || '—');
+        const detail = make('div', 'specialist-appointment-detail');
+        detail.append(make('strong', '', item.patientName || 'Patient'), make('p', '', item.type || 'Consultation'));
+        const status = make('span', 'specialist-status', item.status || 'Scheduled');
+        row.append(time, detail, status);
+        return row;
+      }
+
+      function renderSchedule() {
+        const items = sorted.filter(item => filter === 'all' || (filter === 'completed' ? isCompleted(item) : isUpcoming(item)));
+        scheduleList.replaceChildren(...(items.length
+          ? items.map(appointmentRow)
+          : [make('p', 'specialist-empty', 'No appointments in this view.')]));
+      }
+
+      document.querySelectorAll('[data-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+          filter = button.dataset.filter;
+          document.querySelectorAll('[data-filter]').forEach(tab => {
+            const active = tab === button;
+            tab.classList.toggle('active', active);
+            tab.setAttribute('aria-pressed', String(active));
+          });
+          renderSchedule();
+        });
+      });
+
+      const nowTime = now.toTimeString().slice(0, 5);
+      const next = sorted.find(item => isUpcoming(item) && String(item.time || '') >= nowTime);
+      const nextBox = document.getElementById('nextConsultation');
+      nextBox.replaceChildren(...(next
+        ? [appointmentRow(next)]
+        : [make('p', 'specialist-empty', 'No upcoming consultation.')]));
+
+      const noticeBox = document.getElementById('noticeList');
+      noticeBox.replaceChildren(...(notices.length
+        ? notices.map(item => {
+            const article = make('article', 'specialist-notice');
+            article.append(make('strong', '', item.title || 'Notice'), make('p', '', item.description || ''));
+            return article;
+          })
+        : [make('p', 'specialist-empty', 'No new notices.')]));
+
+
+      const burger = document.querySelector('.burger');
+      const navigation = document.querySelector('.nav');
+      if (burger && navigation) {
+        burger.addEventListener('click', () => {
+          const open = navigation.classList.toggle('open');
+          burger.setAttribute('aria-expanded', String(open));
+          burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        });
+        document.querySelectorAll('.bnavLinks a').forEach(link => {
+          link.addEventListener('click', () => {
+            navigation.classList.remove('open');
+            burger.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+      renderSchedule();
+    })();
+  </script>
+ </body>
+</html>
