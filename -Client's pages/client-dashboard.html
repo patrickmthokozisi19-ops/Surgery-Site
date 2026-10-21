@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Home | Pweb</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="client-dashboard">
+  <header class="client-nav">
+    <div class="client-nav-inner">
+      <a class="client-brand" href="client-dashboard.html" aria-label="Pweb patient home">
+        <img src="../src/ThePwebLogo.png" alt="Pweb" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+        <span class="client-brand-fallback" style="display:none">Pweb</span>
+        <span class="client-brand-divider"></span><span class="client-brand-label">Patient portal</span>
+      </a>
+      <nav class="client-links" aria-label="Patient navigation">
+        <a class="active" href="client-dashboard.html" aria-current="page">Home</a>
+        <a href="#appointments">Appointments</a>
+        <a href="#specialists">Specialists</a>
+        <a href="#messages">Messages <span class="client-dot" aria-label="One unread message"></span></a>
+      </nav>
+      <div class="client-nav-actions">
+        <button class="client-icon-button" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">◐</button>
+        <button class="client-avatar" id="profileButton" aria-label="Open profile menu" aria-expanded="false">JD</button>
+        <div class="client-profile-menu" id="profileMenu" hidden><span>Jamie Dlamini</span><small>Patient account</small><a href="#profile">My profile</a><a href="#support">Help & support</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="client-main">
+    <section class="client-welcome">
+      <div><p class="client-eyebrow">PATIENT DASHBOARD</p><h1>Good morning, Jamie <span aria-hidden="true">👋</span></h1><p>Manage your care, appointments and messages in one place.</p></div>
+      <a class="client-button client-button-primary" href="#specialists">+ Book appointment</a>
+    </section>
+
+    <section class="client-hero" aria-label="Upcoming appointment">
+      <div class="client-hero-copy"><span class="client-pill">● Upcoming appointment</span><p class="client-hero-label">YOUR NEXT VISIT</p><h2>General consultation</h2><p class="client-hero-doctor">Dr Naledi Mokoena · General Surgery</p><div class="client-hero-details"><span>▦ &nbsp;Thursday, 29 October 2026</span><span>◷ &nbsp;10:30 AM</span><span>⌖ &nbsp;Riverside Surgical Centre</span></div><div class="client-hero-actions"><a class="client-button client-button-light" href="#appointments">View appointment</a><button class="client-button client-button-outline-light" id="rescheduleButton">Request reschedule</button></div></div>
+      <div class="client-hero-art" aria-hidden="true"><div class="client-art-circle circle-one"></div><div class="client-art-circle circle-two"></div><div class="client-art-cross">✳</div><div class="client-art-caption">Your care,<br />made simpler.</div></div>
+    </section>
+
+    <section class="client-shortcuts" aria-label="Quick actions">
+      <a href="#specialists" class="client-shortcut"><span class="client-shortcut-icon">＋</span><strong>Book a visit</strong><small>Find a suitable time</small><span class="client-arrow">↗</span></a>
+      <a href="#appointments" class="client-shortcut"><span class="client-shortcut-icon">▦</span><strong>My appointments</strong><small>View upcoming visits</small><span class="client-arrow">↗</span></a>
+      <a href="#messages" class="client-shortcut"><span class="client-shortcut-icon">✉</span><strong>Messages</strong><small>Contact the practice</small><span class="client-arrow">↗</span></a>
+    </section>
+
+    <div class="client-content-grid">
+      <section class="client-panel" id="appointments"><div class="client-panel-header"><div><p class="client-eyebrow">YOUR SCHEDULE</p><h2>Appointments</h2></div><a href="#appointments" class="client-text-link">View all →</a></div><div class="client-appointment"><div class="client-date-tile"><strong>29</strong><span>OCT</span></div><div class="client-appointment-details"><strong>General consultation</strong><span>Dr Naledi Mokoena</span><small>10:30 AM · Riverside Surgical Centre</small></div><span class="client-status">Confirmed</span></div><div class="client-appointment"><div class="client-date-tile muted"><strong>12</strong><span>NOV</span></div><div class="client-appointment-details"><strong>Follow-up review</strong><span>Dr Naledi Mokoena</span><small>09:00 AM · Riverside Surgical Centre</small></div><span class="client-status pending">Pending</span></div><p class="client-panel-footnote">Demo appointments shown for illustration.</p></section>
+      <section class="client-panel client-message-panel" id="messages"><div class="client-panel-header"><div><p class="client-eyebrow">STAY CONNECTED</p><h2>Messages</h2></div><span class="client-count">1 new</span></div><div class="client-message"><div class="client-message-avatar">RC</div><div><div class="client-message-top"><strong>Riverside Reception</strong><time>Yesterday</time></div><p>Hello Jamie, your consultation has been confirmed. Please arrive 15 minutes early.</p></div></div><a class="client-button client-button-secondary client-full" href="mailto:reception@example.com?subject=Patient%20enquiry">Contact reception ↗</a><p class="client-panel-footnote">Demo email address. Replace with your practice's contact or secure messaging route.</p></section>
+    </div>
+
+    <section class="client-panel client-specialists" id="specialists"><div class="client-panel-header"><div><p class="client-eyebrow">FIND THE RIGHT CARE</p><h2>Explore specialties</h2></div><a href="#support" class="client-text-link">Need help? →</a></div><div class="client-specialty-grid"><a href="mailto:reception@example.com?subject=General%20surgery%20appointment"><span>✚</span><strong>General surgery</strong><small>Consultations & care</small></a><a href="mailto:reception@example.com?subject=Orthopaedic%20appointment"><span>◇</span><strong>Orthopaedics</strong><small>Bone & joint care</small></a><a href="mailto:reception@example.com?subject=ENT%20appointment"><span>◎</span><strong>ENT</strong><small>Ear, nose & throat</small></a><a href="mailto:reception@example.com?subject=Gynaecology%20appointment"><span>♡</span><strong>Gynaecology</strong><small>Women's health</small></a></div></section>
+    <footer class="client-footer" id="support"><span>© 2026 Pweb · Patient portal demonstration</span><span>Need assistance? Contact your practice directly.</span></footer>
+  </main>
+  <div class="client-toast" id="clientToast" role="status" hidden></div>
+  <script>
+    const profileButton = document.getElementById('profileButton');
+    const profileMenu = document.getElementById('profileMenu');
+    profileButton.addEventListener('click', () => { const open = profileMenu.hidden; profileMenu.hidden = !open; profileButton.setAttribute('aria-expanded', String(open)); });
+    document.addEventListener('click', e => { if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) { profileMenu.hidden = true; profileButton.setAttribute('aria-expanded','false'); } });
+    const themeButton = document.getElementById('themeToggle');
+    themeButton.addEventListener('click', () => { const dark = document.body.classList.toggle('client-dark'); themeButton.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode'); });
+    document.getElementById('rescheduleButton').addEventListener('click', () => { const toast = document.getElementById('clientToast'); toast.textContent = 'Demo only: connect this button to your rescheduling workflow.'; toast.hidden = false; setTimeout(() => toast.hidden = true, 4500); });
+  </script>
+</body>
+</html>
