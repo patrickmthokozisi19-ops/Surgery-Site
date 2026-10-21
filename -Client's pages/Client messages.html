@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Messages | Pweb Patient Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<link href="client-dashboard.css" rel="stylesheet"/>
+<link href="client-messages.css" rel="stylesheet"/></head>
+<body>
+<div class="client-dashboard" id="clientDashboard">
+<aside aria-label="Patient navigation" class="client-sidebar" id="clientSidebar">
+<nav aria-label="Main navigation" class="client-nav">
+<a class="client-nav-link" href="Client's dashboard.html" title="Dashboard"><span aria-hidden="true" class="client-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="8" rx="1.5" width="8" x="3" y="3"></rect><rect height="8" rx="1.5" width="8" x="13" y="3"></rect><rect height="8" rx="1.5" width="8" x="3" y="13"></rect><rect height="8" rx="1.5" width="8" x="13" y="13"></rect></svg></span><span class="client-nav-label">Dashboard</span></a>
+<a class="client-nav-link" href="Client's appointments.html" title="Appointments"><span aria-hidden="true" class="client-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M7 3v4M17 3v4M3 10h18M8 15h3"></path></svg></span><span class="client-nav-label">Appointments</span></a>
+<a class="client-nav-link" href="Client's billing.html" title="Billing"><span aria-hidden="true" class="client-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="18" rx="2" width="16" x="4" y="3"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span class="client-nav-label">Billing</span></a>
+<a class="client-nav-link" href="Client's records.html" title="Records"><span aria-hidden="true" class="client-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M6 3h9l4 4v14H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path><path d="M14 3v5h5M9 13h6M12 10v6"></path></svg></span><span class="client-nav-label">Records</span></a>
+<a aria-current="page" class="client-nav-link active" href="Client's messages.html" title="Messages"><span aria-hidden="true" class="client-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 5h16v12H8l-4 4V5Z"></path><path d="M8 10h8M8 14h5"></path></svg></span><span class="client-nav-label">Messages</span></a>
+</nav>
+<div class="client-nav-bottom"><a class="client-nav-link" href="Client's settings.html" title="Settings"><span aria-hidden="true" class="client-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"></path></svg></span><span class="client-nav-label">Settings</span></a></div>
+</aside>
+<div class="client-shell">
+<header class="client-topbar">
+<a aria-label="Pweb Patient Portal home" class="client-topbar-brand" href="Client's dashboard.html">
+<img alt="Pweb" class="client-topbar-logo" src="../src/ThePwebLogo.png"/>
+<span aria-hidden="true" class="client-topbar-divider"></span>
+<span class="client-topbar-name">Patient Portal</span>
+</a>
+<a aria-label="Account settings" class="client-user-avatar" href="Client's settings.html" title="Account settings"><span id="clientUserInitials">AM</span></a>
+</header>
+<main class="client-main">
+<section class="client-intro">
+<div><p class="client-overline">COMMUNICATION</p><h1>Messages</h1><p>Secure conversations with your healthcare practice.</p></div>
+<button class="client-button client-button-primary" id="composeMessage" type="button">New message <span aria-hidden="true">＋</span></button>
+</section>
+<section aria-label="Messages workspace" class="client-messages-workspace">
+<div class="client-panel client-messages-inbox">
+<div class="client-panel-heading"><div><h2>Inbox</h2><p>Your conversations</p></div><span aria-label="Unread conversations" class="client-messages-count" id="unreadCount">0 unread</span></div>
+<label class="client-messages-search"><span class="client-sr-only">Search conversations</span><input autocomplete="off" id="messageSearch" placeholder="Search messages" type="search"/></label>
+<div aria-label="Filter messages" class="client-messages-filters" role="group"><button aria-pressed="true" class="active" data-filter="all" type="button">All</button><button aria-pressed="false" data-filter="unread" type="button">Unread</button></div>
+<div aria-live="polite" class="client-messages-thread-list" id="threadList"><p class="client-empty">No conversations yet.</p></div>
+</div>
+<section aria-label="Conversation" class="client-panel client-messages-conversation">
+<div class="client-messages-conversation-header" id="conversationHeader"><div><h2 id="conversationTitle">Your conversations</h2><p id="conversationSubtitle">Choose a conversation to view messages.</p></div></div>
+<div aria-live="polite" class="client-messages-bubbles" id="conversationMessages"><div class="client-messages-placeholder"><p>No conversation selected.</p><span>Select a message from your inbox to get started.</span></div></div>
+<form class="client-messages-reply" hidden="" id="replyForm">
+<label class="client-sr-only" for="replyText">Write a reply</label><textarea id="replyText" maxlength="2000" name="body" placeholder="Write your message..." required="" rows="2"></textarea>
+<button class="client-button client-button-primary" type="submit">Send</button>
+</form>
+<p class="client-messages-notice" hidden="" id="messageNotice" role="status"></p>
+</section>
+</section>
+<section aria-labelledby="composeTitle" class="client-panel client-messages-compose" hidden="" id="composePanel">
+<div class="client-panel-heading"><div><h2 id="composeTitle">New message</h2><p>Send a message to your practice.</p></div><button aria-label="Close new message form" class="client-messages-close" id="closeCompose" type="button">×</button></div>
+<form id="composeForm">
+<label>To <select name="recipient" required=""><option value="">Choose a department</option><option value="Reception">Reception</option><option value="Billing">Billing</option><option value="Care team">Care team</option></select></label>
+<label>Subject <input maxlength="120" name="subject" placeholder="Message subject" required="" type="text"/></label>
+<label class="full">Message <textarea maxlength="2000" name="body" placeholder="Write your message here" required="" rows="5"></textarea></label>
+<div class="client-messages-compose-actions"><p>For emergencies, contact local emergency services instead of using messages.</p><button class="client-button client-button-primary" type="submit">Send message</button></div>
+</form>
+<p class="client-messages-notice" hidden="" id="composeNotice" role="status"></p>
+</section>
+</main>
+</div>
+</div>
+<script>(() => {
+ 'use strict';
+ // Provide authenticated data as window.PwebPatientMessagesData = { conversations: [...] }.
+ // Conversation: { id, subject, participant, unread, updatedAt, messages:[{sender, body, sentAt}] }.
+ // Send actions dispatch events for backend integration; no sensitive data is stored locally.
+ const supplied = window.PwebPatientMessagesData || {};
+ const conversations = Array.isArray(supplied.conversations) ? supplied.conversations : [];
+ const list = document.getElementById('threadList');
+ const bubbles = document.getElementById('conversationMessages');
+ const replyForm = document.getElementById('replyForm');
+ const search = document.getElementById('messageSearch');
+ let filter = 'all';
+ let selected = null;
+ const node = (tag, cls, value) => {
+   const el = document.createElement(tag);
+   if (cls) el.className = cls;
+   if (value !== undefined) el.textContent = String(value);
+   return el;
+ };
+ const dateText = value => {
+   if (!value) return '';
+   const date = new Date(value);
+   return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('en-ZA',{dateStyle:'medium',timeStyle:'short'}).format(date);
+ };
+ function renderInbox() {
+   const query = search.value.trim().toLowerCase();
+   const matching = conversations.filter(c => (filter !== 'unread' || c.unread === true) && [c.subject,c.participant,...(Array.isArray(c.messages) ? c.messages.map(m => m.body) : [])].some(v => String(v || '').toLowerCase().includes(query)));
+   list.replaceChildren();
+   if (!matching.length) list.append(node('p','client-empty','No matching conversations.'));
+   matching.forEach(c => {
+     const btn = node('button','client-messages-thread'+(c.id === selected?.id ? ' active' : ''));
+     btn.type = 'button';
+     const head = node('span','client-messages-thread-head');
+     head.append(node('strong','',c.participant || 'Practice'),node('time','',dateText(c.updatedAt)));
+     btn.append(head,node('span','client-messages-thread-subject',c.subject || 'Conversation'));
+     const last = Array.isArray(c.messages) ? c.messages[c.messages.length - 1] : null;
+     btn.append(node('span','client-messages-thread-preview',last?.body || 'No messages yet'));
+     if (c.unread) btn.append(node('span','client-messages-unread-dot'));
+     btn.addEventListener('click',() => { selected=c; renderInbox();renderConversation(); });
+     list.append(btn);
+   });
+   document.getElementById('unreadCount').textContent = conversations.filter(c=>c.unread).length + ' unread';
+ }
+ function renderConversation() {
+   document.getElementById('conversationTitle').textContent = selected?.participant || 'Your conversations';
+   document.getElementById('conversationSubtitle').textContent = selected?.subject || 'Choose a conversation to view messages.';
+   replyForm.hidden = !selected;
+   bubbles.replaceChildren();
+   if (!selected) {
+     const placeholder = node('div','client-messages-placeholder');
+     placeholder.append(node('p','','No conversation selected.'),node('span','','Select a message from your inbox to get started.'));
+     bubbles.append(placeholder);return;
+   }
+   const messages = Array.isArray(selected.messages) ? selected.messages : [];
+   if (!messages.length) bubbles.append(node('p','client-empty','No messages in this conversation.'));
+   messages.forEach(m => {
+     const mine = ['patient','me','self'].includes(String(m.sender || '').toLowerCase());
+     const bubble = node('article','client-messages-bubble'+(mine?' mine':''));
+     bubble.append(node('p','',m.body || ''),node('time','',dateText(m.sentAt)));
+     bubbles.append(bubble);
+   });
+   bubbles.scrollTop = bubbles.scrollHeight;
+ }
+ document.querySelectorAll('[data-filter]').forEach(btn => btn.addEventListener('click',()=>{
+   filter=btn.dataset.filter;
+   document.querySelectorAll('[data-filter]').forEach(item=>{
+     const active=item===btn;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));
+   });
+   renderInbox();
+ }));
+ search.addEventListener('input',renderInbox);
+ const composePanel = document.getElementById('composePanel');
+ document.getElementById('composeMessage').addEventListener('click',()=>{composePanel.hidden=false;composePanel.scrollIntoView({behavior:'smooth',block:'start'});composePanel.querySelector('select').focus({preventScroll:true});});
+ document.getElementById('closeCompose').addEventListener('click',()=>{composePanel.hidden=true;});
+ function handleSend(event, detail, noticeId) {
+   event.preventDefault();
+   const notice=document.getElementById(noticeId);
+   document.dispatchEvent(new CustomEvent('pweb:message-send',{detail,bubbles:true}));
+   notice.textContent='Message prepared. Sending will be available when secure messaging services are connected.';
+   notice.hidden=false;
+ }
+ document.getElementById('composeForm').addEventListener('submit',event=>{
+   const form=event.currentTarget;
+   if (!form.reportValidity()) return;
+   handleSend(event,Object.fromEntries(new FormData(form)),'composeNotice');
+ });
+ replyForm.addEventListener('submit',event=>{
+   if (!replyForm.reportValidity() || !selected) return;
+   handleSend(event,{conversationId:selected.id,body:replyForm.elements.body.value},'messageNotice');
+ });
+ renderInbox();renderConversation();
+})();</script>
+</body>
+</html>
