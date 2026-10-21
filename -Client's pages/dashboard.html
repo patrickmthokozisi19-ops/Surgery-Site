@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Pweb Patient</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="client-dashboard.css">
+  <script src="client-dashboard.js" defer></script>
+</head>
+<body>
+  <div class="client-dashboard" id="clientDashboard">
+    <aside class="client-sidebar" id="clientSidebar" aria-label="Patient navigation">
+      <div class="client-brand">
+        <a href="dashboard.html" aria-label="Pweb patient dashboard">
+          <img src="../src/ThePwebLogo.png" alt="Pweb" class="client-logo">
+        </a>
+      </div>
+      <nav class="client-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="client-nav-link active" aria-current="page" title="Dashboard"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></span><span class="client-nav-label">Dashboard</span></a>
+        <a href="appointments.html" class="client-nav-link" title="Appointments"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 15h3"/></svg></span><span class="client-nav-label">Appointments</span></a>
+        <a href="billing.html" class="client-nav-link" title="Billing"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><span class="client-nav-label">Billing</span></a>
+        <a href="records.html" class="client-nav-link" title="Records"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l4 4v14H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M14 3v5h5M9 13h6M12 10v6"/></svg></span><span class="client-nav-label">Records</span></a>
+        <a href="messages.html" class="client-nav-link" title="Messages"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H8l-4 4V5Z"/><path d="M8 10h8M8 14h5"/></svg></span><span class="client-nav-label">Messages</span></a>
+      </nav>
+      <div class="client-nav-bottom"><a href="settings.html" class="client-nav-link" title="Settings"><span class="client-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg></span><span class="client-nav-label">Settings</span></a></div>
+    </aside>
+    <div class="client-shell">
+      <header class="client-topbar">
+        <div class="client-topbar-title"><span class="client-topbar-eyebrow">PATIENT PORTAL</span><strong>Dashboard</strong></div>
+        <div class="client-topbar-actions"><a href="messages.html" class="client-header-icon" aria-label="Messages"><img src="../public/search-finder-magnifying-glass-svgrepo-com.svg" alt="" class="client-header-img" id="searchIcon"><span class="client-header-search-label">Search</span></a><a href="settings.html" class="client-account" aria-label="Account settings"><img src="../public/account-avatar-person-svgrepo-com.svg" alt="" class="client-header-img"><span>My account</span></a></div>
+      </header>
+      <main class="client-main">
+        <section class="client-intro"><div><p class="client-overline">OVERVIEW</p><h1>Good morning</h1><p>Manage your appointments and stay up to date with your care.</p></div><a class="client-button client-button-primary" href="appointments.html">Book an appointment <span aria-hidden="true">→</span></a></section>
+        <section class="client-summary" aria-label="At a glance">
+          <a href="appointments.html" class="client-summary-card"><span>Upcoming appointments</span><strong id="appointmentCount">0</strong><small>View your schedule <span aria-hidden="true">→</span></small></a>
+          <a href="billing.html" class="client-summary-card"><span>Outstanding balance</span><strong id="balanceTotal">R 0.00</strong><small>View invoices <span aria-hidden="true">→</span></small></a>
+          <a href="messages.html" class="client-summary-card"><span>Unread messages</span><strong id="messageCount">0</strong><small>Open inbox <span aria-hidden="true">→</span></small></a>
+        </section>
+        <div class="client-content-grid">
+          <section class="client-panel client-appointments" aria-labelledby="upcomingTitle"><div class="client-panel-heading"><div><h2 id="upcomingTitle">Upcoming appointments</h2><p>Your scheduled visits</p></div><a href="appointments.html" class="client-text-link">View all <span aria-hidden="true">→</span></a></div><div class="client-appointment-list" id="appointmentList"><p class="client-empty">No upcoming appointments.</p></div></section>
+          <section class="client-panel client-actions" aria-labelledby="quickTitle"><div class="client-panel-heading"><div><h2 id="quickTitle">Quick access</h2><p>Frequently used services</p></div></div><div class="client-action-list"><a href="appointments.html"><span>Book a consultation</span><span aria-hidden="true">↗</span></a><a href="records.html"><span>Medical records</span><span aria-hidden="true">↗</span></a><a href="billing.html"><span>Billing and payments</span><span aria-hidden="true">↗</span></a><a href="messages.html"><span>Contact your practice</span><span aria-hidden="true">↗</span></a></div></section>
+        </div>
+        <section class="client-panel client-activity" aria-labelledby="activityTitle"><div class="client-panel-heading"><div><h2 id="activityTitle">Recent activity</h2><p>Latest updates to your account</p></div><label class="client-activity-filter">Show <select id="activityFilter"><option value="all">All activity</option><option value="appointment">Appointments</option><option value="billing">Billing</option><option value="message">Messages</option></select></label></div><div id="activityList" class="client-activity-list"><p class="client-empty">No recent activity.</p></div></section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
