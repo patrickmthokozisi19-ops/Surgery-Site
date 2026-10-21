@@ -7763,7 +7763,11 @@ html[data-theme="dark"] body.settings-page .settings-app {
       overflow: hidden;
       transition: width .25s ease;
 
-      &:hover, &:focus-within { width: 238px; box-shadow: 10px 0 30px rgba(23,32,51,.06); }
+      &:hover, &:focus-within { width: 238px; box-shadow: 10px 0 30px rgba(23,32,51,.06); 
+        .client-brand {
+          .client-logo {
+            display: block;
+          }}}
 
       .client-brand {
         min-height: 106px;
@@ -7773,7 +7777,7 @@ html[data-theme="dark"] body.settings-page .settings-app {
         justify-content: flex-start;
 
         a { display: flex; align-items: center; min-width: 0; }
-        .client-logo { display: block; width: 9rem; max-width: none; height: auto; max-height: 58px; object-fit: contain; border-radius: 12px; }
+        .client-logo { display: none; width: 9rem; max-width: none; height: auto; max-height: 58px; object-fit: contain; border-radius: 12px; }
       }
 
       .client-nav, .client-nav-bottom { display: grid; gap: 6px; padding: 0 12px; }

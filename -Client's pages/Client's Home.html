@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="client-dashboard.css">
-  <script src="client-dashboard.js" defer></script>
 </head>
 <body>
   <div class="client-dashboard" id="clientDashboard">
@@ -48,5 +47,72 @@
       </main>
     </div>
   </div>
+  <script>
+/* Patient dashboard: presentation and filtering only.
+   Connect Pweb's authenticated API response via window.PwebPatientDashboardData.
+   No sample patient records or browser-stored medical information. */
+(() => {
+  'use strict';
+  const root = document.getElementById('clientDashboard');
+  if (!root) return;
+
+  const supplied = window.PwebPatientDashboardData || {};
+  const data = {
+    appointments: Array.isArray(supplied.appointments) ? supplied.appointments : [],
+    invoices: Array.isArray(supplied.invoices) ? supplied.invoices : [],
+    messages: Array.isArray(supplied.messages) ? supplied.messages : [],
+    activity: Array.isArray(supplied.activity) ? supplied.activity : []
+  };
+  const today = new Date();
+  const fmtMoney = value => new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(value);
+  const fmtDate = value => {
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('en-ZA', { dateStyle: 'medium' }).format(date);
+  };
+  const node = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text != null) element.textContent = String(text);
+    return element;
+  };
+  const future = data.appointments.filter(item => {
+    const date = new Date(item.date);
+    return !Number.isNaN(date.getTime()) && date >= new Date(today.getFullYear(), today.getMonth(), today.getDate()) && !['cancelled', 'completed'].includes(String(item.status).toLowerCase());
+  }).sort((a, b) => new Date(a.date) - new Date(b.date));
+  document.getElementById('appointmentCount').textContent = future.length;
+  document.getElementById('balanceTotal').textContent = fmtMoney(data.invoices.filter(item => String(item.status).toLowerCase() === 'outstanding').reduce((total, item) => total + (Number(item.amount) || 0), 0));
+  document.getElementById('messageCount').textContent = data.messages.filter(item => item.unread === true).length;
+
+  const appointments = document.getElementById('appointmentList');
+  if (future.length) {
+    appointments.replaceChildren(...future.slice(0, 4).map(item => {
+      const row = node('div', 'client-appointment-row');
+      const info = node('div');
+      info.append(node('strong', '', item.specialist || item.title || 'Appointment'), node('p', '', [fmtDate(item.date), item.time, item.location].filter(Boolean).join(' · ')));
+      row.append(info, node('span', 'client-status', item.status || 'Scheduled'));
+      return row;
+    }));
+  }
+
+  const activityList = document.getElementById('activityList');
+  const activityFilter = document.getElementById('activityFilter');
+  function renderActivity() {
+    const type = activityFilter.value;
+    const selected = data.activity.filter(item => type === 'all' || item.type === type);
+    if (!selected.length) {
+      activityList.replaceChildren(node('p', 'client-empty', 'No recent activity.'));
+      return;
+    }
+    activityList.replaceChildren(...selected.map(item => {
+      const row = node('div', 'client-activity-row');
+      row.append(node('span', '', item.title || 'Update'), node('small', '', fmtDate(item.date)));
+      return row;
+    }));
+  }
+  activityFilter.addEventListener('change', renderActivity);
+  renderActivity();
+})();
+
+  </script>
 </body>
 </html>
