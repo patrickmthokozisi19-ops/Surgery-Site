@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home | Pweb Patient</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<script defer="True" src="../client-redesign.js"></script><link href="../client.css" rel="stylesheet"/><link href="../client-darkmode.css" rel="stylesheet"/></head>
+<body>
+<div class="client-dashboard" id="clientDashboard">
+<div class="client-shell">
+<header class="nav nav-slim dw-nav adm-doc-nav client-double-nav">
+<div class="tNav">
+  <a class="Emegerncy_contact" href="Client's dashboard.html"><img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/><span class="number">000 000 0000</span></a>
+  <div class="t-nav-btns">
+<div class="seach-box"><img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/><input aria-label="Search this page" class="searchPlaceHolder" placeholder="Search this page" type="search"/></div>
+<a class="client-account-link" href="Client's settings.html"><img alt="" src="../public/account-avatar-person-svgrepo-com.svg"/><span>My account</span></a>
+</div>
+</div>
+<div class="bNav">
+<a class="logoNbackBtn" href="Client's dashboard.html"><img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/><span class="logo"><img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/></span></a>
+<button aria-controls="clientNavLinks" aria-expanded="false" aria-label="Open menu" class="burger" type="button"><span></span><span></span><span></span></button>
+<nav aria-label="Patient navigation" class="bnavLinks" id="clientNavLinks"><a aria-current="page" class="is-current" href="Client's dashboard.html">Home</a><a href="Client's appointments.html">Appointments</a><a href="Client's billing.html">Billing</a><a href="Client's records.html">Records</a><a href="Client's messages.html">Messages</a><a href="Client's settings.html">Settings</a><a class="navBtn" href="Client's appointments.html">Book appointment</a></nav></div></header>
+<main class="client-main">
+<section class="client-intro"><div><p class="client-overline">OVERVIEW</p><h1>Good morning</h1><p>Manage your appointments and stay up to date with your care.</p></div><a class="client-button client-button-primary" href="Client's appointments.html">Book an appointment <span aria-hidden="true">→</span></a></section>
+<section aria-label="At a glance" class="client-summary">
+<a class="client-summary-card" href="Client's appointments.html"><span>Upcoming appointments</span><strong id="appointmentCount">0</strong><small>View your schedule <span aria-hidden="true">→</span></small></a>
+<a class="client-summary-card" href="Client's billing.html"><span>Outstanding balance</span><strong id="balanceTotal">R 0.00</strong><small>View invoices <span aria-hidden="true">→</span></small></a>
+<a class="client-summary-card" href="Client's messages.html"><span>Unread messages</span><strong id="messageCount">0</strong><small>Open inbox <span aria-hidden="true">→</span></small></a>
+</section>
+<div class="client-content-grid">
+<section aria-labelledby="upcomingTitle" class="client-panel client-appointments"><div class="client-panel-heading"><div><h2 id="upcomingTitle">Upcoming appointments</h2><p>Your scheduled visits</p></div><a class="client-text-link" href="Client's appointments.html">View all <span aria-hidden="true">→</span></a></div><div class="client-appointment-list" id="appointmentList"><p class="client-empty">No upcoming appointments.</p></div></section>
+<section aria-labelledby="quickTitle" class="client-panel client-actions"><div class="client-panel-heading"><div><h2 id="quickTitle">Quick access</h2><p>Frequently used services</p></div></div><div class="client-action-list"><a href="Client's appointments.html"><span>Book a consultation</span><span aria-hidden="true">↗</span></a><a href="Client's records.html"><span>Medical records</span><span aria-hidden="true">↗</span></a><a href="Client's billing.html"><span>Billing and payments</span><span aria-hidden="true">↗</span></a><a href="Client's messages.html"><span>Contact your practice</span><span aria-hidden="true">↗</span></a></div></section>
+</div>
+<section aria-labelledby="activityTitle" class="client-panel client-activity"><div class="client-panel-heading"><div><h2 id="activityTitle">Recent activity</h2><p>Latest updates to your account</p></div><label class="client-activity-filter">Show <select id="activityFilter"><option value="all">All activity</option><option value="appointment">Appointments</option><option value="billing">Billing</option><option value="message">Messages</option></select></label></div><div class="client-activity-list" id="activityList"><p class="client-empty">No recent activity.</p></div></section>
+</main>
+</div>
+</div>
+<script>/* Fictional frontend fixture data — replace with authenticated API response. */
+window.PwebPatientDashboardData = {"appointments": [{"specialist": "Dr Naledi Dlamini · Orthopaedics", "date": "2026-11-04", "time": "10:30", "location": "Riverside Surgical Centre, Room 4", "status": "Confirmed"}, {"specialist": "Dr Yusuf Patel · General Surgery", "date": "2026-11-18", "time": "14:00", "location": "Riverside Surgical Centre, Room 2", "status": "Pending"}], "invoices": [{"id": "INV-2048", "status": "Outstanding", "amount": 450}], "messages": [{"id": "msg-1", "unread": true}], "activity": [{"type": "appointment", "title": "Orthopaedic consultation confirmed", "date": "2026-10-20"}, {"type": "billing", "title": "Invoice INV-2048 issued", "date": "2026-10-18"}, {"type": "message", "title": "New message from Reception", "date": "2026-10-16"}]};</script><script>
+/* Patient dashboard: presentation and filtering only.
+   Connect Pweb's authenticated API response via window.PwebPatientDashboardData.
+   No sample patient records or browser-stored medical information. */
+(() => {
+  'use strict';
+  const root = document.getElementById('clientDashboard');
+  if (!root) return;
+
+  const supplied = window.PwebPatientDashboardData || {};
+  const data = {
+    appointments: Array.isArray(supplied.appointments) ? supplied.appointments : [],
+    invoices: Array.isArray(supplied.invoices) ? supplied.invoices : [],
+    messages: Array.isArray(supplied.messages) ? supplied.messages : [],
+    activity: Array.isArray(supplied.activity) ? supplied.activity : []
+  };
+  const today = new Date();
+  const fmtMoney = value => new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(value);
+  const fmtDate = value => {
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('en-ZA', { dateStyle: 'medium' }).format(date);
+  };
+  const node = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text != null) element.textContent = String(text);
+    return element;
+  };
+  const future = data.appointments.filter(item => {
+    const date = new Date(item.date);
+    return !Number.isNaN(date.getTime()) && date >= new Date(today.getFullYear(), today.getMonth(), today.getDate()) && !['cancelled', 'completed'].includes(String(item.status).toLowerCase());
+  }).sort((a, b) => new Date(a.date) - new Date(b.date));
+  document.getElementById('appointmentCount').textContent = future.length;
+  document.getElementById('balanceTotal').textContent = fmtMoney(data.invoices.filter(item => String(item.status).toLowerCase() === 'outstanding').reduce((total, item) => total + (Number(item.amount) || 0), 0));
+  document.getElementById('messageCount').textContent = data.messages.filter(item => item.unread === true).length;
+
+  const appointments = document.getElementById('appointmentList');
+  if (future.length) {
+    appointments.replaceChildren(...future.slice(0, 4).map(item => {
+      const row = node('div', 'client-appointment-row');
+      const info = node('div');
+      info.append(node('strong', '', item.specialist || item.title || 'Appointment'), node('p', '', [fmtDate(item.date), item.time, item.location].filter(Boolean).join(' · ')));
+      row.append(info, node('span', 'client-status', item.status || 'Scheduled'));
+      return row;
+    }));
+  }
+
+  const activityList = document.getElementById('activityList');
+  const activityFilter = document.getElementById('activityFilter');
+  function renderActivity() {
+    const type = activityFilter.value;
+    const selected = data.activity.filter(item => type === 'all' || item.type === type);
+    if (!selected.length) {
+      activityList.replaceChildren(node('p', 'client-empty', 'No recent activity.'));
+      return;
+    }
+    activityList.replaceChildren(...selected.map(item => {
+      const row = node('div', 'client-activity-row');
+      row.append(node('span', '', item.title || 'Update'), node('small', '', fmtDate(item.date)));
+      return row;
+    }));
+  }
+  activityFilter.addEventListener('change', renderActivity);
+  renderActivity();
+})();
+
+  </script>
+</body>
+</html>

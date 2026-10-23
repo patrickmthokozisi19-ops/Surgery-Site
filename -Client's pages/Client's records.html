@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Health Records | Pweb Patient Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<script defer="True" src="../client-redesign.js"></script><link href="../client.css" rel="stylesheet"/><link href="../client-darkmode.css" rel="stylesheet"/></head>
+<body>
+<div class="client-dashboard" id="clientDashboard">
+<div class="client-shell">
+<header class="nav nav-slim dw-nav adm-doc-nav client-double-nav">
+<div class="tNav">
+  <a class="Emegerncy_contact" href="Client's dashboard.html"><img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/><span class="number">000 000 0000</span></a>
+  <div class="t-nav-btns">
+<div class="seach-box"><img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/><input aria-label="Search this page" class="searchPlaceHolder" placeholder="Search this page" type="search"/></div>
+<a class="client-account-link" href="Client's settings.html"><img alt="" src="../public/account-avatar-person-svgrepo-com.svg"/><span>My account</span></a>
+</div>
+</div>
+<div class="bNav">
+<a class="logoNbackBtn" href="Client's dashboard.html"><img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/><span class="logo"><img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/></span></a>
+<button aria-controls="clientNavLinks" aria-expanded="false" aria-label="Open menu" class="burger" type="button"><span></span><span></span><span></span></button>
+<nav aria-label="Patient navigation" class="bnavLinks" id="clientNavLinks"><a href="Client's dashboard.html">Home</a><a href="Client's appointments.html">Appointments</a><a href="Client's billing.html">Billing</a><a aria-current="page" class="is-current" href="Client's records.html">Records</a><a href="Client's messages.html">Messages</a><a href="Client's settings.html">Settings</a><a class="navBtn" href="Client's appointments.html">Book appointment</a></nav></div></header>
+<main class="client-main"><section class="client-intro"><div><p class="client-overline">PERSONAL HEALTH</p><h1>My health records</h1><p>Find your documents, consultation summaries and shared records.</p></div><button class="client-button client-button-primary" id="requestRecords" type="button">Request records <span aria-hidden="true">→</span></button></section>
+<section aria-label="Records overview" class="client-records-overview"><article class="client-panel client-records-stat"><span>Available documents</span><strong id="recordCount">0</strong><small>Files shared with you</small></article><article class="client-panel client-records-stat"><span>Consultation summaries</span><strong id="summaryCount">0</strong><small>Visit documentation</small></article><article class="client-panel client-records-stat"><span>Latest update</span><strong id="lastUpdated">—</strong><small>Most recent document</small></article></section>
+<section aria-labelledby="libraryTitle" class="client-panel client-records-library"><div class="client-panel-heading"><div><h2 id="libraryTitle">Document library</h2><p>Search and review records available to your account.</p></div></div><div class="client-records-controls"><div aria-label="Record categories" class="client-records-tabs" role="group"><button aria-pressed="true" class="active" data-category="all" type="button">All records</button><button aria-pressed="false" data-category="summary" type="button">Summaries</button><button aria-pressed="false" data-category="result" type="button">Results</button><button aria-pressed="false" data-category="other" type="button">Other documents</button></div><label class="client-records-search"><span class="sr-only">Search records</span><input autocomplete="off" id="recordSearch" placeholder="Search documents" type="search"/></label></div><div aria-live="polite" class="client-records-list" id="recordList"><p class="client-records-empty">No documents available.</p></div></section>
+<div class="client-records-bottom"><section aria-labelledby="recordDetailHeading" class="client-panel"><div class="client-panel-heading"><div><h2 id="recordDetailHeading">Document details</h2><p>Select a record to see its information.</p></div></div><div class="client-record-details" id="recordDetails"><p class="client-records-empty">Select a document from the library.</p></div></section><section aria-labelledby="privacyHeading" class="client-panel client-records-help"><div class="client-panel-heading"><div><h2 id="privacyHeading">Privacy &amp; access</h2><p>Your medical information is confidential.</p></div></div><p>Access to health records is restricted to authorised people for appropriate purposes. You can review privacy preferences and contact the practice about access to your information.</p><a class="client-text-link" href="Client's settings.html">Privacy settings <span aria-hidden="true">→</span></a></section></div>
+<section aria-labelledby="requestHeading" class="client-panel client-records-request" hidden="" id="recordRequestPanel"><div class="client-panel-heading"><div><h2 id="requestHeading">Request a document</h2><p>Specify the record you would like to obtain.</p></div><button aria-label="Close request form" class="client-records-close" id="closeRecordRequest" type="button">×</button></div><form class="client-records-form" id="recordRequestForm"><label>Document type<select name="type" required=""><option value="">Select document type</option><option>Consultation summary</option><option>Test result</option><option>Referral letter</option><option>Other medical record</option></select></label><label>Related appointment date (optional)<input name="date" type="date"/></label><label class="client-records-full">Additional details<textarea maxlength="500" name="details" placeholder="Which document do you need?" rows="3"></textarea></label><div class="client-records-form-footer"><button class="client-button client-button-primary" type="submit">Submit request</button><p id="recordRequestStatus" role="status"></p></div></form></section></main>
+</div>
+</div>
+<script>/* Fictional frontend fixture data — replace with authenticated API response. */
+window.PwebPatientRecordsData = {"records": [{"id": "REC-104", "title": "Orthopaedic consultation summary", "category": "Consultation", "date": "2026-09-16", "provider": "Dr Naledi Dlamini", "description": "Summary of consultation and follow-up recommendations."}, {"id": "REC-099", "title": "Laboratory report", "category": "Lab results", "date": "2026-08-14", "provider": "Riverside Diagnostics", "description": "Routine laboratory results and clinical interpretation."}, {"id": "REC-091", "title": "Discharge instructions", "category": "Documents", "date": "2026-08-08", "provider": "Riverside Surgical Centre", "description": "Care instructions and follow-up information."}]};</script><script>(() => {
+  'use strict';
+  // Expected application data: window.PwebPatientRecordsData = { records: [...] };
+  // Record fields: id, title, category, date, provider, description, downloadUrl.
+  const source = window.PwebPatientRecordsData || {};
+  const records = Array.isArray(source.records) ? source.records : [];
+  const $ = id => document.getElementById(id);
+  const make = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = String(text);
+    return node;
+  };
+  const date = value => {
+    if (!value) return '—';
+    const d = new Date(String(value).slice(0, 10) + 'T12:00:00');
+    return Number.isNaN(d.getTime()) ? '—' : new Intl.DateTimeFormat('en-ZA', {day:'numeric',month:'short',year:'numeric'}).format(d);
+  };
+  const categoryOf = record => String(record.category || 'other').toLowerCase();
+  const sorted = [...records].sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+  $('recordCount').textContent = records.length;
+  $('summaryCount').textContent = records.filter(r => categoryOf(r)==='summary').length;
+  $('lastUpdated').textContent = sorted.length ? date(sorted[0].date) : '—';
+  let category = 'all';
+  let selected = null;
+  const list = $('recordList');
+  const details = $('recordDetails');
+  const search = $('recordSearch');
+  function showRecord(record) {
+    selected = record.id;
+    const info = make('dl','client-records-detail-grid');
+    [['Document',record.title || '—'],['Category',record.category || 'Other'],['Date',date(record.date)],['Provider',record.provider || '—'],['Description',record.description || '—']].forEach(([label,value]) => {
+      const group = make('div','client-records-detail-item');
+      group.append(make('dt','',label),make('dd','',value));
+      info.append(group);
+    });
+    details.replaceChildren(info);
+    // URLs must come from the authenticated server, never from untrusted user input.
+    if (record.downloadUrl && /^https:\/\//i.test(record.downloadUrl)) {
+      const link = make('a','client-button client-button-primary','Open document');
+      link.href = record.downloadUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      details.append(link);
+    }
+    render();
+  }
+  function render() {
+    const q = search.value.trim().toLowerCase();
+    const shown = sorted.filter(r => (category === 'all' || categoryOf(r) === category) &&
+      [r.title,r.provider,r.description,r.category,r.date].some(v => String(v || '').toLowerCase().includes(q)));
+    list.replaceChildren();
+    if (!shown.length) {
+      list.append(make('p','client-records-empty','No matching documents.'));
+      return;
+    }
+    shown.forEach(record => {
+      const row = make('article','client-records-row' + (selected === record.id ? ' selected' : ''));
+      const icon = make('span','client-records-icon','▤');
+      icon.setAttribute('aria-hidden','true');
+      const body = make('div','client-records-item-body');
+      body.append(make('strong','',record.title || 'Untitled document'),make('p','',[date(record.date),record.provider].filter(Boolean).join(' · ')));
+      const tag = make('span','client-records-category',record.category || 'Other');
+      const button = make('button','client-records-view','View details');
+      button.type = 'button';
+      button.addEventListener('click',() => showRecord(record));
+      row.append(icon,body,tag,button);
+      list.append(row);
+    });
+  }
+  document.querySelectorAll('[data-category]').forEach(button => button.addEventListener('click',() => {
+    category = button.dataset.category;
+    document.querySelectorAll('[data-category]').forEach(tab => {
+      const active = tab === button;
+      tab.classList.toggle('active',active);
+      tab.setAttribute('aria-pressed',String(active));
+    });
+    render();
+  }));
+  search.addEventListener('input',render);
+  const requestPanel = $('recordRequestPanel');
+  $('requestRecords').addEventListener('click',() => {
+    requestPanel.hidden = false;
+    requestPanel.scrollIntoView({behavior:'smooth',block:'start'});
+    requestPanel.querySelector('select').focus({preventScroll:true});
+  });
+  $('closeRecordRequest').addEventListener('click',() => {requestPanel.hidden = true;});
+  $('recordRequestForm').addEventListener('submit',event => {
+    event.preventDefault();
+    if (!event.currentTarget.reportValidity()) return;
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    document.dispatchEvent(new CustomEvent('pweb:record-request',{detail:data,bubbles:true}));
+    $('recordRequestStatus').textContent = 'Request submission is not yet connected.';
+  });
+  render();
+})();</script>
+</body>
+</html>

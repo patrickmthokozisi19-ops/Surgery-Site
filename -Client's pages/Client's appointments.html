@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Appointments | Pweb Patient</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<script defer="True" src="../client-redesign.js"></script><link href="../client.css" rel="stylesheet"/><link href="../client-darkmode.css" rel="stylesheet"/></head>
+<body>
+<div class="client-dashboard" id="clientDashboard">
+<div class="client-shell">
+<header class="nav nav-slim dw-nav adm-doc-nav client-double-nav">
+<div class="tNav">
+<a class="Emegerncy_contact" href="Client's dashboard.html"><img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/><span class="number">000 000 0000</span></a>
+<div class="t-nav-btns">
+<div class="seach-box"><img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/><input aria-label="Search this page" class="searchPlaceHolder" placeholder="Search this page" type="search"/></div>
+<a class="client-account-link" href="Client's settings.html"><img alt="" src="../public/account-avatar-person-svgrepo-com.svg"/><span>My account</span></a>
+</div>
+</div>
+<div class="bNav">
+<a class="logoNbackBtn" href="Client's dashboard.html"><img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/><span class="logo"><img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/></span></a>
+<button aria-controls="clientNavLinks" aria-expanded="false" aria-label="Open menu" class="burger" type="button"><span></span><span></span><span></span></button>
+<nav aria-label="Patient navigation" class="bnavLinks" id="clientNavLinks">
+  <a href="Client's dashboard.html">Home</a><a aria-current="page" class="is-current" href="Client's appointments.html">Appointments</a><a href="Client's billing.html">Billing</a><a href="Client's records.html">Records</a><a href="Client's messages.html">Messages</a><a href="Client's settings.html">Settings</a><a class="navBtn" href="Client's appointments.html">Book appointment</a></nav></div></header>
+<main class="client-main">
+<section class="client-intro">
+<div>
+<p class="client-overline">APPOINTMENTS</p>
+<h1>Your appointments</h1>
+<p>View upcoming visits, manage bookings and request a consultation.</p>
+</div>
+<button class="client-button client-button-primary" id="newBooking" type="button">New appointment <span aria-hidden="true">→</span></button>
+</section>
+<section aria-label="Appointment views" class="client-appointment-tabs">
+<button aria-pressed="true" class="active" data-view="upcoming" type="button">Upcoming</button>
+<button aria-pressed="false" data-view="past" type="button">Past appointments</button>
+<button aria-pressed="false" data-view="all" type="button">All appointments</button>
+</section>
+<div class="client-appointment-layout">
+<section aria-labelledby="bookingsTitle" class="client-panel client-bookings-panel">
+<div class="client-panel-heading">
+<div><h2 id="bookingsTitle">Upcoming appointments</h2><p id="bookingsSubtitle">Your scheduled visits and requests</p></div>
+<label class="client-appointment-search">
+<span class="sr-only">Search appointments</span>
+<input autocomplete="off" id="bookingSearch" placeholder="Search appointments" type="search"/>
+</label>
+</div>
+<div aria-live="polite" class="client-bookings-list" id="bookingsList"><p class="client-empty">No upcoming appointments.</p></div>
+</section>
+<aside aria-labelledby="nextTitle" class="client-panel client-booking-aside">
+<div class="client-panel-heading"><div><h2 id="nextTitle">Next appointment</h2><p>Your next scheduled visit</p></div></div>
+<div id="nextAppointment"><p class="client-empty">No upcoming appointment.</p></div>
+<div class="client-booking-help">
+<h3>Need assistance?</h3>
+<p>Contact your practice about an appointment or a change to your schedule.</p>
+<a class="client-text-link" href="Client's messages.html">Go to messages <span aria-hidden="true">→</span></a>
+</div>
+</aside>
+</div>
+<section aria-labelledby="requestTitle" class="client-panel client-booking-form-panel" hidden="" id="bookingPanel">
+<div class="client-panel-heading">
+<div><h2 id="requestTitle">Request an appointment</h2><p>Choose a specialist and your preferred date and time.</p></div>
+<button aria-label="Close appointment form" class="client-booking-close" id="closeBooking" type="button">×</button>
+</div>
+<form class="client-booking-form" id="appointmentForm">
+<label>Specialist
+      <select name="specialist" required="">
+<option value="">Choose a specialist</option>
+<option>Dr. A. Mokoena</option>
+<option>Dr. L. Naidoo</option>
+<option>Dr. S. Patel</option>
+</select>
+</label>
+<label>Appointment type
+      <select name="type" required="">
+<option value="">Select appointment type</option>
+<option>Consultation</option>
+<option>Follow-up</option>
+<option>Assessment</option>
+</select>
+</label>
+<label>Preferred date<input name="date" required="" type="date"/></label>
+<label>Preferred time
+      <select name="time" required="">
+<option value="">Choose a time</option>
+<option>09:00</option><option>09:30</option><option>10:00</option>
+<option>11:00</option><option>14:00</option><option>15:00</option>
+</select>
+</label>
+<label class="client-form-full">Reason for visit (optional)
+      <textarea maxlength="500" name="reason" placeholder="Briefly describe the reason for your visit" rows="3"></textarea>
+</label>
+<div class="client-form-footer">
+<p>Appointment requests are subject to confirmation by the practice.</p>
+<button class="client-button client-button-primary" type="submit">Request appointment</button>
+</div>
+</form>
+</section>
+</main>
+</div>
+</div>
+<script>/* Fictional frontend fixture data — replace with authenticated API response. */
+window.PwebPatientAppointmentsData = {"appointments": [{"id": "APT-1042", "specialist": "Dr Naledi Dlamini", "type": "Orthopaedic follow-up", "date": "2026-11-04", "time": "10:30", "location": "Room 4", "status": "Confirmed"}, {"id": "APT-1043", "specialist": "Dr Yusuf Patel", "type": "General surgery consultation", "date": "2026-11-18", "time": "14:00", "location": "Room 2", "status": "Pending"}, {"id": "APT-0998", "specialist": "Dr Naledi Dlamini", "type": "Initial consultation", "date": "2026-09-16", "time": "09:00", "location": "Room 4", "status": "Completed"}]};</script><script>
+(() => {
+  'use strict';
+
+  // Supply appointments from your authenticated application:
+  // window.PwebPatientAppointmentsData = { appointments: [...] };
+  // Connect create/cancel actions to your backend before enabling live bookings.
+  const source = window.PwebPatientAppointmentsData || {};
+  const appointments = Array.isArray(source.appointments) ? [...source.appointments] : [];
+  let view = 'upcoming';
+  const list = document.getElementById('bookingsList');
+  const search = document.getElementById('bookingSearch');
+  const formPanel = document.getElementById('bookingPanel');
+  const form = document.getElementById('appointmentForm');
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const dateValue = value => {
+    if (!value) return null;
+    const date = new Date(String(value).slice(0, 10) + 'T12:00:00');
+    return Number.isNaN(date.getTime()) ? null : date;
+  };
+  const formatDate = value => {
+    const date = dateValue(value);
+    return date ? new Intl.DateTimeFormat('en-ZA', { day:'numeric', month:'short', year:'numeric' }).format(date) : '';
+  };
+  const element = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  const isUpcoming = appointment => {
+    const date = dateValue(appointment.date);
+    return date && date >= today && !['cancelled','completed'].includes(String(appointment.status).toLowerCase());
+  };
+  const sorted = () => [...appointments].sort((a,b) => String(a.date).localeCompare(String(b.date)));
+  function renderRow(appointment) {
+    const row = element('article','client-booking-row');
+    const icon = element('span','client-booking-date',formatDate(appointment.date));
+    const detail = element('div','client-booking-detail');
+    detail.append(
+      element('strong','',appointment.specialist || 'Appointment'),
+      element('p','', [appointment.type,appointment.time,appointment.location].filter(Boolean).join(' · '))
+    );
+    const status = element('span','client-booking-status',appointment.status || 'Requested');
+    row.append(icon,detail,status);
+    return row;
+  }
+  function render() {
+    const query = search.value.trim().toLowerCase();
+    const selected = sorted().filter(item => {
+      const matchingView = view === 'all' || (view === 'upcoming' ? isUpcoming(item) : !isUpcoming(item));
+      const matchingText = [item.specialist,item.type,item.status,item.location,item.date].some(v => String(v || '').toLowerCase().includes(query));
+      return matchingView && matchingText;
+    });
+    list.replaceChildren(...(selected.length ? selected.map(renderRow) : [element('p','client-empty','No matching appointments.')]));
+    const next = sorted().find(isUpcoming);
+    const nextBox = document.getElementById('nextAppointment');
+    nextBox.replaceChildren(...(next ? [renderRow(next)] : [element('p','client-empty','No upcoming appointment.')]));
+    document.getElementById('bookingsTitle').textContent = view === 'upcoming' ? 'Upcoming appointments' : view === 'past' ? 'Past appointments' : 'All appointments';
+  }
+  document.querySelectorAll('[data-view]').forEach(button => {
+    button.addEventListener('click', () => {
+      view = button.dataset.view;
+      document.querySelectorAll('[data-view]').forEach(tab => {
+        const active = tab === button;
+        tab.classList.toggle('active',active);
+        tab.setAttribute('aria-pressed',String(active));
+      });
+      render();
+    });
+  });
+  search.addEventListener('input',render);
+  function showForm(show) {
+    formPanel.hidden = !show;
+    if (show) {
+      formPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      form.querySelector('select').focus({ preventScroll: true });
+    }
+  }
+  document.getElementById('newBooking').addEventListener('click',() => showForm(true));
+  document.getElementById('closeBooking').addEventListener('click',() => showForm(false));
+  form.elements.date.min = new Date().toLocaleDateString('en-CA');
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const fields = Object.fromEntries(new FormData(form));
+    // Dispatch for future integration. The UI does not pretend the practice has confirmed a booking.
+    const request = new CustomEvent('pweb:appointment-request', { detail: fields, bubbles: true });
+    document.dispatchEvent(request);
+    const status = document.getElementById('bookingFeedback') || element('p','client-booking-feedback');
+    status.id = 'bookingFeedback';
+    status.textContent = 'Appointment request prepared. Submission will be available when booking services are connected.';
+    form.append(status);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
