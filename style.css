@@ -8573,6 +8573,7 @@ body.ss-page .ss-theme-choice small{font-size:10px}
    body.client-page .adm-doc-nav .bnavLinks a.navBtn,
    body.client-page .adm-doc-nav .bnavLinks a.navBtn:hover {background:#fff;color:#334155;border-radius:999px;padding:12px 20px;font-weight:750;white-space:nowrap;}
    body.client-page .adm-doc-nav .logoNbackBtn {display:flex;align-items:center;gap:18px;flex-shrink:0;}
+
    body.client-page .adm-doc-nav.logoPGN { max-width: 9rem;
     height: auto;
     padding: 1rem;
