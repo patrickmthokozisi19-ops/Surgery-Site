@@ -9108,11 +9108,11 @@ html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page) :is(
 
 /* Appearance chooser: used only by Specialist Settings */
 .ss-page .ss-appearance-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
-.ss-page .ss-theme-choice{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#334155;padding:18px 10px;cursor:pointer;font:inherit}
+.ss-page .ss-theme-choice{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;border:1px solid #cbd5e1;border-radius:11px;background:#334155;color:#334155;padding:18px 10px;cursor:pointer;font:inherit}
 .ss-page .ss-theme-choice strong{font-size:13px}
 .ss-page .ss-theme-choice small{font-size:11px;color:#64748b}
 .ss-page .ss-theme-icon{font-size:26px;line-height:1}
-.ss-page .ss-theme-choice[aria-pressed="true"]{border-color:#2563eb;outline:2px solid #2563eb;background:#eff6ff}
+.ss-page .ss-theme-choice[aria-pressed="true"]{border-color:#2563eb;outline:2px solid #2563eb;background:#011631}
 .ss-page .ss-theme-status{font-size:12px;color:#64748b}
 }
 
