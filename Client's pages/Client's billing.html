@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Billing &amp; Payments | Pweb Patient Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<link href="../client.css" rel="stylesheet"/><link href="../client-darkmode.css" rel="stylesheet"/></head>
+<body class="client-page">
+<div class="client-dashboard" id="clientDashboard">
+<div class="client-shell">
+<header class="nav nav-slim dw-nav adm-doc-nav">
+<div class="tNav">
+<a class="Emegerncy_contact" href="tel:+27000000000">
+<img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+<span class="number">Reception desk: 000 000 0000</span>
+</a>
+<div class="t-nav-btns">
+<div class="seach-box">
+<img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+<span class="searchtext">Search your pages</span>
+<input aria-label="Search patient pages" autocomplete="off" class="searchPlaceHolder" placeholder="Search appointments, billing, records..." type="search"/>
+<img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+</div>
+<div class="Pweb_login">
+<a class="login" href="Client's settings.html">
+<img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+<span class="loginText">My account</span>
+</a>
+</div>
+</div>
+</div>
+<div class="bNav">
+<a aria-label="Patient home" class="logoNbackBtn" href="Client's dashboard.html">
+<img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+<div class="logo">
+<img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+</div>
+</a>
+<button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav aria-label="Patient workspace" class="bnavLinks" id="dw-nav-links"><a href="Client's dashboard.html">Home</a><a href="Client's appointments.html">Appointments</a><a aria-current="page" class="is-current" href="Client's billing.html">Billing</a><a href="Client's records.html">Records</a><a href="Client's messages.html">Messages</a><a href="Client's settings.html">Settings</a><a class="navBtn" href="Client's appointments.html">Book appointment</a></nav>
+</div>
+</header>
+<main class="client-main">
+<section class="client-intro">
+<div>
+<p class="client-overline">ACCOUNT &amp; PAYMENTS</p>
+<h1>Billing &amp; payments</h1>
+<p>Review invoices, balances and your payment history.</p>
+</div>
+<button class="client-button client-button-primary" id="downloadStatement" type="button">Export statement <span aria-hidden="true">↓</span></button>
+</section>
+<section aria-label="Billing summary" class="client-billing-summary">
+<article class="client-panel client-billing-stat">
+<span>Outstanding balance</span><strong id="billingOutstanding">R 0.00</strong>
+<small>Unpaid invoices</small>
+</article>
+<article class="client-panel client-billing-stat">
+<span>Payments received</span><strong id="billingPaid">R 0.00</strong>
+<small>Paid invoices</small>
+</article>
+<article class="client-panel client-billing-stat">
+<span>Open invoices</span><strong id="billingOpenCount">0</strong>
+<small>Awaiting payment</small>
+</article>
+</section>
+<section aria-labelledby="invoiceHeading" class="client-panel client-billing-invoices">
+<div class="client-panel-heading">
+<div><h2 id="invoiceHeading">Invoices</h2><p>Track payments and view invoice details.</p></div>
+</div>
+<div class="client-billing-controls">
+<div aria-label="Filter invoices" class="client-billing-tabs" role="group">
+<button aria-pressed="true" class="active" data-status="all" type="button">All</button>
+<button aria-pressed="false" data-status="outstanding" type="button">Outstanding</button>
+<button aria-pressed="false" data-status="paid" type="button">Paid</button>
+</div>
+<label class="client-billing-search"><span class="sr-only">Search invoices</span><input id="invoiceSearch" placeholder="Search invoices" type="search"/></label>
+</div>
+<div class="client-billing-table-wrap">
+<table class="client-billing-table">
+<thead><tr><th>Invoice</th><th>Date</th><th>Description</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+<tbody id="invoiceRows"><tr><td class="client-empty" colspan="6">No invoices found.</td></tr></tbody>
+</table>
+</div>
+</section>
+<div class="client-billing-bottom">
+<section aria-labelledby="detailsHeading" class="client-panel">
+<div class="client-panel-heading"><div><h2 id="detailsHeading">Invoice details</h2><p>Select an invoice to review its information.</p></div></div>
+<div class="client-billing-details" id="invoiceDetails"><p class="client-empty">Select an invoice from the table.</p></div>
+</section>
+<section aria-labelledby="supportHeading" class="client-panel client-billing-support">
+<div class="client-panel-heading"><div><h2 id="supportHeading">Billing assistance</h2><p>Questions about an invoice or payment?</p></div></div>
+<p>Contact your practice for account statements, medical aid enquiries or payment assistance.</p>
+<a class="client-text-link" href="Client's messages.html">Contact the practice <span aria-hidden="true">→</span></a>
+</section>
+</div>
+</main>
+</div>
+</div>
+<script>/* Fictional frontend fixture data — replace with authenticated API response. */
+window.PwebPatientBillingData = {"invoices": [{"id": "INV-2048", "date": "2026-10-18", "description": "Follow-up consultation", "amount": 450, "status": "Outstanding", "dueDate": "2026-11-15", "reference": "PAT-1024"}, {"id": "INV-1981", "date": "2026-09-16", "description": "Initial consultation", "amount": 850, "status": "Paid", "dueDate": "2026-09-30", "reference": "PAT-1024"}, {"id": "INV-1882", "date": "2026-08-08", "description": "Clinical assessment", "amount": 320, "status": "Paid", "dueDate": "2026-08-22", "reference": "PAT-1024"}]};</script><script>
+(() => {
+  'use strict';
+
+  // Expected shape: window.PwebPatientBillingData = { invoices: [...] };
+  // Each invoice: { id, date, description, amount, status, reference?, dueDate? }.
+  const source = window.PwebPatientBillingData || {};
+  const invoices = Array.isArray(source.invoices) ? source.invoices : [];
+  const currency = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' });
+  const fmtDate = value => {
+    if (!value) return '—';
+    const date = new Date(String(value).slice(0, 10) + 'T12:00:00');
+    return Number.isNaN(date.getTime()) ? '—' :
+      new Intl.DateTimeFormat('en-ZA', { day: 'numeric', month: 'short', year: 'numeric' }).format(date);
+  };
+  const create = (tag, className, value) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value !== undefined) node.textContent = String(value);
+    return node;
+  };
+  const isPaid = invoice => String(invoice.status || '').toLowerCase() === 'paid';
+  const isOutstanding = invoice => ['outstanding', 'unpaid', 'overdue', 'pending'].includes(String(invoice.status || '').toLowerCase());
+  const total = predicate => invoices.filter(predicate).reduce((sum, invoice) => sum + (Number(invoice.amount) || 0), 0);
+  document.getElementById('billingOutstanding').textContent = currency.format(total(isOutstanding));
+  document.getElementById('billingPaid').textContent = currency.format(total(isPaid));
+  document.getElementById('billingOpenCount').textContent = invoices.filter(isOutstanding).length;
+
+  let status = 'all';
+  let selectedId = null;
+  const rows = document.getElementById('invoiceRows');
+  const details = document.getElementById('invoiceDetails');
+  const search = document.getElementById('invoiceSearch');
+
+  function showDetails(invoice) {
+    selectedId = invoice.id;
+    const fields = [
+      ['Invoice number', invoice.id],
+      ['Issued', fmtDate(invoice.date)],
+      ['Description', invoice.description || '—'],
+      ['Amount', currency.format(Number(invoice.amount) || 0)],
+      ['Status', invoice.status || '—'],
+      ['Due date', fmtDate(invoice.dueDate)],
+      ['Reference', invoice.reference || '—']
+    ];
+    const grid = create('dl', 'client-billing-detail-grid');
+    fields.forEach(([name, value]) => {
+      const item = create('div', 'client-billing-detail-item');
+      item.append(create('dt', '', name), create('dd', '', value));
+      grid.append(item);
+    });
+    details.replaceChildren(grid);
+    renderRows();
+  }
+
+  function renderRows() {
+    const query = search.value.trim().toLowerCase();
+    const visible = invoices.filter(invoice => {
+      const matchingStatus = status === 'all' || (status === 'paid' ? isPaid(invoice) : isOutstanding(invoice));
+      const matchingText = [invoice.id, invoice.description, invoice.status, invoice.reference, invoice.date]
+        .some(value => String(value || '').toLowerCase().includes(query));
+      return matchingStatus && matchingText;
+    });
+
+    rows.replaceChildren();
+    if (!visible.length) {
+      const tr = create('tr');
+      const td = create('td', 'client-empty', 'No matching invoices.');
+      td.colSpan = 6;
+      tr.append(td);
+      rows.append(tr);
+      return;
+    }
+    visible.forEach(invoice => {
+      const tr = create('tr', selectedId === invoice.id ? 'selected' : '');
+      const values = [invoice.id, fmtDate(invoice.date), invoice.description || '—', currency.format(Number(invoice.amount) || 0)];
+      values.forEach(value => tr.append(create('td', '', value)));
+      const statusCell = create('td');
+      statusCell.append(create('span', `client-billing-badge ${isPaid(invoice) ? 'paid' : ''}`, invoice.status || '—'));
+      tr.append(statusCell);
+      const actionCell = create('td');
+      const action = create('button', 'client-billing-view', 'View');
+      action.type = 'button';
+      action.setAttribute('aria-label', `View invoice ${invoice.id}`);
+      action.addEventListener('click', () => showDetails(invoice));
+      actionCell.append(action);
+      tr.append(actionCell);
+      rows.append(tr);
+    });
+  }
+
+  document.querySelectorAll('[data-status]').forEach(button => {
+    button.addEventListener('click', () => {
+      status = button.dataset.status;
+      document.querySelectorAll('[data-status]').forEach(tab => {
+        const active = tab === button;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-pressed', String(active));
+      });
+      renderRows();
+    });
+  });
+  search.addEventListener('input', renderRows);
+
+  document.getElementById('downloadStatement').addEventListener('click', () => {
+    const header = ['Invoice', 'Date', 'Description', 'Amount (ZAR)', 'Status'];
+    const csv = [header, ...invoices.map(invoice => [
+      invoice.id, invoice.date, invoice.description, invoice.amount, invoice.status
+    ])].map(row => row.map(value => `"${String(value ?? '').replace(/"/g, '""')}"`).join(',')).join('\r\n');
+    const url = URL.createObjectURL(new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' }));
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'pweb-billing-statement.csv';
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  renderRows();
+})();
+</script>
+<script>
+/* Shared Client presentation and theme support. No patient data is persisted. */
+(() => {
+  "use strict";
+  const root=document.querySelector(".client-dashboard");
+  if(!root)return;
+  const key="pweb_theme";
+  const media=window.matchMedia("(prefers-color-scheme: dark)");
+  const apply=()=>{
+    let value=null;
+    try{value=localStorage.getItem(key)}catch{}
+    document.documentElement.dataset.theme=
+      value==="dark"||value==="light"?value:(media.matches?"dark":"light");
+  };
+  const themePreference=()=>{
+    try {const saved=localStorage.getItem(key);return saved==="light"||saved==="dark"?saved:"system";}
+    catch{return "system";}
+  };
+  const updateControls=()=>{
+    const selected=themePreference();
+    root.querySelectorAll("[data-theme-choice]").forEach(btn=>{
+      btn.setAttribute("aria-pressed",String(btn.dataset.themeChoice===selected));
+    });
+    const status=root.querySelector("#client-theme-status");
+    if(status)status.textContent=selected==="system"
+      ?"Following your device appearance"
+      :selected==="dark"?"Dark appearance selected":"Light appearance selected";
+  };
+  root.addEventListener("click",event=>{
+    const button=event.target.closest("[data-theme-choice]");
+    if(!button)return;
+    const value=button.dataset.themeChoice;
+    if(!["light","dark","system"].includes(value))return;
+    try{if(value==="system")localStorage.removeItem(key);else localStorage.setItem(key,value);}catch{}
+    apply();updateControls();
+  });
+  apply();updateControls();
+  if(media.addEventListener)media.addEventListener("change",apply);
+  window.addEventListener("storage",e=>{if(e.key===key){apply();updateControls()}});
+  const bar=root.querySelector(".adm-doc-nav");
+  const burger=bar?.querySelector(".burger");
+  const setMenu=(open)=>{
+    bar?.classList.toggle("open",open);
+    bar?.querySelector(".bnavLinks")?.classList.toggle("open",open);
+    burger?.setAttribute("aria-expanded",String(open));
+    burger?.setAttribute("aria-label",open?"Close navigation":"Open navigation");
+  };
+  burger?.addEventListener("click",()=>setMenu(!bar.classList.contains("open")));
+  bar?.querySelectorAll(".bnavLinks a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+  const backButton=bar?.querySelector(".backToHome");
+  backButton?.addEventListener("click",(event)=>{
+    event.preventDefault();
+    // Only return to pages within the patient portal; otherwise open patient Home.
+    let isClientReferrer=false;
+    try{
+      const ref=new URL(document.referrer);
+      isClientReferrer=ref.origin===location.origin && /Client's (dashboard|appointments|billing|records|messages|settings)\.html$/i.test(decodeURIComponent(ref.pathname));
+    }catch{}
+    if(isClientReferrer && history.length>1)history.back();
+    else location.href="Client's dashboard.html";
+  });
+  const searchBox=bar?.querySelector(".seach-box");
+  const searchInput=searchBox?.querySelector(".searchPlaceHolder");
+  const searchText=searchBox?.querySelector(".searchtext");
+  const searchIcon=searchBox?.querySelector(".search-icon");
+  const closeSearch=searchBox?.querySelector(".close_searchBtn");
+  const pages=[
+    ["Home","Client's dashboard.html"],
+    ["Appointments","Client's appointments.html"],
+    ["Billing","Client's billing.html"],
+    ["Records","Client's records.html"],
+    ["Messages","Client's messages.html"],
+    ["Settings","Client's settings.html"]
+  ];
+  const searchResults=document.createElement("div");
+  searchResults.className="client-search-results";
+  searchResults.hidden=true;
+  searchResults.setAttribute("role","listbox");
+  searchBox?.append(searchResults);
+  const showSearch=()=>{
+    searchBox?.classList.add("client-search-open");
+    searchInput?.focus();
+  };
+  const hideSearch=()=>{
+    searchResults.hidden=true;
+    searchBox?.classList.remove("client-search-open");
+    if(searchInput)searchInput.value="";
+  };
+  searchIcon?.addEventListener("click",showSearch);
+  searchText?.addEventListener("click",showSearch);
+  closeSearch?.addEventListener("click",hideSearch);
+  searchInput?.addEventListener("focus",showSearch);
+  searchInput?.addEventListener("input",()=>{
+    const q=searchInput.value.trim().toLowerCase();
+    searchResults.replaceChildren();
+    if(!q){searchResults.hidden=true;return;}
+    const found=pages.filter(([name])=>name.toLowerCase().includes(q));
+    if(!found.length){
+      const p=document.createElement("p");p.textContent="No matching patient page";searchResults.append(p);
+    }
+    for(const [name,href] of found){
+      const a=document.createElement("a");a.href=href;a.textContent=name;
+      a.setAttribute("role","option");searchResults.append(a);
+    }
+    searchResults.hidden=false;
+  });
+  searchInput?.addEventListener("keydown",event=>{
+    if(event.key==="Escape")hideSearch();
+    if(event.key==="Enter"){
+      const first=searchResults.querySelector("a");
+      if(first)location.href=first.href;
+    }
+  });
+  document.addEventListener("click",event=>{
+    if(!event.target.closest(".seach-box"))searchResults.hidden=true;
+  });
+  const signout=document.getElementById("clientSignout");
+  if(signout)signout.addEventListener("click",()=>{
+    // Authentication must be invalidated by the backend.
+    // Do not fake a sign-out by deleting localStorage.
+    root.dispatchEvent(new CustomEvent("pweb:patient-signout",{bubbles:true}));
+    const handler=window.PwebPatientSignOut;
+    if(typeof handler==="function"){handler();return;}
+    alert("Sign out will be available when account authentication is connected.");
+  });
+})();
+
+</script></body>
+</html>

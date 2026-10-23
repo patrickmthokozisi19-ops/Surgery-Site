@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings &amp; Privacy | Pweb Patient Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<link href="../client.css" rel="stylesheet"/><link href="../client-darkmode.css" rel="stylesheet"/></head>
+<body class="client-page">
+<div class="client-dashboard" id="clientDashboard">
+<div class="client-shell">
+<header class="nav nav-slim dw-nav adm-doc-nav">
+<div class="tNav">
+<a class="Emegerncy_contact" href="tel:+27000000000">
+<img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+<span class="number">Reception desk: 000 000 0000</span>
+</a>
+<div class="t-nav-btns">
+<div class="seach-box">
+<img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+<span class="searchtext">Search your pages</span>
+<input aria-label="Search patient pages" autocomplete="off" class="searchPlaceHolder" placeholder="Search appointments, billing, records..." type="search"/>
+<img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+</div>
+<div class="Pweb_login">
+<a class="login" href="Client's settings.html">
+<img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+<span class="loginText">My account</span>
+</a>
+</div>
+</div>
+</div>
+<div class="bNav">
+<a aria-label="Patient home" class="logoNbackBtn" href="Client's dashboard.html">
+<img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+<div class="logo">
+<img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+</div>
+</a>
+<button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav aria-label="Patient workspace" class="bnavLinks" id="dw-nav-links"><a href="Client's dashboard.html">Home</a><a href="Client's appointments.html">Appointments</a><a href="Client's billing.html">Billing</a><a href="Client's records.html">Records</a><a href="Client's messages.html">Messages</a><a aria-current="page" class="is-current" href="Client's settings.html">Settings</a><a class="navBtn" href="Client's appointments.html">Book appointment</a></nav>
+</div>
+</header>
+<main class="client-main">
+<section class="client-intro">
+<div><p class="client-overline">ACCOUNT CENTRE</p><h1>Settings &amp; privacy</h1><p>Manage your account, security, medical information, billing details and communication preferences.</p></div>
+</section>
+<nav aria-label="Settings navigation" class="client-settings-breadcrumb" id="settingsBreadcrumb"><button data-home="" type="button">Account centre</button><span hidden="" id="settingsCrumbDetail"></span></nav>
+<section aria-label="Account settings categories" class="client-settings-home" id="settingsHome">
+<div class="client-settings-feature"><span class="client-settings-feature-avatar" id="settingsInitials">AM</span><div><strong id="settingsDisplayName">Anele Maseko</strong><p>Patient account · Manage your information securely</p></div></div>
+<div class="client-settings-category-grid">
+<button class="client-settings-category" data-page="personal" type="button"><span class="category-icon"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><span><strong>Personal details</strong><small>Name, contact information and address</small></span><span class="category-arrow">›</span></button>
+<button class="client-settings-category" data-page="security" type="button"><span class="category-icon"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><rect height="11" rx="2" width="14" x="5" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span><span><strong>Password &amp; security</strong><small>Change password, trusted devices and sessions</small></span><span class="category-arrow">›</span></button>
+<button class="client-settings-category" data-page="medical" type="button"><span class="category-icon"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M12 21s-8-4.7-8-11a4.5 4.5 0 0 1 8-2.6A4.5 4.5 0 0 1 20 10c0 6.3-8 11-8 11Z"></path><path d="M9 13h6m-3-3v6"></path></svg></span><span><strong>Medical profile</strong><small>Medical aid, emergency contacts and health records</small></span><span class="category-arrow">›</span></button>
+<button class="client-settings-category" data-page="billing" type="button"><span class="category-icon"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span><strong>Billing &amp; payments</strong><small>Billing contact, medical aid and invoices</small></span><span class="category-arrow">›</span></button>
+<button class="client-settings-category" data-page="notifications" type="button"><span class="category-icon"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"></path></svg></span><span><strong>Notifications</strong><small>Appointment, billing and message alerts</small></span><span class="category-arrow">›</span></button>
+<button class="client-settings-category" data-page="privacy" type="button"><span class="category-icon"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></span><span><strong>Privacy &amp; access</strong><small>Consent, data requests and account access</small></span><span class="category-arrow">›</span></button>
+<button class="client-settings-category" data-page="appearance" type="button"><span class="category-icon"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></span><span><strong>Appearance</strong><small>Light, dark or device settings</small></span><span class="category-arrow">›</span></button></div>
+</section>
+<div class="client-settings-detail" hidden="" id="settingsDetail">
+<div class="client-settings-detail-header"><button class="client-settings-back" data-back="" type="button">← Back to settings</button><h2 id="settingsDetailTitle"></h2><p id="settingsDetailDescription"></p></div>
+<section class="client-settings-subview" data-subview="personal" hidden="">
+<div class="client-panel"><h3>Personal information</h3><p class="client-settings-hint">Keep your contact details up to date.</p>
+<form class="client-settings-form" id="profileForm" novalidate="">
+<div class="client-settings-field"><label for="firstName">First name <em>*</em></label><input autocomplete="given-name" id="firstName" maxlength="80" name="firstName" required=""/><small class="field-error" id="firstNameError"></small></div>
+<div class="client-settings-field"><label for="lastName">Last name <em>*</em></label><input autocomplete="family-name" id="lastName" maxlength="80" name="lastName" required=""/><small class="field-error" id="lastNameError"></small></div>
+<div class="client-settings-field"><label for="email">Email address <em>*</em></label><input autocomplete="email" id="email" name="email" required="" type="email"/><small class="field-error" id="emailError"></small></div>
+<div class="client-settings-field"><label for="phone">Phone number</label><input autocomplete="tel" id="phone" name="phone" type="tel"/><small class="field-error" id="phoneError"></small></div>
+<div class="client-settings-field client-settings-full"><label for="address">Residential address</label><textarea autocomplete="street-address" id="address" name="address" rows="3"></textarea></div>
+<div class="client-settings-actions"><button class="client-button client-button-primary" type="submit">Save personal details</button><p class="client-settings-feedback" id="profileFeedback" role="status"></p></div>
+</form>
+</div>
+</section>
+<section class="client-settings-subview" data-subview="security" hidden="">
+<div class="client-settings-menu" id="securityMenu">
+<button class="client-settings-menu-item" data-security="password" type="button"><span><strong>Change password</strong><small>Verify your current password before choosing a new one</small></span><b>›</b></button>
+<button class="client-settings-menu-item" data-security="devices" type="button"><span><strong>Remember this device</strong><small>Review trusted-device preferences and signed-in sessions</small></span><b>›</b></button>
+</div>
+<div class="client-panel client-settings-security-flow" hidden="" id="passwordView">
+<button class="client-settings-back" data-security-back="" type="button">← Password &amp; security</button>
+<div class="client-settings-steps"><span class="is-current" data-step-indicator="1">1. Verify</span><span data-step-indicator="2">2. New password</span><span data-step-indicator="3">3. Review</span></div>
+<form id="passwordForm" novalidate="">
+<div data-password-step="1"><h3>Verify your identity</h3><p class="client-settings-hint">Enter your current password to continue.</p>
+<div class="client-settings-field"><label for="currentPassword">Current password <em>*</em></label><div class="client-settings-password-wrap"><input autocomplete="current-password" id="currentPassword" required="" type="password"/><button aria-label="Show current password" data-reveal="currentPassword" type="button">Show</button></div><small class="field-error" id="currentPasswordError"></small></div>
+<div class="client-settings-actions"><button class="client-button client-button-primary" data-password-next="1" type="button">Continue</button></div>
+</div>
+<div data-password-step="2" hidden=""><h3>Create a new password</h3><p class="client-settings-hint">Use at least 12 characters, including a letter and a number.</p>
+<div class="client-settings-field"><label for="newPassword">New password <em>*</em></label><div class="client-settings-password-wrap"><input autocomplete="new-password" id="newPassword" required="" type="password"/><button aria-label="Show new password" data-reveal="newPassword" type="button">Show</button></div><small class="field-error" id="newPasswordError"></small></div>
+<div class="client-settings-field"><label for="confirmPassword">Confirm new password <em>*</em></label><div class="client-settings-password-wrap"><input autocomplete="new-password" id="confirmPassword" required="" type="password"/><button aria-label="Show confirmation" data-reveal="confirmPassword" type="button">Show</button></div><small class="field-error" id="confirmPasswordError"></small></div>
+<div class="client-settings-actions"><button class="client-button client-button-primary" data-password-next="2" type="button">Continue</button><button class="client-settings-back" data-password-prev="1" type="button">Back</button></div>
+</div>
+<div data-password-step="3" hidden=""><h3>Review security changes</h3><p class="client-settings-hint">Your new password is ready to be submitted securely.</p>
+<label class="client-settings-toggle-row"><span><strong>Sign out of other devices</strong><small>Recommended after changing your password</small></span><input checked="" id="signOutOthers" role="switch" type="checkbox"/></label>
+<div class="client-settings-actions"><button class="client-button client-button-primary" type="submit">Change password</button><button class="client-settings-back" data-password-prev="2" type="button">Back</button></div>
+<p class="client-settings-feedback" id="passwordFeedback" role="status"></p>
+</div>
+</form>
+</div>
+<div class="client-panel client-settings-security-flow" hidden="" id="devicesView">
+<button class="client-settings-back" data-security-back="" type="button">← Password &amp; security</button>
+<h3>Remember this device</h3><p class="client-settings-hint">Trusted devices may be recognised during future sign-ins. This does not bypass your password or other required security checks.</p>
+<label class="client-settings-toggle-row"><span><strong>Remember this device</strong><small>Only enable this on a device you personally control</small></span><input id="rememberDevice" role="switch" type="checkbox"/></label>
+<p class="client-settings-note">Do not use this option on public or shared computers. Your server must manage trusted devices securely.</p>
+<div class="client-settings-actions"><button class="client-button client-button-primary" id="saveDevice" type="button">Save device preference</button><p class="client-settings-feedback" id="deviceFeedback" role="status"></p></div>
+<hr class="client-settings-rule"/><h3>Signed-in sessions</h3><p class="client-settings-hint">Active sessions will appear here once account services are connected.</p><button class="client-settings-secondary" id="signOutSessions" type="button">Request sign-out from other sessions</button><p class="client-settings-feedback" id="sessionsFeedback" role="status"></p>
+</div>
+</section>
+<section class="client-settings-subview" data-subview="medical" hidden="">
+<div class="client-settings-menu">
+<button class="client-settings-menu-item" data-page="medicalAid" type="button"><span><strong>Medical aid information</strong><small>Scheme, membership and dependant details</small></span><b>›</b></button>
+<button class="client-settings-menu-item" data-page="emergency" type="button"><span><strong>Emergency contact</strong><small>Who the practice should contact in an emergency</small></span><b>›</b></button>
+<a class="client-settings-menu-item" href="Client's records.html"><span><strong>My health records</strong><small>Consultations, documents and records access</small></span><b>›</b></a>
+</div>
+</section>
+<section class="client-settings-subview" data-subview="medicalAid" hidden="">
+<div class="client-panel"><h3>Medical aid details</h3><p class="client-settings-hint">These details support administration and billing. Coverage must be verified by the practice.</p>
+<form class="client-settings-form" id="medicalAidForm" novalidate="">
+<div class="client-settings-field"><label for="scheme">Medical aid scheme <em>*</em></label><input id="scheme" name="scheme" required=""/><small class="field-error" id="schemeError"></small></div>
+<div class="client-settings-field"><label for="plan">Plan / option</label><input id="plan" name="plan"/></div>
+<div class="client-settings-field"><label for="memberNumber">Membership number <em>*</em></label><input id="memberNumber" name="memberNumber" required=""/><small class="field-error" id="memberNumberError"></small></div>
+<div class="client-settings-field"><label for="dependantCode">Dependant code</label><input id="dependantCode" name="dependantCode"/></div>
+<div class="client-settings-actions"><button class="client-button client-button-primary" type="submit">Save medical aid details</button><p class="client-settings-feedback" id="medicalAidFeedback" role="status"></p></div>
+</form>
+</div>
+</section>
+<section class="client-settings-subview" data-subview="emergency" hidden="">
+<div class="client-panel"><h3>Emergency contact</h3>
+<form class="client-settings-form" id="emergencyForm" novalidate="">
+<div class="client-settings-field"><label for="emergencyName">Contact name <em>*</em></label><input id="emergencyName" name="name" required=""/><small class="field-error" id="emergencyNameError"></small></div>
+<div class="client-settings-field"><label for="relationship">Relationship <em>*</em></label><input id="relationship" name="relationship" required=""/><small class="field-error" id="relationshipError"></small></div>
+<div class="client-settings-field"><label for="emergencyPhone">Phone number <em>*</em></label><input id="emergencyPhone" name="phone" required="" type="tel"/><small class="field-error" id="emergencyPhoneError"></small></div>
+<div class="client-settings-actions"><button class="client-button client-button-primary" type="submit">Save emergency contact</button><p class="client-settings-feedback" id="emergencyFeedback" role="status"></p></div>
+</form>
+</div>
+</section>
+<section class="client-settings-subview" data-subview="billing" hidden="">
+<div class="client-settings-menu">
+<a class="client-settings-menu-item" href="Client's billing.html"><span><strong>Invoices &amp; payment history</strong><small>Outstanding amounts, paid invoices and statements</small></span><b>›</b></a>
+<button class="client-settings-menu-item" data-page="medicalAid" type="button"><span><strong>Medical aid for billing</strong><small>Update scheme and membership details</small></span><b>›</b></button>
+<button class="client-settings-menu-item" data-page="billingContact" type="button"><span><strong>Billing contact details</strong><small>Where the practice should send account correspondence</small></span><b>›</b></button>
+</div>
+</section>
+<section class="client-settings-subview" data-subview="billingContact" hidden="">
+<div class="client-panel"><h3>Billing contact</h3><form class="client-settings-form" id="billingContactForm" novalidate="">
+<div class="client-settings-field"><label for="billingEmail">Billing email <em>*</em></label><input id="billingEmail" name="email" required="" type="email"/><small class="field-error" id="billingEmailError"></small></div>
+<div class="client-settings-field"><label for="billingPhone">Billing phone</label><input id="billingPhone" name="phone" type="tel"/></div>
+<div class="client-settings-actions"><button class="client-button client-button-primary" type="submit">Save billing contact</button><p class="client-settings-feedback" id="billingContactFeedback" role="status"></p></div>
+</form></div>
+</section>
+<section class="client-settings-subview" data-subview="notifications" hidden="">
+<div class="client-panel"><h3>Notification preferences</h3><p class="client-settings-hint">Choose which updates you want to receive.</p>
+<form id="notificationsForm">
+<label class="client-settings-toggle-row"><span><strong>Appointment reminders</strong><small>Upcoming visits and booking changes</small></span><input name="appointmentReminders" role="switch" type="checkbox"/></label>
+<label class="client-settings-toggle-row"><span><strong>New messages</strong><small>Updates from your practice</small></span><input name="messageAlerts" role="switch" type="checkbox"/></label>
+<label class="client-settings-toggle-row"><span><strong>Billing updates</strong><small>Invoices and payment notifications</small></span><input name="billingAlerts" role="switch" type="checkbox"/></label>
+<div class="client-settings-actions"><button class="client-button client-button-primary" type="submit">Save preferences</button><p class="client-settings-feedback" id="notificationsFeedback" role="status"></p></div>
+</form>
+</div>
+</section>
+<section class="client-settings-subview" data-subview="privacy" hidden="">
+<div class="client-settings-menu">
+<a class="client-settings-menu-item" href="Client's records.html"><span><strong>Access my health records</strong><small>View documents available to your account</small></span><b>›</b></a>
+<a class="client-settings-menu-item" href="Client's messages.html"><span><strong>Request or correct information</strong><small>Contact the practice about records, consent or access</small></span><b>›</b></a>
+<button class="client-settings-menu-item" data-page="security" type="button"><span><strong>Account security</strong><small>Passwords and trusted devices</small></span><b>›</b></button>
+</div>
+<p class="client-settings-note">Access to patient health information must be authorised and logged by the practice. Sensitive records must not be stored in browser preferences.</p>
+</section>
+<section class="client-settings-subview" data-subview="appearance" hidden="">
+<div class="client-panel client-appearance-panel"><h3>Appearance</h3><p class="client-settings-hint">Choose how Pweb looks across your account.</p>
+<div aria-label="Color appearance" class="client-theme-options" role="group">
+<button aria-pressed="false" class="client-theme-choice" data-theme-choice="light" type="button"><span class="client-theme-preview client-theme-light"></span><strong>Light</strong><small>Bright background</small></button>
+<button aria-pressed="false" class="client-theme-choice" data-theme-choice="dark" type="button"><span class="client-theme-preview client-theme-dark"></span><strong>Dark</strong><small>Dark background</small></button>
+<button aria-pressed="false" class="client-theme-choice" data-theme-choice="system" type="button"><span class="client-theme-preview client-theme-system"></span><strong>System</strong><small>Follow your device</small></button>
+</div><p class="client-settings-hint" id="client-theme-status" role="status"></p></div></section></div>
+<section aria-labelledby="clientSignoutTitle" class="client-panel client-signout-panel">
+<div aria-hidden="true" class="client-signout-icon"><svg fill="none" height="22" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path></svg></div>
+<div><h2 id="clientSignoutTitle">Sign out</h2><p>Finish your session on this device. Your healthcare records remain protected in your account.</p></div>
+<button class="client-button client-signout-button" id="clientSignout" type="button">Sign out <span aria-hidden="true">↗</span></button>
+</section></main>
+</div>
+</div>
+<script>
+(() => {
+  'use strict';
+  const data = window.PwebPatientSettingsData || {};
+  const titles = {
+    personal: ['Personal details','Update your contact information'],
+    security: ['Password & security','Manage your account security'],
+    medical: ['Medical profile','Your healthcare administration details'],
+    medicalAid: ['Medical aid information','Scheme and membership details'],
+    emergency: ['Emergency contact','Who to contact in an emergency'],
+    billing: ['Billing & payments','Account and billing information'],
+    billingContact: ['Billing contact details','Where billing communications should go'],
+    notifications: ['Notifications','Control your account alerts'],
+    privacy: ['Privacy & access','Your records and privacy options'],
+    appearance: ['Appearance','Choose light, dark or device theme']
+  };
+  const home = document.getElementById('settingsHome');
+  const detail = document.getElementById('settingsDetail');
+  const crumb = document.getElementById('settingsCrumbDetail');
+  const history = [];
+  let current = null;
+
+  function openPage(page, push = true) {
+    if (!titles[page]) return;
+    if (push && current && current !== page) history.push(current);
+    current = page;
+    home.hidden = true;
+    detail.hidden = false;
+    document.querySelectorAll('[data-subview]').forEach(view => view.hidden = view.dataset.subview !== page);
+    document.getElementById('settingsDetailTitle').textContent = titles[page][0];
+    document.getElementById('settingsDetailDescription').textContent = titles[page][1];
+    crumb.hidden = false;
+    crumb.textContent = ' / ' + titles[page][0];
+    if (page === 'security') showSecurity('menu');
+  }
+  function showHome() {
+    current = null;
+    history.length = 0;
+    home.hidden = false;
+    detail.hidden = true;
+    crumb.hidden = true;
+  }
+  document.querySelectorAll('[data-page]').forEach(btn => btn.addEventListener('click', () => openPage(btn.dataset.page)));
+  document.querySelector('[data-home]').addEventListener('click', showHome);
+  document.querySelector('[data-back]').addEventListener('click', () => {
+    if (history.length) openPage(history.pop(), false);
+    else showHome();
+  });
+  function showSecurity(which) {
+    document.getElementById('securityMenu').hidden = which !== 'menu';
+    document.getElementById('passwordView').hidden = which !== 'password';
+    document.getElementById('devicesView').hidden = which !== 'devices';
+    if (which === 'password') setPasswordStep(1);
+  }
+  document.querySelectorAll('[data-security]').forEach(btn => btn.addEventListener('click', () => showSecurity(btn.dataset.security)));
+  document.querySelectorAll('[data-security-back]').forEach(btn => btn.addEventListener('click', () => showSecurity('menu')));
+
+  const profile = data.profile || {};
+  const setValue = (id, value) => { const el = document.getElementById(id); if (el && value != null) el.value = value; };
+  ['firstName','lastName','email','phone','address'].forEach(id => setValue(id,profile[id]));
+  const medical = data.medicalAid || {};
+  ['scheme','plan','memberNumber','dependantCode'].forEach(id => setValue(id,medical[id]));
+  const emergency = data.emergencyContact || {};
+  setValue('emergencyName',emergency.name);
+  setValue('relationship',emergency.relationship);
+  setValue('emergencyPhone',emergency.phone);
+  setValue('billingEmail',data.billingContact?.email);
+  setValue('billingPhone',data.billingContact?.phone);
+  ['appointmentReminders','messageAlerts','billingAlerts'].forEach(name => {
+    document.querySelector(`[name="${name}"]`).checked = data.notifications?.[name] === true;
+  });
+  document.getElementById('rememberDevice').checked = data.security?.rememberDevice === true;
+  const name = [profile.firstName,profile.lastName].filter(Boolean).join(' ');
+  if (name) document.getElementById('settingsDisplayName').textContent = name;
+  if (name) document.getElementById('settingsInitials').textContent =
+    [profile.firstName?.[0],profile.lastName?.[0]].filter(Boolean).join('').toUpperCase();
+
+  function error(field, message) {
+    const msg = document.getElementById(field.id + 'Error');
+    if (msg) msg.textContent = message;
+    field.classList.toggle('is-invalid',!!message);
+    field.setAttribute('aria-invalid',String(!!message));
+    return !message;
+  }
+  function validate(field) {
+    const value = field.value.trim();
+    let message = '';
+    if (field.required && !value) message = 'This field is required.';
+    else if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) message = 'Enter a valid email address.';
+    else if (field.type === 'tel' && value && !/^[+()\d\s-]{7,25}$/.test(value)) message = 'Enter a valid phone number.';
+    else if (field.id === 'newPassword' && value && (value.length < 12 || !/[A-Za-z]/.test(value) || !/\d/.test(value))) message = 'Use at least 12 characters with a letter and a number.';
+    else if (field.id === 'confirmPassword' && value && value !== document.getElementById('newPassword').value) message = 'Passwords do not match.';
+    else if (field.id === 'newPassword' && value && value === document.getElementById('currentPassword').value) message = 'Choose a password different from your current one.';
+    return error(field,message);
+  }
+  document.querySelectorAll('.client-settings-field input').forEach(input => {
+    input.addEventListener('blur', () => validate(input));
+    input.addEventListener('input', () => {
+      if (input.classList.contains('is-invalid')) validate(input);
+    });
+  });
+  function validateFields(fields) {
+    const results = fields.map(validate);
+    if (results.includes(false)) fields[results.indexOf(false)].focus();
+    return results.every(Boolean);
+  }
+  const status = (id, message, isError = false) => {
+    const el = document.getElementById(id);
+    el.textContent = message;
+    el.classList.toggle('is-error',isError);
+  };
+  // The host application must send these changes using authenticated APIs.
+  // No account/medical details are saved in localStorage or sent by this standalone UI.
+  function wireForm(formId, eventName, feedbackId) {
+    const form = document.getElementById(formId);
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!validateFields([...form.querySelectorAll('input[required], input[type=email], input[type=tel]')])) return;
+      const payload = Object.fromEntries(new FormData(form));
+      document.dispatchEvent(new CustomEvent(eventName,{detail:payload}));
+      status(feedbackId,'Validated. Connect the secure account service to save these changes.');
+    });
+  }
+  wireForm('profileForm','pweb:profile-update','profileFeedback');
+  wireForm('medicalAidForm','pweb:medical-aid-update','medicalAidFeedback');
+  wireForm('emergencyForm','pweb:emergency-contact-update','emergencyFeedback');
+  wireForm('billingContactForm','pweb:billing-contact-update','billingContactFeedback');
+
+  let passwordStep = 1;
+  function setPasswordStep(step) {
+    passwordStep = step;
+    document.querySelectorAll('[data-password-step]').forEach(el => el.hidden = Number(el.dataset.passwordStep) !== step);
+    document.querySelectorAll('[data-step-indicator]').forEach(el => el.classList.toggle('is-current',Number(el.dataset.stepIndicator) === step));
+  }
+  document.querySelectorAll('[data-password-next]').forEach(button => button.addEventListener('click', () => {
+    const step = Number(button.dataset.passwordNext);
+    const ids = step === 1 ? ['currentPassword'] : ['newPassword','confirmPassword'];
+    if (validateFields(ids.map(id => document.getElementById(id)))) setPasswordStep(step + 1);
+  }));
+  document.querySelectorAll('[data-password-prev]').forEach(button => button.addEventListener('click', () => setPasswordStep(Number(button.dataset.passwordPrev))));
+  document.querySelectorAll('[data-reveal]').forEach(button => button.addEventListener('click', () => {
+    const input = document.getElementById(button.dataset.reveal);
+    const visible = input.type === 'password';
+    input.type = visible ? 'text' : 'password';
+    button.textContent = visible ? 'Hide' : 'Show';
+    button.setAttribute('aria-label',(visible ? 'Hide ' : 'Show ') + input.id.replace(/([A-Z])/g,' $1').toLowerCase());
+  }));
+  document.getElementById('passwordForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validateFields(['currentPassword','newPassword','confirmPassword'].map(id => document.getElementById(id)))) {
+      setPasswordStep(2);
+      return;
+    }
+    status('passwordFeedback','Ready to submit. Changing a password requires secure server verification of the current password.');
+    // Never dispatch passwords in a global DOM event or store them in browser storage.
+  });
+  document.getElementById('saveDevice').addEventListener('click', () => {
+    const remembered = document.getElementById('rememberDevice').checked;
+    document.dispatchEvent(new CustomEvent('pweb:trusted-device-preference',{detail:{rememberDevice:remembered}}));
+    status('deviceFeedback','Preference prepared. A secure server connection is required to apply it.');
+  });
+  document.getElementById('signOutSessions').addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('pweb:sign-out-other-sessions'));
+    status('sessionsFeedback','Sign-out requested. Connect session management to complete this action.');
+  });
+  document.getElementById('notificationsForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const preferences = Object.fromEntries(['appointmentReminders','messageAlerts','billingAlerts'].map(name =>
+      [name,document.querySelector(`[name="${name}"]`).checked]));
+    document.dispatchEvent(new CustomEvent('pweb:notification-preferences-update',{detail:preferences}));
+    status('notificationsFeedback','Preferences prepared. Connect account services to save them.');
+  });
+})();
+</script>
+<script>
+/* Shared Client presentation and theme support. No patient data is persisted. */
+(() => {
+  "use strict";
+  const root=document.querySelector(".client-dashboard");
+  if(!root)return;
+  const key="pweb_theme";
+  const media=window.matchMedia("(prefers-color-scheme: dark)");
+  const apply=()=>{
+    let value=null;
+    try{value=localStorage.getItem(key)}catch{}
+    document.documentElement.dataset.theme=
+      value==="dark"||value==="light"?value:(media.matches?"dark":"light");
+  };
+  const themePreference=()=>{
+    try {const saved=localStorage.getItem(key);return saved==="light"||saved==="dark"?saved:"system";}
+    catch{return "system";}
+  };
+  const updateControls=()=>{
+    const selected=themePreference();
+    root.querySelectorAll("[data-theme-choice]").forEach(btn=>{
+      btn.setAttribute("aria-pressed",String(btn.dataset.themeChoice===selected));
+    });
+    const status=root.querySelector("#client-theme-status");
+    if(status)status.textContent=selected==="system"
+      ?"Following your device appearance"
+      :selected==="dark"?"Dark appearance selected":"Light appearance selected";
+  };
+  root.addEventListener("click",event=>{
+    const button=event.target.closest("[data-theme-choice]");
+    if(!button)return;
+    const value=button.dataset.themeChoice;
+    if(!["light","dark","system"].includes(value))return;
+    try{if(value==="system")localStorage.removeItem(key);else localStorage.setItem(key,value);}catch{}
+    apply();updateControls();
+  });
+  apply();updateControls();
+  if(media.addEventListener)media.addEventListener("change",apply);
+  window.addEventListener("storage",e=>{if(e.key===key){apply();updateControls()}});
+  const bar=root.querySelector(".adm-doc-nav");
+  const burger=bar?.querySelector(".burger");
+  const setMenu=(open)=>{
+    bar?.classList.toggle("open",open);
+    bar?.querySelector(".bnavLinks")?.classList.toggle("open",open);
+    burger?.setAttribute("aria-expanded",String(open));
+    burger?.setAttribute("aria-label",open?"Close navigation":"Open navigation");
+  };
+  burger?.addEventListener("click",()=>setMenu(!bar.classList.contains("open")));
+  bar?.querySelectorAll(".bnavLinks a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+  const backButton=bar?.querySelector(".backToHome");
+  backButton?.addEventListener("click",(event)=>{
+    event.preventDefault();
+    // Only return to pages within the patient portal; otherwise open patient Home.
+    let isClientReferrer=false;
+    try{
+      const ref=new URL(document.referrer);
+      isClientReferrer=ref.origin===location.origin && /Client's (dashboard|appointments|billing|records|messages|settings)\.html$/i.test(decodeURIComponent(ref.pathname));
+    }catch{}
+    if(isClientReferrer && history.length>1)history.back();
+    else location.href="Client's dashboard.html";
+  });
+  const searchBox=bar?.querySelector(".seach-box");
+  const searchInput=searchBox?.querySelector(".searchPlaceHolder");
+  const searchText=searchBox?.querySelector(".searchtext");
+  const searchIcon=searchBox?.querySelector(".search-icon");
+  const closeSearch=searchBox?.querySelector(".close_searchBtn");
+  const pages=[
+    ["Home","Client's dashboard.html"],
+    ["Appointments","Client's appointments.html"],
+    ["Billing","Client's billing.html"],
+    ["Records","Client's records.html"],
+    ["Messages","Client's messages.html"],
+    ["Settings","Client's settings.html"]
+  ];
+  const searchResults=document.createElement("div");
+  searchResults.className="client-search-results";
+  searchResults.hidden=true;
+  searchResults.setAttribute("role","listbox");
+  searchBox?.append(searchResults);
+  const showSearch=()=>{
+    searchBox?.classList.add("client-search-open");
+    searchInput?.focus();
+  };
+  const hideSearch=()=>{
+    searchResults.hidden=true;
+    searchBox?.classList.remove("client-search-open");
+    if(searchInput)searchInput.value="";
+  };
+  searchIcon?.addEventListener("click",showSearch);
+  searchText?.addEventListener("click",showSearch);
+  closeSearch?.addEventListener("click",hideSearch);
+  searchInput?.addEventListener("focus",showSearch);
+  searchInput?.addEventListener("input",()=>{
+    const q=searchInput.value.trim().toLowerCase();
+    searchResults.replaceChildren();
+    if(!q){searchResults.hidden=true;return;}
+    const found=pages.filter(([name])=>name.toLowerCase().includes(q));
+    if(!found.length){
+      const p=document.createElement("p");p.textContent="No matching patient page";searchResults.append(p);
+    }
+    for(const [name,href] of found){
+      const a=document.createElement("a");a.href=href;a.textContent=name;
+      a.setAttribute("role","option");searchResults.append(a);
+    }
+    searchResults.hidden=false;
+  });
+  searchInput?.addEventListener("keydown",event=>{
+    if(event.key==="Escape")hideSearch();
+    if(event.key==="Enter"){
+      const first=searchResults.querySelector("a");
+      if(first)location.href=first.href;
+    }
+  });
+  document.addEventListener("click",event=>{
+    if(!event.target.closest(".seach-box"))searchResults.hidden=true;
+  });
+  const signout=document.getElementById("clientSignout");
+  if(signout)signout.addEventListener("click",()=>{
+    // Authentication must be invalidated by the backend.
+    // Do not fake a sign-out by deleting localStorage.
+    root.dispatchEvent(new CustomEvent("pweb:patient-signout",{bubbles:true}));
+    const handler=window.PwebPatientSignOut;
+    if(typeof handler==="function"){handler();return;}
+    alert("Sign out will be available when account authentication is connected.");
+  });
+})();
+
+</script></body>
+</html>

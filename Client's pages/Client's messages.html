@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Messages | Pweb Patient Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<link href="../client.css" rel="stylesheet"/><link href="../client-darkmode.css" rel="stylesheet"/></head>
+<body class="client-page">
+<div class="client-dashboard" id="clientDashboard">
+<div class="client-shell">
+<header class="nav nav-slim dw-nav adm-doc-nav">
+<div class="tNav">
+<a class="Emegerncy_contact" href="tel:+27000000000">
+<img alt="" src="../public/phone-calling-rounded-svgrepo-com.svg"/>
+<span class="number">Reception desk: 000 000 0000</span>
+</a>
+<div class="t-nav-btns">
+<div class="seach-box">
+<img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+<span class="searchtext">Search your pages</span>
+<input aria-label="Search patient pages" autocomplete="off" class="searchPlaceHolder" placeholder="Search appointments, billing, records..." type="search"/>
+<img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
+</div>
+<div class="Pweb_login">
+<a class="login" href="Client's settings.html">
+<img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+<span class="loginText">My account</span>
+</a>
+</div>
+</div>
+</div>
+<div class="bNav">
+<a aria-label="Patient home" class="logoNbackBtn" href="Client's dashboard.html">
+<img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
+<div class="logo">
+<img alt="Pweb" class="logoPGN" src="../src/ThePwebLogo.png"/>
+</div>
+</a>
+<button aria-controls="dw-nav-links" aria-expanded="false" aria-label="Open menu" class="burger" type="button">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav aria-label="Patient workspace" class="bnavLinks" id="dw-nav-links"><a href="Client's dashboard.html">Home</a><a href="Client's appointments.html">Appointments</a><a href="Client's billing.html">Billing</a><a href="Client's records.html">Records</a><a aria-current="page" class="is-current" href="Client's messages.html">Messages</a><a href="Client's settings.html">Settings</a><a class="navBtn" href="Client's appointments.html">Book appointment</a></nav>
+</div>
+</header>
+<main class="client-main">
+<section class="client-intro">
+<div><p class="client-overline">COMMUNICATION</p><h1>Messages</h1><p>Secure conversations with your healthcare practice.</p></div>
+<button class="client-button client-button-primary" id="composeMessage" type="button">New message <span aria-hidden="true">＋</span></button>
+</section>
+<section aria-label="Messages workspace" class="client-messages-workspace">
+<div class="client-panel client-messages-inbox">
+<div class="client-panel-heading"><div><h2>Inbox</h2><p>Your conversations</p></div><span aria-label="Unread conversations" class="client-messages-count" id="unreadCount">0 unread</span></div>
+<label class="client-messages-search"><span class="client-sr-only">Search conversations</span><input autocomplete="off" id="messageSearch" placeholder="Search messages" type="search"/></label>
+<div aria-label="Filter messages" class="client-messages-filters" role="group"><button aria-pressed="true" class="active" data-filter="all" type="button">All</button><button aria-pressed="false" data-filter="unread" type="button">Unread</button></div>
+<div aria-live="polite" class="client-messages-thread-list" id="threadList"><p class="client-empty">No conversations yet.</p></div>
+</div>
+<section aria-label="Conversation" class="client-panel client-messages-conversation">
+<div class="client-messages-conversation-header" id="conversationHeader"><div><h2 id="conversationTitle">Your conversations</h2><p id="conversationSubtitle">Choose a conversation to view messages.</p></div></div>
+<div aria-live="polite" class="client-messages-bubbles" id="conversationMessages"><div class="client-messages-placeholder"><p>No conversation selected.</p><span>Select a message from your inbox to get started.</span></div></div>
+<form class="client-messages-reply" hidden="" id="replyForm">
+<label class="client-sr-only" for="replyText">Write a reply</label><textarea id="replyText" maxlength="2000" name="body" placeholder="Write your message..." required="" rows="2"></textarea>
+<button class="client-button client-button-primary" type="submit">Send</button>
+</form>
+<p class="client-messages-notice" hidden="" id="messageNotice" role="status"></p>
+</section>
+</section>
+<section aria-labelledby="composeTitle" class="client-panel client-messages-compose" hidden="" id="composePanel">
+<div class="client-panel-heading"><div><h2 id="composeTitle">New message</h2><p>Send a message to your practice.</p></div><button aria-label="Close new message form" class="client-messages-close" id="closeCompose" type="button">×</button></div>
+<form id="composeForm">
+<label>To <select name="recipient" required=""><option value="">Choose a department</option><option value="Reception">Reception</option><option value="Billing">Billing</option><option value="Care team">Care team</option></select></label>
+<label>Subject <input maxlength="120" name="subject" placeholder="Message subject" required="" type="text"/></label>
+<label class="full">Message <textarea maxlength="2000" name="body" placeholder="Write your message here" required="" rows="5"></textarea></label>
+<div class="client-messages-compose-actions"><p>For emergencies, contact local emergency services instead of using messages.</p><button class="client-button client-button-primary" type="submit">Send message</button></div>
+</form>
+<p class="client-messages-notice" hidden="" id="composeNotice" role="status"></p>
+</section>
+</main>
+</div>
+</div>
+<script>/* Fictional frontend fixture data — replace with authenticated API response. */
+window.PwebPatientMessagesData = {"conversations": [{"id": "c-101", "subject": "Appointment confirmation", "participant": "Reception · Riverside Surgical Centre", "unread": true, "updatedAt": "2026-10-20T09:20:00", "messages": [{"sender": "Reception", "body": "Hello Anele, your appointment with Dr Dlamini is confirmed for 4 November at 10:30. Please arrive 15 minutes early.", "sentAt": "2026-10-20T09:20:00"}, {"sender": "patient", "body": "Thank you. I'll be there.", "sentAt": "2026-10-20T10:02:00"}]}, {"id": "c-102", "subject": "Medical aid details", "participant": "Billing department", "unread": false, "updatedAt": "2026-10-18T13:45:00", "messages": [{"sender": "Billing", "body": "Good afternoon. Please confirm your medical aid scheme and membership details before your next visit.", "sentAt": "2026-10-18T13:45:00"}, {"sender": "patient", "body": "I will update my details under Settings. Thank you.", "sentAt": "2026-10-18T14:20:00"}]}, {"id": "c-103", "subject": "Consultation preparation", "participant": "Care team", "unread": false, "updatedAt": "2026-10-12T11:10:00", "messages": [{"sender": "Care team", "body": "Please bring any recent imaging reports to your consultation.", "sentAt": "2026-10-12T11:10:00"}]}]};</script><script>(() => {
+ 'use strict';
+ // Provide authenticated data as window.PwebPatientMessagesData = { conversations: [...] }.
+ // Conversation: { id, subject, participant, unread, updatedAt, messages:[{sender, body, sentAt}] }.
+ // Send actions dispatch events for backend integration; no sensitive data is stored locally.
+ const supplied = window.PwebPatientMessagesData || {};
+ const conversations = Array.isArray(supplied.conversations) ? supplied.conversations : [];
+ const list = document.getElementById('threadList');
+ const bubbles = document.getElementById('conversationMessages');
+ const replyForm = document.getElementById('replyForm');
+ const search = document.getElementById('messageSearch');
+ let filter = 'all';
+ let selected = null;
+ const node = (tag, cls, value) => {
+   const el = document.createElement(tag);
+   if (cls) el.className = cls;
+   if (value !== undefined) el.textContent = String(value);
+   return el;
+ };
+ const dateText = value => {
+   if (!value) return '';
+   const date = new Date(value);
+   return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('en-ZA',{dateStyle:'medium',timeStyle:'short'}).format(date);
+ };
+ function renderInbox() {
+   const query = search.value.trim().toLowerCase();
+   const matching = conversations.filter(c => (filter !== 'unread' || c.unread === true) && [c.subject,c.participant,...(Array.isArray(c.messages) ? c.messages.map(m => m.body) : [])].some(v => String(v || '').toLowerCase().includes(query)));
+   list.replaceChildren();
+   if (!matching.length) list.append(node('p','client-empty','No matching conversations.'));
+   matching.forEach(c => {
+     const btn = node('button','client-messages-thread'+(c.id === selected?.id ? ' active' : ''));
+     btn.type = 'button';
+     const head = node('span','client-messages-thread-head');
+     head.append(node('strong','',c.participant || 'Practice'),node('time','',dateText(c.updatedAt)));
+     btn.append(head,node('span','client-messages-thread-subject',c.subject || 'Conversation'));
+     const last = Array.isArray(c.messages) ? c.messages[c.messages.length - 1] : null;
+     btn.append(node('span','client-messages-thread-preview',last?.body || 'No messages yet'));
+     if (c.unread) btn.append(node('span','client-messages-unread-dot'));
+     btn.addEventListener('click',() => { selected=c; renderInbox();renderConversation(); });
+     list.append(btn);
+   });
+   document.getElementById('unreadCount').textContent = conversations.filter(c=>c.unread).length + ' unread';
+ }
+ function renderConversation() {
+   document.getElementById('conversationTitle').textContent = selected?.participant || 'Your conversations';
+   document.getElementById('conversationSubtitle').textContent = selected?.subject || 'Choose a conversation to view messages.';
+   replyForm.hidden = !selected;
+   bubbles.replaceChildren();
+   if (!selected) {
+     const placeholder = node('div','client-messages-placeholder');
+     placeholder.append(node('p','','No conversation selected.'),node('span','','Select a message from your inbox to get started.'));
+     bubbles.append(placeholder);return;
+   }
+   const messages = Array.isArray(selected.messages) ? selected.messages : [];
+   if (!messages.length) bubbles.append(node('p','client-empty','No messages in this conversation.'));
+   messages.forEach(m => {
+     const mine = ['patient','me','self'].includes(String(m.sender || '').toLowerCase());
+     const bubble = node('article','client-messages-bubble'+(mine?' mine':''));
+     bubble.append(node('p','',m.body || ''),node('time','',dateText(m.sentAt)));
+     bubbles.append(bubble);
+   });
+   bubbles.scrollTop = bubbles.scrollHeight;
+ }
+ document.querySelectorAll('[data-filter]').forEach(btn => btn.addEventListener('click',()=>{
+   filter=btn.dataset.filter;
+   document.querySelectorAll('[data-filter]').forEach(item=>{
+     const active=item===btn;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));
+   });
+   renderInbox();
+ }));
+ search.addEventListener('input',renderInbox);
+ const composePanel = document.getElementById('composePanel');
+ document.getElementById('composeMessage').addEventListener('click',()=>{composePanel.hidden=false;composePanel.scrollIntoView({behavior:'smooth',block:'start'});composePanel.querySelector('select').focus({preventScroll:true});});
+ document.getElementById('closeCompose').addEventListener('click',()=>{composePanel.hidden=true;});
+ function handleSend(event, detail, noticeId) {
+   event.preventDefault();
+   const notice=document.getElementById(noticeId);
+   document.dispatchEvent(new CustomEvent('pweb:message-send',{detail,bubbles:true}));
+   notice.textContent='Message prepared. Sending will be available when secure messaging services are connected.';
+   notice.hidden=false;
+ }
+ document.getElementById('composeForm').addEventListener('submit',event=>{
+   const form=event.currentTarget;
+   if (!form.reportValidity()) return;
+   handleSend(event,Object.fromEntries(new FormData(form)),'composeNotice');
+ });
+ replyForm.addEventListener('submit',event=>{
+   if (!replyForm.reportValidity() || !selected) return;
+   handleSend(event,{conversationId:selected.id,body:replyForm.elements.body.value},'messageNotice');
+ });
+ renderInbox();renderConversation();
+})();</script>
+<script>
+/* Shared Client presentation and theme support. No patient data is persisted. */
+(() => {
+  "use strict";
+  const root=document.querySelector(".client-dashboard");
+  if(!root)return;
+  const key="pweb_theme";
+  const media=window.matchMedia("(prefers-color-scheme: dark)");
+  const apply=()=>{
+    let value=null;
+    try{value=localStorage.getItem(key)}catch{}
+    document.documentElement.dataset.theme=
+      value==="dark"||value==="light"?value:(media.matches?"dark":"light");
+  };
+  const themePreference=()=>{
+    try {const saved=localStorage.getItem(key);return saved==="light"||saved==="dark"?saved:"system";}
+    catch{return "system";}
+  };
+  const updateControls=()=>{
+    const selected=themePreference();
+    root.querySelectorAll("[data-theme-choice]").forEach(btn=>{
+      btn.setAttribute("aria-pressed",String(btn.dataset.themeChoice===selected));
+    });
+    const status=root.querySelector("#client-theme-status");
+    if(status)status.textContent=selected==="system"
+      ?"Following your device appearance"
+      :selected==="dark"?"Dark appearance selected":"Light appearance selected";
+  };
+  root.addEventListener("click",event=>{
+    const button=event.target.closest("[data-theme-choice]");
+    if(!button)return;
+    const value=button.dataset.themeChoice;
+    if(!["light","dark","system"].includes(value))return;
+    try{if(value==="system")localStorage.removeItem(key);else localStorage.setItem(key,value);}catch{}
+    apply();updateControls();
+  });
+  apply();updateControls();
+  if(media.addEventListener)media.addEventListener("change",apply);
+  window.addEventListener("storage",e=>{if(e.key===key){apply();updateControls()}});
+  const bar=root.querySelector(".adm-doc-nav");
+  const burger=bar?.querySelector(".burger");
+  const setMenu=(open)=>{
+    bar?.classList.toggle("open",open);
+    bar?.querySelector(".bnavLinks")?.classList.toggle("open",open);
+    burger?.setAttribute("aria-expanded",String(open));
+    burger?.setAttribute("aria-label",open?"Close navigation":"Open navigation");
+  };
+  burger?.addEventListener("click",()=>setMenu(!bar.classList.contains("open")));
+  bar?.querySelectorAll(".bnavLinks a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+  const backButton=bar?.querySelector(".backToHome");
+  backButton?.addEventListener("click",(event)=>{
+    event.preventDefault();
+    // Only return to pages within the patient portal; otherwise open patient Home.
+    let isClientReferrer=false;
+    try{
+      const ref=new URL(document.referrer);
+      isClientReferrer=ref.origin===location.origin && /Client's (dashboard|appointments|billing|records|messages|settings)\.html$/i.test(decodeURIComponent(ref.pathname));
+    }catch{}
+    if(isClientReferrer && history.length>1)history.back();
+    else location.href="Client's dashboard.html";
+  });
+  const searchBox=bar?.querySelector(".seach-box");
+  const searchInput=searchBox?.querySelector(".searchPlaceHolder");
+  const searchText=searchBox?.querySelector(".searchtext");
+  const searchIcon=searchBox?.querySelector(".search-icon");
+  const closeSearch=searchBox?.querySelector(".close_searchBtn");
+  const pages=[
+    ["Home","Client's dashboard.html"],
+    ["Appointments","Client's appointments.html"],
+    ["Billing","Client's billing.html"],
+    ["Records","Client's records.html"],
+    ["Messages","Client's messages.html"],
+    ["Settings","Client's settings.html"]
+  ];
+  const searchResults=document.createElement("div");
+  searchResults.className="client-search-results";
+  searchResults.hidden=true;
+  searchResults.setAttribute("role","listbox");
+  searchBox?.append(searchResults);
+  const showSearch=()=>{
+    searchBox?.classList.add("client-search-open");
+    searchInput?.focus();
+  };
+  const hideSearch=()=>{
+    searchResults.hidden=true;
+    searchBox?.classList.remove("client-search-open");
+    if(searchInput)searchInput.value="";
+  };
+  searchIcon?.addEventListener("click",showSearch);
+  searchText?.addEventListener("click",showSearch);
+  closeSearch?.addEventListener("click",hideSearch);
+  searchInput?.addEventListener("focus",showSearch);
+  searchInput?.addEventListener("input",()=>{
+    const q=searchInput.value.trim().toLowerCase();
+    searchResults.replaceChildren();
+    if(!q){searchResults.hidden=true;return;}
+    const found=pages.filter(([name])=>name.toLowerCase().includes(q));
+    if(!found.length){
+      const p=document.createElement("p");p.textContent="No matching patient page";searchResults.append(p);
+    }
+    for(const [name,href] of found){
+      const a=document.createElement("a");a.href=href;a.textContent=name;
+      a.setAttribute("role","option");searchResults.append(a);
+    }
+    searchResults.hidden=false;
+  });
+  searchInput?.addEventListener("keydown",event=>{
+    if(event.key==="Escape")hideSearch();
+    if(event.key==="Enter"){
+      const first=searchResults.querySelector("a");
+      if(first)location.href=first.href;
+    }
+  });
+  document.addEventListener("click",event=>{
+    if(!event.target.closest(".seach-box"))searchResults.hidden=true;
+  });
+  const signout=document.getElementById("clientSignout");
+  if(signout)signout.addEventListener("click",()=>{
+    // Authentication must be invalidated by the backend.
+    // Do not fake a sign-out by deleting localStorage.
+    root.dispatchEvent(new CustomEvent("pweb:patient-signout",{bubbles:true}));
+    const handler=window.PwebPatientSignOut;
+    if(typeof handler==="function"){handler();return;}
+    alert("Sign out will be available when account authentication is connected.");
+  });
+})();
+
+</script></body>
+</html>
