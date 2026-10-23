@@ -12,6 +12,12 @@
   <link href="../style.css" rel="stylesheet"/>
   <link href="../admin-home-font-fixed.css" rel="stylesheet"/>
   <link href="../specialist-settings.css" rel="stylesheet"/>
+  <script>
+   (function(){try{const p=localStorage.getItem('pweb_theme');const d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=p==='dark'||p==='light'?p:(d?'dark':'light');}catch{document.documentElement.dataset.theme='light';}})();
+  </script>
+  <link href="../specialist-theme.css" rel="stylesheet"/>
+  <script defer="True" src="../pweb-theme.js">
+  </script>
  </head>
  <body class="dw dw-light adm ss-page">
   <a class="skip" href="#main">
@@ -97,33 +103,159 @@
       Settings
      </h1>
      <p>
-      Manage your professional profile, availability and notification preferences.
+      Choose a category below to view and update your account settings.
      </p>
     </div>
-    <span class="ss-role">
-     Specialist account
+   </section>
+   <section class="ss-account-banner">
+    <div aria-hidden="true" class="ss-account-avatar" id="ss-account-avatar">
+     SM
+    </div>
+    <div class="ss-account-details">
+     <span class="ss-eyebrow">
+      SPECIALIST ACCOUNT
+     </span>
+     <h2 id="ss-account-name">
+      Sam Mokoena
+     </h2>
+     <p id="ss-account-meta">
+      Specialist &middot; Riverside Surgical Centre
+     </p>
+    </div>
+    <span class="ss-account-pill">
+     Specialist
     </span>
    </section>
    <div class="ss-layout">
     <nav aria-label="Settings sections" class="ss-tabs">
-     <button aria-selected="true" class="ss-tab is-active" data-tab="profile" type="button">
-      Profile details
+     <button aria-selected="false" class="ss-tab" data-tab="appearance" type="button">
+      <span class="ss-nav-copy">
+       <strong>
+        Appearance
+       </strong>
+       <small>
+        Light, dark or system theme
+       </small>
+      </span>
+      <span aria-hidden="true" class="ss-nav-chevron">
+       &rsaquo;
+      </span>
+     </button>
+     <button aria-selected="false" class="ss-tab" data-tab="profile" type="button">
+      <span class="ss-nav-copy">
+       <strong>
+        Personal details
+       </strong>
+       <small>
+        Name, contact details and biography
+       </small>
+      </span>
+      <span aria-hidden="true" class="ss-nav-chevron">
+       &rsaquo;
+      </span>
      </button>
      <button aria-selected="false" class="ss-tab" data-tab="practice" type="button">
-      Practice &amp; specialty
+      <span class="ss-nav-copy">
+       <strong>
+        Practice information
+       </strong>
+       <small>
+        Admin-managed credentials and assignment
+       </small>
+      </span>
+      <span aria-hidden="true" class="ss-nav-chevron">
+       &rsaquo;
+      </span>
      </button>
      <button aria-selected="false" class="ss-tab" data-tab="hours" type="button">
-      Working hours
+      <span class="ss-nav-copy">
+       <strong>
+        Availability requests
+       </strong>
+       <small>
+        Preferred hours, subject to approval
+       </small>
+      </span>
+      <span aria-hidden="true" class="ss-nav-chevron">
+       &rsaquo;
+      </span>
      </button>
      <button aria-selected="false" class="ss-tab" data-tab="notifications" type="button">
-      Notifications
+      <span class="ss-nav-copy">
+       <strong>
+        Notifications
+       </strong>
+       <small>
+        Choose which alerts to receive
+       </small>
+      </span>
+      <span aria-hidden="true" class="ss-nav-chevron">
+       &rsaquo;
+      </span>
      </button>
      <button aria-selected="false" class="ss-tab" data-tab="security" type="button">
-      Account &amp; security
+      <span class="ss-nav-copy">
+       <strong>
+        Security &amp; access
+       </strong>
+       <small>
+        Authentication and active sessions
+       </small>
+      </span>
+      <span aria-hidden="true" class="ss-nav-chevron">
+       &rsaquo;
+      </span>
      </button>
     </nav>
     <div class="ss-content">
-     <section class="ss-panel" id="ss-profile">
+     <section class="ss-panel" hidden="" id="ss-appearance">
+      <div class="ss-panel-head">
+       <h2>
+        Appearance
+       </h2>
+       <p>
+        Choose how Pweb looks. Your preference applies to all specialist pages and the Admin workspace using the same theme.
+       </p>
+      </div>
+      <div aria-label="Theme preference" class="ss-appearance-choices" role="group">
+       <button aria-pressed="false" class="ss-theme-choice" data-theme-choice="light" type="button">
+        <span aria-hidden="true" class="ss-theme-icon">
+         ☀
+        </span>
+        <strong>
+         Light
+        </strong>
+        <small>
+         Light workspace
+        </small>
+       </button>
+       <button aria-pressed="false" class="ss-theme-choice" data-theme-choice="dark" type="button">
+        <span aria-hidden="true" class="ss-theme-icon">
+         ☾
+        </span>
+        <strong>
+         Dark
+        </strong>
+        <small>
+         Dark workspace
+        </small>
+       </button>
+       <button aria-pressed="false" class="ss-theme-choice" data-theme-choice="system" type="button">
+        <span aria-hidden="true" class="ss-theme-icon">
+         ◐
+        </span>
+        <strong>
+         System
+        </strong>
+        <small>
+         Match device
+        </small>
+       </button>
+      </div>
+      <p class="ss-theme-status" id="ss-theme-status" role="status">
+      </p>
+     </section>
+     <section class="ss-panel" hidden="" id="ss-profile">
       <div class="ss-panel-head">
        <h2>
         Personal information
@@ -133,19 +265,6 @@
        </p>
       </div>
       <form class="ss-form" data-save="profile">
-       <div class="ss-avatar-row">
-        <div aria-hidden="true" class="ss-avatar">
-         SM
-        </div>
-        <div>
-         <strong>
-          Specialist profile
-         </strong>
-         <p>
-          Select Edit next to a profile detail, then Save to keep your changes on this device.
-         </p>
-        </div>
-       </div>
        <div class="ss-edit-list">
         <label class="ss-edit-row">
          <div class="ss-edit-row-head">
@@ -279,83 +398,35 @@
         Professional credentials and the institution linked to your account.
        </p>
       </div>
+      <div class="ss-managed-panel">
+       <h3>
+        Managed by hospital administration
+       </h3>
+       <p>
+        Specialty, registration verification, hospital membership, role permissions, consultation room assignments and approved booking hours are managed by authorised administrators.
+       </p>
+       <p>
+        To change these, contact your practice administrator. Pweb will later route change requests to the Admin Portal.
+       </p>
+      </div>
       <form class="ss-form" data-save="practice">
        <div class="ss-edit-list">
-        <label class="ss-edit-row">
+        <label class="ss-edit-row" data-admin-managed="true">
          <div class="ss-edit-row-head">
           <span class="ss-edit-label">
            Specialty
           </span>
-          <button class="ss-edit-btn" data-edit="ss-field-specialty" type="button">
-           Edit
-          </button>
          </div>
-         <div class="ss-field-display" data-display="ss-field-specialty">
-         </div>
-         <div class="ss-field-editor" hidden="">
-          <select class="ss-inline-input" disabled="" id="ss-field-specialty" name="specialty">
-           <option>
-            General Surgery
-           </option>
-           <option>
-            Orthopaedic Surgery
-           </option>
-           <option>
-            Gynaecology
-           </option>
-           <option>
-            Paediatrics
-           </option>
-           <option>
-            ENT
-           </option>
-           <option>
-            Urology
-           </option>
-           <option>
-            Ophthalmology
-           </option>
-           <option>
-            Neurosurgery
-           </option>
-           <option>
-            Cardiothoracic Surgery
-           </option>
-           <option>
-            Plastic Surgery
-           </option>
-          </select>
-          <div class="ss-inline-actions">
-           <button class="ss-btn ss-inline-cancel" type="button">
-            Cancel
-           </button>
-           <button class="ss-btn ss-primary ss-inline-save" type="button">
-            Save
-           </button>
-          </div>
+         <div class="ss-field-display" data-display="ss-field-specialty" data-readonly="true">
          </div>
         </label>
-        <label class="ss-edit-row">
+        <label class="ss-edit-row" data-admin-managed="true">
          <div class="ss-edit-row-head">
           <span class="ss-edit-label">
            Professional registration number
           </span>
-          <button class="ss-edit-btn" data-edit="ss-field-registration" type="button">
-           Edit
-          </button>
          </div>
-         <div class="ss-field-display" data-display="ss-field-registration">
-         </div>
-         <div class="ss-field-editor" hidden="">
-          <input class="ss-inline-input" disabled="" id="ss-field-registration" name="registration" placeholder="Enter registration number" value=""/>
-          <div class="ss-inline-actions">
-           <button class="ss-btn ss-inline-cancel" type="button">
-            Cancel
-           </button>
-           <button class="ss-btn ss-primary ss-inline-save" type="button">
-            Save
-           </button>
-          </div>
+         <div class="ss-field-display" data-display="ss-field-registration" data-readonly="true">
          </div>
         </label>
         <label class="ss-edit-row">
@@ -398,27 +469,13 @@
           </div>
          </div>
         </label>
-        <label class="ss-edit-row">
+        <label class="ss-edit-row" data-admin-managed="true">
          <div class="ss-edit-row-head">
           <span class="ss-edit-label">
            Consultation room
           </span>
-          <button class="ss-edit-btn" data-edit="ss-field-room" type="button">
-           Edit
-          </button>
          </div>
-         <div class="ss-field-display" data-display="ss-field-room">
-         </div>
-         <div class="ss-field-editor" hidden="">
-          <input class="ss-inline-input" disabled="" id="ss-field-room" name="room" value="Consultation Room 4"/>
-          <div class="ss-inline-actions">
-           <button class="ss-btn ss-inline-cancel" type="button">
-            Cancel
-           </button>
-           <button class="ss-btn ss-primary ss-inline-save" type="button">
-            Save
-           </button>
-          </div>
+         <div class="ss-field-display" data-display="ss-field-room" data-readonly="true">
          </div>
         </label>
        </div>
@@ -438,7 +495,7 @@
         Working hours
        </h2>
        <p>
-        Set your preferred recurring consultation hours. Leave and exceptional closures require admin approval in the Calendar.
+        Review your preferred working hours. Changes to the shared booking schedule must be approved by an administrator.
        </p>
       </div>
       <form class="ss-form" data-save="hours">
@@ -454,7 +511,7 @@
         <span class="ss-feedback" role="status">
         </span>
         <button class="ss-btn ss-primary" type="submit">
-         Save preferred hours
+         Save draft hours
         </button>
        </div>
       </form>
@@ -479,7 +536,9 @@
            Receive an alert when an appointment is assigned to you.
           </small>
          </span>
-         <input checked="" name="newAppointments" type="checkbox"/>
+         <input checked="" class="ss-switch-input" name="newAppointments" type="checkbox"/>
+         <span aria-hidden="true" class="ss-switch-control">
+         </span>
         </label>
         <label class="ss-toggle">
          <span>
@@ -490,7 +549,9 @@
            Be notified about rescheduling or cancellations.
           </small>
          </span>
-         <input checked="" name="appointmentChanges" type="checkbox"/>
+         <input checked="" class="ss-switch-input" name="appointmentChanges" type="checkbox"/>
+         <span aria-hidden="true" class="ss-switch-control">
+         </span>
         </label>
         <label class="ss-toggle">
          <span>
@@ -501,7 +562,9 @@
            Alerts for patient and practice messages.
           </small>
          </span>
-         <input checked="" name="newMessages" type="checkbox"/>
+         <input checked="" class="ss-switch-input" name="newMessages" type="checkbox"/>
+         <span aria-hidden="true" class="ss-switch-control">
+         </span>
         </label>
         <label class="ss-toggle">
          <span>
@@ -512,7 +575,9 @@
            Admin approval or rejection of your time-off requests.
           </small>
          </span>
-         <input checked="" name="leaveDecisions" type="checkbox"/>
+         <input checked="" class="ss-switch-input" name="leaveDecisions" type="checkbox"/>
+         <span aria-hidden="true" class="ss-switch-control">
+         </span>
         </label>
         <label class="ss-toggle">
          <span>
@@ -523,7 +588,9 @@
            A digest of upcoming consultations and scheduled hours.
           </small>
          </span>
-         <input name="weeklySummary" type="checkbox"/>
+         <input class="ss-switch-input" name="weeklySummary" type="checkbox"/>
+         <span aria-hidden="true" class="ss-switch-control">
+         </span>
         </label>
        </div>
        <div class="ss-form-actions">
@@ -591,63 +658,102 @@
    </div>
   </main>
   <script>
-   (()=>{'use strict';
-const nav=document.querySelector('.adm-doc-nav'),burger=nav?.querySelector('.burger'),links=nav?.querySelector('.bnavLinks');
+   (()=>{
+'use strict';
+const $=q=>document.querySelector(q);
+const $$=q=>[...document.querySelectorAll(q)];
+const nav=$('.adm-doc-nav'),burger=nav?.querySelector('.burger'),links=nav?.querySelector('.bnavLinks');
 function menu(open){nav?.classList.toggle('open',open);nav?.classList.toggle('active',open);links?.classList.toggle('open',open);burger?.setAttribute('aria-expanded',String(open));burger?.setAttribute('aria-label',open?'Close menu':'Open menu');}
-burger?.addEventListener('click',()=>menu(!nav.classList.contains('open')));links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu(false)));document.addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
-const tabs=[...document.querySelectorAll('.ss-tab')];function show(id){tabs.forEach(t=>{const active=t.dataset.tab===id;t.classList.toggle('is-active',active);t.setAttribute('aria-selected',String(active));document.getElementById('ss-'+t.dataset.tab).hidden=!active;});}
-tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.tab)));
-const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],host=document.getElementById('ss-days');
-days.forEach((day,i)=>{const row=document.createElement('div');row.className='ss-day';const check=document.createElement('label');check.className='ss-day-check';const toggle=document.createElement('input');toggle.type='checkbox';toggle.name='day'+i;toggle.checked=i<5;const text=document.createElement('span');text.textContent=day;check.append(toggle,text);const hours=document.createElement('div');hours.className='ss-day-times';for(const [label,val,suffix] of [['From','08:00','start'],['To','17:00','end']]){const wrap=document.createElement('label');wrap.textContent=label;const input=document.createElement('input');input.type='time';input.name='day'+i+suffix;input.value=val;input.disabled=!toggle.checked;wrap.append(input);hours.append(wrap);}toggle.addEventListener('change',()=>hours.querySelectorAll('input').forEach(input=>input.disabled=!toggle.checked));row.append(check,hours);host.append(row);});
-
-const prefix='pweb-specialist-settings-v2:';
-function updateAvatar(){
- const first=document.querySelector('[name="firstName"]')?.value.trim()||'';
- const last=document.querySelector('[name="lastName"]')?.value.trim()||'';
- const avatar=document.querySelector('.ss-avatar');
- if(avatar)avatar.textContent=((first[0]||'S')+(last[0]||'')).toUpperCase();
+burger?.addEventListener('click',()=>menu(!nav.classList.contains('open')));
+links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')menu(false);});
+const tabs=$$('.ss-tab');
+function show(id){
+ tabs.forEach(tab=>{
+  const on=tab.dataset.tab===id;
+  tab.classList.toggle('is-active',on);
+  tab.setAttribute('aria-selected',String(on));
+  const panel=document.getElementById('ss-'+tab.dataset.tab);
+  if(panel)panel.hidden=!on;
+ });
 }
-function renderDisplay(row){
- const input=row.querySelector('.ss-inline-input');
- const output=row.querySelector('.ss-field-display');
- if(!input||!output)return;
- const value=input.tagName==='SELECT'?input.options[input.selectedIndex]?.text:input.value.trim();
- output.textContent=value||'Not provided';
- output.classList.toggle('ss-placeholder',!value);
+tabs.forEach(tab=>tab.addEventListener('click',()=>show(tab.dataset.tab)));
+const storeKey='pweb-specialist-settings-v3:';
+const legacyKey='pweb-specialist-settings-v2:';
+const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+const daysEl=$('#ss-days');
+if(daysEl){
+ days.forEach((day,i)=>{
+  const row=document.createElement('div');row.className='ss-day';
+  row.innerHTML=`<label class="ss-day-switch"><input type="checkbox" name="day${i}" ${i<5?'checked':''}><span class="ss-day-name">${day}</span></label><div class="ss-day-times"><label>From <input name="day${i}start" type="time" value="08:00"></label><label>To <input name="day${i}end" type="time" value="17:00"></label></div>`;
+  daysEl.append(row);
+  const check=row.querySelector('input[type="checkbox"]');
+  const timeInputs=[...row.querySelectorAll('input[type=time]')];
+  function sync(){timeInputs.forEach(input=>input.disabled=!check.checked);}
+  check.addEventListener('change',sync);sync();
+ });
 }
-function saveData(form){
+function readSaved(form){
+ const key=storeKey+form.dataset.save;
+ for(const k of [key,legacyKey+form.dataset.save]){
+  try{
+   const saved=JSON.parse(localStorage.getItem(k)||'null');
+   if(saved&&typeof saved==='object')return saved;
+  }catch{}
+ }
+ return null;
+}
+function collect(form){
  const data={};
- [...form.elements].forEach(input=>{
-  if(!input.name)return;
+ form.querySelectorAll('[name]').forEach(input=>{
   data[input.name]=input.type==='checkbox'?input.checked:input.value;
  });
- try{
-  localStorage.setItem(prefix+form.dataset.save,JSON.stringify(data));
-  return true;
- }catch{return false;}
+ return data;
 }
-document.querySelectorAll('form[data-save]').forEach(form=>{
- const key=prefix+form.dataset.save;
- try{
-  const saved=JSON.parse(localStorage.getItem(key)||'null');
-  if(saved&&typeof saved==='object'){
-   [...form.elements].forEach(input=>{
-    if(!input.name||!(input.name in saved))return;
-    if(input.type==='checkbox')input.checked=!!saved[input.name];
-    else if(!input.hasAttribute('readonly'))input.value=String(saved[input.name]);
-   });
-  }
- }catch{}
+function persist(form){
+ try{localStorage.setItem(storeKey+form.dataset.save,JSON.stringify(collect(form)));return true;}
+ catch{return false;}
+}
+function setStatus(form,message){
+ const status=form.querySelector('.ss-feedback');
+ if(status)status.textContent=message;
+}
+function account(){
+ const first=$('[name=firstName]')?.value.trim()||'';
+ const last=$('[name=lastName]')?.value.trim()||'';
+ const name=[first,last].filter(Boolean).join(' ')||'Specialist';
+ const initials=[first[0],last[0]].filter(Boolean).join('').toUpperCase()||'SP';
+ const hospital=$('#ss-practice .ss-edit-row input[value="Riverside Surgical Centre"]')?.value||'Riverside Surgical Centre';
+ $('#ss-account-name').textContent=name;
+ $('#ss-account-avatar').textContent=initials;
+ $('#ss-account-meta').textContent='Specialist · '+hospital;
+}
+function display(row){
+ const input=row.querySelector('.ss-inline-input'),target=row.querySelector('.ss-field-display');
+ if(!input||!target)return;
+ const value=input.tagName==='SELECT'?input.options[input.selectedIndex]?.textContent:input.value.trim();
+ target.textContent=value||'Not provided';
+ target.classList.toggle('ss-placeholder',!value);
+}
+$$('form[data-save]').forEach(form=>{
+ const saved=readSaved(form);
+ if(saved){
+  form.querySelectorAll('[name]').forEach(input=>{
+   if(!(input.name in saved))return;
+   if(input.type==='checkbox')input.checked=!!saved[input.name];
+   else input.value=String(saved[input.name]);
+  });
+ }
  form.querySelectorAll('.ss-day').forEach(row=>{
-  const toggle=row.querySelector('input[type=checkbox]');
-  row.querySelectorAll('input[type=time]').forEach(input=>input.disabled=!toggle.checked);
+  const check=row.querySelector('input[type=checkbox]');
+  row.querySelectorAll('input[type=time]').forEach(input=>input.disabled=!check.checked);
  });
  form.querySelectorAll('.ss-edit-row').forEach(row=>{
   const input=row.querySelector('.ss-inline-input');
-  const edit=row.querySelector('.ss-edit-btn');
-  const editor=row.querySelector('.ss-field-editor');
-  if(!input||!edit||!editor)return;
-  renderDisplay(row);
+  if(!input)return;
+  display(row);
+  const edit=row.querySelector('.ss-edit-btn'),editor=row.querySelector('.ss-field-editor');
+  if(!edit||!editor)return;
   let previous=input.value;
   function close(){
    input.disabled=true;
@@ -656,46 +762,41 @@ document.querySelectorAll('form[data-save]').forEach(form=>{
    edit.hidden=false;
   }
   edit.addEventListener('click',()=>{
-   // Keep only one editor open at a time.
-   form.querySelectorAll('.ss-inline-cancel').forEach(cancel=>{
-    if(!cancel.closest('.ss-edit-row').querySelector('.ss-field-editor').hidden)cancel.click();
+   form.querySelectorAll('.ss-inline-cancel').forEach(btn=>{
+    const other=btn.closest('.ss-edit-row');
+    if(other&&!other.querySelector('.ss-field-editor').hidden)btn.click();
    });
    previous=input.value;
-   input.disabled=false;
-   editor.hidden=false;
+   input.disabled=false;editor.hidden=false;
    row.querySelector('.ss-field-display').hidden=true;
-   edit.hidden=true;
-   input.focus();
+   edit.hidden=true;input.focus();
   });
-  row.querySelector('.ss-inline-cancel').addEventListener('click',()=>{
-   input.value=previous;close();
-  });
+  row.querySelector('.ss-inline-cancel').addEventListener('click',()=>{input.value=previous;close();});
   row.querySelector('.ss-inline-save').addEventListener('click',()=>{
    if(!input.checkValidity()){input.reportValidity();return;}
-   const saved=saveData(form);
-   renderDisplay(row);close();updateAvatar();
-   const feedback=form.querySelector('.ss-feedback');
-   if(feedback)feedback.textContent=saved?'Changes saved on this device.':'Could not save changes on this device.';
+   const ok=persist(form);
+   display(row);close();account();
+   setStatus(form,ok?'Saved on this device.':'Could not save this change.');
   });
  });
- form.addEventListener('submit',e=>{
-  e.preventDefault();
-  if(!form.reportValidity())return;
-  const data={};
-  [...form.elements].forEach(input=>{if(input.name)data[input.name]=input.type==='checkbox'?input.checked:input.value;});
+ form.addEventListener('submit',event=>{
+  event.preventDefault();
   if(form.dataset.save==='hours'){
    for(let i=0;i<7;i++){
-    if(data['day'+i]&&data['day'+i+'start']>=data['day'+i+'end']){
-     form.querySelector('.ss-feedback').textContent='End time must be later than start time for '+days[i]+'.';
+    const active=form.querySelector(`[name=day${i}]`)?.checked;
+    const from=form.querySelector(`[name=day${i}start]`)?.value;
+    const to=form.querySelector(`[name=day${i}end]`)?.value;
+    if(active&&(!from||!to||from>=to)){
+     setStatus(form,`Check the start and end times for ${days[i]}.`);
      return;
     }
    }
   }
-  const saved=saveData(form);
-  form.querySelector('.ss-feedback').textContent=saved?'Preferences saved on this device. Administrator approval is still required for schedule changes.':'Could not save preferences.';
+  const ok=persist(form);
+  setStatus(form,ok?(form.dataset.save==='hours'?'Draft saved on this device. It has NOT changed your approved schedule.':'Preferences saved on this device.'):'Could not save preferences.');
  });
 });
-updateAvatar();
+account();
 })();
   </script>
  </body>
