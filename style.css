@@ -8917,83 +8917,195 @@ html[data-theme="dark"] body.adm :is(.adm-main,.ac-main,.ab-main,.ap-main,.asp-m
 
 
 
-/*Scoped to specialist pages only.
-   The existing top navigation retains the shared Admin styling. */
-html[data-theme="dark"] { color-scheme: dark; }
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) {
+/*
+ PWEB SPECIALIST — DARK MODE v2
+ Verified against actual HTML + CSS for all seven Specialist pages.
+ Put LAST, after style.css, the page stylesheet, and any Admin theme CSS.
+ Scoped to Specialist only. Does not alter navigation or light mode.
+*/
+html[data-theme="dark"] {color-scheme:dark}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page){
  --dm-bg:#0b1220;--dm-card:#172438;--dm-raised:#22344c;
  --dm-input:#111d2e;--dm-hover:#2b405b;--dm-text:#eef4ff;
  --dm-muted:#b6c6d9;--dm-line:#40546d;--dm-accent:#a6c5ff;
  --sa-ink:var(--dm-text);--sa-muted:var(--dm-muted);--sa-line:var(--dm-line);
+ --sm-ink:var(--dm-text);--sm-muted:var(--dm-muted);--sm-line:var(--dm-line);
+ --sr-ink:var(--dm-text);--sr-muted:var(--dm-muted);--sr-line:var(--dm-line);
+ --spt-muted:var(--dm-muted);--spt-line:var(--dm-line);
  background:var(--dm-bg);color:var(--dm-text);
 }
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main {
- background:var(--dm-bg);color:var(--dm-text);
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main{
  --ad-bg:var(--dm-bg);--ad-panel:var(--dm-card);--ad-ink:var(--dm-text);
  --ad-muted:var(--dm-muted);--ad-line:var(--dm-line);--ad-soft:var(--dm-raised);
+ background:var(--dm-bg);color:var(--dm-text);
 }
-/* Cards, panels and appointment/patient/message components */
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .specialist-panel,.specialist-stat,.sc-card,.sc-summary-card,.sc-calendar,.sc-lower-card,
- .sa-card,.sr-card,.ss-panel,.ss-tabs,.ss-account-banner,.sm-card,.sm-sidebar,.sm-chat,
- .spt-card,.spt-panel,.spt-patient-card,.ss-content::before
-) {background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- h1,h2,h3,h4,strong,.specialist-patient-name,.sa-table td strong,.sr-table .sr-type-name,
- .ss-account-details h2,.ss-field-display,.ss-edit-label
-) {color:var(--dm-text);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- p,small,.specialist-eyebrow,.specialist-stat-top,.specialist-muted,.sc-eyebrow,.sc-muted,
- .sa-eyebrow,.sa-ref,.sa-list-heading p,.sr-eyebrow,.sr-panel-head p,.ss-eyebrow,
- .ss-nav-copy small,.ss-account-details p,.ss-panel-head p,.ss-field-display.ss-placeholder
-) {color:var(--dm-muted);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .sa-table th,.sr-table th,.sa-detail-field,.ss-managed-panel,.ss-edit-row,.ss-tabs .ss-tab.is-active,
- .ss-field-display,.specialist-schedule-item,.specialist-appointment,.sc-slot,.sc-day,.sc-day-cell,
- .sm-message-row,.sm-thread,.spt-patient-row,.spt-history-item
-) {background-color:var(--dm-raised);color:var(--dm-text);border-color:var(--dm-line);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .sa-table td,.sr-table td,.ss-edit-row,.ss-day,.sc-slot,.sc-day,.sm-message-row,.spt-patient-row
-) {border-color:var(--dm-line);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- input:not([type="checkbox"]):not([type="radio"]),select,textarea,
- .sa-btn:not(.sa-btn-primary),.sr-btn:not(.sr-primary),.ss-btn:not(.ss-primary),
- .ss-edit-btn,.sa-view,.sc-btn:not(.sc-btn-primary),.specialist-filter
-) {background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line);color-scheme:dark;}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(input,textarea)::placeholder{color:var(--dm-muted);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .sa-btn-primary,.sr-primary,.ss-primary,.sc-btn-primary
-) {background:#456a9e;color:#fff;border-color:#6084b7;}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .sa-btn:hover,.sr-btn:hover,.ss-edit-btn:hover,.sa-view:hover,.ss-tab:hover
-) {background:var(--dm-hover);color:var(--dm-text);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .ss-account-avatar,.ss-switch-input:checked + .ss-switch-control
-) {background:#456a9e;color:#fff;}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .sa-pagination,.sr-hour-row,.sr-chart-legend,.ss-nav-chevron,.ss-managed-panel p,.ss-notice
-) {color:var(--dm-muted);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .sr-outcome-track,.sr-meter,.ss-switch-control,.sa-count,.sr-pill
-) {background:var(--dm-raised);color:var(--dm-text);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main .sr-notice {
- background:#172e50;border-color:#42638d;color:#d7e7ff;}
-/* Dialogs are top-layer elements: scope directly by page class, not adm-main */
-html[data-theme="dark"] body:is(.sc-page,.sa-page,.ss-page,.sm-page,.spt-page) :is(
- dialog,.sc-dialog,.sa-dialog,.ss-dialog,.sm-dialog,.spt-dialog
-) {background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line);}
-html[data-theme="dark"] body:is(.sc-page,.sa-page,.ss-page,.sm-page,.spt-page) dialog :is(
- input,select,textarea
-) {background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line);}
-html[data-theme="dark"] body:is(.sc-page,.sa-page,.ss-page,.sm-page,.spt-page) dialog :is(h2,h3,strong,p,span,label) {color:inherit;}
-/* The original CSS contains some light hardcoded backgrounds.
-   Use these broad fallbacks only within specialist content, never navigation. */
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main :is(
- .specialist-panel-heading,.sc-toolbar,.sc-controls,.sc-grid,.sc-week-grid,.sc-month-grid,
- .ss-card,.ss-tab-panel,.ss-form,.sm-compose,.sm-conversation,.sm-message-list,.spt-profile,
- .spt-profile-modal,.spt-history,.sm-inbox,.sm-chat-header
-) {background-color:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line);}
-html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm-page,.spt-page) .adm-main a:not(.sa-btn):not(.sr-btn):not(.ss-btn){color:var(--dm-accent);}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(h1,h2,h3,h4,strong){color:var(--dm-text)}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ .specialist-panel,.specialist-stat,.sa-card,.spt-card,.spt-panel,.sm-stat,.sm-shell,.sm-sidebar,.sm-chat,
+ .sr-card,.sr-panel,.sc-card,.sc-calendar,.ss-panel,.ss-tabs,.ss-account-banner,.ss-card
+){background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ .specialist-empty,.specialist-schedule-list,.sa-table th,.spt-table th,.sr-table th,
+ .sa-count,.spt-count,.sm-tabs button.is-active,.ss-managed-panel,.ss-field-display,
+ .sc-day,.sc-calendar-body,.sc-calendar-top,.sc-controls,.sc-day-cell
+){background:var(--dm-raised);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ .sa-table td,.spt-table td,.sr-table td,.sa-toolbar,.sm-chat-header,.sm-reply,
+ .ss-edit-row,.ss-panel-head,.sc-day,.sc-calendar-top
+){border-color:var(--dm-line);color:var(--dm-text)}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ .sa-ref,.sa-pagination,.spt-pagination,.spt-panel-heading p,.sr-panel-head p,
+ .sm-preview,.sm-role,.sm-conversation-top small,.sm-chat-heading p,.sm-chat-ref,
+ .sm-chat-empty,.ss-nav-copy small,.ss-panel-head p,.sc-eyebrow
+){color:var(--dm-muted)}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ input:not([type="checkbox"]):not([type="radio"]),textarea,select
+){background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line);color-scheme:dark}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(input,textarea)::placeholder{color:var(--dm-muted)}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ .sa-btn:not(.sa-btn-primary),.spt-btn:not(.spt-primary),.sm-btn:not(.sm-primary),
+ .sr-btn:not(.sr-primary),.sc-btn:not(.sc-btn-primary),.ss-btn:not(.ss-primary),
+ .sa-view,.spt-view,.ss-edit-btn
+){background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ .sa-btn-primary,.spt-primary,.sm-primary,.sr-primary,.sc-btn-primary,.ss-primary
+){background:#456a9e;color:#fff;border-color:#6084b7}
+html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-main :is(
+ .sa-btn,.spt-btn,.sm-btn,.sr-btn,.sc-btn,.ss-btn,.sa-view,.spt-view,.ss-edit-btn
+):hover:not(:disabled){background:var(--dm-hover);color:var(--dm-text)}
+/* 01 — HOME: dynamically rendered appointment rows and cards */
+html[data-theme="dark"] body.sp-page .adm-main :is(
+ .specialist-panel-heading,.specialist-appointment,.specialist-schedule-item,
+ .specialist-shortcuts a,.specialist-quick-links a,.specialist-today,.specialist-filter-row button
+){background:var(--dm-raised);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sp-page .adm-main :is(.specialist-filter-row button.active,.specialist-filter-row button[aria-pressed="true"]){background:#385a83;color:#fff}
+/* 02 — MESSAGES: list items and message bubbles are inserted by JS.
+   Earlier theme missed .sm-stat, .sm-shell, .sm-conversation and .sm-message. */
+html[data-theme="dark"] body.sm-page .adm-main :is(.sm-stat,.sm-shell,.sm-sidebar,.sm-chat,.sm-side-top,.sm-chat-header,.sm-reply){
+ background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-conversations{background:var(--dm-card)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-conversation{
+ background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-conversation:hover{background:var(--dm-hover)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-conversation.is-selected{
+ background:#243f65;border-left-color:#8ab3f3}
+html[data-theme="dark"] body.sm-page .adm-main .sm-avatar{background:var(--dm-raised);color:var(--dm-text)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-unread{background:#385f9a;color:#fff}
+html[data-theme="dark"] body.sm-page .adm-main .sm-tabs button{color:var(--dm-muted);background:transparent}
+html[data-theme="dark"] body.sm-page .adm-main .sm-tabs button.is-active{background:var(--dm-raised);color:var(--dm-text)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-thread{background:var(--dm-bg);color:var(--dm-text)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-message{
+ background:var(--dm-card);border-color:var(--dm-line);color:var(--dm-text)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-message.sm-mine{
+ background:#294a75;border-color:#416da2;color:#fff}
+html[data-theme="dark"] body.sm-page .adm-main .sm-message p{color:inherit}
+html[data-theme="dark"] body.sm-page .adm-main .sm-message small{color:inherit;opacity:.8}
+html[data-theme="dark"] body.sm-page .adm-main :is(.sm-chat-empty h2,.sm-conversation-top strong,.sm-chat-heading h2){color:var(--dm-text)}
+html[data-theme="dark"] body.sm-page .adm-main :is(.sm-search,.sm-reply textarea){background:var(--dm-input);border-color:var(--dm-line);color:var(--dm-text)}
+html[data-theme="dark"] body.sm-page .adm-main :is(.sm-preview,.sm-role,.sm-conversation-top small,.sm-no-results,.sm-chat-ref){color:var(--dm-muted)}
+html[data-theme="dark"] body.sm-page .adm-main .sm-feedback{color:#86efac}
+html[data-theme="dark"] body.sm-page .adm-main .sm-back svg{stroke:var(--dm-text)}
+/* 03 — CALENDAR: day cells, events, badges, requests and approval dialogs */
+html[data-theme="dark"] body.sc-page .adm-main :is(.sc-day,.sc-day-cell){background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sc-page .adm-main .sc-day:hover{background:var(--dm-hover)}
+html[data-theme="dark"] body.sc-page .adm-main .sc-day.is-selected{background:#263f62;box-shadow:inset 0 0 0 2px #8ab3f3}
+html[data-theme="dark"] body.sc-page .adm-main :is(.sc-switch,.sc-calendar-top,.sc-controls,.sc-day-appointments,.sc-working-hours){background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sc-page .adm-main .sc-note{background:var(--dm-raised);color:var(--dm-muted);border-color:var(--dm-line)}
+/* 04 — APPOINTMENTS / PATIENTS / REPORTS: table rows and post-click detail cards */
+html[data-theme="dark"] body.sa-page .adm-main :is(.sa-table td,.sa-table th){color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sa-page .adm-main .sa-table th{background:var(--dm-raised)}
+html[data-theme="dark"] body.sa-page .adm-main :is(.sa-search-label,.sa-filter-label select){background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.spt-page .adm-main :is(.spt-table td,.spt-table th){color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.spt-page .adm-main .spt-table th{background:var(--dm-raised)}
+html[data-theme="dark"] body.spt-page .adm-main :is(.spt-search,.spt-select select){background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.spt-page .adm-main :is(.spt-avatar,.spt-count){background:var(--dm-raised);color:var(--dm-text)}
+html[data-theme="dark"] body.spt-page .adm-main .spt-name{color:var(--dm-text)}
+html[data-theme="dark"] body.sr-page .adm-main :is(.sr-table td,.sr-table th){color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sr-page .adm-main .sr-table th{background:var(--dm-raised)}
+html[data-theme="dark"] body.sr-page .adm-main :is(.sr-meter,.sr-outcome-track){background:var(--dm-raised)}
+html[data-theme="dark"] body.sr-page .adm-main :is(.sr-bar-booked,.sr-dot-booked){background:#7b91b1}
+html[data-theme="dark"] body.sr-page .adm-main :is(.sr-bar-completed,.sr-dot-completed,.sr-meter .sr-meter-done){background:#77b4f0}
+html[data-theme="dark"] body.sr-page .adm-main .sr-pill{background:var(--dm-raised);color:var(--dm-text)}
+html[data-theme="dark"] body.sr-page .adm-main .sr-notice{background:#172e50;border-color:#42638d;color:#d7e7ff}
+/* 05 — SETTINGS: editing, notifications, toggles, dynamically opened categories */
+html[data-theme="dark"] body.ss-page .adm-main :is(.ss-account-banner,.ss-tabs,.ss-panel,.ss-card){
+ background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.ss-page .adm-main :is(.ss-edit-row,.ss-managed-panel,.ss-security-row,.ss-info,.ss-day){
+ background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.ss-page .adm-main :is(.ss-tab:hover,.ss-tab.is-active,.ss-field-display){
+ background:var(--dm-raised);color:var(--dm-text)}
+html[data-theme="dark"] body.ss-page .adm-main :is(.ss-edit-label,.ss-panel-head p,.ss-nav-copy small,.ss-info p){color:var(--dm-muted)}
+html[data-theme="dark"] body.ss-page .adm-main :is(.ss-switch-control,.ss-toggle .ss-switch-control){background:#60748e}
+html[data-theme="dark"] body.ss-page .adm-main .ss-switch-input:checked+.ss-switch-control{background:#5689c4}
+html[data-theme="dark"] body.ss-page .adm-main .ss-account-avatar{background:#456a9e;color:#fff}
+/* 06 — DIALOGS: dialogs render in top layer and are NOT descendants of .adm-main */
+html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page,.sm-page,.ss-page) :is(
+ dialog.sc-dialog,dialog.sa-dialog,dialog.spt-dialog,dialog.sm-dialog,dialog.ss-dialog
+){background:var(--dm-card);color:var(--dm-text);border-color:var(--dm-line);color-scheme:dark}
+html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page,.sm-page,.ss-page) dialog :is(h2,h3,h4,strong){color:var(--dm-text)}
+html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page,.sm-page,.ss-page) dialog :is(
+ input:not([type="checkbox"]),textarea,select
+){background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line);color-scheme:dark}
+html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page,.sm-page,.ss-page) dialog :is(input,textarea)::placeholder{color:var(--dm-muted)}
+html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page,.sm-page,.ss-page) dialog :is(
+ .sa-detail-field,.spt-detail,.spt-visit-section,.spt-visit-item,.sc-request-card,.sc-admin-comment
+){background:var(--dm-raised);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page,.sm-page,.ss-page) dialog :is(
+ .sa-detail-field span,.spt-detail span,.sa-detail-section p,.spt-care-note p,
+ .sm-form-note,.sm-field,.sc-request-meta,.sc-request-dates,.sc-requests-header p
+){color:var(--dm-muted)}
+html[data-theme="dark"] body.spt-page dialog :is(.spt-visit-toggle,.spt-visit-panel){
+ background:var(--dm-raised);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.spt-page dialog .spt-visit-toggle:hover{background:var(--dm-hover)}
+html[data-theme="dark"] body.sc-page dialog :is(.sc-icon-close,.sc-request-tabs button,.sc-withdraw){
+ background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line)}
+html[data-theme="dark"] body.sc-page dialog .sc-request-tabs button.active{background:#385a83;color:#fff;border-color:#628fbd}
+html[data-theme="dark"] body.sm-page dialog :is(.sm-icon-btn,.sm-field){color:var(--dm-text)}
+html[data-theme="dark"] body.sm-page dialog .sm-primary{background:#456a9e;color:#fff;border-color:#6084b7}
+/* 07 — SEMANTIC STATUS COLORS (last, so they cannot be washed out).
+   Pending amber, approved/completed green, rejected/cancelled red.
+   Distinguish confirmed blue, in-progress cyan, checked-in violet. */
+html[data-theme="dark"] body.sc-page :is(.sc-event,.sc-status,.sc-request-status,.sc-request-chip){
+ background:#213e68;color:#b8d6ff;border:1px solid #426ca5}
+html[data-theme="dark"] body.sc-page :is(.sc-event.pending,.sc-status.pending,.sc-request-status.pending,.sc-request-chip.pending,.sc-pending-pill){
+ background:#49350f;color:#ffe19a;border-color:#ad7b23}
+html[data-theme="dark"] body.sc-page :is(.sc-event.completed,.sc-status.completed,.sc-request-status.approved,.sc-request-chip.approved){
+ background:#123e30;color:#91efbe;border-color:#277b58}
+html[data-theme="dark"] body.sc-page :is(.sc-request-status.rejected,.sc-request-chip.rejected,.sc-day-blocked){
+ background:#51242c;color:#ffadb3;border-color:#b95162}
+html[data-theme="dark"] body.sc-page .sc-request-status.withdrawn{
+ background:#354359;color:#d4dfef;border-color:#61738e}
+html[data-theme="dark"] body.sc-page :is(.sc-request-note.pending){color:#ffe19a}
+html[data-theme="dark"] body.sc-page :is(.sc-request-note.approved){color:#91efbe}
+html[data-theme="dark"] body.sc-page :is(.sc-request-note.rejected){color:#ffadb3}
+html[data-theme="dark"] body.sc-page .sc-dot.pending-request{background:#f2b548}
+html[data-theme="dark"] body.sc-page .sc-dot.rejected-request{background:#fb7185}
+html[data-theme="dark"] body.sc-page .sc-dot.confirmed{background:#7eb7ff}
+html[data-theme="dark"] body.sc-page .sc-dot.completed{background:#68dba0}
+html[data-theme="dark"] body.sa-page .sa-status.sa-pending,
+html[data-theme="dark"] body.spt-page .spt-status.spt-follow-up-due{
+ background:#49350f;color:#ffe19a;border:1px solid #ad7b23}
+html[data-theme="dark"] body.sa-page .sa-status.sa-completed,
+html[data-theme="dark"] body.spt-page .spt-status.spt-discharged,
+html[data-theme="dark"] body.spt-page .spt-visit-badge{
+ background:#123e30;color:#91efbe;border:1px solid #277b58}
+html[data-theme="dark"] body.sa-page .sa-status.sa-cancelled{
+ background:#51242c;color:#ffadb3;border:1px solid #b95162}
+html[data-theme="dark"] body.sa-page .sa-status.sa-confirmed,
+html[data-theme="dark"] body.spt-page .spt-status.spt-active{
+ background:#213e68;color:#b8d6ff;border:1px solid #426ca5}
+html[data-theme="dark"] body.sa-page .sa-status.sa-checked-in,
+html[data-theme="dark"] body.spt-page .spt-status.spt-new-referral{
+ background:#35264f;color:#d7b8ff;border:1px solid #7658a7}
+html[data-theme="dark"] body.sa-page .sa-status.sa-in-progress{
+ background:#113f4c;color:#8ce5ef;border:1px solid #28899a}
+html[data-theme="dark"] body.sa-page .sa-feedback,
+html[data-theme="dark"] body.sm-page .sm-feedback{color:#91efbe}
+/* Status labels must keep their color even if a broad rule targets spans or strong. */
+html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page) :is(
+ .sc-event,.sc-status,.sc-request-status,.sc-request-chip,.sa-status,.spt-status,.spt-visit-badge
+) :is(span,strong,small){color:inherit}
+
 /* Appearance chooser: used only by Specialist Settings */
 .ss-page .ss-appearance-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
 .ss-page .ss-theme-choice{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#334155;padding:18px 10px;cursor:pointer;font:inherit}
@@ -9002,10 +9114,6 @@ html[data-theme="dark"] body:is(.sp-page,.sc-page,.sa-page,.ss-page,.sr-page,.sm
 .ss-page .ss-theme-icon{font-size:26px;line-height:1}
 .ss-page .ss-theme-choice[aria-pressed="true"]{border-color:#2563eb;outline:2px solid #2563eb;background:#eff6ff}
 .ss-page .ss-theme-status{font-size:12px;color:#64748b}
-html[data-theme="dark"] body.ss-page .adm-main .ss-theme-choice{background:var(--dm-input);color:var(--dm-text);border-color:var(--dm-line)}
-html[data-theme="dark"] body.ss-page .adm-main .ss-theme-choice small{color:var(--dm-muted)}
-html[data-theme="dark"] body.ss-page .adm-main .ss-theme-choice[aria-pressed="true"]{background:#243f65;border-color:#8ab3f3;outline-color:#8ab3f3}
-@media(max-width:520px){.ss-page .ss-appearance-choices{gap:7px}.ss-page .ss-theme-choice{padding:13px 6px}}
 }
 
 
