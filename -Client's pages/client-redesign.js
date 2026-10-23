@@ -36,24 +36,20 @@
   apply();updateControls();
   if(media.addEventListener)media.addEventListener("change",apply);
   window.addEventListener("storage",e=>{if(e.key===key){apply();updateControls()}});
-  const bar=root.querySelector(".client-double-nav");
-  const burger=bar?.querySelector(".burger");
-  const setMenu=(open)=>{
-    bar?.classList.toggle("open",open);
-    burger?.setAttribute("aria-expanded",String(open));
-    burger?.setAttribute("aria-label",open?"Close navigation":"Open navigation");
+  /* Same responsive navigation interaction as the Admin header. */
+  const header=root.querySelector(".client-adm-header");
+  const menu=header?.querySelector(".adm-menu");
+  const nav=header?.querySelector(".adm-nav");
+  const setMenu=open=>{
+    nav?.classList.toggle("open",open);
+    menu?.setAttribute("aria-expanded",String(open));
+    menu?.setAttribute("aria-label",open?"Close patient navigation":"Open patient navigation");
+    if(menu)menu.textContent=open?"Close":"Menu";
   };
-  burger?.addEventListener("click",()=>setMenu(!bar.classList.contains("open")));
-  bar?.querySelectorAll(".bnavLinks a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+  menu?.addEventListener("click",()=>setMenu(!nav.classList.contains("open")));
+  nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
-  const searchInput=bar?.querySelector(".searchPlaceHolder");
-  searchInput?.addEventListener("input",()=>{
-    const q=searchInput.value.trim().toLowerCase();
-    bar.querySelectorAll(".bnavLinks a").forEach(link=>{
-      link.hidden=!!q && !link.textContent.toLowerCase().includes(q);
-    });
-    if(q)setMenu(true);
-  });
+  window.addEventListener("resize",()=>{if(window.innerWidth>850)setMenu(false)});
   const signout=document.getElementById("clientSignout");
   if(signout)signout.addEventListener("click",()=>{
     // Authentication must be invalidated by the backend.
