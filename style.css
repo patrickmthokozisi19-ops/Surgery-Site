@@ -8134,7 +8134,7 @@ body.sp-page .specialist-demo-label {
   .sc-page .sc-request-tabs button {white-space:nowrap;border:1px solid #e2e8f0;background:#fff;color:#64748b;padding:8px 11px;border-radius:7px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
   .sc-page .sc-request-tabs button.active {background:#334155;color:#fff;border-color:#334155}
   .sc-page .sc-requests-list {display:flex;flex-direction:column;gap:10px;max-height:48vh;overflow-y:auto;padding-right:3px}
-  .sc-page .sc-request-card {border:1px solid #e2e8f0;border-radius:10px;padding:14px;background:#172438}
+  .sc-page .sc-request-card {border:1px solid #e2e8f0;border-radius:10px;padding:14px;background:#fff}
   .sc-page .sc-request-top {display:flex;justify-content:space-between;align-items:center;gap:10px}
   .sc-page .sc-request-top strong {font-size:13px;color:#172033}
   .sc-page .sc-request-status {border-radius:20px;padding:5px 10px;font-size:11px;font-weight:800}
@@ -8272,7 +8272,7 @@ body.sp-page .specialist-demo-label {
    .sm-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
    .sm-primary{background:#334155;border-color:#334155;color:white;}.sm-primary:hover{background:#475569;}
    .sm-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:20px;}
-   .sm-stat{background:#172438;border:1px solid var(--sm-line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:7px;min-width:0;}
+   .sm-stat{background:#fff;border:1px solid var(--sm-line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:7px;min-width:0;}
    .sm-stat span{font-size:12px;font-weight:700;color:var(--sm-muted);}.sm-stat strong{font-size:29px;}.sm-stat small{font-size:11px;color:var(--sm-muted);}
    .sm-shell{display:grid;grid-template-columns:minmax(300px,36%) minmax(0,1fr);height:min(710px,calc(100vh - 300px));min-height:490px;border:1px solid var(--sm-line);background:#fff;border-radius:13px;overflow:hidden;}
    .sm-sidebar{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--sm-line);}
@@ -8917,6 +8917,7 @@ html[data-theme="dark"] body.adm :is(.adm-main,.ac-main,.ab-main,.ap-main,.asp-m
 
 
 
+
 /*
  PWEB SPECIALIST — DARK MODE v2
  Verified against actual HTML + CSS for all seven Specialist pages.
@@ -9108,16 +9109,34 @@ html[data-theme="dark"] body:is(.sc-page,.sa-page,.spt-page) :is(
 
 /* Appearance chooser: used only by Specialist Settings */
 .ss-page .ss-appearance-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
-.ss-page .ss-theme-choice{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;border:1px solid #cbd5e1;border-radius:11px;background:#334155;color:#334155;padding:18px 10px;cursor:pointer;font:inherit}
+.ss-page .ss-theme-choice{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#334155;padding:18px 10px;cursor:pointer;font:inherit}
 .ss-page .ss-theme-choice strong{font-size:13px}
 .ss-page .ss-theme-choice small{font-size:11px;color:#64748b}
 .ss-page .ss-theme-icon{font-size:26px;line-height:1}
-.ss-page .ss-theme-choice[aria-pressed="true"]{border-color:#2563eb;outline:2px solid #2563eb;background:#011631}
+.ss-page .ss-theme-choice[aria-pressed="true"]{border-color:#2563eb;outline:2px solid #2563eb;background:#eff6ff}
 .ss-page .ss-theme-status{font-size:12px;color:#64748b}
+
+/* 08 — LIGHT MODE RESTORATION: message statistics.
+   Explicitly restore white backgrounds when the theme changes back.
+   Keep these rules after all Specialist dark-mode overrides. */
+html[data-theme="light"] body.sm-page .adm-main .sm-stat {
+  background: #fff;
+  color: #17263b;
+  border-color: #dfe6ef;
 }
-
-
-
+html[data-theme="light"] body.sm-page .adm-main .sm-stat :is(h2,h3,h4,strong) {
+  color: #17263b;
+}
+html[data-theme="light"] body.sm-page .adm-main .sm-stat :is(p,small,span) {
+  color: #64748b;
+}
+/* Dark mode continues to use the slate card surface. */
+html[data-theme="dark"] body.sm-page .adm-main .sm-stat {
+  background: #172438;
+  color: #eef4ff;
+  border-color: #40546d;
+}
+}
 @layer ad-sp-Nav{
 /* PWEB PORTAL NAVIGATION BREAKPOINTS
    Load AFTER style.css and all page-specific CSS.
