@@ -9433,6 +9433,6 @@ html[data-theme="dark"] body.sm-page .adm-main .sm-stat {
    html[data-theme="dark"] body.client-page .adm-doc-nav .bnavLinks a.navBtn{background:#fff;color:#334155}
    html[data-theme="dark"] body.client-page :is(.client-summary-card,.client-panel,.client-settings-feature,.client-settings-category,.client-settings-menu,.client-settings-menu-item,.client-messages-inbox,.client-messages-conversation){background:#172438;color:#eef4ff;border-color:#40546d}
    html[data-theme="dark"] body.client-page :is(.client-panel h2,.client-panel h3,.client-intro h1,.client-summary-card strong){color:#eef4ff}
-   html[data-theme="dark"] body.client-page :is(.client-intro p,.client-panel p,.client-summary-card small){color:#b6c6d9}
+   html[data-theme="dark"] body.client-page :is(.client-intro p,.client-panel p,.client-summary-card small){color:#fff}
    
 }
