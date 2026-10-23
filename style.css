@@ -8504,7 +8504,154 @@ body.ss-page .ss-theme-choice strong{font-size:12px}
 body.ss-page .ss-theme-choice small{font-size:10px}
 }
 }
+@layer ad-sp-Nav{
+/* PWEB PORTAL NAVIGATION BREAKPOINTS
+   Load AFTER style.css and all page-specific CSS.
+   Specialist: hamburger <=1070px; Admin: hamburger <=1130px.
+   Do not change the shared nav markup or burger JS.
+*/
 
+/* All seven Specialist pages have one of these body classes. */
+@media (min-width: 1071px) {
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .burger {
+    display: none !important;
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav .bnavLinks {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    align-items: center;
+    width: auto;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+}
+@media (max-width: 1070px) {
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav {
+    position: relative;
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .burger {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    z-index: 202;
+    cursor: pointer;
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .burger span {
+    display: block;
+    width: 23px;
+    height: 2px;
+    flex: none;
+    border-radius: 3px;
+    background: white;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav .bnavLinks {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 201;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 14px;
+    border: 1px solid #475569;
+    background: #334155;
+    box-shadow: 0 18px 30px #0f172a38;
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .bNav .bnavLinks,
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav .bnavLinks.open {
+    display: flex !important;
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .burger span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .burger span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* Admin pages are .adm but do NOT carry a Specialist page class. */
+@media (min-width: 1131px) {
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .burger {
+    display: none !important;
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav .bnavLinks {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    align-items: center;
+    width: auto;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+}
+@media (max-width: 1130px) {
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav {
+    position: relative;
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .burger {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    z-index: 202;
+    cursor: pointer;
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .burger span {
+    display: block;
+    width: 23px;
+    height: 2px;
+    flex: none;
+    border-radius: 3px;
+    background: currentColor;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav .bnavLinks {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 201;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 14px;
+    border: 1px solid #475569;
+    background: #334155;
+    box-shadow: 0 18px 30px #0f172a38;
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .bNav .bnavLinks,
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav .bnavLinks.open {
+    display: flex !important;
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .burger span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .burger span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+}
 @layer Theme-mode {
   /* PWEB — ADMIN DARK MODE | 19 OCT 2026
    One stylesheet, NO @layer: normal unlayered declarations override
@@ -9136,152 +9283,4 @@ html[data-theme="dark"] body.sm-page .adm-main .sm-stat {
   color: #eef4ff;
   border-color: #40546d;
 }
-}
-@layer ad-sp-Nav{
-/* PWEB PORTAL NAVIGATION BREAKPOINTS
-   Load AFTER style.css and all page-specific CSS.
-   Specialist: hamburger <=1070px; Admin: hamburger <=1130px.
-   Do not change the shared nav markup or burger JS.
-*/
-
-/* All seven Specialist pages have one of these body classes. */
-@media (min-width: 1071px) {
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .burger {
-    display: none !important;
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav .bnavLinks {
-    display: flex !important;
-    position: static !important;
-    flex-direction: row !important;
-    align-items: center;
-    width: auto;
-    padding: 0;
-    border: 0;
-    box-shadow: none;
-  }
-}
-@media (max-width: 1070px) {
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav {
-    position: relative;
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .burger {
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    position: relative;
-    z-index: 202;
-    cursor: pointer;
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .burger span {
-    display: block;
-    width: 23px;
-    height: 2px;
-    flex: none;
-    border-radius: 3px;
-    background: white;
-    transition: transform .2s ease, opacity .2s ease;
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav .bnavLinks {
-    display: none !important;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    z-index: 201;
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-    padding: 14px;
-    border: 1px solid #475569;
-    background: #334155;
-    box-shadow: 0 18px 30px #0f172a38;
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .bNav .bnavLinks,
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav .bNav .bnavLinks.open {
-    display: flex !important;
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .burger span:first-child {
-    transform: translateY(7px) rotate(45deg);
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .burger span:nth-child(2) {
-    opacity: 0;
-  }
-  body:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page) .adm-doc-nav:is(.open,.active) .burger span:last-child {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-}
-
-/* Admin pages are .adm but do NOT carry a Specialist page class. */
-@media (min-width: 1131px) {
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .burger {
-    display: none !important;
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav .bnavLinks {
-    display: flex !important;
-    position: static !important;
-    flex-direction: row !important;
-    align-items: center;
-    width: auto;
-    padding: 0;
-    border: 0;
-    box-shadow: none;
-  }
-}
-@media (max-width: 1130px) {
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav {
-    position: relative;
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .burger {
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    position: relative;
-    z-index: 202;
-    cursor: pointer;
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .burger span {
-    display: block;
-    width: 23px;
-    height: 2px;
-    flex: none;
-    border-radius: 3px;
-    background: currentColor;
-    transition: transform .2s ease, opacity .2s ease;
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav .bnavLinks {
-    display: none !important;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    z-index: 201;
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-    padding: 14px;
-    border: 1px solid #475569;
-    background: #334155;
-    box-shadow: 0 18px 30px #0f172a38;
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .bNav .bnavLinks,
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav .bNav .bnavLinks.open {
-    display: flex !important;
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .burger span:first-child {
-    transform: translateY(7px) rotate(45deg);
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .burger span:nth-child(2) {
-    opacity: 0;
-  }
-  body.adm:not(:is(.sp-page,.sc-page,.sa-page,.spt-page,.sm-page,.sr-page,.ss-page)) .adm-doc-nav:is(.open,.active) .burger span:last-child {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-}
-
 }
