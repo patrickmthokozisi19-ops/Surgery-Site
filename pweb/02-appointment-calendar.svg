@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-label="Appointment calendar">
+<rect x="0" y="0" width="1280" height="880" rx="0" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="78" rx="0" fill="#1d3443" stroke="none" stroke-width="1"/>
+<text x="44" y="49" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="750" text-anchor="start">Pweb</text>
+<text x="1200" y="47" fill="#5fd3b3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end">PLATFORM PREVIEW</text>
+<text x="46" y="143" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="750" text-anchor="start">Appointment calendar</text>
+<text x="46" y="180" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Clear appointment slots for patients and authorised staff</text>
+<rect x="40" y="211" width="1200" height="625" rx="22" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1160" y="853" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end">PWEB / PLATFORM PREVIEW</text>
+<text x="75" y="263" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="750" text-anchor="start">October 2026</text>
+<rect x="1060" y="239" width="109" height="32" rx="16" fill="#e2f6ef" stroke="none" stroke-width="1"/><text x="1074" y="261" fill="#287e6a" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Week view</text>
+<path d="M75 286 L1180 286" stroke="#dfe8e7" stroke-width="2"/>
+<text x="87" y="332" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="650" text-anchor="start">TIME</text>
+<text x="240" y="331" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="650" text-anchor="start">MON 19</text>
+<text x="428" y="331" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="650" text-anchor="start">TUE 20</text>
+<text x="616" y="331" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="650" text-anchor="start">WED 21</text>
+<text x="804" y="331" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="650" text-anchor="start">THU 22</text>
+<text x="992" y="331" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="650" text-anchor="start">FRI 23</text>
+<text x="87" y="389" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start">08:00</text>
+<path d="M192 410 L1183 410" stroke="#eef2f1" stroke-width="1"/>
+<text x="87" y="450" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start">09:00</text>
+<path d="M192 471 L1183 471" stroke="#eef2f1" stroke-width="1"/>
+<text x="87" y="511" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start">10:00</text>
+<path d="M192 532 L1183 532" stroke="#eef2f1" stroke-width="1"/>
+<text x="87" y="572" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start">11:00</text>
+<path d="M192 593 L1183 593" stroke="#eef2f1" stroke-width="1"/>
+<text x="87" y="633" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start">12:00</text>
+<path d="M192 654 L1183 654" stroke="#eef2f1" stroke-width="1"/>
+<text x="87" y="694" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start">13:00</text>
+<path d="M192 715 L1183 715" stroke="#eef2f1" stroke-width="1"/>
+<text x="87" y="755" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start">14:00</text>
+<path d="M192 776 L1183 776" stroke="#eef2f1" stroke-width="1"/>
+<rect x="220" y="377" width="168" height="48" rx="9" fill="#e5f5ef" stroke="none" stroke-width="1"/>
+<text x="233" y="407" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Available</text>
+<rect x="408" y="438" width="168" height="48" rx="9" fill="#dce9fa" stroke="none" stroke-width="1"/>
+<text x="421" y="468" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Consultation</text>
+<rect x="596" y="499" width="168" height="48" rx="9" fill="#e5f5ef" stroke="none" stroke-width="1"/>
+<text x="609" y="529" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Available</text>
+<rect x="784" y="377" width="168" height="48" rx="9" fill="#f7e8c7" stroke="none" stroke-width="1"/>
+<text x="797" y="407" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Booked</text>
+<rect x="972" y="560" width="168" height="48" rx="9" fill="#e5f5ef" stroke="none" stroke-width="1"/>
+<text x="985" y="590" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Available</text>
+<rect x="408" y="620" width="168" height="48" rx="9" fill="#dce9fa" stroke="none" stroke-width="1"/>
+<text x="421" y="650" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Follow-up</text>
+</svg>

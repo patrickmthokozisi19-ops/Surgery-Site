@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-label="Request an appointment">
+<rect x="0" y="0" width="1280" height="880" rx="0" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="78" rx="0" fill="#1d3443" stroke="none" stroke-width="1"/>
+<text x="44" y="49" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="750" text-anchor="start">Pweb</text>
+<text x="1200" y="47" fill="#5fd3b3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end">PLATFORM PREVIEW</text>
+<text x="46" y="143" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="750" text-anchor="start">Request an appointment</text>
+<text x="46" y="180" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">A straightforward request flow with specialist and date selection</text>
+<rect x="40" y="211" width="1200" height="625" rx="22" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1160" y="853" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end">PWEB / PLATFORM PREVIEW</text>
+<rect x="72" y="242" width="738" height="548" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="94" y="280" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Appointment request</text>
+<text x="103" y="328" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Department</text>
+<rect x="103" y="344" width="670" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="123" y="380" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="400" text-anchor="start">Orthopaedics</text>
+<text x="103" y="437" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Preferred specialist</text>
+<rect x="103" y="453" width="670" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="123" y="489" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="400" text-anchor="start">Dr. A. Naidoo</text>
+<text x="103" y="544" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Preferred date</text>
+<rect x="103" y="560" width="320" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="123" y="595" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="400" text-anchor="start">20 October 2026</text>
+<rect x="443" y="560" width="330" height="54" rx="9" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<text x="464" y="595" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Morning (08:00–12:00)</text>
+<rect x="103" y="672" width="220" height="44" rx="11" fill="#5fd3b3" stroke="none" stroke-width="1"/><text x="121" y="700" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Send request</text>
+<rect x="837" y="242" width="367" height="548" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/><text x="859" y="280" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Request summary</text>
+<text x="865" y="335" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="600" text-anchor="start">Orthopaedic consultation</text>
+<rect x="865" y="375" width="270" height="9" rx="4" fill="#e7eeed" stroke="none" stroke-width="1"/><rect x="865" y="398" width="210" height="9" rx="4" fill="#e7eeed" stroke="none" stroke-width="1"/>
+<path d="M863 460 L1177 460" stroke="#dfe8e7" stroke-width="2"/>
+<text x="865" y="503" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start">Next step</text>
+<text x="865" y="545" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">Your request is reviewed</text>
+<text x="865" y="573" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">by the practice team.</text>
+<rect x="865" y="655" width="220" height="32" rx="16" fill="#dce9fa" stroke="none" stroke-width="1"/><text x="879" y="677" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">Request, not booking</text>
+</svg>

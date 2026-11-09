@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-label="Specialist weekly schedule">
+<rect x="0" y="0" width="1280" height="880" rx="0" fill="#f4f7f6" stroke="none" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="78" rx="0" fill="#1d3443" stroke="none" stroke-width="1"/>
+<text x="44" y="49" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="750" text-anchor="start">Pweb</text>
+<text x="1200" y="47" fill="#5fd3b3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end">PLATFORM PREVIEW</text>
+<text x="46" y="143" fill="#0e1f2b" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="750" text-anchor="start">Specialist weekly schedule</text>
+<text x="46" y="180" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start">A week-at-a-glance workspace for consultations and procedures</text>
+<rect x="40" y="211" width="1200" height="625" rx="22" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1160" y="853" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end">PWEB / PLATFORM PREVIEW</text>
+<text x="78" y="274" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="750" text-anchor="start">Dr. A. Naidoo</text>
+<rect x="974" y="246" width="185" height="32" rx="16" fill="#dce9fa" stroke="none" stroke-width="1"/><text x="988" y="268" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" text-anchor="start">19–23 Oct 2026</text>
+<rect x="82" y="320" width="210" height="449" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="102" y="369" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="750" text-anchor="start">MON</text>
+<rect x="95" y="509" width="184" height="80" rx="10" fill="#dce9fa" stroke="none" stroke-width="1"/>
+<text x="106" y="539" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">11:00</text>
+<text x="106" y="566" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Procedure</text>
+<rect x="95" y="615" width="184" height="80" rx="10" fill="#f7e8c7" stroke="none" stroke-width="1"/>
+<text x="106" y="645" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">14:00</text>
+<text x="106" y="672" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Follow-up</text>
+<rect x="307" y="320" width="210" height="449" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="327" y="369" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="750" text-anchor="start">TUE</text>
+<rect x="320" y="403" width="184" height="80" rx="10" fill="#e2f6ef" stroke="none" stroke-width="1"/>
+<text x="331" y="433" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">09:00</text>
+<text x="331" y="460" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Consultation</text>
+<rect x="320" y="509" width="184" height="80" rx="10" fill="#dce9fa" stroke="none" stroke-width="1"/>
+<text x="331" y="539" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">11:00</text>
+<text x="331" y="566" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Procedure</text>
+<rect x="320" y="615" width="184" height="80" rx="10" fill="#f7e8c7" stroke="none" stroke-width="1"/>
+<text x="331" y="645" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">14:00</text>
+<text x="331" y="672" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Follow-up</text>
+<rect x="532" y="320" width="210" height="449" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="552" y="369" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="750" text-anchor="start">WED</text>
+<rect x="545" y="403" width="184" height="80" rx="10" fill="#e2f6ef" stroke="none" stroke-width="1"/>
+<text x="556" y="433" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">09:00</text>
+<text x="556" y="460" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Consultation</text>
+<rect x="545" y="509" width="184" height="80" rx="10" fill="#dce9fa" stroke="none" stroke-width="1"/>
+<text x="556" y="539" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">11:00</text>
+<text x="556" y="566" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Procedure</text>
+<rect x="757" y="320" width="210" height="449" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="777" y="369" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="750" text-anchor="start">THU</text>
+<rect x="770" y="403" width="184" height="80" rx="10" fill="#e2f6ef" stroke="none" stroke-width="1"/>
+<text x="781" y="433" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">09:00</text>
+<text x="781" y="460" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Consultation</text>
+<rect x="770" y="615" width="184" height="80" rx="10" fill="#f7e8c7" stroke="none" stroke-width="1"/>
+<text x="781" y="645" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">14:00</text>
+<text x="781" y="672" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Follow-up</text>
+<rect x="982" y="320" width="210" height="449" rx="18" fill="#fff" stroke="#dfe8e7" stroke-width="1"/>
+<text x="1002" y="369" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="750" text-anchor="start">FRI</text>
+<rect x="995" y="509" width="184" height="80" rx="10" fill="#dce9fa" stroke="none" stroke-width="1"/>
+<text x="1006" y="539" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">11:00</text>
+<text x="1006" y="566" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Procedure</text>
+<rect x="995" y="615" width="184" height="80" rx="10" fill="#f7e8c7" stroke="none" stroke-width="1"/>
+<text x="1006" y="645" fill="#1d3443" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" text-anchor="start">14:00</text>
+<text x="1006" y="672" fill="#5b6b75" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start">Follow-up</text>
+</svg>
