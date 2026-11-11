@@ -54,7 +54,7 @@
         >
 
         <img
-          src="public/cancel-close-delete-svgrepo-com.svg"
+          src="../public/cancel-close-delete-svgrepo-com.svg"
           alt="Close search"
           class="close_searchBtn"
         >
@@ -300,7 +300,7 @@
 (() => {
   'use strict';
 
-  const STORAGE_KEY = 'pweb-admin-bookings-v1';
+  const API_URL = '/api/appointments';
   const PAGE_SIZE = 8;
   const SPECIALISTS = ['Dr. P. Surname', 'Dr. N. Maseko', 'Dr. K. Lewis'];
   const STATUS_LABELS = {
@@ -336,37 +336,32 @@
     });
   };
 
-  const bookingStore = {
-    load() {
-      try {
-        const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        if (Array.isArray(stored)) return stored;
-      } catch (error) {
-        console.warn('Unable to read saved bookings.', error);
-      }
-      return [
-        { id: 'PB-1001', patient: 'T. Mokoena', contact: '', doctor: SPECIALISTS[0], date: today(), start: '08:30', end: '09:15', type: 'followup', status: 'checked-in', notes: '' },
-        { id: 'PB-1002', patient: 'S. Khumalo', contact: '', doctor: SPECIALISTS[0], date: today(), start: '09:15', end: '10:00', type: 'consult', status: 'confirmed', notes: '' },
-        { id: 'PB-1003', patient: 'R. Adams', contact: '', doctor: SPECIALISTS[0], date: today(), start: '10:00', end: '10:45', type: 'consult', status: 'confirmed', notes: '' },
-        { id: 'PB-1004', patient: 'M. van der Merwe', contact: '', doctor: SPECIALISTS[0], date: today(), start: '10:45', end: '11:30', type: 'results', status: 'pending', notes: '' },
-        { id: 'PB-1005', patient: 'C. Jacobs', contact: '', doctor: SPECIALISTS[1], date: today(), start: '14:30', end: '15:15', type: 'followup', status: 'pending', notes: '' },
-        { id: 'PB-1006', patient: 'N. Dlamini', contact: '', doctor: SPECIALISTS[1], date: addDays(1), start: '09:00', end: '09:45', type: 'consult', status: 'confirmed', notes: '' },
-        { id: 'PB-1007', patient: 'Z. Ndlovu', contact: '', doctor: SPECIALISTS[2], date: addDays(2), start: '11:00', end: '12:00', type: 'procedure', status: 'pending', notes: '' }
-      ];
-    },
-    save(bookings) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
-        return true;
-      } catch (error) {
-        console.warn('Unable to save bookings.', error);
-        return false;
-      }
+  async function apiRequest(path = '', options = {}) {
+    const response = await fetch(`${API_URL}${path}`, {
+      ...options,
+      headers: { 'Content-Type': 'application/json', ...options.headers }
+    });
+    const contentType = response.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      throw new Error('API returned HTML or another non-JSON response. Check the Vite /api proxy.');
     }
-  };
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || `Request failed: ${response.status}`);
+    return data;
+  }
+
+  async function loadBookings() {
+    try {
+      state.bookings = await apiRequest();
+      resetPageAndRender();
+    } catch (error) {
+      console.error('Unable to load bookings:', error);
+      toast(`Unable to load bookings: ${error.message}`);
+    }
+  }
 
   const state = {
-    bookings: bookingStore.load(),
+    bookings: [],
     search: '',
     status: 'all',
     specialist: 'all',
@@ -384,10 +379,6 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => element.classList.remove('is-visible'), 3200);
   };
-
-  function persist() {
-    if (!bookingStore.save(state.bookings)) toast('Changes could not be saved in this browser.');
-  }
 
   function filteredBookings() {
     const query = state.search.toLowerCase();
@@ -491,19 +482,10 @@
     );
   }
 
-  function nextId() {
-    const max = state.bookings.reduce((highest, booking) => {
-      const match = /^PB-(\d+)$/.exec(booking.id);
-      return match ? Math.max(highest, Number(match[1])) : highest;
-    }, 1000);
-    return `PB-${max + 1}`;
-  }
-
-  function saveForm(event) {
+  async function saveForm(event) {
     event.preventDefault();
-    const id = state.editingId || nextId();
+    const id = state.editingId;
     const booking = {
-      id,
       patient: $('patientName').value.trim(),
       contact: $('patientContact').value.trim(),
       doctor: $('bookingSpecialist').value,
@@ -514,7 +496,6 @@
       end: $('bookingEnd').value,
       notes: $('bookingNotes').value.trim()
     };
-
     const error = $('formError');
     error.textContent = '';
     if (!booking.patient || !booking.doctor || !booking.date || !booking.start || !booking.end) {
@@ -525,30 +506,37 @@
       error.textContent = 'End time must be later than start time.';
       return;
     }
-    if (hasConflict(booking)) {
+    if (hasConflict({ ...booking, id })) {
       error.textContent = 'This specialist already has a booking during the selected time.';
       return;
     }
-
-    const wasEditing = Boolean(state.editingId);
-    if (wasEditing) {
-      state.bookings = state.bookings.map((item) => item.id === id ? booking : item);
-    } else {
-      state.bookings.push(booking);
+    const submit = $('bookingForm').querySelector('[type="submit"]');
+    submit.disabled = true;
+    try {
+      await apiRequest(id ? `/${encodeURIComponent(id)}` : '', {
+        method: id ? 'PATCH' : 'POST',
+        body: JSON.stringify(booking)
+      });
+      closeDialog();
+      await loadBookings();
+      toast(id ? 'Booking updated.' : 'Booking saved.');
+    } catch (err) {
+      error.textContent = err.message;
+    } finally {
+      submit.disabled = false;
     }
-    persist();
-    closeDialog();
-    resetPageAndRender();
-    toast(wasEditing ? 'Booking updated.' : 'Booking saved.');
   }
 
-  function updateStatus(id, status) {
-    const booking = state.bookings.find((item) => item.id === id);
-    if (!booking) return;
-    booking.status = status;
-    persist();
-    render();
-    toast(`Booking marked ${STATUS_LABELS[status].toLowerCase()}.`);
+  async function updateStatus(id, status) {
+    try {
+      await apiRequest(`/${encodeURIComponent(id)}`, {
+        method: 'PATCH', body: JSON.stringify({ status })
+      });
+      await loadBookings();
+      toast(`Booking marked ${STATUS_LABELS[status].toLowerCase()}.`);
+    } catch (err) {
+      toast(`Could not update booking: ${err.message}`);
+    }
   }
 
   function exportCSV() {
@@ -635,13 +623,17 @@
     $('bookingDialog').addEventListener('click', (event) => {
       if (event.target === $('bookingDialog')) closeDialog();
     });
-    $('deleteBooking').addEventListener('click', () => {
-      if (!state.editingId || !confirm('Delete this booking permanently?')) return;
-      state.bookings = state.bookings.filter((item) => item.id !== state.editingId);
-      persist();
-      closeDialog();
-      render();
-      toast('Booking deleted.');
+    $('deleteBooking').addEventListener('click', async () => {
+      const id = state.editingId;
+      if (!id || !confirm('Delete this booking permanently?')) return;
+      try {
+        await apiRequest(`/${encodeURIComponent(id)}`, { method: 'DELETE' });
+        closeDialog();
+        await loadBookings();
+        toast('Booking deleted.');
+      } catch (err) {
+        $('formError').textContent = err.message;
+      }
     });
     $('exportBookings').addEventListener('click', exportCSV);
     $('prevPage').addEventListener('click', () => { state.page--; render(); });
@@ -657,6 +649,7 @@
     });
 
     render();
+    loadBookings();
   }
 
   init();
