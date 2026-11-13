@@ -20,6 +20,12 @@
       ? savedTheme
       : systemDark ? "dark" : "light";
 </script>
+<style>
+#bookingDialog{width:min(900px,94vw);max-height:90dvh;box-sizing:border-box;padding:0;border:1px solid var(--ad-line,#e2e8f0);border-radius:18px;background:var(--ad-panel,#fff);color:var(--ad-ink,#172033);overflow:auto}
+#bookingForm{padding:24px}#bookingDialog::backdrop{background:#0f172a99}.ab-dialog-head,.ab-dialog-actions{display:flex;gap:12px;align-items:center;justify-content:space-between}.pb-section{border:1px solid var(--ad-line,#e2e8f0);border-radius:12px;margin:22px 0;padding:18px;min-width:0}.pb-section legend{padding:0 8px;font-weight:700}.pb-section p,.pb-notice{font-size:.9rem;line-height:1.6;color:var(--ad-muted,#64748b)}.pb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.pb-grid label{display:flex;flex-direction:column;gap:7px;font-size:.9rem;font-weight:600}.pb-grid input,.pb-grid select,.pb-grid textarea{box-sizing:border-box;min-width:0;width:100%;font:inherit;padding:11px;border:1px solid var(--ad-line,#cbd5e1);border-radius:8px;background:var(--ad-panel,#fff);color:inherit}.pb-grid .ab-wide{grid-column:1/-1}#bookingDialog :focus-visible{outline:3px solid #94a3b8;outline-offset:2px}.pb-notice{padding:12px;background:var(--ad-soft,#f1f5f9);border-radius:8px}#bookingDialog [hidden]{display:none!important}.ab-form-error{color:#b91c1c}.ab-dialog-close{font-size:1.7rem;background:transparent;color:inherit;border:0;cursor:pointer}
+[data-theme="dark"] #bookingDialog{--ad-panel:#172033;--ad-ink:#f1f5f9;--ad-line:#475569;--ad-muted:#cbd5e1;--ad-soft:#253247;color-scheme:dark}
+@media(max-width:600px){#bookingForm{padding:14px}.pb-grid{grid-template-columns:1fr}.pb-section{padding:12px}.ab-dialog-actions{flex-wrap:wrap}}
+</style>
 </head>
 <body class="dw dw-light adm ab-page">
   <a class="skip visibly-hidden" href="#main">
@@ -245,14 +251,7 @@
         </div>
         <button class="ab-dialog-close" type="button" id="closeDialog" aria-label="Close">×</button>
       </div>
-      <div class="ab-form-grid">
-        <label class="ab-wide" for="patientName">Patient name <span aria-hidden="true">*</span>
-          <input id="patientName" name="patient" required maxlength="100" autocomplete="off" placeholder="Patient full name">
-        </label>
-        <label for="patientContact">Contact number
-          <input id="patientContact" name="contact" type="tel" maxlength="30" placeholder="Contact number">
-        </label>
-        <label for="visitType">Visit type
+<fieldset class="pb-section"><legend>1 · Patient identity</legend><p>Register these details once. Fields marked * are required.</p><div class="pb-grid"><label for="patientName">Full names and surname *<input id="patientName" type="text" maxlength="150" required></label><label for="preferredName">Preferred name<input id="preferredName" type="text" maxlength="150"></label><label for="birthDate">Date of birth *<input id="birthDate" type="date" maxlength="150" required></label><label for="idType">Identification type<select id="idType"><option value="unavailable">Unavailable / not supplied</option><option value="sa-id">South African ID</option><option value="passport">Passport</option><option value="other">Other identification</option></select></label><label for="identityNumber">ID / passport / document number<input id="identityNumber" type="text" maxlength="150"></label><label for="language">Preferred language<input id="language" type="text" maxlength="150"></label></div></fieldset><fieldset class="pb-section"><legend>2 · Contact details</legend><p>Provide a patient or authorised representative’s contact number.</p><div class="pb-grid"><label for="patientContact">Contact number *<input id="patientContact" type="tel" maxlength="150" required></label><label for="contactOwner">Number belongs to<select id="contactOwner"><option value="patient">Patient</option><option value="guardian">Parent / guardian</option><option value="representative">Authorised representative</option></select></label><label for="patientEmail">Email (optional)<input id="patientEmail" type="email" maxlength="150"></label><label for="alternativePhone">Alternative number<input id="alternativePhone" type="tel" maxlength="150"></label><label for="address">Residential address<input id="address" type="text" maxlength="150"></label><label for="postalCode">Postal code<input id="postalCode" type="text" maxlength="150"></label><label for="contactMethod">Preferred contact method<select id="contactMethod"><option value="phone">Phone call</option><option value="sms">SMS</option><option value="email">Email</option></select></label></div></fieldset><fieldset class="pb-section"><legend>3 · Emergency contact and next of kin</legend><p>These may be different people. Leave unavailable details blank.</p><div class="pb-grid"><label for="emergencyName">Emergency contact full name<input id="emergencyName" type="text" maxlength="150"></label><label for="emergencyRelationship">Relationship to patient<input id="emergencyRelationship" type="text" maxlength="150"></label><label for="emergencyPhone">Emergency contact number<input id="emergencyPhone" type="tel" maxlength="150"></label><label for="kinSame">Is this also the next of kin?<select id="kinSame"><option value="yes">Yes</option><option value="no">No — enter below</option></select></label></div></fieldset><div id="kinFields"><fieldset class="pb-section"><legend>Next of kin</legend><p>Complete only when different from the emergency contact.</p><div class="pb-grid"><label for="kinName">Next-of-kin full name<input id="kinName" type="text" maxlength="150"></label><label for="kinRelationship">Relationship<input id="kinRelationship" type="text" maxlength="150"></label><label for="kinPhone">Next-of-kin number<input id="kinPhone" type="tel" maxlength="150"></label></div></fieldset></div><fieldset class="pb-section"><legend>4 · Parent or guardian</legend><p>For a minor, provide the responsible adult’s details. Authority to consent must be assessed separately.</p><div class="pb-grid"><label for="guardianNeeded">Guardian details applicable?<select id="guardianNeeded"><option value="no">No</option><option value="yes">Yes</option></select></label></div></fieldset><div id="guardianFields"><fieldset class="pb-section"><legend>Guardian details</legend><p>Required for patients under 18 or when marked applicable.</p><div class="pb-grid"><label for="guardianName">Full name<input id="guardianName" type="text" maxlength="150"></label><label for="guardianRelationship">Relationship<input id="guardianRelationship" type="text" maxlength="150"></label><label for="guardianPhone">Contact number<input id="guardianPhone" type="tel" maxlength="150"></label></div></fieldset></div><fieldset class="pb-section"><legend>5 · Payment and account</legend><p>Select the funding method for this visit.</p><div class="pb-grid"><label for="paymentMethod">Payment method<select id="paymentMethod"><option value="self">Self-paying</option><option value="medical-aid">Medical aid</option><option value="other">Other / confirm with reception</option></select></label><label for="payerName">Account payer full name (if different)<input id="payerName" type="text" maxlength="150"></label><label for="payerPhone">Account payer number<input id="payerPhone" type="tel" maxlength="150"></label></div></fieldset><div id="medicalAidFields"><fieldset class="pb-section"><legend>Medical aid</legend><p>Membership details do not confirm benefit availability or authorisation.</p><div class="pb-grid"><label for="scheme">Medical scheme<input id="scheme" type="text" maxlength="150"></label><label for="plan">Plan / option<input id="plan" type="text" maxlength="150"></label><label for="memberNumber">Membership number<input id="memberNumber" type="text" maxlength="150"></label><label for="dependantCode">Dependant code<input id="dependantCode" type="text" maxlength="150"></label><label for="mainMember">Main member full name<input id="mainMember" type="text" maxlength="150"></label><label for="authorisation">Authorisation number (if applicable)<input id="authorisation" type="text" maxlength="150"></label></div></fieldset></div><fieldset class="pb-section"><legend>6 · Appointment</legend><div class="pb-grid">        <label for="visitType">Visit type
           <select id="visitType" name="type">
             <option value="consult">Consultation</option>
             <option value="followup">Follow-up</option>
@@ -284,8 +283,7 @@
         <label class="ab-wide" for="bookingNotes">Administrative notes
           <textarea id="bookingNotes" name="notes" rows="3" maxlength="500" placeholder="Optional booking notes"></textarea>
         </label>
-      </div>
-      <p class="ab-form-error" id="formError" role="alert" aria-live="polite"></p>
+</div></fieldset><p class="ab-form-error" id="formError" role="alert" aria-live="polite"></p>
       <div class="ab-dialog-actions">
         <button class="ab-btn ab-danger" id="deleteBooking" type="button" hidden>Delete booking</button>
         <span class="ab-action-spacer"></span>
@@ -350,9 +348,14 @@
     return data;
   }
 
+  function normalizeBooking(item) {
+    return { ...item, id: String(item.id), doctor: item.specialist || item.doctor || '',
+      start: item.start || '', end: item.end || '', type: item.type || 'consult' };
+  }
+
   async function loadBookings() {
     try {
-      state.bookings = await apiRequest();
+      state.bookings = (await apiRequest()).map(normalizeBooking);
       resetPageAndRender();
     } catch (error) {
       console.error('Unable to load bookings:', error);
@@ -423,7 +426,7 @@
       <tr data-id="${escapeHTML(booking.id)}">
         <td><strong>${escapeHTML(booking.patient)}</strong><small>${escapeHTML(booking.id)}</small></td>
         <td>${escapeHTML(booking.doctor)}</td>
-        <td><strong>${escapeHTML(displayDate(booking.date))}</strong><small>${escapeHTML(booking.start)} – ${escapeHTML(booking.end)}</small></td>
+        <td><strong>${escapeHTML(displayDate(booking.date))}</strong><small>${booking.start ? escapeHTML(booking.start) + (booking.end ? ' – ' + escapeHTML(booking.end) : '') : 'Time not recorded'}</small></td>
         <td>${escapeHTML(TYPE_LABELS[booking.type] || booking.type)}</td>
         <td><span class="ab-status ab-status-${escapeHTML(booking.status)}">${escapeHTML(STATUS_LABELS[booking.status] || booking.status)}</span></td>
         <td>${actionButtons(booking)}</td>
@@ -451,7 +454,7 @@
     $('formError').textContent = '';
     const booking = state.bookings.find((item) => item.id === id);
     $('bookingDialogTitle').textContent = booking ? `Edit booking · ${booking.id}` : 'New booking';
-    $('deleteBooking').hidden = !booking;
+    $('deleteBooking').hidden = true; // No DELETE route is configured in the current backend.
     $('patientName').value = booking?.patient || '';
     $('patientContact').value = booking?.contact || '';
     $('visitType').value = booking?.type || 'consult';
@@ -461,6 +464,7 @@
     $('bookingStart').value = booking?.start || '09:00';
     $('bookingEnd').value = booking?.end || '09:45';
     $('bookingNotes').value = booking?.notes || '';
+    fillPatientDetails(booking?.patientDetails || {});
     $('bookingDialog').showModal();
     $('patientName').focus();
   }
@@ -485,46 +489,12 @@
   async function saveForm(event) {
     event.preventDefault();
     const id = state.editingId;
-    const booking = {
-      patient: $('patientName').value.trim(),
-      contact: $('patientContact').value.trim(),
-      doctor: $('bookingSpecialist').value,
-      type: $('visitType').value,
-      status: $('bookingStatus').value,
-      date: $('bookingDate').value,
-      start: $('bookingStart').value,
-      end: $('bookingEnd').value,
-      notes: $('bookingNotes').value.trim()
-    };
-    const error = $('formError');
-    error.textContent = '';
-    if (!booking.patient || !booking.doctor || !booking.date || !booking.start || !booking.end) {
-      error.textContent = 'Complete all required fields.';
-      return;
-    }
-    if (booking.end <= booking.start) {
-      error.textContent = 'End time must be later than start time.';
-      return;
-    }
-    if (hasConflict({ ...booking, id })) {
-      error.textContent = 'This specialist already has a booking during the selected time.';
-      return;
-    }
-    const submit = $('bookingForm').querySelector('[type="submit"]');
-    submit.disabled = true;
-    try {
-      await apiRequest(id ? `/${encodeURIComponent(id)}` : '', {
-        method: id ? 'PATCH' : 'POST',
-        body: JSON.stringify(booking)
-      });
-      closeDialog();
-      await loadBookings();
-      toast(id ? 'Booking updated.' : 'Booking saved.');
-    } catch (err) {
-      error.textContent = err.message;
-    } finally {
-      submit.disabled = false;
-    }
+    syncSections();
+    if (!$('bookingForm').reportValidity()) return;
+    const errorMessage = validatePatientDetails();
+    if (errorMessage) { $('formError').textContent = errorMessage; return; }
+    $('formError').textContent = 'Patient registration saving is not connected yet. Share the current backend routes, controller and service so these details can be saved correctly.';
+    return;
   }
 
   async function updateStatus(id, status) {
@@ -546,7 +516,7 @@
       booking.start, booking.end, TYPE_LABELS[booking.type], STATUS_LABELS[booking.status], booking.notes
     ]);
     const csv = [headings, ...rows].map((row) => row.map((value) =>
-      `"${String(value ?? '').replace(/"/g, '""')}"`
+      `"${String(value ?? '').replace(/^[=+@\-\t\r]/, (first) => "'" + first).replace(/"/g, '""')}"`
     ).join(',')).join('\r\n');
     const url = URL.createObjectURL(new Blob(['\uFEFF', csv], { type: 'text/csv;charset=utf-8;' }));
     const anchor = document.createElement('a');
@@ -556,7 +526,59 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
+
+  const PROFILE_FIELDS = ["preferredName", "birthDate", "idType", "identityNumber", "language", "contactOwner", "patientEmail", "alternativePhone", "address", "postalCode", "contactMethod", "emergencyName", "emergencyRelationship", "emergencyPhone", "kinSame", "kinName", "kinRelationship", "kinPhone", "guardianNeeded", "guardianName", "guardianRelationship", "guardianPhone", "paymentMethod", "payerName", "payerPhone", "scheme", "plan", "memberNumber", "dependantCode", "mainMember", "authorisation"];
+  function fillPatientDetails(details) {
+    for (const id of PROFILE_FIELDS) if (details[id] !== undefined) $(id).value = details[id];
+    syncSections();
+  }
+  function syncSections() {
+    const groups = [
+      ['kinFields', $('kinSame').value === 'no', []],
+      ['guardianFields', $('guardianNeeded').value === 'yes', ['guardianName','guardianRelationship','guardianPhone']],
+      ['medicalAidFields', $('paymentMethod').value === 'medical-aid', ['scheme','memberNumber','dependantCode','mainMember']]
+    ];
+    for (const [id, visible, required] of groups) {
+      $(id).hidden = !visible;
+      $(id).querySelectorAll('input,select').forEach(input => {
+        input.disabled = !visible; input.required = visible && required.includes(input.id);
+      });
+    }
+    $('identityNumber').required = $('idType').value !== 'unavailable';
+    $('identityNumber').disabled = $('idType').value === 'unavailable';
+  }
+  function validatePatientDetails() {
+    const dob = $('birthDate').value;
+    if (dob > today()) return 'Date of birth cannot be in the future.';
+    const birth = new Date(dob + 'T00:00:00');
+    const now = new Date();
+    let age = now.getFullYear() - birth.getFullYear();
+    if (now.getMonth() < birth.getMonth() || (now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate())) age--;
+    if (age < 18 && $('guardianNeeded').value !== 'yes') return 'Select guardian details applicable and provide the responsible adult’s details for a patient under 18.';
+    const number = $('identityNumber').value.trim();
+    if ($('idType').value === 'sa-id') {
+      if (!/^\d{13}$/.test(number)) return 'A South African ID must contain 13 digits.';
+      let sum = 0;
+      for (let i = 0; i < 13; i++) {
+        let digit = Number(number[i]);
+        if (i % 2 === 1) { digit *= 2; if (digit > 9) digit -= 9; }
+        sum += digit;
+      }
+      if (sum % 10 !== 0) return 'Check the South African ID number: its checksum is invalid.';
+      if (dob && number.slice(0,6) !== dob.slice(2).replaceAll('-','')) return 'The ID birth date does not match the entered date of birth.';
+    }
+    for (const id of ['patientContact','alternativePhone','emergencyPhone','kinPhone','guardianPhone','payerPhone']) {
+      if ($(id).disabled || !$(id).value.trim()) continue;
+      const phone = $(id).value.replace(/[ ()-]/g,'');
+      if (!/^\+?\d{7,15}$/.test(phone)) { $(id).focus(); return 'Enter a valid contact number, including the country code for international numbers.'; }
+    }
+    if ($('bookingEnd').value <= $('bookingStart').value) return 'End time must be later than start time.';
+    return '';
+  }
   function init() {
+    for (const id of ['kinSame','guardianNeeded','paymentMethod','idType']) $(id).addEventListener('change', syncSections);
+    $('birthDate').max = today();
+    document.querySelector('.bnavLinks .navBtn').addEventListener('click', event => { event.preventDefault(); openDialog(); });
     for (const doctor of SPECIALISTS) {
       for (const select of [$('specialistFilter'), $('bookingSpecialist')]) {
         const option = document.createElement('option');

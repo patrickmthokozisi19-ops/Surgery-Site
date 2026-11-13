@@ -4265,7 +4265,7 @@
     @media(prefers-reduced-motion:reduce) {& * {transition:none!important}}
   }
   }
-@layer AdminBookings {
+  @layer AdminBookings {
     .ab-page {
       --ab-ink: #172033;
       --ab-muted: #64748B;
@@ -4648,10 +4648,10 @@
       }
   
       & .ab-dialog {
-        width: min(92vw, 650px);
-        max-height: 90vh;
-        overflow-y: auto;
-        padding: clamp(20px, 4vw, 30px);
+        width: min(900px, calc(100vw - 48px));
+        max-height: calc(100dvh - 48px);
+        overflow: hidden;
+        padding: 0;
         border: 1px solid var(--ab-line);
         border-radius: 22px;
         background: #fff;
@@ -4819,6 +4819,212 @@
       }
     }
   } 
+
+/* Final dialog rules are intentionally outside the layer so they also
+   override the form styles in the booking HTML. Keep this block last. */
+html:has(#bookingDialog[open]),
+body:has(#bookingDialog[open]) {
+  overflow: hidden !important;
+  scrollbar-width: none;
+}
+
+html:has(#bookingDialog[open])::-webkit-scrollbar,
+body:has(#bookingDialog[open])::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+#bookingDialog.ab-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  transform: none;
+  box-sizing: border-box;
+  width: min(900px, calc(100vw - 48px));
+  max-width: none;
+  height: fit-content;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--ab-line, #e2e8f0);
+  border-radius: 22px;
+  background: var(--ad-panel, #fff);
+  color: var(--ad-ink, #172033);
+  box-shadow: 0 28px 90px rgb(15 23 42 / 22%);
+  scrollbar-width: none;
+}
+
+#bookingDialog.ab-dialog:not([open]) {
+  display: none;
+}
+
+#bookingDialog.ab-dialog::backdrop {
+  background: rgb(15 23 42 / 35%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Only the form scrolls. Its scrollbar is hidden, with wheel,
+   touchpad, keyboard and touch scrolling retained. */
+#bookingDialog.ab-dialog #bookingForm {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  max-height: calc(100vh - 50px);
+  max-height: calc(100dvh - 50px);
+  margin: 0;
+  padding: clamp(20px, 2.5vw, 32px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none !important;
+  scrollbar-gutter: auto;
+}
+
+#bookingDialog.ab-dialog::-webkit-scrollbar,
+#bookingDialog.ab-dialog #bookingForm::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+#bookingDialog.ab-dialog .ab-dialog-head,
+#bookingDialog.ab-dialog .ab-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+#bookingDialog.ab-dialog .ab-dialog-head {
+  align-items: flex-start;
+  margin-bottom: 23px;
+}
+
+#bookingDialog.ab-dialog .ab-dialog-actions {
+  flex-wrap: wrap;
+}
+
+#bookingDialog.ab-dialog .pb-section {
+  min-width: 0;
+  max-height: none;
+  margin: 22px 0;
+  padding: 18px;
+  overflow: visible;
+  border: 1px solid var(--ad-line, #e2e8f0);
+  border-radius: 12px;
+}
+
+#bookingDialog.ab-dialog .pb-section legend {
+  padding: 0 8px;
+  font-weight: 700;
+}
+
+#bookingDialog.ab-dialog .pb-section p,
+#bookingDialog.ab-dialog .pb-notice {
+  color: var(--ad-muted, #64748b);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+#bookingDialog.ab-dialog .pb-notice {
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--ad-soft, #f1f5f9);
+}
+
+#bookingDialog.ab-dialog .ab-form-grid,
+#bookingDialog.ab-dialog .pb-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  min-width: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+#bookingDialog.ab-dialog .ab-wide {
+  grid-column: 1 / -1;
+}
+
+#bookingDialog.ab-dialog .pb-grid label,
+#bookingDialog.ab-dialog .ab-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+#bookingDialog.ab-dialog input,
+#bookingDialog.ab-dialog select,
+#bookingDialog.ab-dialog textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid var(--ad-line, #cbd5e1);
+  border-radius: 10px;
+  background: var(--ad-panel, #fff);
+  color: inherit;
+  font: inherit;
+}
+
+#bookingDialog.ab-dialog textarea {
+  resize: vertical;
+}
+
+#bookingDialog.ab-dialog [hidden] {
+  display: none !important;
+}
+
+#bookingDialog.ab-dialog :focus-visible {
+  outline: 3px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] #bookingDialog.ab-dialog {
+  --ad-panel: #172033;
+  --ad-ink: #f1f5f9;
+  --ad-line: #475569;
+  --ad-muted: #cbd5e1;
+  --ad-soft: #253247;
+  --ab-ink: #f1f5f9;
+  --ab-muted: #cbd5e1;
+  --ab-line: #475569;
+  color-scheme: dark;
+}
+
+@media (max-width: 600px) {
+  #bookingDialog.ab-dialog {
+    width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+    border-radius: 16px;
+  }
+
+  #bookingDialog.ab-dialog #bookingForm {
+    max-height: calc(100vh - 26px);
+    max-height: calc(100dvh - 26px);
+    padding: 16px;
+  }
+
+  #bookingDialog.ab-dialog .ab-form-grid,
+  #bookingDialog.ab-dialog .pb-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #bookingDialog.ab-dialog .pb-section {
+    padding: 12px;
+  }
+}
+
 @layer AdminPatients {
     .ap {
       --ap-ink: #172033;
@@ -5441,7 +5647,42 @@
     .msg-item { align-items: flex-start; flex-direction: column; }
     .msg-item-copy p { white-space: normal; }
     .msg-actions { justify-content: flex-start; }
+    #bookingDialog.ab-dialog {
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+    
+    #bookingDialog.ab-dialog #bookingForm {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 24px;
+    
+      max-height: calc(100vh - 48px);
+      max-height: calc(100dvh - 48px);
+    
+      overflow-x: hidden;
+      overflow-y: auto;
+    
+      /* Hide the bar while keeping scrolling */
+      scrollbar-width: none;
+    }
+    
+    #bookingDialog.ab-dialog::-webkit-scrollbar,
+    #bookingDialog.ab-dialog #bookingForm::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    
+    @media (max-width: 600px) {
+      #bookingDialog.ab-dialog #bookingForm {
+        padding: 16px;
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+      }
+    }
   }
+  
 }
 @layer AdminReports {
 
