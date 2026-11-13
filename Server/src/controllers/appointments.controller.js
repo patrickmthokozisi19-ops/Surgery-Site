@@ -1,18 +1,49 @@
-
 import {
   findAllAppointments,
   findAppointmentById,
   addAppointment,
-  changeAppointmentStatus
+  updateAppointmentDetails
 } from "../services/appointments.service.js";
 
-export const getAppointments = (req, res) => {
-  res.status(200).json(findAllAppointments());
+import {
+  AppointmentError
+} from "../services/appointments.validation.js";
+
+const parseId = (value) => {
+  if (
+    !/^[1-9]\d*$/.test(value) ||
+    !Number.isSafeInteger(Number(value))
+  ) {
+    throw new AppointmentError(
+      "Appointment ID must be a positive whole number."
+    );
+  }
+
+  return Number(value);
 };
 
-export const getAppointmentById = (req, res) => {
-  const id = Number(req.params.id);
+const handle = (action) => {
+  return (req, res, next) => {
+    try {
+      action(req, res);
+    } catch (error) {
+      if (error instanceof AppointmentError) {
+        return res.status(error.status).json({
+          message: error.message
+        });
+      }
 
+      next(error);
+    }
+  };
+};
+
+export const getAppointments = handle((req, res) => {
+  res.status(200).json(findAllAppointments());
+});
+
+export const getAppointmentById = handle((req, res) => {
+  const id = parseId(req.params.id);
   const appointment = findAppointmentById(id);
 
   if (!appointment) {
@@ -22,45 +53,21 @@ export const getAppointmentById = (req, res) => {
   }
 
   res.status(200).json(appointment);
-};
+});
 
-export const createAppointment = (req, res) => {
-  const { patient, specialist, date } = req.body ?? {};
-
-  if (!patient || !specialist || !date) {
-    return res.status(400).json({
-      message: "Patient, specialist and date are required"
-    });
-  }
-
-  const appointment = addAppointment({
-    patient,
-    specialist,
-    date
-  });
+export const createAppointment = handle((req, res) => {
+  const appointment = addAppointment(req.body);
 
   res.status(201).json(appointment);
-};
+});
 
-export const updateAppointment = (req, res) => {
-  const id = Number(req.params.id);
-  const status = req.body?.status;
+export const updateAppointment = handle((req, res) => {
+  const id = parseId(req.params.id);
 
-  const allowedStatuses = [
-    "pending",
-    "confirmed",
-    "checked-in",
-    "completed",
-    "cancelled"
-  ];
-
-  if (!allowedStatuses.includes(status)) {
-    return res.status(400).json({
-      message: "Invalid appointment status"
-    });
-  }
-
-  const appointment = changeAppointmentStatus(id, status);
+  const appointment = updateAppointmentDetails(
+    id,
+    req.body
+  );
 
   if (!appointment) {
     return res.status(404).json({
@@ -69,4 +76,4 @@ export const updateAppointment = (req, res) => {
   }
 
   res.status(200).json(appointment);
-};
+});
