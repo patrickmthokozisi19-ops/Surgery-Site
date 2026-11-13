@@ -326,7 +326,6 @@ export class AppointmentError extends Error {
         details[field] = "";
       }
     }
-  
     if (details.kinSame === "yes") {
       details.kinName = details.emergencyName || "";
       details.kinRelationship = details.emergencyRelationship || "";
