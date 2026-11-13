@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookings | Pweb Administration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+<script>
+  const savedTheme = localStorage.getItem("pweb_theme");
+
+  const systemDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+
+  document.documentElement.dataset.theme =
+    savedTheme === "light" || savedTheme === "dark"
+      ? savedTheme
+      : systemDark ? "dark" : "light";
+</script>
+<style>
+#bookingDialog{width:min(900px,94vw);max-height:90dvh;box-sizing:border-box;padding:0;border:1px solid var(--ad-line,#e2e8f0);border-radius:18px;background:var(--ad-panel,#fff);color:var(--ad-ink,#172033);overflow:auto}
+#bookingForm{padding:24px}#bookingDialog::backdrop{background:#0f172a99}.ab-dialog-head,.ab-dialog-actions{display:flex;gap:12px;align-items:center;justify-content:space-between}.pb-section{border:1px solid var(--ad-line,#e2e8f0);border-radius:12px;margin:22px 0;padding:18px;min-width:0}.pb-section legend{padding:0 8px;font-weight:700}.pb-section p,.pb-notice{font-size:.9rem;line-height:1.6;color:var(--ad-muted,#64748b)}.pb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.pb-grid label{display:flex;flex-direction:column;gap:7px;font-size:.9rem;font-weight:600}.pb-grid input,.pb-grid select,.pb-grid textarea{box-sizing:border-box;min-width:0;width:100%;font:inherit;padding:11px;border:1px solid var(--ad-line,#cbd5e1);border-radius:8px;background:var(--ad-panel,#fff);color:inherit}.pb-grid .ab-wide{grid-column:1/-1}#bookingDialog :focus-visible{outline:3px solid #94a3b8;outline-offset:2px}.pb-notice{padding:12px;background:var(--ad-soft,#f1f5f9);border-radius:8px}#bookingDialog [hidden]{display:none!important}.ab-form-error{color:#b91c1c}.ab-dialog-close{font-size:1.7rem;background:transparent;color:inherit;border:0;cursor:pointer}
+[data-theme="dark"] #bookingDialog{--ad-panel:#172033;--ad-ink:#f1f5f9;--ad-line:#475569;--ad-muted:#cbd5e1;--ad-soft:#253247;color-scheme:dark}
+@media(max-width:600px){#bookingForm{padding:14px}.pb-grid{grid-template-columns:1fr}.pb-section{padding:12px}.ab-dialog-actions{flex-wrap:wrap}}
+</style>
+</head>
+<body class="dw dw-light adm ab-page">
+  <a class="skip visibly-hidden" href="#main">
+   Skip to content
+  </a>
+
+<header class="nav nav-slim dw-nav adm-doc-nav">
+
+  <div class="tNav">
+
+    <a class="Emegerncy_contact" href="tel:+27000000000">
+      <img src="../public/phone-calling-rounded-svgrepo-com.svg" alt="">
+      <span class="number">Reception desk: 000 000 0000</span>
+    </a>
+
+    <div class="t-nav-btns">
+
+      <div class="seach-box">
+        <img
+          src="../public/search-finder-magnifying-glass-svgrepo-com.svg"
+          alt=""
+          class="search-icon"
+        >
+
+        <span class="searchtext">Search patients</span>
+
+        <input
+          class="searchPlaceHolder"
+          type="search"
+          placeholder="Search patients or bookings"
+          aria-label="Search patients or bookings"
+        >
+
+        <img
+          src="../public/cancel-close-delete-svgrepo-com.svg"
+          alt="Close search"
+          class="close_searchBtn"
+        >
+      </div>
+
+      <div class="Pweb_login">
+        <a class="login" href="logout.html">
+          <img
+            src="../public/account-avatar-person-svgrepo-com.svg"
+            alt=""
+            class="login-icon"
+          >
+          <span class="loginText">Sign out</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bNav">
+
+    <a class="logoNbackBtn" href="index.html">
+
+      <img
+        src="../public/back-arrow-navigation-svgrepo-com.svg"
+        alt=""
+        class="backToHome"
+      >
+
+      <div class="logo">
+        <img
+          src="../src/ThePwebLogo.png"
+          alt="Pweb"
+          class="logoPGN"
+        >
+      </div>
+
+    </a>
+
+    <button
+      class="burger"
+      type="button"
+      aria-controls="dw-nav-links"
+      aria-expanded="false"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      class="bnavLinks"
+      id="dw-nav-links"
+      aria-label="Admin workspace"
+    >
+
+      <a href="admin-home.html">Home</a>
+      <a href="admin-calendar.html">Calendar</a>
+
+      <a
+        href="admin-bookings.html"
+        class="is-current"
+        aria-current="page"
+      >
+        Bookings
+      </a>
+
+      <a href="admin-patients.html">Patients</a>
+      <a href="admin-specialists.html">Specialists</a>
+      <a href="admin-messages.html">Messages</a>
+      <a href="admin-reports.html">Reports</a>
+      <a href="admin-settings.html">Settings</a>
+
+      <a
+        href="admin-bookings.html"
+        class="navBtn"
+      >
+        New booking
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+  <main class="ab-main" id="main">
+    <section class="ab-heading">
+      <div>
+        <p class="ab-kicker">PRACTICE ADMINISTRATION</p>
+        <h1>Bookings</h1>
+        <p>Review requests, schedule appointments and manage arrivals.</p>
+      </div>
+      <div class="ab-heading-actions">
+        <button class="ab-btn" id="exportBookings" type="button">Export CSV</button>
+        <button class="ab-btn ab-primary" id="createBooking" type="button">+ New booking</button>
+      </div>
+    </section>
+
+    <section class="ab-stats" aria-label="Booking overview">
+      <article class="ab-stat"><span>All bookings</span><strong id="totalCount">0</strong><small>Across selected practice</small></article>
+      <article class="ab-stat"><span>Pending requests</span><strong id="pendingCount">0</strong><small>Awaiting confirmation</small></article>
+      <article class="ab-stat"><span>Today's appointments</span><strong id="todayCount">0</strong><small>Scheduled for today</small></article>
+      <article class="ab-stat"><span>Checked in today</span><strong id="checkedCount">0</strong><small>Patients arrived</small></article>
+    </section>
+
+    <section class="ab-panel" aria-labelledby="bookingsTitle">
+      <div class="ab-panel-head">
+        <div>
+          <p class="ab-kicker">APPOINTMENT MANAGEMENT</p>
+          <h2 id="bookingsTitle">All bookings <span id="resultCount" class="ab-count"></span></h2>
+        </div>
+        <a class="ab-text-link" href="admin-calendar.html">Open calendar ↗</a>
+      </div>
+
+      <div class="ab-filters">
+        <label class="ab-search-label" for="bookingSearch">
+          <span>Search</span>
+          <input id="bookingSearch" type="search" placeholder="Patient, specialist or reference" autocomplete="off">
+        </label>
+        <label for="statusFilter">
+          <span>Status</span>
+          <select id="statusFilter">
+            <option value="all">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="checked-in">Checked in</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </label>
+        <label for="specialistFilter">
+          <span>Specialist</span>
+          <select id="specialistFilter"><option value="all">All specialists</option></select>
+        </label>
+        <label for="dateFilter">
+          <span>Date</span>
+          <input id="dateFilter" type="date">
+        </label>
+        <button class="ab-btn ab-clear" id="clearFilters" type="button">Clear filters</button>
+      </div>
+
+      <div class="ab-tabs" role="group" aria-label="Quick booking filters">
+        <button type="button" class="is-active" data-tab="all" aria-pressed="true">All</button>
+        <button type="button" data-tab="today" aria-pressed="false">Today</button>
+        <button type="button" data-tab="upcoming" aria-pressed="false">Upcoming</button>
+        <button type="button" data-tab="pending" aria-pressed="false">Pending</button>
+      </div>
+
+      <div class="ab-table-wrap">
+        <table class="ab-table">
+          <thead>
+            <tr>
+              <th scope="col">Patient / reference</th>
+              <th scope="col">Specialist</th>
+              <th scope="col">Date &amp; time</th>
+              <th scope="col">Visit</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookingRows"></tbody>
+        </table>
+      </div>
+      <div class="ab-empty" id="emptyState" hidden>
+        <strong>No bookings found</strong>
+        <p>Try different filters or create a booking.</p>
+      </div>
+      <div class="ab-table-footer">
+        <p id="rangeLabel" aria-live="polite"></p>
+        <div class="ab-pagination">
+          <button type="button" class="ab-btn" id="prevPage">Previous</button>
+          <span id="pageLabel"></span>
+          <button type="button" class="ab-btn" id="nextPage">Next</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="ab-dialog" id="bookingDialog" aria-labelledby="bookingDialogTitle">
+    <form id="bookingForm" novalidate>
+      <div class="ab-dialog-head">
+        <div>
+          <p class="ab-kicker">APPOINTMENT DETAILS</p>
+          <h2 id="bookingDialogTitle">New booking</h2>
+        </div>
+        <button class="ab-dialog-close" type="button" id="closeDialog" aria-label="Close">×</button>
+      </div>
+<fieldset class="pb-section"><legend>1 · Patient identity</legend><p>Register these details once. Fields marked * are required.</p><div class="pb-grid"><label for="patientName">Full names and surname *<input id="patientName" type="text" maxlength="150" required></label><label for="preferredName">Preferred name<input id="preferredName" type="text" maxlength="150"></label><label for="birthDate">Date of birth *<input id="birthDate" type="date" maxlength="150" required></label><label for="idType">Identification type<select id="idType"><option value="unavailable">Unavailable / not supplied</option><option value="sa-id">South African ID</option><option value="passport">Passport</option><option value="other">Other identification</option></select></label><label for="identityNumber">ID / passport / document number<input id="identityNumber" type="text" maxlength="150"></label><label for="language">Preferred language<input id="language" type="text" maxlength="150"></label></div></fieldset><fieldset class="pb-section"><legend>2 · Contact details</legend><p>Provide a patient or authorised representative’s contact number.</p><div class="pb-grid"><label for="patientContact">Contact number *<input id="patientContact" type="tel" maxlength="150" required></label><label for="contactOwner">Number belongs to<select id="contactOwner"><option value="patient">Patient</option><option value="guardian">Parent / guardian</option><option value="representative">Authorised representative</option></select></label><label for="patientEmail">Email (optional)<input id="patientEmail" type="email" maxlength="150"></label><label for="alternativePhone">Alternative number<input id="alternativePhone" type="tel" maxlength="150"></label><label for="address">Residential address<input id="address" type="text" maxlength="150"></label><label for="postalCode">Postal code<input id="postalCode" type="text" maxlength="150"></label><label for="contactMethod">Preferred contact method<select id="contactMethod"><option value="phone">Phone call</option><option value="sms">SMS</option><option value="email">Email</option></select></label></div></fieldset><fieldset class="pb-section"><legend>3 · Emergency contact and next of kin</legend><p>These may be different people. Leave unavailable details blank.</p><div class="pb-grid"><label for="emergencyName">Emergency contact full name<input id="emergencyName" type="text" maxlength="150"></label><label for="emergencyRelationship">Relationship to patient<input id="emergencyRelationship" type="text" maxlength="150"></label><label for="emergencyPhone">Emergency contact number<input id="emergencyPhone" type="tel" maxlength="150"></label><label for="kinSame">Is this also the next of kin?<select id="kinSame"><option value="yes">Yes</option><option value="no">No — enter below</option></select></label></div></fieldset><div id="kinFields"><fieldset class="pb-section"><legend>Next of kin</legend><p>Complete only when different from the emergency contact.</p><div class="pb-grid"><label for="kinName">Next-of-kin full name<input id="kinName" type="text" maxlength="150"></label><label for="kinRelationship">Relationship<input id="kinRelationship" type="text" maxlength="150"></label><label for="kinPhone">Next-of-kin number<input id="kinPhone" type="tel" maxlength="150"></label></div></fieldset></div><fieldset class="pb-section"><legend>4 · Parent or guardian</legend><p>For a minor, provide the responsible adult’s details. Authority to consent must be assessed separately.</p><div class="pb-grid"><label for="guardianNeeded">Guardian details applicable?<select id="guardianNeeded"><option value="no">No</option><option value="yes">Yes</option></select></label></div></fieldset><div id="guardianFields"><fieldset class="pb-section"><legend>Guardian details</legend><p>Required for patients under 18 or when marked applicable.</p><div class="pb-grid"><label for="guardianName">Full name<input id="guardianName" type="text" maxlength="150"></label><label for="guardianRelationship">Relationship<input id="guardianRelationship" type="text" maxlength="150"></label><label for="guardianPhone">Contact number<input id="guardianPhone" type="tel" maxlength="150"></label></div></fieldset></div><fieldset class="pb-section"><legend>5 · Payment and account</legend><p>Select the funding method for this visit.</p><div class="pb-grid"><label for="paymentMethod">Payment method<select id="paymentMethod"><option value="self">Self-paying</option><option value="medical-aid">Medical aid</option><option value="other">Other / confirm with reception</option></select></label><label for="payerName">Account payer full name (if different)<input id="payerName" type="text" maxlength="150"></label><label for="payerPhone">Account payer number<input id="payerPhone" type="tel" maxlength="150"></label></div></fieldset><div id="medicalAidFields"><fieldset class="pb-section"><legend>Medical aid</legend><p>Membership details do not confirm benefit availability or authorisation.</p><div class="pb-grid"><label for="scheme">Medical scheme<input id="scheme" type="text" maxlength="150"></label><label for="plan">Plan / option<input id="plan" type="text" maxlength="150"></label><label for="memberNumber">Membership number<input id="memberNumber" type="text" maxlength="150"></label><label for="dependantCode">Dependant code<input id="dependantCode" type="text" maxlength="150"></label><label for="mainMember">Main member full name<input id="mainMember" type="text" maxlength="150"></label><label for="authorisation">Authorisation number (if applicable)<input id="authorisation" type="text" maxlength="150"></label></div></fieldset></div><fieldset class="pb-section"><legend>6 · Appointment</legend><div class="pb-grid">        <label for="visitType">Visit type
+          <select id="visitType" name="type">
+            <option value="consult">Consultation</option>
+            <option value="followup">Follow-up</option>
+            <option value="procedure">Procedure</option>
+            <option value="results">Results review</option>
+          </select>
+        </label>
+        <label for="bookingSpecialist">Specialist <span aria-hidden="true">*</span>
+          <select id="bookingSpecialist" name="doctor" required></select>
+        </label>
+        <label for="bookingStatus">Status
+          <select id="bookingStatus" name="status">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="checked-in">Checked in</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </label>
+        <label for="bookingDate">Date <span aria-hidden="true">*</span>
+          <input id="bookingDate" name="date" type="date" required>
+        </label>
+        <label for="bookingStart">Start time <span aria-hidden="true">*</span>
+          <input id="bookingStart" name="start" type="time" required step="900">
+        </label>
+        <label for="bookingEnd">End time <span aria-hidden="true">*</span>
+          <input id="bookingEnd" name="end" type="time" required step="900">
+        </label>
+        <label class="ab-wide" for="bookingNotes">Administrative notes
+          <textarea id="bookingNotes" name="notes" rows="3" maxlength="500" placeholder="Optional booking notes"></textarea>
+        </label>
+</div></fieldset><p class="ab-form-error" id="formError" role="alert" aria-live="polite"></p>
+      <div class="ab-dialog-actions">
+        <button class="ab-btn ab-danger" id="deleteBooking" type="button" hidden>Delete booking</button>
+        <span class="ab-action-spacer"></span>
+        <button class="ab-btn" id="cancelDialog" type="button">Cancel</button>
+        <button class="ab-btn ab-primary" type="submit">Save booking</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="ab-toast" id="bookingToast" role="status" aria-live="polite"></div>
+
+  <script src="./js/admin-bookings.js" defer></script>
+</body>
+</html>
