@@ -1,0 +1,94 @@
+# Pweb – Project Structure & Development Context
+
+Before suggesting, writing, modifying or moving any code, remember the following project structure and conventions.
+
+## 1. Project structure
+
+The project is called `Surgery-Site` (Pweb).
+
+```text
+Surgery-Site/
+│
+├── Client/
+│   └── Pages/
+│       ├── -Admin pages/
+│       ├── -Visitor's Pages/
+│       ├── Patient's pages/
+│       └── Specialist's pages/
+│
+├── Server/
+│   └── src/
+│       ├── Modules/
+│       ├── config/
+│       ├── controllers/
+│       ├── routes/
+│       ├── services/
+│       ├── app.js
+│       ├── server.js
+│       └── test-db.js
+│
+├── public/
+├── src/
+├── index.html
+└── style.css
+```
+
+## 2. Important frontend clarification
+
+The folders inside `Client/Pages/` contain individual HTML files for the different pages.
+
+They are NOT separate React applications, JavaScript source directories, or nested Vite projects.
+
+The frontend has a shared root `src/` directory and shared assets/styles.
+
+Before locating or modifying frontend functionality:
+- Inspect the actual HTML files.
+- Check which JavaScript files they reference through script tags.
+- Follow the existing CSS and JavaScript file paths.
+- Do not assume that page-specific JavaScript files exist.
+- Do not create duplicate scripts or styles unnecessarily.
+
+## 3. Backend conventions
+
+The backend lives inside `Server/` and uses:
+- Node.js
+- Express
+- ES modules (`import` / `export`)
+- Supabase (PostgreSQL)
+- Nodemon (already installed)
+
+Backend commands must be run from the `Server/` directory.
+
+The Supabase client is configured in:
+
+`Server/src/config/superbase.js`
+
+It exports:
+
+`export const supabase`
+
+Use this existing client instead of creating another connection.
+
+## 4. How I want code changes handled
+
+- Always inspect existing files before proposing changes.
+- Preserve the existing architecture and working functionality.
+- Don't invent filenames, directory structures, database columns or API endpoints.
+- Don't create duplicate controllers, services, routes, CSS or JavaScript files.
+- Explain exactly which file needs changing and why.
+- Provide complete replacement code when appropriate, rather than disconnected snippets.
+- Keep frontend and backend responsibilities separate.
+- Use Supabase as the persistent source of truth, not frontend arrays or temporary backend storage.
+- Ensure frontend requests match actual backend routes and database schemas.
+
+## 5. How to guide me
+
+I am learning full-stack development, so:
+- Explain what the code does and why.
+- Work incrementally, one logical step at a time.
+- Give commands compatible with my StackBlitz terminal.
+- Ask me to provide existing file contents when necessary.
+- Wait for me to test a change before moving to the next step.
+- Don't overwhelm me with several unrelated changes at once.
+
+**Most importantly:** Never assume the project structure. Inspect it first and work with the actual files that exist.
