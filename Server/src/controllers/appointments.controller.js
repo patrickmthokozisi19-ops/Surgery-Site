@@ -1,3 +1,4 @@
+
 import {
   findAllAppointments,
   findAppointmentById,
@@ -8,6 +9,12 @@ import {
 import {
   AppointmentError
 } from "../services/appointments.validation.js";
+
+import {
+  practiceIds
+} from "../config/practices.js";
+
+const practiceId = practiceIds.A;
 
 const parseId = (value) => {
   if (
@@ -22,10 +29,11 @@ const parseId = (value) => {
   return Number(value);
 };
 
+// Handles both synchronous and asynchronous errors.
 const handle = (action) => {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     try {
-      action(req, res);
+      await action(req, res);
     } catch (error) {
       if (error instanceof AppointmentError) {
         return res.status(error.status).json({
@@ -38,13 +46,19 @@ const handle = (action) => {
   };
 };
 
-export const getAppointments = handle((req, res) => {
-  res.status(200).json(findAllAppointments());
+export const getAppointments = handle(async (req, res) => {
+  const appointments = await findAllAppointments(practiceId);
+
+  res.status(200).json(appointments);
 });
 
-export const getAppointmentById = handle((req, res) => {
+export const getAppointmentById = handle(async (req, res) => {
   const id = parseId(req.params.id);
-  const appointment = findAppointmentById(id);
+
+  const appointment = await findAppointmentById(
+    id,
+    practiceId
+  );
 
   if (!appointment) {
     return res.status(404).json({
@@ -55,18 +69,22 @@ export const getAppointmentById = handle((req, res) => {
   res.status(200).json(appointment);
 });
 
-export const createAppointment = handle((req, res) => {
-  const appointment = addAppointment(req.body);
+export const createAppointment = handle(async (req, res) => {
+  const appointment = await addAppointment(
+    req.body,
+    practiceId
+  );
 
   res.status(201).json(appointment);
 });
 
-export const updateAppointment = handle((req, res) => {
+export const updateAppointment = handle(async (req, res) => {
   const id = parseId(req.params.id);
 
-  const appointment = updateAppointmentDetails(
+  const appointment = await updateAppointmentDetails(
     id,
-    req.body
+    req.body,
+    practiceId
   );
 
   if (!appointment) {
