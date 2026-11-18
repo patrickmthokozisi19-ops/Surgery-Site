@@ -1,6 +1,7 @@
 
 import { Router } from "express";
 import { requireAuth } from "../middleware/auth.middleware.js";
+import { requirePracticeMembership } from "../middleware/membership.middleware.js";
 
 const router = Router();
 
@@ -9,7 +10,7 @@ router.get("/", (req, res) => {
   res.json({ message: "Auth route working" });
 });
 
-// Protected route
+// Test authentication
 router.get("/me", requireAuth, (req, res) => {
   res.json({
     message: "You are authenticated!",
@@ -19,5 +20,20 @@ router.get("/me", requireAuth, (req, res) => {
     }
   });
 });
+
+// Test hospital membership
+router.get(
+  "/my-practice",
+  requireAuth,
+  requirePracticeMembership,
+  (req, res) => {
+    res.json({
+      message: "Hospital membership verified!",
+      user: req.user.email,
+      practiceId: req.practiceId,
+      role: req.practiceRole
+    });
+  }
+);
 
 export default router;
