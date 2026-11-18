@@ -17,7 +17,7 @@ const appointments = [
   },
   {
     id: 2,
-    patient: "Sarah Khumalo",
+    patient: "Takkie Khumalo",
     specialist: "Dr. K. Lewis",
     date: "2026-11-16",
     status: "pending"
