@@ -26,3 +26,26 @@ export const supabase = createClient(url, key, {
     detectSessionInUrl: false
   }
 });
+
+/*
+It creates a Supabase client for a particular signed-in user.
+- accessToken identifies the authenticated user.
+- Authorization sends that token with database requests.
+- Supabase can now recognise the authenticated role.
+- Your RLS policies can check auth.uid() and restrict access.
+*/
+
+export function createUserClient(accessToken) {
+  return createClient(url, key, {
+    global: {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    },
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false
+    }
+  });
+}
