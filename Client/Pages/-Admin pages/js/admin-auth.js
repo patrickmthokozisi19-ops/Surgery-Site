@@ -1,5 +1,6 @@
 
 import { supabase } from "./supabase-client.js";
+await supabase.auth.signOut();
 
 async function protectAdminPage() {
   try {
