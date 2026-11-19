@@ -16,6 +16,38 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
   }
 });
 
+// =========================================
+// EXISTING SESSION CHECK
+// =========================================
+
+async function checkExistingSession() {
+  try {
+    const { data: { session }, error } =
+      await supabase.auth.getSession();
+
+    if (error) throw error;
+
+    if (!session) return;
+
+    const response = await fetch("/api/auth/my-practice", {
+      headers: {
+        Authorization: `Bearer ${session.access_token}`
+      }
+    });
+
+    const membership = await response.json();
+
+    if (response.ok && membership.role === "admin") {
+      window.location.replace("admin-home.html");
+    }
+
+  } catch (error) {
+    console.error("Session verification error:", error);
+  }
+}
+
+checkExistingSession();
+
 const form = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -191,8 +223,7 @@ form.addEventListener("submit", async (event) => {
 
     // 5. Continue to the admin workspace.
 
-    window.location.href = "admin-home.html";
-
+    window.location.replace("admin-home.html");
   } catch (error) {
 
     console.error("Admin sign-in error:", error);
