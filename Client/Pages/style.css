@@ -95,7 +95,13 @@
          display: none !important;
        }
      }
-   
+     html:not(.auth-ready) body {
+      visibility: hidden;
+  }
+  
+  html.auth-error body {
+      visibility: visible;
+  }
      :focus-visible {
        outline: 3px solid var(--accent-deep);
        outline-offset: 2px;
