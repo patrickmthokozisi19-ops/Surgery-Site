@@ -154,7 +154,18 @@ form.addEventListener("submit", async (event) => {
       }
     });
 
-    const membership = await response.json();
+    const responseText = await response.text();
+
+    console.log("API status:", response.status);
+    console.log("API response:", responseText);
+    
+    let membership;
+    
+    try {
+      membership = JSON.parse(responseText);
+    } catch {
+      throw new Error("The membership endpoint returned HTML instead of JSON.");
+    }
 
     if (!response.ok) {
       throw new Error(
