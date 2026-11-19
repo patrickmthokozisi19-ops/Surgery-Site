@@ -1,7 +1,6 @@
 
 import { supabase } from "./supabase-client.js";
-//temp
-await supabase.auth.signOut();
+
 async function protectAdminPage() {
   try {
     // 1. Check whether a Supabase session exists.

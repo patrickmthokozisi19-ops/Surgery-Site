@@ -47,7 +47,15 @@
        overflow-x: clip;
        scroll-behavior: smooth;
      }
-   
+     /*for auth*/
+  /* html:not(.auth-ready) body {
+    visibility: hidden;
+}
+
+html.auth-error body {
+    visibility: visible;
+}*/
+/*=================================================*/
      body {
        overflow-x: clip;
        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -95,13 +103,7 @@
          display: none !important;
        }
      }
-     html:not(.auth-ready) body {
-      visibility: hidden;
-  }
-  
-  html.auth-error body {
-      visibility: visible;
-  }
+   
      :focus-visible {
        outline: 3px solid var(--accent-deep);
        outline-offset: 2px;
