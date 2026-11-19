@@ -8,7 +8,7 @@
    Admin Workspace | Pweb
   </title>
   <link href="../style.css" rel="stylesheet"/>
-   <script>
+   <script defer>
   const savedTheme = localStorage.getItem("pweb_theme");
 
   const systemDark = window.matchMedia(
@@ -20,6 +20,7 @@
       ? savedTheme
       : systemDark ? "dark" : "light";
 </script>
+<script type="module" src="./js/admin-auth.js"></script>
  </head>
 
 
