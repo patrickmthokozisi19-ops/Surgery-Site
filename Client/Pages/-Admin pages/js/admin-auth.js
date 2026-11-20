@@ -1,6 +1,5 @@
 
 import { supabase } from "./supabase-client.js";
-await supabase.auth.signOut();
 
 async function protectAdminPage() {
   try {
@@ -35,8 +34,8 @@ async function protectAdminPage() {
   } catch (error) {
     console.error("Admin authentication error:", error);
 
-    // Fail closed if authentication cannot be verified.
-    document.documentElement.classList.add("auth-error");
+    // Fail closed.
+    window.location.replace("./admin-login.html");
   }
 }
 
