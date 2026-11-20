@@ -12,9 +12,13 @@
     <!-- to make unauth opening of a page blank as redirecting to loggin-->
     <style>
         html {
-            visibility: hidden;
+          visibility: hidden;
         }
-    </style>
+      
+        html.auth-ready {
+          visibility: visible;
+        }
+      </style>
     <script type="module" src="./js/admin-auth.js"></script>
 
     <script>
