@@ -9,6 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+<!-- to make unauth opening of a page blank as redirecting to loggin-->
+  <style>
+    html {
+      visibility: hidden;
+    }
+  </style>
+
   <script type="module" src="./js/admin-auth.js"></script>
   <script>
     const savedTheme = localStorage.getItem("pweb_theme");
