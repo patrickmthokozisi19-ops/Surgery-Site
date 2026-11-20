@@ -3,7 +3,7 @@ import { supabase } from "./supabase-client.js";
 
 async function protectAdminPage() {
   try {
-    // 1. Check whether a Supabase session exists.
+    // 1. Check Supabase session.
     const { data: { session }, error } =
       await supabase.auth.getSession();
 
@@ -12,7 +12,7 @@ async function protectAdminPage() {
       return;
     }
 
-    // 2. Verify the user's hospital membership.
+    // 2. Verify hospital membership.
     const response = await fetch("/api/auth/my-practice", {
       method: "GET",
       headers: {
@@ -20,21 +20,25 @@ async function protectAdminPage() {
       }
     });
 
-    const membership = await response.json();
-
-    if (!response.ok || membership.role !== "admin") {
+    if (!response.ok) {
       await supabase.auth.signOut();
       window.location.replace("./admin-login.html");
       return;
     }
 
-    // 3. Allow the admin page to become visible.
+    const membership = await response.json();
+
+    if (membership.role !== "admin") {
+      await supabase.auth.signOut();
+      window.location.replace("./admin-login.html");
+      return;
+    }
+
+    // 3. Reveal the page after successful verification.
     document.documentElement.classList.add("auth-ready");
 
   } catch (error) {
     console.error("Admin authentication error:", error);
-
-    // Fail closed.
     window.location.replace("./admin-login.html");
   }
 }
