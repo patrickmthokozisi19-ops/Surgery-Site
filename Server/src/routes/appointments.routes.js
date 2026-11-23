@@ -1,13 +1,13 @@
 
 import { Router } from "express";
-
 import {
   getAppointments,
   getAppointmentById,
   createAppointment,
   updateAppointment
 } from "../controllers/appointments.controller.js";
-
+import { requireAuth } from "../middleware/auth.middleware.js";
+import { requirePracticeMembership } from "../middleware/membership.middleware.js";
 const router = Router();
 
 router.get("/", getAppointments);
