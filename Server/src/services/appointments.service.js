@@ -153,7 +153,12 @@ export const addAppointment = async (
     notes: "",
     ...data
   });
-
+// Verify the specialist belongs to this practice.
+const specialist = await findPracticeSpecialist(
+  appointment.specialistId,
+  practiceId,
+  userSupabase
+);
   // Create or retrieve the patient first.
   const patient = await findOrCreatePatient({
     practiceId,
