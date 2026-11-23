@@ -174,7 +174,8 @@ const specialist = await findPracticeSpecialist(
     .insert({
       practice_id: practiceId,
       patient_id: patient.id,
-      specialist: appointment.specialist,
+      specialist_id: specialist.id,
+      specialist: specialist.full_name,
       visit_type: appointment.type,
       status: appointment.status,
       appointment_date: appointment.date,
