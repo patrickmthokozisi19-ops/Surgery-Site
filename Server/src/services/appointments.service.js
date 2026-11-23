@@ -183,7 +183,11 @@ export const updateAppointmentDetails = async (
 ) => {
   const patch = parseAppointmentBody(body);
 
-  const existing = await findAppointmentById(id, practiceId);
+  const existing = await findAppointmentById(
+    id,
+    practiceId,
+    userSupabase
+  );
 
   if (!existing) return null;
 
@@ -265,11 +269,13 @@ export const updateAppointmentDetails = async (
 export const changeAppointmentStatus = async (
   id,
   status,
-  practiceId
+  practiceId,
+  userSupabase
 ) => {
   return updateAppointmentDetails(
     id,
     { status },
-    practiceId
+    practiceId,
+    userSupabase
   );
 };
