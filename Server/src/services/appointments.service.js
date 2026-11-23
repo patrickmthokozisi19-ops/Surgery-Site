@@ -1,6 +1,3 @@
-
-import { supabase } from "../config/supabase.js";
-
 import {
   AppointmentError,
   parseAppointmentBody,
@@ -51,8 +48,8 @@ const handleDatabaseError = (error) => {
 };
 
 // Retrieve appointments belonging to one hospital.
-export const findAllAppointments = async (practiceId) => {
-  const { data, error } = await supabase
+export const findAllAppointments = async (practiceId, userSupabase) => {
+  const { data, error } = await userSupabase
     .from("appointments")
     .select(`
       id,
@@ -83,8 +80,12 @@ export const findAllAppointments = async (practiceId) => {
 };
 
 // Retrieve one appointment, including its patient details.
-export const findAppointmentById = async (id, practiceId) => {
-  const { data, error } = await supabase
+export const findAppointmentById = async (
+  id,
+  practiceId,
+  userSupabase
+) => {
+  const { data, error } = await userSupabase
     .from("appointments")
     .select(`
       id,
@@ -112,7 +113,11 @@ export const findAppointmentById = async (id, practiceId) => {
 };
 
 // Create a new appointment.
-export const addAppointment = async (body, practiceId) => {
+export const addAppointment = async (
+  body,
+  practiceId,
+  userSupabase
+) => {
   const data = parseAppointmentBody(body);
 
   const appointment = validateRegistration({
@@ -128,11 +133,12 @@ export const addAppointment = async (body, practiceId) => {
     practiceId,
     patient: appointment.patient,
     contact: appointment.contact,
-    patientDetails: appointment.patientDetails
+    patientDetails: appointment.patientDetails,
+    userSupabase
   });
 
   // Supabase generates the appointment ID.
-  const { data: savedAppointment, error } = await supabase
+  const { data: savedAppointment, error } = await userSupabase
     .from("appointments")
     .insert({
       practice_id: practiceId,
@@ -172,7 +178,8 @@ export const addAppointment = async (body, practiceId) => {
 export const updateAppointmentDetails = async (
   id,
   body,
-  practiceId
+  practiceId,
+  userSupabase
 ) => {
   const patch = parseAppointmentBody(body);
 
@@ -206,7 +213,7 @@ export const updateAppointmentDetails = async (
     "patientDetails" in patch;
 
   if (patientChanged) {
-    const { error: patientError } = await supabase
+    const { error: patientError } = await userSupabase
       .from("patients")
       .update({
         full_name: candidate.patient,
@@ -219,7 +226,7 @@ export const updateAppointmentDetails = async (
     if (patientError) handleDatabaseError(patientError);
   }
 
-  const { data, error } = await supabase
+  const { data, error } = await userSupabase
     .from("appointments")
     .update({
       specialist: candidate.specialist,
