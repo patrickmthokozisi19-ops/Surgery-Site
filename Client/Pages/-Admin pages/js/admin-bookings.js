@@ -1,5 +1,4 @@
-import { supabase } from "PATH_TO_SUPABASE_FILE";
-
+import { supabase } from "./supabase-client.js";
 
 
 (() => {
