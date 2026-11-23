@@ -312,6 +312,20 @@ import { supabase } from "./supabase-client.js";
             select.add(new Option(name, name));
         }
     }
+    function populateBookingSpecialists() {
+        const select = $("bookingSpecialist");
+    
+        select.innerHTML = '<option value="">Select a specialist</option>';
+    
+        state.specialists.forEach((specialist) => {
+            select.add(
+                new Option(
+                    specialist.full_name,
+                    specialist.id
+                )
+            );
+        });
+    }
     async function loadSpecialists() {
         const specialists = await apiRequest(
             "",
