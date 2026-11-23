@@ -107,6 +107,7 @@ import { supabase } from "./supabase-client.js";
         date: "",
         tab: "all",
         page: 1,
+        specialists: [],
 
         // null means we are creating a new booking.
         editingId: null,
