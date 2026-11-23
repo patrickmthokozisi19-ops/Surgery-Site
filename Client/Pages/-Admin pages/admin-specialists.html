@@ -11,15 +11,19 @@
   <link rel="stylesheet" href="../admin-home-font-fixed.css">
   <link rel="stylesheet" href="../admin-specialists.css">
 <!-- to make unauth opening of a page blank as redirecting to loggin-->
+/* Hide protected content until authentication succeeds. */
 <style>
-  html {
-    visibility: hidden;
-  }
+ html:not(.auth-ready) body {
+  visibility: hidden;
+}
 
-  html.auth-ready {
-    visibility: visible;
-  }
+/* Reveal protected content after authentication. */
+
+html.auth-ready body {
+  visibility: visible;
+} 
 </style>
+
   <script type="module" src="./js/admin-auth.js"></script>
 
   <script>
