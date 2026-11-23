@@ -1239,27 +1239,7 @@ import { supabase } from "./supabase-client.js";
             toast(`Unable to load bookings: ${error.message}`);
         });
     }
-//to be romoved
 
-    (async () => {
-        const { data: { session }, error } =
-          await supabase.auth.getSession();
-      
-        if (error || !session) {
-          console.error("No active admin session:", error);
-          return;
-        }
-      
-        const response = await fetch("/api/specialists", {
-          headers: {
-            Authorization: `Bearer ${session.access_token}`
-          }
-        });
-      
-        const result = await response.json();
-      
-        console.log("Specialists endpoint:", response.status, result);
-      })();
     /*
      * Start the page.
      * This script belongs below the HTML so its elements exist
