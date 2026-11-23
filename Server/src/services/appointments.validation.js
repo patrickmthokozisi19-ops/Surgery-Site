@@ -60,7 +60,7 @@ export class AppointmentError extends Error {
   
   const APPOINTMENT_FIELDS = [
     "patient",
-    "specialist",
+    "specialistId",
     "contact",
     "type",
     "status",
@@ -117,7 +117,9 @@ export class AppointmentError extends Error {
       date.toISOString().slice(0, 10) === value
     );
   };
-  
+  const validUUID = (value) => {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+  };
   const today = () => {
     return new Intl.DateTimeFormat("en-CA", {
       timeZone: "Africa/Johannesburg",
@@ -188,7 +190,11 @@ export class AppointmentError extends Error {
   
   export const validateRegistration = (appointment) => {
     required(appointment.patient, "Patient name");
-    required(appointment.specialist, "Specialist");
+    required(appointment.specialistId, "Specialist");
+
+    if (!validUUID(appointment.specialistId)) {
+      fail("Invalid specialist ID.");
+    }
     required(appointment.contact, "Contact number");
   
     validatePhone(appointment.contact, "contact number");
