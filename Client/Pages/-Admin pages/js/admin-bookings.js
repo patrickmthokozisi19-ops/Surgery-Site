@@ -226,7 +226,8 @@ import { supabase } from "./supabase-client.js";
        4. COMMUNICATION WITH THE BACKEND
        ========================================================= */
 
-    async function apiRequest(path = "", options = {}) {
+
+       async function apiRequest(path = "", options = {}) {
         /*
          * A shared request function avoids repeating fetch setup.
          *
@@ -235,24 +236,44 @@ import { supabase } from "./supabase-client.js";
          * apiRequest("/3")          -> GET /api/appointments/3
          * apiRequest("", options)   -> POST when options.method is POST
          */
+    
+        // 1. Retrieve the currently signed-in Supabase session.
+        const { data: { session }, error: sessionError } =
+            await supabase.auth.getSession();
+    
+        if (sessionError) {
+            throw new Error("Could not retrieve your login session.");
+        }
+    
+        if (!session) {
+            throw new Error("Your session has expired. Please log in again.");
+        }
+    
+        // 2. Prepare request headers.
         const headers = new Headers(options.headers);
-
-        // Tell the API that we expect JSON in its response.
+    
         headers.set("Accept", "application/json");
-
-        // Only describe the request body as JSON when there is a body.
+    
+        // 3. Attach the Supabase access token.
+        headers.set(
+            "Authorization",
+            `Bearer ${session.access_token}`
+        );
+    
+        // 4. Only describe the request body as JSON when there is a body.
         if (options.body !== undefined) {
             headers.set("Content-Type", "application/json");
         }
-
+    
+        // 5. Send the request to the Express backend.
         const response = await fetch(`${API_URL}${path}`, {
             ...options,
             headers
         });
-
+    
         const contentType =
             response.headers.get("content-type") || "";
-
+    
         /*
          * A broken proxy can return an HTML page.
          * Detect that before trying to parse it as JSON.
@@ -262,22 +283,20 @@ import { supabase } from "./supabase-client.js";
                 "The API did not return JSON. Check that Express is running and the Vite proxy is configured."
             );
         }
-
-        // Convert JSON response text into a JavaScript value.
+    
+        // 6. Convert JSON response text into a JavaScript value.
         const data = await response.json();
-
-        /*
-         * fetch does not automatically throw for HTTP errors such as
-         * 400, 404 or 409, so we check response.ok ourselves.
-         */
+    
+        // 7. Check for HTTP errors.
         if (!response.ok) {
             throw new Error(
                 data.message || `Request failed (${response.status}).`
             );
         }
-
+    
         return data;
     }
+    
 
     function addSpecialist(name) {
         // Add a specialist to both dropdowns without duplicating options.
