@@ -228,7 +228,7 @@ import { supabase } from "./supabase-client.js";
        ========================================================= */
 
 
-       async function apiRequest(path = "", options = {}) {
+       async function apiRequest(path = "", options = {}, endpoint = API_URL) {
         /*
          * A shared request function avoids repeating fetch setup.
          *
