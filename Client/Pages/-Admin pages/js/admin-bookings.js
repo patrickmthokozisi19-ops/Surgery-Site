@@ -300,22 +300,16 @@ import { supabase } from "./supabase-client.js";
     
 
     function addSpecialist(name) {
-        // Add a specialist to both dropdowns without duplicating options.
         if (!name) return;
-
-        for (const id of [
-            "specialistFilter",
-            "bookingSpecialist"
-        ]) {
-            const select = $(id);
-
-            const exists = [...select.options].some(
-                (option) => option.value === name
-            );
-
-            if (!exists) {
-                select.add(new Option(name, name));
-            }
+    
+        const select = $("specialistFilter");
+    
+        const exists = [...select.options].some(
+            (option) => option.value === name
+        );
+    
+        if (!exists) {
+            select.add(new Option(name, name));
         }
     }
     async function loadSpecialists() {
