@@ -29,7 +29,33 @@ const mapAppointment = (row) => {
     patientDetails: patient?.details || {}
   };
 };
+/*
+-The specialist actually exists.
+-The specialist belongs to the practice making the booking.*/
 
+const findPracticeSpecialist = async (
+  specialistId,
+  practiceId,
+  userSupabase
+) => {
+  const { data, error } = await userSupabase
+    .from("specialists")
+    .select("id, full_name")
+    .eq("id", specialistId)
+    .eq("practice_id", practiceId)
+    .maybeSingle();
+
+  if (error) handleDatabaseError(error);
+
+  if (!data) {
+    throw new AppointmentError(
+      "The selected specialist does not belong to this practice.",
+      400
+    );
+  }
+
+  return data;
+};
 // Convert PostgreSQL overlap errors into API conflicts.
 const handleDatabaseError = (error) => {
   if (error.code === "23P01") {
