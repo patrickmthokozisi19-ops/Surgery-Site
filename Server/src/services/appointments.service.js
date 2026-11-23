@@ -268,7 +268,9 @@ export const updateAppointmentDetails = async (
 
   const { data, error } = await userSupabase
     .from("appointments")
+    //when an appointment is edited, its specialist UUID is updated too
     .update({
+      specialist_id: candidate.specialistId,
       specialist: candidate.specialist,
       visit_type: candidate.type,
       status: candidate.status,
