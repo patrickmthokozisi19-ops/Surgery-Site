@@ -1,3 +1,7 @@
+import { supabase } from "PATH_TO_SUPABASE_FILE";
+
+
+
 (() => {
     /*
      * This wrapper keeps our variables inside this script.
