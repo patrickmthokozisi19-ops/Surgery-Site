@@ -19,6 +19,7 @@ const mapAppointment = (row) => {
     patient: patient?.full_name || "",
     patientId: row.patient_id,
     specialist: row.specialist,
+    specialistId: row.specialist_id,
     contact: patient?.contact || "",
     type: row.visit_type,
     status: row.status,
