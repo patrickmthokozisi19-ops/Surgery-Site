@@ -56,8 +56,9 @@ export const findOrCreatePatient = async ({
   practiceId,
   patient,
   contact,
-  patientDetails = {}
-}) => {
+  patientDetails = {},
+  userSupabase
+}) =>  {
   if (!practiceId) {
     throw new AppointmentError(
       "Hospital identification is missing."
@@ -76,7 +77,7 @@ export const findOrCreatePatient = async ({
 
   // Look for an existing patient within this hospital.
   const { data: existingPatients, error: searchError } =
-    await supabase
+    await userSupabase
       .from("patients")
       .select("id, practice_id, full_name, contact, details")
       .eq("practice_id", practiceId)
@@ -103,7 +104,7 @@ export const findOrCreatePatient = async ({
 
     // Update the patient's details with newly supplied information.
     const { data: updatedPatient, error: updateError } =
-      await supabase
+      await userSupabase
         .from("patients")
         .update({
           details: {
@@ -128,7 +129,7 @@ export const findOrCreatePatient = async ({
 
   // No existing patient found: create a new record.
   const { data: newPatient, error: insertError } =
-    await supabase
+    await userSupabase
       .from("patients")
       .insert({
         practice_id: practiceId,
@@ -150,8 +151,8 @@ export const findOrCreatePatient = async ({
 };
 
 // Retrieve one patient by their database ID.
-export const findPatientById = async (id, practiceId) => {
-  const { data, error } = await supabase
+export const findPatientById = async (id, practiceId,userSupabase) => {
+  const { data, error } = await userSupabase
     .from("patients")
     .select("id, practice_id, full_name, contact, details")
     .eq("id", id)
