@@ -10,11 +10,7 @@ import {
   AppointmentError
 } from "../services/appointments.validation.js";
 
-import {
-  practiceIds
-} from "../config/practices.js";
 
-const practiceId = practiceIds.A;
 
 const parseId = (value) => {
   if (
@@ -47,7 +43,7 @@ const handle = (action) => {
 };
 
 export const getAppointments = handle(async (req, res) => {
-  const appointments = await findAllAppointments(practiceId);
+  const appointments = await findAllAppointments(req.practiceId);
 
   res.status(200).json(appointments);
 });
@@ -57,7 +53,7 @@ export const getAppointmentById = handle(async (req, res) => {
 
   const appointment = await findAppointmentById(
     id,
-    practiceId
+    req.practiceId
   );
 
   if (!appointment) {
@@ -72,7 +68,7 @@ export const getAppointmentById = handle(async (req, res) => {
 export const createAppointment = handle(async (req, res) => {
   const appointment = await addAppointment(
     req.body,
-    practiceId
+    req.practiceId
   );
 
   res.status(201).json(appointment);
@@ -84,7 +80,7 @@ export const updateAppointment = handle(async (req, res) => {
   const appointment = await updateAppointmentDetails(
     id,
     req.body,
-    practiceId
+    req.practiceId
   );
 
   if (!appointment) {
