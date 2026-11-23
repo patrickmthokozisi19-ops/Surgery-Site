@@ -267,7 +267,7 @@ import { supabase } from "./supabase-client.js";
         }
     
         // 5. Send the request to the Express backend.
-        const response = await fetch(`${API_URL}${path}`, {
+        const response = await fetch(`${endpoint}${path}`, {
             ...options,
             headers
         });
