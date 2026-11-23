@@ -318,7 +318,17 @@ import { supabase } from "./supabase-client.js";
             }
         }
     }
-
+    async function loadSpecialists() {
+        const specialists = await apiRequest(
+            "",
+            {},
+            "/api/specialists"
+        );
+    
+        state.specialists = specialists;
+    
+        console.log("Loaded specialists:", state.specialists);
+    }
     async function loadBookings() {
         // Get the latest appointment summaries from Express.
         const data = await apiRequest();
