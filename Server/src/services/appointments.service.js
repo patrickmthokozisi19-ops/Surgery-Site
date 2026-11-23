@@ -300,7 +300,12 @@ if (statusOnly) {
     start_time,
     end_time,
     notes,
-    `)
+    patients!appointment_patient_same_practice (
+      full_name,
+      contact,
+      details
+    )
+`)
     .maybeSingle();
 
   if (error) handleDatabaseError(error);
