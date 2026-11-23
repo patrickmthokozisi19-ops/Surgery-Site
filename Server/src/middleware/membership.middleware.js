@@ -38,11 +38,15 @@ export async function requirePracticeMembership(req, res, next) {
             });
         }
 
-        // Attach the membership information to the request.
-        req.practiceId = memberships[0].practice_id;
-        req.practiceRole = memberships[0].role;
+   // Attach the verified membership information to the request.
+req.practiceId = memberships[0].practice_id;
+req.practiceRole = memberships[0].role;
 
-        next();
+// Make the authenticated Supabase client available
+// to the appointment and patient services.
+req.userSupabase = userSupabase;
+
+next();
 
     } catch (error) {
         console.error("Membership middleware error:", error);
