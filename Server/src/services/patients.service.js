@@ -1,5 +1,3 @@
-
-import { supabase } from "../config/supabase.js";
 import { AppointmentError } from "./appointments.validation.js";
 
 // Fields that should be stored in the patient's details JSONB column.
@@ -58,7 +56,7 @@ export const findOrCreatePatient = async ({
   contact,
   patientDetails = {},
   userSupabase
-}) =>  {
+}) => {
   if (!practiceId) {
     throw new AppointmentError(
       "Hospital identification is missing."
@@ -151,8 +149,12 @@ export const findOrCreatePatient = async ({
 };
 
 // Retrieve one patient by their database ID.
-export const findPatientById = async (id, practiceId,userSupabase) => {
-  const { data, error } = await userSupabase
+export const findPatientById = async (
+  id,
+   practiceId,
+    userSupabase) =>
+    {
+     const { data, error } = await userSupabase
     .from("patients")
     .select("id, practice_id, full_name, contact, details")
     .eq("id", id)
