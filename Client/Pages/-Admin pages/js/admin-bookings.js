@@ -228,7 +228,7 @@ import { supabase } from "./supabase-client.js";
        ========================================================= */
 
 
-       async function apiRequest(path = "", options = {}, endpoint = API_URL) {
+    async function apiRequest(path = "", options = {}, endpoint = API_URL) {
         /*
          * A shared request function avoids repeating fetch setup.
          *
@@ -237,44 +237,44 @@ import { supabase } from "./supabase-client.js";
          * apiRequest("/3")          -> GET /api/appointments/3
          * apiRequest("", options)   -> POST when options.method is POST
          */
-    
+
         // 1. Retrieve the currently signed-in Supabase session.
         const { data: { session }, error: sessionError } =
             await supabase.auth.getSession();
-    
+
         if (sessionError) {
             throw new Error("Could not retrieve your login session.");
         }
-    
+
         if (!session) {
             throw new Error("Your session has expired. Please log in again.");
         }
-    
+
         // 2. Prepare request headers.
         const headers = new Headers(options.headers);
-    
+
         headers.set("Accept", "application/json");
-    
+
         // 3. Attach the Supabase access token.
         headers.set(
             "Authorization",
             `Bearer ${session.access_token}`
         );
-    
+
         // 4. Only describe the request body as JSON when there is a body.
         if (options.body !== undefined) {
             headers.set("Content-Type", "application/json");
         }
-    
+
         // 5. Send the request to the Express backend.
         const response = await fetch(`${endpoint}${path}`, {
             ...options,
             headers
         });
-    
+
         const contentType =
             response.headers.get("content-type") || "";
-    
+
         /*
          * A broken proxy can return an HTML page.
          * Detect that before trying to parse it as JSON.
@@ -284,39 +284,39 @@ import { supabase } from "./supabase-client.js";
                 "The API did not return JSON. Check that Express is running and the Vite proxy is configured."
             );
         }
-    
+
         // 6. Convert JSON response text into a JavaScript value.
         const data = await response.json();
-    
+
         // 7. Check for HTTP errors.
         if (!response.ok) {
             throw new Error(
                 data.message || `Request failed (${response.status}).`
             );
         }
-    
+
         return data;
     }
-    
+
 
     function addSpecialist(name) {
         if (!name) return;
-    
+
         const select = $("specialistFilter");
-    
+
         const exists = [...select.options].some(
             (option) => option.value === name
         );
-    
+
         if (!exists) {
             select.add(new Option(name, name));
         }
     }
     function populateBookingSpecialists() {
         const select = $("bookingSpecialist");
-    
+
         select.innerHTML = '<option value="">Select a specialist</option>';
-    
+
         state.specialists.forEach((specialist) => {
             select.add(
                 new Option(
@@ -332,9 +332,9 @@ import { supabase } from "./supabase-client.js";
             {},
             "/api/specialists"
         );
-    
+
         state.specialists = specialists;
-    
+
         console.log("Loaded specialists:", state.specialists);
     }
     async function loadBookings() {
@@ -1068,10 +1068,20 @@ import { supabase } from "./supabase-client.js";
        11. PAGE INITIALISATION AND EVENT LISTENERS
        ========================================================= */
 
-    function init() {
+    async function init() {
         // Populate specialist dropdowns.
-        SPECIALISTS.forEach(addSpecialist);
+        // Load specialists from the backend.
+        try {
+            await loadSpecialists();
 
+            populateBookingSpecialists();
+
+            state.specialists.forEach((specialist) => {
+                addSpecialist(specialist.full_name);
+            });
+        } catch (error) {
+            toast(`Unable to load specialists: ${error.message}`);
+        }
         // No delete endpoint exists in the current backend.
         if ($("deleteBooking")) {
             $("deleteBooking").hidden = true;
@@ -1254,7 +1264,7 @@ import { supabase } from "./supabase-client.js";
         syncSections();
         render();
 
-        loadBookings().catch((error) => {
+        await loadBookings().catch((error) => {
             toast(`Unable to load bookings: ${error.message}`);
         });
     }
