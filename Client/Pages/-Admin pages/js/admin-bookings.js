@@ -680,14 +680,14 @@ import { supabase } from "./supabase-client.js";
        7. OPENING AND CLOSING THE FORM
        ========================================================= */
 
-    async function openDialog(id = null) {
+       async function openDialog(id = null) {
         if (state.saving || state.opening) return;
-
+    
         state.opening = true;
-
+    
         try {
             let booking = null;
-
+    
             if (id !== null) {
                 /*
                  * The table endpoint returns summaries.
@@ -697,67 +697,66 @@ import { supabase } from "./supabase-client.js";
                     await apiRequest(`/${encodeURIComponent(id)}`)
                 );
             }
-
+    
             state.editingId = id;
-
+    
             /*
              * Clear the previous patient's answers before filling
              * another booking. This prevents details carrying over.
              */
             $("bookingForm").reset();
             $("formError").textContent = "";
-
+    
             $("bookingDialogTitle").textContent = booking
                 ? `Edit booking · ${booking.id}`
                 : "New booking";
-
-            // Optional chaining handles the new-booking case.
+    
             $("patientName").value =
                 booking?.patient || "";
-
+    
             $("patientContact").value =
                 booking?.contact || "";
-
+    
             $("visitType").value =
                 booking?.type || "consult";
-
-            addSpecialist(booking?.doctor);
-
+    
+            // The dropdown displays the name but stores the specialist UUID.
             $("bookingSpecialist").value =
-                booking?.doctor || SPECIALISTS[0];
-
+                booking?.specialistId || "";
+    
             $("bookingStatus").value =
                 booking?.status || "pending";
-
+    
             $("bookingDate").value =
                 booking?.date || today();
-
+    
             $("bookingStart").value =
                 booking?.start || "09:00";
-
+    
             $("bookingEnd").value =
                 booking?.end || "09:45";
-
+    
             $("bookingNotes").value =
                 booking?.notes || "";
-
+    
             const details = booking?.patientDetails || {};
-
+    
             // Populate the expanded registration fields.
             for (const field of PROFILE_FIELDS) {
                 if (details[field] !== undefined) {
                     $(field).value = details[field];
                 }
             }
-
+    
             syncSections();
-
+    
             /*
              * showModal opens the native dialog above the page.
              * Its ::backdrop CSS creates the background blur.
              */
             $("bookingDialog").showModal();
             $("patientName").focus();
+    
         } catch (error) {
             toast(`Unable to open booking: ${error.message}`);
         } finally {
@@ -765,7 +764,6 @@ import { supabase } from "./supabase-client.js";
             state.opening = false;
         }
     }
-
     function closeDialog() {
         // Do not close while the server is processing a save.
         if (state.saving) return;
