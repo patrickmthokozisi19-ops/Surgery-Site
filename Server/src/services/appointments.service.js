@@ -240,11 +240,19 @@ export const updateAppointmentDetails = async (
     Object.keys(patch).length === 1 &&
     "status" in patch;
 
-  if (statusOnly) {
-    validateStatus(candidate.status);
-  } else {
-    validateRegistration(candidate);
-  }
+    if (statusOnly) {
+      validateStatus(candidate.status);
+    } else {
+      validateRegistration(candidate);
+    
+      const specialist = await findPracticeSpecialist(
+        candidate.specialistId,
+        practiceId,
+        userSupabase
+      );
+    
+      candidate.specialist = specialist.full_name;
+    }
 
   // Update patient information when the request includes it.
   const patientChanged =
