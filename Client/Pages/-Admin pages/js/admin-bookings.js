@@ -712,8 +712,6 @@ import { supabase } from "./supabase-client.js";
     
             $("bookingDate").value =
                 booking?.date || today();
-                console.log("today() returns:", today());
-                console.log("Date input after assignment:", $("bookingDate").value);
                 
             $("bookingStart").value =
                 booking?.start || "09:00";
