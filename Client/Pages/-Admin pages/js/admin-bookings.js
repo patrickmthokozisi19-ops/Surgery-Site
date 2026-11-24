@@ -18,13 +18,6 @@ import { supabase } from "./supabase-client.js";
     // Maximum number of bookings displayed on one table page.
     const PAGE_SIZE = 8;
 
-    // Temporary specialist list until we connect a specialists API.
-    const SPECIALISTS = [
-        "Dr. P. Surname",
-        "Dr. N. Maseko",
-        "Dr. K. Lewis"
-    ];
-
     // The keys are values stored by the API.
     // The values are readable labels shown to the user.
     const STATUS_LABELS = {
@@ -182,22 +175,16 @@ import { supabase } from "./supabase-client.js";
             year: "numeric"
         });
     }
-
     function normalizeBooking(item) {
         /*
          * Convert API records into the shape our interface expects.
-         *
-         * The backend uses "specialist".
-         * Existing table code uses "doctor".
-         *
-         * HTML data attributes contain strings, so converting IDs
-         * to strings prevents comparisons such as 1 !== "1".
          */
         return {
             ...item,
             id: String(item.id),
             patient: item.patient || "",
             doctor: item.specialist || item.doctor || "",
+            specialistId: item.specialistId || null,
             contact: item.contact || "",
             date: item.date || "",
             start: item.start || "",
@@ -870,14 +857,8 @@ import { supabase } from "./supabase-client.js";
          */
         const booking = {
             patient: $("patientName").value.trim(),
-            specialist: $("bookingSpecialist").value,
+            specialistId: $("bookingSpecialist").value,
             contact: $("patientContact").value.trim(),
-            type: $("visitType").value,
-            status: $("bookingStatus").value,
-            date: $("bookingDate").value,
-            start: $("bookingStart").value,
-            end: $("bookingEnd").value,
-            notes: $("bookingNotes").value.trim(),
             patientDetails
         };
 
