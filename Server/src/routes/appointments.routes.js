@@ -19,6 +19,7 @@ router.use(requireAuth, requirePracticeMembership);
 
 router.get("/", getAppointments);
 router.get("/:id/history", getAppointmentHistory);
+router.get("/:id", getAppointmentById);
 router.post("/", createAppointment);
 router.patch("/:id", updateAppointment);
 
