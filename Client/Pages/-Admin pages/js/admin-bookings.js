@@ -118,20 +118,19 @@ import { supabase } from "./supabase-client.js";
     /* =========================================================
        3. SMALL HELPER FUNCTIONS
        ========================================================= */
-
-    function today() {
-        /*
-         * Use the South African date even if the browser's
-         * timezone is set to another country.
-         *
-         * en-CA produces the YYYY-MM-DD format used by date inputs.
-         */
-        return new Intl.DateTimeFormat("en-CA", {
+       function today() {
+        const parts = new Intl.DateTimeFormat("en-GB", {
             timeZone: "Africa/Johannesburg",
             year: "numeric",
             month: "2-digit",
             day: "2-digit"
-        }).format(new Date());
+        }).formatToParts(new Date());
+    
+        const year = parts.find(part => part.type === "year").value;
+        const month = parts.find(part => part.type === "month").value;
+        const day = parts.find(part => part.type === "day").value;
+    
+        return `${year}-${month}-${day}`;
     }
 
     function escapeHTML(value) {
@@ -321,8 +320,6 @@ import { supabase } from "./supabase-client.js";
         );
 
         state.specialists = specialists;
-
-        console.log("Loaded specialists:", state.specialists);
     }
     async function loadBookings() {
         // Get the latest appointment summaries from Express.
@@ -669,8 +666,7 @@ import { supabase } from "./supabase-client.js";
 
        async function openDialog(id = null) {
         if (state.saving || state.opening) return;
-    
-        state.opening = true;
+       state.opening = true;
     
         try {
             let booking = null;
@@ -716,7 +712,7 @@ import { supabase } from "./supabase-client.js";
     
             $("bookingDate").value =
                 booking?.date || today();
-    
+              
             $("bookingStart").value =
                 booking?.start || "09:00";
     
@@ -807,7 +803,6 @@ import { supabase } from "./supabase-client.js";
     /* =========================================================
        9. CREATING AND EDITING BOOKINGS
        ========================================================= */
-
     async function saveForm(event) {
         /*
          * Stop the browser's normal form submission.
@@ -859,6 +854,12 @@ import { supabase } from "./supabase-client.js";
             patient: $("patientName").value.trim(),
             specialistId: $("bookingSpecialist").value,
             contact: $("patientContact").value.trim(),
+            type: $("visitType").value,
+            status: $("bookingStatus").value,
+            date: $("bookingDate").value,
+            start: $("bookingStart").value,
+            end: $("bookingEnd").value,
+            notes: $("bookingNotes").value.trim(),
             patientDetails
         };
 
