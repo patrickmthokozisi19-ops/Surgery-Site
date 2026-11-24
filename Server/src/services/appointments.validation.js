@@ -224,7 +224,7 @@ export const validateStatus = (status) => {
   oneOf(status, STATUSES, "appointment status");
 };
 
-export const validateRegistration = (appointment) => {
+export const validateRegistration = (appointment, practiceTimezone) => {
   required(appointment.patient, "Patient name");
   required(appointment.specialistId, "Specialist");
 
