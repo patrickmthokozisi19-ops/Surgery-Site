@@ -3,6 +3,7 @@ import { Router } from "express";
 import {
   getAppointments,
   getAppointmentById,
+  getAppointmentHistory,
   createAppointment,
   updateAppointment
 } from "../controllers/appointments.controller.js";
@@ -17,7 +18,7 @@ const router = Router();
 router.use(requireAuth, requirePracticeMembership);
 
 router.get("/", getAppointments);
-router.get("/:id", getAppointmentById);
+router.get("/:id/history", getAppointmentHistory);
 router.post("/", createAppointment);
 router.patch("/:id", updateAppointment);
 
