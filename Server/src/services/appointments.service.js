@@ -336,3 +336,32 @@ export const changeAppointmentStatus = async (
     userSupabase
   );
 };
+export const findAppointmentHistory = async (
+  appointmentId,
+  practiceId,
+  userSupabase
+) => {
+  const { data, error } = await userSupabase
+    .from("appointment_status_history")
+    .select(`
+      id,
+      appointment_id,
+      old_status,
+      new_status,
+      changed_by,
+      changed_at
+    `)
+    .eq("appointment_id", appointmentId)
+    .eq("practice_id", practiceId)
+    .order("changed_at", { ascending: false });
+
+  if (error) {
+    console.error("Could not retrieve appointment history:", error);
+    throw new AppointmentError(
+      "Could not retrieve appointment history.",
+      500
+    );
+  }
+
+  return data;
+};

@@ -2,6 +2,7 @@
 import {
   findAllAppointments,
   findAppointmentById,
+  findAppointmentHistory,
   addAppointment,
   updateAppointmentDetails
 } from "../services/appointments.service.js";
@@ -77,6 +78,7 @@ export const createAppointment = handle(async (req, res) => {
 
   res.status(201).json(appointment);
 });
+
 export const updateAppointment = handle(async (req, res) => {
   const id = parseId(req.params.id);
 
@@ -95,4 +97,29 @@ export const updateAppointment = handle(async (req, res) => {
   }
 
   res.status(200).json(appointment);
+});
+
+export const getAppointmentHistory = handle(async (req, res) => {
+  const id = parseId(req.params.id);
+
+  // Confirm that this appointment belongs to the current practice.
+  const appointment = await findAppointmentById(
+    id,
+    req.practiceId,
+    req.userSupabase
+  );
+
+  if (!appointment) {
+    return res.status(404).json({
+      message: "Appointment not found"
+    });
+  }
+
+  const history = await findAppointmentHistory(
+    id,
+    req.practiceId,
+    req.userSupabase
+  );
+
+  res.status(200).json(history);
 });
