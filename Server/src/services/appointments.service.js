@@ -216,7 +216,8 @@ export const updateAppointmentDetails = async (
   id,
   body,
   practiceId,
-  userSupabase
+  userSupabase,
+  practiceTimezone
 ) => {
   const patch = parseAppointmentBody(body);
 
@@ -241,19 +242,27 @@ export const updateAppointmentDetails = async (
     Object.keys(patch).length === 1 &&
     "status" in patch;
 
-if (statusOnly) {
-  validateStatus(candidate.status);
-} else {
-  validateRegistration(candidate);
-
-  const specialist = await findPracticeSpecialist(
-    candidate.specialistId,
-    practiceId,
-    userSupabase
-  );
-
-  candidate.specialist = specialist.full_name;
-}
+    if (statusOnly) {
+      validateStatus(candidate.status);
+    } else {
+      const scheduleChanged =
+        candidate.date !== existing.date ||
+        candidate.start !== existing.start;
+    
+      validateRegistration(
+        candidate,
+        practiceTimezone,
+        { requireFuture: scheduleChanged }
+      );
+    
+      const specialist = await findPracticeSpecialist(
+        candidate.specialistId,
+        practiceId,
+        userSupabase
+      );
+    
+      candidate.specialist = specialist.full_name;
+    }
 
   // Update patient information when the request includes it.
   const patientChanged =

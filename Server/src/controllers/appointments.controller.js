@@ -77,7 +77,6 @@ export const createAppointment = handle(async (req, res) => {
 
   res.status(201).json(appointment);
 });
-
 export const updateAppointment = handle(async (req, res) => {
   const id = parseId(req.params.id);
 
@@ -85,7 +84,8 @@ export const updateAppointment = handle(async (req, res) => {
     id,
     req.body,
     req.practiceId,
-    req.userSupabase
+    req.userSupabase,
+    req.practiceTimezone
   );
 
   if (!appointment) {

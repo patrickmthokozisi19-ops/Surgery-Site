@@ -224,7 +224,11 @@ export const validateStatus = (status) => {
   oneOf(status, STATUSES, "appointment status");
 };
 
-export const validateRegistration = (appointment, practiceTimezone) => {
+export const validateRegistration = (
+  appointment,
+  practiceTimezone,
+  { requireFuture = true } = {}
+) => {
   required(appointment.patient, "Patient name");
   required(appointment.specialistId, "Specialist");
 
@@ -253,6 +257,21 @@ export const validateRegistration = (appointment, practiceTimezone) => {
   ) {
     fail("End time must be later than start time.");
   }
+  if (requireFuture) {
+    // Prevent appointments from being scheduled in the past.
+    const current = getPracticeDateTime(practiceTimezone);
+  
+    if (appointment.date < current.date) {
+      fail("Appointments cannot be scheduled in the past.");
+    }
+  
+    if (
+      appointment.date === current.date &&
+      timeToSeconds(appointment.start) <= timeToSeconds(current.time)
+    ) {
+      fail("Appointment start time must be in the future.");
+    }
+  }
 
   oneOf(appointment.type, TYPES, "visit type");
   validateStatus(appointment.status);
@@ -262,7 +281,7 @@ export const validateRegistration = (appointment, practiceTimezone) => {
   if (
     !validDate(details.birthDate || "") ||
     details.birthDate < "1900-01-01" ||
-    details.birthDate > today()
+    details.birthDate > today(practiceTimezone)
   ) {
     fail("Enter a valid date of birth between 1900 and today.");
   }
@@ -341,7 +360,7 @@ export const validateRegistration = (appointment, practiceTimezone) => {
   oneOf(details.kinSame, ["yes", "no"], "next-of-kin selection");
   oneOf(details.guardianNeeded, ["yes", "no"], "guardian selection");
 
-  const currentDate = today();
+  const currentDate = today(practiceTimezone);
 
   let age =
     Number(currentDate.slice(0, 4)) -
