@@ -321,6 +321,11 @@ import { supabase } from "./supabase-client.js";
 
         state.specialists = specialists;
     }
+    async function loadAppointmentHistory(id) {
+        return await apiRequest(
+            `/${encodeURIComponent(id)}/history`
+        );
+    }
     async function loadBookings() {
         // Get the latest appointment summaries from Express.
         const data = await apiRequest();
