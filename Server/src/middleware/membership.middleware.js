@@ -1,8 +1,6 @@
 
 import { createUserClient } from "../config/supabase.js";
 
-/*One design detail: A user may eventually belong to more than one hospital. For now, this middleware deliberately stops when it 
-       finds multiple active memberships. Later we'll build hospital selection rather than arbitrarily choosing one.*/
 export async function requirePracticeMembership(req, res, next) {
     try {
         // Create a Supabase client using the signed-in user's token.
@@ -24,29 +22,53 @@ export async function requirePracticeMembership(req, res, next) {
             });
         }
 
-        // The user must belong to an active hospital.
         if (!memberships || memberships.length === 0) {
             return res.status(403).json({
                 message: "You do not have an active hospital membership."
             });
         }
 
-        // For now, require exactly one active membership.
         if (memberships.length > 1) {
             return res.status(409).json({
                 message: "Multiple hospital memberships found. Practice selection is required."
             });
         }
 
-   // Attach the verified membership information to the request.
-req.practiceId = memberships[0].practice_id;
-req.practiceRole = memberships[0].role;
+        // Get the verified practice information.
+        const practiceId = memberships[0].practice_id;
 
-// Make the authenticated Supabase client available
-// to the appointment and patient services.
-req.userSupabase = userSupabase;
+        const { data: practice, error: practiceError } = await userSupabase
+            .from("practices")
+            .select("timezone")
+            .eq("id", practiceId)
+            .single();
 
-next();
+        if (practiceError || !practice?.timezone) {
+            console.error("Practice timezone lookup error:", practiceError);
+
+            return res.status(500).json({
+                message: "Could not retrieve the practice timezone."
+            });
+        }
+
+        // Verify that the timezone is a valid IANA timezone.
+        try {
+            new Intl.DateTimeFormat("en-US", {
+                timeZone: practice.timezone
+            });
+        } catch {
+            return res.status(500).json({
+                message: "The practice has an invalid timezone configuration."
+            });
+        }
+
+        // Attach verified practice information to the request.
+        req.practiceId = practiceId;
+        req.practiceRole = memberships[0].role;
+        req.practiceTimezone = practice.timezone;
+        req.userSupabase = userSupabase;
+
+        next();
 
     } catch (error) {
         console.error("Membership middleware error:", error);
