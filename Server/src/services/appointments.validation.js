@@ -123,14 +123,31 @@ const validUUID = (value) => {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 };
 
-const today = () => {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Africa/Johannesburg",
+
+const getPracticeDateTime = (timeZone) => {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone,
     year: "numeric",
     month: "2-digit",
-    day: "2-digit"
-  }).format(new Date());
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(new Date());
+
+  const get = (type) =>
+    parts.find((part) => part.type === type).value;
+
+  return {
+    date: `${get("year")}-${get("month")}-${get("day")}`,
+    time: `${get("hour")}:${get("minute")}`
+  };
 };
+
+const today = (timeZone) => {
+  return getPracticeDateTime(timeZone).date;
+};
+
 
 const validatePhone = (value, label) => {
   if (!value) return;

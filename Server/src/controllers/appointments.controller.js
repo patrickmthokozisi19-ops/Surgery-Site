@@ -71,7 +71,8 @@ export const createAppointment = handle(async (req, res) => {
   const appointment = await addAppointment(
     req.body,
     req.practiceId,
-    req.userSupabase
+    req.userSupabase,
+    req.practiceTimezone
   );
 
   res.status(201).json(appointment);

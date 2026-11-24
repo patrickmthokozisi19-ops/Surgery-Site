@@ -145,7 +145,8 @@ export const findAppointmentById = async (
 export const addAppointment = async (
   body,
   practiceId,
-  userSupabase
+  userSupabase,
+  practiceTimezone
 ) => {
   const data = parseAppointmentBody(body);
 
@@ -155,7 +156,7 @@ export const addAppointment = async (
     status: "pending",
     notes: "",
     ...data
-  });
+  }, practiceTimezone);
 // Verify the specialist belongs to this practice.
 const specialist = await findPracticeSpecialist(
   appointment.specialistId,
