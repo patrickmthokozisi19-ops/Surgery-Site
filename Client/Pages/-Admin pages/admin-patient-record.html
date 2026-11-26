@@ -7,70 +7,56 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">  
-  
-  <!-- to make unauth opening of a page blank as redirecting to loggin-->
-  /* Hide protected content until authentication succeeds. */
-  <style>
-   html:not(.auth-ready) body {
-    visibility: hidden;
-  }
-  
-  /* Reveal protected content after authentication. */
-  
-  html.auth-ready body {
-    visibility: visible;
-  } 
-  </style>
-  
-  
-  <script type="module" src="./js/admin-auth.js"></script>
-
-   <script>
-  const savedTheme = localStorage.getItem("pweb_theme");
-
-  const systemDark = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
-
-  document.documentElement.dataset.theme =
-    savedTheme === "light" || savedTheme === "dark"
-      ? savedTheme
-      : systemDark ? "dark" : "light";
-</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../admin-home-font-fixed.css">
+  <link rel="stylesheet" href="../admin-patients.css">
+<style>
+@layer AdminPatientRecord {
+.ap .apr-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;padding:clamp(24px,4vw,42px);margin-bottom:22px;border:1px solid var(--ap-line);border-radius:22px;background:linear-gradient(115deg,#fff 0%,#F8FAFC 68%,#EEF2F6 100%);box-shadow:0 8px 30px rgba(30,41,59,.035)}
+.ap .apr-identity{display:flex;align-items:center;gap:20px;min-width:0}.ap .apr-avatar{display:grid;place-items:center;flex:none;width:88px;height:88px;border:5px solid #fff;border-radius:24px;background:#E2E8F0;color:var(--ap-navy);box-shadow:0 5px 18px rgba(15,23,42,.08);font-size:1.35rem;font-weight:800}
+.ap .apr-heading{min-width:0}.ap .apr-heading .ap-eyebrow{margin-bottom:8px}.ap .apr-heading h1{margin:0 0 8px;font-size:clamp(1.8rem,3.3vw,2.65rem);line-height:1.1;letter-spacing:-.045em;overflow-wrap:anywhere}.ap .apr-ref{color:var(--ap-muted);font-size:.8rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ap .apr-status-row,.ap .apr-actions{display:flex;align-items:center;flex-wrap:wrap;gap:9px}.ap .apr-status-row{margin-top:14px}.ap .apr-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--ap-line);border-radius:999px;background:#fff;color:#475569;font-size:.74rem;font-weight:700}.ap .apr-chip:before{content:"";width:7px;height:7px;border-radius:50%;background:#94A3B8}.ap .apr-chip.is-active:before{background:#27936F}.ap .apr-chip.is-pending:before{background:#D69B32}
+.ap .apr-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:20px;align-items:start}.ap .apr-main,.ap .apr-side{display:grid;gap:20px;min-width:0}.ap .apr-section-intro{display:flex;align-items:flex-start;gap:12px;margin-bottom:22px}.ap .apr-section-number{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:10px;background:#F1F5F9;color:#475569;font-size:.75rem;font-weight:800}.ap .apr-section-intro h2{margin:0 0 5px;font-size:1.08rem;letter-spacing:-.025em}.ap .apr-section-intro p{margin:0;color:var(--ap-muted);font-size:.81rem;line-height:1.5}
+.ap .apr-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 20px;margin:0}.ap .apr-detail-grid>div{min-width:0;padding-bottom:14px;border-bottom:1px solid #F1F5F9}.ap .apr-detail-grid dt{margin-bottom:7px;color:var(--ap-muted);font-size:.75rem;font-weight:600}.ap .apr-detail-grid dd{margin:0;color:var(--ap-ink);font-size:.87rem;font-weight:650;overflow-wrap:anywhere}
+.ap .apr-side .ap-panel{padding:22px}.ap .apr-side .ap-panel-heading{margin-bottom:14px}.ap .apr-side .ap-panel-heading h2{font-size:1rem}.ap .apr-status-line{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px solid var(--ap-line);font-size:.8rem}.ap .apr-status-line span{color:var(--ap-muted)}.ap .apr-status-line strong{text-align:right;font-weight:700;overflow-wrap:anywhere}
+.ap .apr-contact-card{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--ap-line)}.ap .apr-contact-mark,.ap .apr-empty-icon{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:12px;background:#F1F5F9;color:var(--ap-navy);font-size:.82rem;font-weight:800}.ap .apr-contact-card strong{display:block;font-size:.83rem}.ap .apr-contact-card span{display:block;margin-top:4px;color:var(--ap-muted);font-size:.77rem;overflow-wrap:anywhere}
+.ap .apr-doc-row{display:flex;align-items:center;gap:14px;padding:17px;border:1px solid var(--ap-line);border-radius:14px;background:#F8FAFC}.ap .apr-doc-mark{display:grid;place-items:center;width:42px;height:42px;flex:none;border-radius:12px;background:#E2E8F0;color:var(--ap-navy);font-size:1.1rem}.ap .apr-doc-copy{flex:1;min-width:0}.ap .apr-doc-copy strong{display:block;font-size:.85rem}.ap .apr-doc-copy p{margin:5px 0 0;color:var(--ap-muted);font-size:.77rem;line-height:1.5}
+.ap .apr-empty-state{display:flex;align-items:flex-start;gap:13px;padding:18px;border:1px dashed #CBD5E1;border-radius:13px;background:#FAFBFC}.ap .apr-empty-icon{width:36px;height:36px}.ap .apr-empty-state strong{display:block;margin-bottom:5px;font-size:.84rem}.ap .apr-empty-state p{margin:0;color:var(--ap-muted);font-size:.79rem;line-height:1.55}.ap .apr-medical-note{margin-top:13px;padding:12px 14px;border-radius:10px;background:#F8FAFC;color:var(--ap-muted);font-size:.77rem;line-height:1.55}
+@media(max-width:1050px){.ap .apr-layout{grid-template-columns:minmax(0,1fr)}.ap .apr-side{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.ap .apr-hero{grid-template-columns:1fr;align-items:start}.ap .apr-side{grid-template-columns:1fr}.ap .apr-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.ap .apr-identity{align-items:flex-start;gap:13px}.ap .apr-avatar{width:60px;height:60px;border-radius:17px;font-size:1rem}.ap .apr-detail-grid{grid-template-columns:1fr}.ap .apr-doc-row{align-items:flex-start;flex-wrap:wrap}.ap .apr-doc-row .ap-btn{width:100%}}
+}
+</style>
 </head>
 <body class="dw dw-light adm ap">
   <a class="skip" href="#main">Skip to content</a>
 <header class="nav nav-slim dw-nav adm-doc-nav">
-
-  <div class="tNav">
-    <a class="Emegerncy_contact" href="tel:+27000000000">
-     <img alt="" src="../assets/phone-calling-rounded-svgrepo-com.svg"/>
-     <span class="number">
-      Reception desk: 000 000 0000
+ <div class="tNav">
+  <a class="Emegerncy_contact" href="tel:+27000000000">
+   <img alt="" src="../assets/icons/phone.svg"/>
+   <span class="number">
+    Reception desk: 000 000 0000
+   </span>
+  </a>
+  <div class="t-nav-btns">
+   <div class="seach-box">
+    <img alt="" class="search-icon" src="../assets/icons/search.svg"/>
+    <span class="searchtext">
+     Search patients
+    </span>
+    <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
+    <img alt="Close search" class="close_searchBtn" src="../assets/icons/close.svg"/>
+   </div>
+   <div class="Pweb_login">
+    <a class="login" href="logout.html">
+     <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
+     <span class="loginText">
+      Sign out
      </span>
     </a>
-    <div class="t-nav-btns">
-     <div class="seach-box">
-        <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
-        <span class="searchtext">
-         Search patients
-        </span>
-        <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
-        <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
-       </div>
-     <div class="Pweb_login">
-      <a class="login" href="logout.html">
-       <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
-       <span class="loginText">
-        Sign out
-       </span>
-      </a>
-     </div>
-    </div>
    </div>
-
-
+  </div>
+ </div>
  <div class="bNav">
   <a class="logoNbackBtn" href="index.html">
    <img alt="" class="backToHome" src="../public/back-arrow-navigation-svgrepo-com.svg"/>
@@ -88,7 +74,7 @@
   </button>
   <nav aria-label="Admin workspace" class="bnavLinks" id="dw-nav-links">
    <a href="admin-home.html">
-    Home
+    Overview
    </a>
    <a href="admin-calendar.html">
     Calendar
@@ -119,105 +105,29 @@
 </header>
 
   <main class="ap-main" id="main">
-    <nav class="ap-breadcrumb" aria-label="Breadcrumb">
-      <a href="admin-patients.html">Patients</a>
-      <span aria-hidden="true">/</span>
-      <span id="breadcrumbName">Patient record</span>
-    </nav>
-
+    <nav class="ap-breadcrumb" aria-label="Breadcrumb"><a href="admin-patients.html">Patients</a><span aria-hidden="true">/</span><span id="breadcrumbName">Patient record</span></nav>
     <div id="recordContent" hidden>
-      <section class="ap-page-head ap-record-head">
-        <div class="ap-record-identity">
-          <span class="ap-profile-avatar" id="profileInitials"></span>
-          <div>
-            <p class="ap-eyebrow">PATIENT RECORD <span id="profileId"></span></p>
-            <h1 id="profileName"></h1>
-            <p class="ap-subtitle">Registration and administrative information</p>
-          </div>
-        </div>
-        <a class="ap-btn" href="admin-patients.html">← Back to patients</a>
+      <section class="apr-hero">
+        <div class="apr-identity"><span class="apr-avatar" id="profileInitials" aria-hidden="true"></span><div class="apr-heading"><p class="ap-eyebrow">PATIENT PROFILE</p><h1 id="profileName"></h1><div class="apr-ref">Patient UUID: <span id="profileId"></span></div><div class="apr-status-row"><span class="apr-chip is-active" id="profileRegistrationChip">Registration status</span><span class="apr-chip is-pending" id="profileVerificationChip">ID verification</span></div></div></div>
+        <div class="apr-actions"><button class="ap-btn ap-btn-primary" type="button" id="editDetails">Edit profile</button><a class="ap-btn" href="admin-patients.html">Back to patients</a></div>
       </section>
-
-      <div class="ap-record-layout">
-        <div class="ap-record-primary">
-          <section class="ap-panel ap-detail-panel">
-            <div class="ap-panel-heading">
-              <div><h2>Personal information</h2><p>Patient registration details</p></div>
-              <button class="ap-btn" type="button" id="editDetails">Edit details</button>
-            </div>
-            <dl class="ap-details" id="personalDetails"></dl>
-          </section>
-
-          <section class="ap-panel ap-detail-panel">
-            <div class="ap-panel-heading">
-              <div><h2>Identity documents</h2><p>Restricted patient information</p></div>
-              <span class="ap-restricted-label">Restricted</span>
-            </div>
-            <div class="ap-document-card">
-              <div class="ap-document-icon" aria-hidden="true">▤</div>
-              <div>
-                <strong>Identification document</strong>
-                <p id="documentStatus"></p>
-              </div>
-              <button class="ap-btn" id="requestDocument" type="button">Request access</button>
-            </div>
-            <div class="ap-access-notice" id="accessNotice" role="status" hidden>
-              Access to protected documents requires staff permissions and server-side verification.
-            </div>
-          </section>
-
-          <section class="ap-panel ap-detail-panel">
-            <div class="ap-panel-heading"><div><h2>Appointment history</h2><p>Administrative appointment overview</p></div></div>
-            <div class="ap-history-empty">No appointment history available for this record.</div>
-          </section>
+      <div class="apr-layout">
+        <div class="apr-main">
+          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">01</span><div><h2>Personal profile</h2><p>Patient identity and contact information recorded by the practice</p></div></div><dl class="apr-detail-grid" id="personalDetails"></dl></section>
+          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">02</span><div><h2>Medical information</h2><p>Clinical information recorded by authorised clinical staff</p></div></div><div class="apr-empty-state"><span class="apr-empty-icon" aria-hidden="true">+</span><div><strong>No clinical profile recorded</strong><p>Allergies, conditions, medication and clinical notes are not part of the current patient registration record.</p></div></div><p class="apr-medical-note">Clinical information should only be added from verified clinical records. This page does not create or assume a patient's medical history.</p></section>
+          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">03</span><div><h2>Appointment history</h2><p>Previous and upcoming appointments linked to this patient</p></div></div><div class="apr-empty-state"><span class="apr-empty-icon" aria-hidden="true">▦</span><div><strong>Appointment history not connected yet</strong><p>This section will show appointment dates, specialists, visit types and statuses once the patient-specific appointments endpoint is connected.</p></div></div></section>
+          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">04</span><div><h2>Identity documents</h2><p>Restricted documents and identity verification</p></div><span class="ap-restricted-label">Restricted</span></div><div class="apr-doc-row"><span class="apr-doc-mark" aria-hidden="true">▤</span><div class="apr-doc-copy"><strong>Identification document</strong><p id="documentStatus">Verification status not available</p></div><button class="ap-btn" id="requestDocument" type="button">Request access</button></div><div class="ap-access-notice" id="accessNotice" role="status" hidden>Access to protected documents requires staff permissions and server-side verification.</div></section>
         </div>
-
-        <aside class="ap-record-sidebar">
-          <section class="ap-panel ap-detail-panel">
-            <div class="ap-panel-heading"><div><h2>Record status</h2></div></div>
-            <div class="ap-sidebar-item"><span>Registration</span><strong id="registrationStatus"></strong></div>
-            <div class="ap-sidebar-item"><span>ID verification</span><strong id="verificationStatus"></strong></div>
-            <div class="ap-sidebar-item"><span>Registered on</span><strong id="registeredDate"></strong></div>
-          </section>
-          <section class="ap-panel ap-detail-panel">
-            <div class="ap-panel-heading"><div><h2>Emergency contact</h2></div></div>
-            <dl class="ap-details ap-details-single" id="emergencyDetails"></dl>
-          </section>
+        <aside class="apr-side">
+          <section class="ap-panel"><div class="ap-panel-heading"><div><h2>Record overview</h2><p>Administrative record status</p></div></div><div class="apr-status-line"><span>Registration</span><strong id="registrationStatus"></strong></div><div class="apr-status-line"><span>ID verification</span><strong id="verificationStatus"></strong></div><div class="apr-status-line"><span>Registered on</span><strong id="registeredDate"></strong></div></section>
+          <section class="ap-panel"><div class="ap-panel-heading"><div><h2>Emergency contact</h2><p>Person to contact when needed</p></div></div><div id="emergencyDetails"></div></section>
+          <section class="ap-panel"><div class="ap-panel-heading"><div><h2>Record activity</h2><p>Administrative changes to this profile</p></div></div><div class="apr-empty-state"><span class="apr-empty-icon" aria-hidden="true">↻</span><div><strong>Activity history unavailable</strong><p>Patient-specific audit events will appear here when the audit log is implemented.</p></div></div></section>
         </aside>
       </div>
     </div>
-
-    <section class="ap-panel ap-not-found" id="recordNotFound" hidden>
-      <h1>Patient record not found</h1>
-      <p>Return to the patient directory and select an available record.</p>
-      <a class="ap-btn ap-btn-primary" href="admin-patients.html">View patients</a>
-    </section>
+    <section class="ap-panel ap-not-found" id="recordNotFound" hidden><h1>Patient record not found</h1><p>Return to the patient directory and select an available record.</p><a class="ap-btn ap-btn-primary" href="admin-patients.html">View patients</a></section>
   </main>
-
-  <dialog class="ap-dialog" id="editDialog" aria-labelledby="editTitle">
-    <form id="editForm">
-      <div class="ap-dialog-header">
-        <div><p class="ap-eyebrow">PATIENT INFORMATION</p><h2 id="editTitle">Edit details</h2></div>
-        <button class="ap-icon-button" type="button" id="closeEdit" aria-label="Close editor">×</button>
-      </div>
-      <div class="ap-form-grid">
-        <label>Full name<input name="name" required maxlength="100"></label>
-        <label>Date of birth<input name="dob" type="date" required></label>
-        <label>Contact number<input name="phone" type="tel" required maxlength="30"></label>
-        <label>Email<input name="email" type="email"></label>
-        <label>Emergency contact<input name="emergencyName" maxlength="100"></label>
-        <label>Emergency phone<input name="emergencyPhone" type="tel" maxlength="30"></label>
-        <label>Registration status
-          <select name="status"><option>Active</option><option>Inactive</option></select>
-        </label>
-      </div>
-      <div class="ap-dialog-actions">
-        <button class="ap-btn" type="button" id="cancelEdit">Cancel</button>
-        <button class="ap-btn ap-btn-primary" type="submit">Save details</button>
-      </div>
-    </form>
-  </dialog>
-
+  <dialog class="ap-dialog" id="editDialog" aria-labelledby="editTitle"><form id="editForm"><div class="ap-dialog-header"><div><p class="ap-eyebrow">PATIENT INFORMATION</p><h2 id="editTitle">Edit details</h2></div><button class="ap-icon-button" type="button" id="closeEdit" aria-label="Close editor">×</button></div><div class="ap-form-grid"><label>Full name<input name="name" required maxlength="100"></label><label>Date of birth<input name="dob" type="date" required></label><label>Contact number<input name="phone" type="tel" required maxlength="30"></label><label>Email<input name="email" type="email"></label><label>Emergency contact<input name="emergencyName" maxlength="100"></label><label>Emergency phone<input name="emergencyPhone" type="tel" maxlength="30"></label><label>Registration status<select name="status"><option>Active</option><option>Inactive</option></select></label></div><div class="ap-dialog-actions"><button class="ap-btn" type="button" id="cancelEdit">Cancel</button><button class="ap-btn ap-btn-primary" type="submit">Save details</button></div></form></dialog>
   <script>
   (() => {
     'use strict';
@@ -343,7 +253,11 @@
       get('breadcrumbName').textContent = patient.name;
       get('profileName').textContent = patient.name;
       get('profileId').textContent = patient.id;
-      get('profileInitials').textContent = patient.initials;
+      get('profileInitials').textContent = patient.initials || patient.name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
+      get('profileRegistrationChip').textContent = `Registration: ${patient.status || 'Unknown'}`;
+      get('profileRegistrationChip').className = `apr-chip ${String(patient.status).toLowerCase() === 'active' ? 'is-active' : ''}`;
+      get('profileVerificationChip').textContent = `ID verification: ${patient.verification || 'Unknown'}`;
+      get('profileVerificationChip').className = `apr-chip ${String(patient.verification).toLowerCase().includes('pending') ? 'is-pending' : ''}`;
       get('personalDetails').innerHTML = [
         detail('Full name', patient.name),
         detail('Patient number', patient.id),
@@ -351,10 +265,7 @@
         detail('Phone number', patient.phone),
         detail('Email address', patient.email)
       ].join('');
-      get('emergencyDetails').innerHTML = [
-        detail('Contact name', patient.emergencyName),
-        detail('Phone number', patient.emergencyPhone)
-      ].join('');
+      get('emergencyDetails').innerHTML = `<div class="apr-contact-card"><span class="apr-contact-mark">EC</span><div><strong>${safe(patient.emergencyName || 'Not provided')}</strong><span>${safe(patient.emergencyPhone || 'No phone number provided')}</span></div></div>`;
       get('registrationStatus').textContent = patient.status;
       get('verificationStatus').textContent = patient.verification;
       get('registeredDate').textContent = formattedDate(patient.registered);
