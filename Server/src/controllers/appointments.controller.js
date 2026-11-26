@@ -1,5 +1,6 @@
 import {
   findAllAppointments,
+  findAppointmentsByPatient,
   findAppointmentById,
   findAppointmentHistory,
   findAppointmentHistoryForExport,
@@ -18,7 +19,7 @@ const parseId = (value) => {
 
   return Number(value);
 };
-
+import { AppointmentError } from "../services/appointments.validation.js";
 // Handles both synchronous and asynchronous errors.
 const handle = (action) => {
   return async (req, res, next) => {
