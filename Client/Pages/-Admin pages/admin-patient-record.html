@@ -8,25 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../admin-home-font-fixed.css">
-  <link rel="stylesheet" href="../admin-patients.css">
-<style>
-@layer AdminPatientRecord {
-.ap .apr-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;padding:clamp(24px,4vw,42px);margin-bottom:22px;border:1px solid var(--ap-line);border-radius:22px;background:linear-gradient(115deg,#fff 0%,#F8FAFC 68%,#EEF2F6 100%);box-shadow:0 8px 30px rgba(30,41,59,.035)}
-.ap .apr-identity{display:flex;align-items:center;gap:20px;min-width:0}.ap .apr-avatar{display:grid;place-items:center;flex:none;width:88px;height:88px;border:5px solid #fff;border-radius:24px;background:#E2E8F0;color:var(--ap-navy);box-shadow:0 5px 18px rgba(15,23,42,.08);font-size:1.35rem;font-weight:800}
-.ap .apr-heading{min-width:0}.ap .apr-heading .ap-eyebrow{margin-bottom:8px}.ap .apr-heading h1{margin:0 0 8px;font-size:clamp(1.8rem,3.3vw,2.65rem);line-height:1.1;letter-spacing:-.045em;overflow-wrap:anywhere}.ap .apr-ref{color:var(--ap-muted);font-size:.8rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.ap .apr-status-row,.ap .apr-actions{display:flex;align-items:center;flex-wrap:wrap;gap:9px}.ap .apr-status-row{margin-top:14px}.ap .apr-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--ap-line);border-radius:999px;background:#fff;color:#475569;font-size:.74rem;font-weight:700}.ap .apr-chip:before{content:"";width:7px;height:7px;border-radius:50%;background:#94A3B8}.ap .apr-chip.is-active:before{background:#27936F}.ap .apr-chip.is-pending:before{background:#D69B32}
-.ap .apr-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:20px;align-items:start}.ap .apr-main,.ap .apr-side{display:grid;gap:20px;min-width:0}.ap .apr-section-intro{display:flex;align-items:flex-start;gap:12px;margin-bottom:22px}.ap .apr-section-number{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:10px;background:#F1F5F9;color:#475569;font-size:.75rem;font-weight:800}.ap .apr-section-intro h2{margin:0 0 5px;font-size:1.08rem;letter-spacing:-.025em}.ap .apr-section-intro p{margin:0;color:var(--ap-muted);font-size:.81rem;line-height:1.5}
-.ap .apr-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 20px;margin:0}.ap .apr-detail-grid>div{min-width:0;padding-bottom:14px;border-bottom:1px solid #F1F5F9}.ap .apr-detail-grid dt{margin-bottom:7px;color:var(--ap-muted);font-size:.75rem;font-weight:600}.ap .apr-detail-grid dd{margin:0;color:var(--ap-ink);font-size:.87rem;font-weight:650;overflow-wrap:anywhere}
-.ap .apr-side .ap-panel{padding:22px}.ap .apr-side .ap-panel-heading{margin-bottom:14px}.ap .apr-side .ap-panel-heading h2{font-size:1rem}.ap .apr-status-line{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px solid var(--ap-line);font-size:.8rem}.ap .apr-status-line span{color:var(--ap-muted)}.ap .apr-status-line strong{text-align:right;font-weight:700;overflow-wrap:anywhere}
-.ap .apr-contact-card{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--ap-line)}.ap .apr-contact-mark,.ap .apr-empty-icon{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:12px;background:#F1F5F9;color:var(--ap-navy);font-size:.82rem;font-weight:800}.ap .apr-contact-card strong{display:block;font-size:.83rem}.ap .apr-contact-card span{display:block;margin-top:4px;color:var(--ap-muted);font-size:.77rem;overflow-wrap:anywhere}
-.ap .apr-doc-row{display:flex;align-items:center;gap:14px;padding:17px;border:1px solid var(--ap-line);border-radius:14px;background:#F8FAFC}.ap .apr-doc-mark{display:grid;place-items:center;width:42px;height:42px;flex:none;border-radius:12px;background:#E2E8F0;color:var(--ap-navy);font-size:1.1rem}.ap .apr-doc-copy{flex:1;min-width:0}.ap .apr-doc-copy strong{display:block;font-size:.85rem}.ap .apr-doc-copy p{margin:5px 0 0;color:var(--ap-muted);font-size:.77rem;line-height:1.5}
-.ap .apr-empty-state{display:flex;align-items:flex-start;gap:13px;padding:18px;border:1px dashed #CBD5E1;border-radius:13px;background:#FAFBFC}.ap .apr-empty-icon{width:36px;height:36px}.ap .apr-empty-state strong{display:block;margin-bottom:5px;font-size:.84rem}.ap .apr-empty-state p{margin:0;color:var(--ap-muted);font-size:.79rem;line-height:1.55}.ap .apr-medical-note{margin-top:13px;padding:12px 14px;border-radius:10px;background:#F8FAFC;color:var(--ap-muted);font-size:.77rem;line-height:1.55}
-@media(max-width:1050px){.ap .apr-layout{grid-template-columns:minmax(0,1fr)}.ap .apr-side{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.ap .apr-hero{grid-template-columns:1fr;align-items:start}.ap .apr-side{grid-template-columns:1fr}.ap .apr-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:480px){.ap .apr-identity{align-items:flex-start;gap:13px}.ap .apr-avatar{width:60px;height:60px;border-radius:17px;font-size:1rem}.ap .apr-detail-grid{grid-template-columns:1fr}.ap .apr-doc-row{align-items:flex-start;flex-wrap:wrap}.ap .apr-doc-row .ap-btn{width:100%}}
-}
-</style>
+
 </head>
 <body class="dw dw-light adm ap">
   <a class="skip" href="#main">Skip to content</a>
@@ -108,15 +90,40 @@
     <nav class="ap-breadcrumb" aria-label="Breadcrumb"><a href="admin-patients.html">Patients</a><span aria-hidden="true">/</span><span id="breadcrumbName">Patient record</span></nav>
     <div id="recordContent" hidden>
       <section class="apr-hero">
-        <div class="apr-identity"><span class="apr-avatar" id="profileInitials" aria-hidden="true"></span><div class="apr-heading"><p class="ap-eyebrow">PATIENT PROFILE</p><h1 id="profileName"></h1><div class="apr-ref">Patient UUID: <span id="profileId"></span></div><div class="apr-status-row"><span class="apr-chip is-active" id="profileRegistrationChip">Registration status</span><span class="apr-chip is-pending" id="profileVerificationChip">ID verification</span></div></div></div>
+        <div class="apr-identity">
+          <span class="apr-avatar" aria-hidden="true">
+            <span id="profileInitials"></span>
+            <img id="profileImage" alt="" hidden>
+          </span>
+          <div class="apr-heading">
+            <p class="ap-eyebrow">PATIENT PROFILE</p>
+            <h1 id="profileName"></h1>
+            <div class="apr-ref">Patient UUID: <span id="profileId"></span></div>
+            <div class="apr-status-row"><span class="apr-chip is-active" id="profileRegistrationChip">Registration status</span><span class="apr-chip is-pending" id="profileVerificationChip">ID verification</span></div>
+          </div>
+        </div>
         <div class="apr-actions"><button class="ap-btn ap-btn-primary" type="button" id="editDetails">Edit profile</button><a class="ap-btn" href="admin-patients.html">Back to patients</a></div>
       </section>
       <div class="apr-layout">
         <div class="apr-main">
-          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">01</span><div><h2>Personal profile</h2><p>Patient identity and contact information recorded by the practice</p></div></div><dl class="apr-detail-grid" id="personalDetails"></dl></section>
-          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">02</span><div><h2>Medical information</h2><p>Clinical information recorded by authorised clinical staff</p></div></div><div class="apr-empty-state"><span class="apr-empty-icon" aria-hidden="true">+</span><div><strong>No clinical profile recorded</strong><p>Allergies, conditions, medication and clinical notes are not part of the current patient registration record.</p></div></div><p class="apr-medical-note">Clinical information should only be added from verified clinical records. This page does not create or assume a patient's medical history.</p></section>
-          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">03</span><div><h2>Appointment history</h2><p>Previous and upcoming appointments linked to this patient</p></div></div><div class="apr-empty-state"><span class="apr-empty-icon" aria-hidden="true">▦</span><div><strong>Appointment history not connected yet</strong><p>This section will show appointment dates, specialists, visit types and statuses once the patient-specific appointments endpoint is connected.</p></div></div></section>
-          <section class="ap-panel ap-detail-panel"><div class="apr-section-intro"><span class="apr-section-number">04</span><div><h2>Identity documents</h2><p>Restricted documents and identity verification</p></div><span class="ap-restricted-label">Restricted</span></div><div class="apr-doc-row"><span class="apr-doc-mark" aria-hidden="true">▤</span><div class="apr-doc-copy"><strong>Identification document</strong><p id="documentStatus">Verification status not available</p></div><button class="ap-btn" id="requestDocument" type="button">Request access</button></div><div class="ap-access-notice" id="accessNotice" role="status" hidden>Access to protected documents requires staff permissions and server-side verification.</div></section>
+          <section class="ap-panel ap-detail-panel">
+            <div class="apr-section-intro"><span class="apr-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.2-3.6 4.2-5.5 8-5.5s6.8 1.9 8 5.5"/></svg></span><div><h2>Personal profile</h2><p>Patient identity and contact information recorded by the practice</p></div></div>
+            <div class="apr-detail-groups" id="personalDetails"></div>
+          </section>
+          <section class="ap-panel ap-detail-panel">
+            <div class="apr-section-intro"><span class="apr-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><div><h2>Medical information</h2><p>Clinical information recorded by authorised clinical staff</p></div></div>
+            <div class="apr-empty-state"><span class="apr-empty-icon" aria-hidden="true">+</span><div><strong>No clinical profile recorded</strong><p>Allergies, conditions, medication and clinical notes are not part of the current patient registration record.</p></div></div>
+            <p class="apr-medical-note">Clinical information should only be added from verified clinical records. This page does not create or assume a patient's medical history.</p>
+          </section>
+          <section class="ap-panel ap-detail-panel">
+            <div class="apr-section-intro"><span class="apr-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span><div><h2>Appointment history</h2><p>Previous and upcoming appointments linked to this patient</p></div></div>
+            <div class="apr-empty-state"><span class="apr-empty-icon" aria-hidden="true">▦</span><div><strong>Appointment history not connected yet</strong><p>This section will show appointment dates, specialists, visit types and statuses once the patient-specific appointments endpoint is connected.</p></div></div>
+          </section>
+          <section class="ap-panel ap-detail-panel">
+            <div class="apr-section-intro"><span class="apr-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><h2>Identity documents</h2><p>Restricted documents and identity verification</p></div><span class="ap-restricted-label">Restricted</span></div>
+            <div class="apr-doc-row"><span class="apr-doc-mark" aria-hidden="true">▤</span><div class="apr-doc-copy"><strong>Identification document</strong><p id="documentStatus">Verification status not available</p></div><button class="ap-btn" id="requestDocument" type="button">Request access</button></div>
+            <div class="ap-access-notice" id="accessNotice" role="status" hidden>Access to protected documents requires staff permissions and server-side verification.</div>
+          </section>
         </div>
         <aside class="apr-side">
           <section class="ap-panel"><div class="ap-panel-heading"><div><h2>Record overview</h2><p>Administrative record status</p></div></div><div class="apr-status-line"><span>Registration</span><strong id="registrationStatus"></strong></div><div class="apr-status-line"><span>ID verification</span><strong id="verificationStatus"></strong></div><div class="apr-status-line"><span>Registered on</span><strong id="registeredDate"></strong></div></section>
@@ -151,8 +158,14 @@
         .toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
     }
 
-    function detail(label, value) {
-      return `<div><dt>${safe(label)}</dt><dd>${safe(value || 'Not provided')}</dd></div>`;
+    function detail(label, value, mono) {
+      const empty = !value || value === 'Not provided';
+      const cls = [empty ? 'is-empty' : '', mono && !empty ? 'is-mono' : ''].filter(Boolean).join(' ');
+      return `<div><dt>${safe(label)}</dt><dd${cls ? ` class="${cls}"` : ''}>${safe(value || 'Not provided')}</dd></div>`;
+    }
+
+    function group(title, items) {
+      return `<section class="apr-group"><h3>${safe(title)}</h3><dl class="apr-detail-grid">${items.join('')}</dl></section>`;
     }
 
     function showError(message) {
@@ -160,6 +173,18 @@
       get('recordNotFound').hidden = false;
       get('recordNotFound').querySelector('h1').textContent = 'Unable to load patient record';
       get('recordNotFound').querySelector('p').textContent = message;
+    }
+
+    // Avatar: initials are the default; a photo is shown only if one exists and loads.
+    function renderAvatar(initials, imageUrl) {
+      const img = get('profileImage');
+      get('profileInitials').textContent = initials;
+      img.hidden = true;
+      img.removeAttribute('src');
+      if (!imageUrl) return;
+      img.onload = () => { img.hidden = false; };
+      img.onerror = () => { img.hidden = true; };
+      img.src = imageUrl;
     }
 
     function renderRecord(patient) {
@@ -175,32 +200,41 @@
       const verification = verificationMap[patient.verification_status] || 'Unknown';
       const initials = name.split(/\s+/).slice(0, 2).map((part) => part[0] || '').join('').toUpperCase();
       const phone = patient.contact || 'Not provided';
+      const imageUrl = patient.avatar_url || patient.photo_url || details.photoUrl || details.avatarUrl || '';
 
       get('recordNotFound').hidden = true;
       get('recordContent').hidden = false;
       get('breadcrumbName').textContent = name;
       get('profileName').textContent = name;
       get('profileId').textContent = patient.id;
-      get('profileInitials').textContent = initials;
+      renderAvatar(initials, imageUrl);
       get('profileRegistrationChip').textContent = `Registration: ${status}`;
       get('profileRegistrationChip').className = `apr-chip ${status.toLowerCase() === 'active' ? 'is-active' : ''}`;
       get('profileVerificationChip').textContent = `ID verification: ${verification}`;
       get('profileVerificationChip').className = `apr-chip ${verification.toLowerCase().includes('pending') ? 'is-pending' : ''}`;
 
       get('personalDetails').innerHTML = [
-        detail('Full name', name),
-        detail('Patient UUID', patient.id),
-        detail('Preferred name', details.preferredName),
-        detail('Date of birth', formattedDate(details.birthDate)),
-        detail('Phone number', phone),
-        detail('Email address', details.patientEmail),
-        detail('Alternative phone', details.alternativePhone),
-        detail('Identity type', details.idType),
-        detail('Identity number', details.identityNumber),
-        detail('Preferred language', details.language),
-        detail('Address', details.address),
-        detail('Postal code', details.postalCode),
-        detail('Preferred contact method', details.contactMethod)
+        group('Identity', [
+          detail('Full name', name),
+          detail('Preferred name', details.preferredName),
+          detail('Date of birth', formattedDate(details.birthDate)),
+          detail('Identity type', details.idType),
+          detail('Identity number', details.identityNumber, true),
+          detail('Preferred language', details.language)
+        ]),
+        group('Contact', [
+          detail('Phone number', phone, true),
+          detail('Alternative phone', details.alternativePhone, true),
+          detail('Email address', details.patientEmail),
+          detail('Preferred contact method', details.contactMethod)
+        ]),
+        group('Location', [
+          detail('Address', details.address),
+          detail('Postal code', details.postalCode, true)
+        ]),
+        group('Record', [
+          detail('Patient UUID', patient.id, true)
+        ])
       ].join('');
 
       const emergencyName = details.emergencyName || details.kinName || details.guardianName;
