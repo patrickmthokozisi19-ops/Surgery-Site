@@ -170,3 +170,23 @@ export const findPatientById = async (
 
   return data;
 };
+
+// Retrieve all patients belonging to the current practice.
+export const findAllPatients = async (practiceId, userSupabase) => {
+  const { data, error } = await userSupabase
+    .from("patients")
+    .select("id, practice_id, full_name, contact, details, created_at")
+    .eq("practice_id", practiceId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Unable to retrieve patients:", error);
+
+    throw new AppointmentError(
+      "Unable to retrieve patient records.",
+      500
+    );
+  }
+
+  return data;
+};

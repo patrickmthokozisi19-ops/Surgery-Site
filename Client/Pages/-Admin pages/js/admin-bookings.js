@@ -1061,8 +1061,7 @@ function actionButtons(booking) {
             alert("There are no bookings to export.");
             return;
         }
-    
-        const appointmentIds = bookings.map((booking) => booking.id);
+        const appointmentIds = bookings.map((booking) => Number(booking.id));
     
         try {
             const { data: { session } } = await supabase.auth.getSession();
@@ -1313,12 +1312,7 @@ function actionButtons(booking) {
         });
 
         const exportButton = $("exportBookings");
-        const exportAuditButton= $("exportAuditOption").addEventListener("click", () => {
-            exportMenu.hidden = true;
-            exportButton.setAttribute("aria-expanded", "false");
-        
-            exportAuditCSV();
-        });
+       
         const exportMenu = $("exportMenu");
 
      
