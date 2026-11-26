@@ -393,7 +393,13 @@
             .replace(/[^a-z0-9_-]/g, '');
 
           return `
-      <tr>
+          <tr
+  class="apr-appointment-row"
+  data-appointment-id="${safe(appointment.id)}"
+  tabindex="0"
+  role="link"
+  aria-label="Open appointment ${safe(appointment.id)}"
+>
         <td>
   <strong>${safe(formattedDate(appointment.date))}</strong>
   <span class="apr-appointment-period ${isUpcoming ? 'is-upcoming' : 'is-past'}">
