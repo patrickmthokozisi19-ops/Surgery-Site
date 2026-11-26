@@ -6722,7 +6722,40 @@ body:has(#bookingDialog[open])::-webkit-scrollbar {
   color: var(--ap-muted);
   font-size: 0.8rem;
 }
+.apr-history-table-wrap {
+  width: 100%;
+  overflow-x: auto;
 }
+
+.apr-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.apr-history-table th,
+.apr-history-table td {
+  padding: 0.9rem 0.75rem;
+  border-bottom: 1px solid var(--ap-line);
+  white-space: nowrap;
+}
+
+.apr-history-table th {
+  color: var(--ap-muted);
+  font-weight: 600;
+  background: var(--ap-hover);
+}
+
+.apr-history-table td {
+  color: var(--ap-ink);
+}
+
+.apr-history-count {
+  margin-top: 1rem;
+  color: var(--ap-muted);
+  font-size: 0.8rem;
+}}
 @layer AdminSpecialists {
     .asp {
       --asp-ink: #172033;
