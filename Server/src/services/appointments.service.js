@@ -106,7 +106,43 @@ export const findAllAppointments = async (practiceId, userSupabase) => {
     return appointment;
   });
 };
+// Retrieve appointments belonging to one patient
+// within the current practice.
+export const findAppointmentsByPatient = async (
+  patientId,
+  practiceId,
+  userSupabase
+) => {
+  const { data, error } = await userSupabase
+    .from("appointments")
+    .select(`
+      id,
+      patient_id,
+      specialist,
+      specialist_id,
+      visit_type,
+      status,
+      appointment_date,
+      start_time,
+      end_time,
+      notes,
+      patients!appointment_patient_same_practice (
+        full_name,
+        contact
+      )
+    `)
+    .eq("patient_id", patientId)
+    .eq("practice_id", practiceId)
+    .order("appointment_date", { ascending: false })
+    .order("start_time", { ascending: false });
 
+  if (error) handleDatabaseError(error);
+
+  return data.map(mapAppointment).map((appointment) => {
+    delete appointment.patientDetails;
+    return appointment;
+  });
+};
 // Retrieve all appointments belonging to one patient
 // within the current practice.
 export const findAppointmentsByPatientId = async (
