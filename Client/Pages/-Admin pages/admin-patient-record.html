@@ -463,6 +463,41 @@
         const patient = await response.json();
 renderRecord(patient);
 
+// Load appointment history separately so a history error
+// does not prevent the patient record from displaying.
+try {
+  const appointmentResponse = await fetch(
+    `/api/appointments/patient/${encodeURIComponent(patientId)}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${session.access_token}`
+      }
+    }
+  );
+
+  if (!appointmentResponse.ok) {
+    throw new Error(
+      `Appointment history request failed (${appointmentResponse.status}).`
+    );
+  }
+
+  const appointments = await appointmentResponse.json();
+  renderAppointmentHistory(appointments);
+
+} catch (appointmentError) {
+  console.error('Unable to load appointment history:', appointmentError);
+
+  get('appointmentHistory').innerHTML = `
+    <div class="apr-empty-state">
+      <div>
+        <strong>Appointment history unavailable</strong>
+        <p>Patient details loaded, but appointments could not be retrieved. Please try again later.</p>
+      </div>
+    </div>
+  `;
+}
+
 const appointmentResponse = await fetch(
   `/api/appointments/patient/${encodeURIComponent(patientId)}`,
   {
