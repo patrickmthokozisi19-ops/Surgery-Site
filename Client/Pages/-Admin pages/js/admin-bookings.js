@@ -1389,7 +1389,22 @@ function actionButtons(booking) {
         await loadBookings().catch((error) => {
             toast(`Unable to load bookings: ${error.message}`);
         });
+// Check whether another page requested a specific booking.
+const params = new URLSearchParams(window.location.search);
+const appointmentId = params.get('edit');
 
+if (appointmentId) {
+    // Remove the parameter so refreshing won't reopen the form.
+    params.delete('edit');
+
+    const newUrl = new URL(window.location.href);
+    newUrl.search = params.toString();
+
+    window.history.replaceState({}, '', newUrl);
+
+    // Open the existing booking form with the selected appointment.
+    await openDialog(appointmentId);
+}
     }
     $("closeHistory").addEventListener(
         "click",
