@@ -432,39 +432,45 @@ import { supabase } from "./supabase-client.js";
             });
     }
 
-    function actionButtons(booking) {
-        const actions = [];
+  
+function actionButtons(booking) {
+    const actions = [];
 
-        // Show the next workflow action for the current status.
-        if (booking.status === "pending") {
-            actions.push(
-                '<button type="button" data-action="confirm">Confirm</button>'
-            );
-        }
-
-        if (booking.status === "confirmed") {
-            actions.push(
-                '<button type="button" data-action="checkin">Check in</button>'
-            );
-        }
-
-        if (booking.status === "checked-in") {
-            actions.push(
-                '<button type="button" data-action="complete">Complete</button>'
-            );
-        }
-
-        // Editing remains available regardless of status.
+    // Show the next workflow action for the current status.
+    if (booking.status === "pending") {
         actions.push(
-            '<button type="button" data-action="edit">Edit</button>'
+            '<button type="button" data-action="confirm">Confirm</button>'
         );
+    }
 
-        return `
+    if (booking.status === "confirmed") {
+        actions.push(
+            '<button type="button" data-action="checkin">Check in</button>'
+        );
+    }
+
+    if (booking.status === "checked-in") {
+        actions.push(
+            '<button type="button" data-action="complete">Complete</button>'
+        );
+    }
+
+    // Editing remains available regardless of status.
+    actions.push(
+        '<button type="button" data-action="edit">Edit</button>'
+    );
+
+    // History remains available for every appointment status.
+    actions.push(
+        '<button type="button" data-action="history">History</button>'
+    );
+
+    return `
       <div class="ab-row-actions">
         ${actions.join("")}
       </div>
     `;
-    }
+}
 
     function render() {
         /*
