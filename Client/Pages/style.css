@@ -6784,6 +6784,19 @@ body:has(#bookingDialog[open])::-webkit-scrollbar {
 .apr-appointment-period.is-past {
   color: #475467;
   background: #F2F4F7;
+}
+.apr-appointment-row {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.apr-appointment-row:hover {
+  background: var(--ap-hover);
+}
+
+.apr-appointment-row:focus-visible {
+  outline: 2px solid var(--ap-navy);
+  outline-offset: -2px;
 }}
 @layer AdminSpecialists {
     .asp {
