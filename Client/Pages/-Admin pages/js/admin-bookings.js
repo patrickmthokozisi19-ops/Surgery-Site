@@ -1335,6 +1335,14 @@ async function openHistoryPanel(id) {
                 const changedBy = escapeHTML(
                     item.changed_by || "Unknown"
                 );
+                
+                const actorName = escapeHTML(
+                    item.actor_name || "Unknown user"
+                );
+                
+                const actorRole = escapeHTML(
+                    item.actor_role || "Unknown role"
+                );
 
                 const timestamp = new Date(item.changed_at);
 
@@ -1362,9 +1370,11 @@ async function openHistoryPanel(id) {
 
                             <small>${formattedDate}</small>
 
-                            <small>
-                                Changed by: ${changedBy}
-                            </small>
+                            <div class="ab-history-actor">
+    <strong>${actorName}</strong>
+    <small>${actorRole}</small>
+    <small>UUID: ${changedBy}</small>
+</div>
                         </div>
                     </article>
                 `;
