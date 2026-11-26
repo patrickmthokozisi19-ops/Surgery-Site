@@ -336,12 +336,14 @@ export const changeAppointmentStatus = async (
     userSupabase
   );
 };
+
 export const findAppointmentHistory = async (
   appointmentId,
   practiceId,
   userSupabase
 ) => {
-  const { data, error } = await userSupabase
+  // Retrieve the appointment history.
+  const { data: history, error } = await userSupabase
     .from("appointment_status_history")
     .select(`
       id,
@@ -363,5 +365,68 @@ export const findAppointmentHistory = async (
     );
   }
 
-  return data;
+  // Collect the unique user UUIDs.
+  const actorIds = [
+    ...new Set(
+      history
+        .map((item) => item.changed_by)
+        .filter(Boolean)
+    )
+  ];
+
+  if (actorIds.length === 0) {
+    return history.map((item) => ({
+      ...item,
+      actor_name: null,
+      actor_role: null
+    }));
+  }
+
+  // Retrieve their profiles and practice roles.
+  const [profilesResult, membershipsResult] = await Promise.all([
+    userSupabase
+      .from("profiles")
+      .select("id, first_name, last_name")
+      .in("id", actorIds),
+
+    userSupabase
+      .from("practice_memberships")
+      .select("user_id, role")
+      .eq("practice_id", practiceId)
+      .eq("active", true)
+      .in("user_id", actorIds)
+  ]);
+
+  if (profilesResult.error || membershipsResult.error) {
+    console.error(
+      "Could not retrieve history actor details:",
+      profilesResult.error || membershipsResult.error
+    );
+
+    throw new AppointmentError(
+      "Could not retrieve appointment history details.",
+      500
+    );
+  }
+
+  const profilesById = new Map(
+    profilesResult.data.map((profile) => [
+      profile.id,
+      `${profile.first_name} ${profile.last_name}`
+    ])
+  );
+
+  const rolesById = new Map(
+    membershipsResult.data.map((membership) => [
+      membership.user_id,
+      membership.role
+    ])
+  );
+
+  // Attach identity information without changing the original UUID.
+  return history.map((item) => ({
+    ...item,
+    actor_name: profilesById.get(item.changed_by) || null,
+    actor_role: rolesById.get(item.changed_by) || null
+  }));
 };
