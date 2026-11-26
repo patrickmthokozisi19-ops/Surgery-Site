@@ -1263,23 +1263,130 @@ function actionButtons(booking) {
         await loadBookings().catch((error) => {
             toast(`Unable to load bookings: ${error.message}`);
         });
-        try {
-            const history = await loadAppointmentHistory(1);
-        
-            console.log(
-                "APPOINTMENT HISTORY:",
-                JSON.stringify(history, null, 2)
-            );
-        } catch (error) {
-            console.error("History test failed:", error);
-        }
 
     }
-
+    $("closeHistory").addEventListener(
+        "click",
+        closeHistoryPanel
+    );
+    
+    $("historyBackdrop").addEventListener(
+        "click",
+        closeHistoryPanel
+    );
     /*
      * Start the page.
      * This script belongs below the HTML so its elements exist
      * before init tries to find them.
      */
     init();
+
+
+async function openHistoryPanel(id) {
+    const panel = $("historyPanel");
+
+    // Reset the panel.
+    $("historyPatient").textContent = "";
+    $("historyTimeline").innerHTML = "";
+    $("historyError").hidden = true;
+    $("historyEmpty").hidden = true;
+    $("historyLoading").hidden = false;
+
+    panel.classList.add("is-open");
+    panel.setAttribute("aria-hidden", "false");
+
+    $("historyBackdrop").hidden = false;
+
+    try {
+        // Fetch the selected appointment.
+        const booking = normalizeBooking(
+            await apiRequest(`/${encodeURIComponent(id)}`)
+        );
+
+        $("historyPatient").textContent =
+            `${booking.patient} · ${booking.id}`;
+
+        // Fetch its activity history.
+        const history = await loadAppointmentHistory(id);
+
+        $("historyLoading").hidden = true;
+
+        if (!Array.isArray(history) || history.length === 0) {
+            $("historyEmpty").hidden = false;
+            return;
+        }
+
+        // Display newest activity first.
+        const sortedHistory = [...history].sort(
+            (a, b) =>
+                new Date(b.changed_at) - new Date(a.changed_at)
+        );
+
+        $("historyTimeline").innerHTML = sortedHistory
+            .map((item) => {
+                const oldStatus = escapeHTML(
+                    item.old_status || "Unknown"
+                );
+
+                const newStatus = escapeHTML(
+                    item.new_status || "Unknown"
+                );
+
+                const changedBy = escapeHTML(
+                    item.changed_by || "Unknown"
+                );
+
+                const timestamp = new Date(item.changed_at);
+
+                const formattedDate = Number.isNaN(
+                    timestamp.getTime()
+                )
+                    ? "Date unavailable"
+                    : timestamp.toLocaleString("en-ZA", {
+                        dateStyle: "medium",
+                        timeStyle: "short"
+                    });
+
+                return `
+                    <article class="ab-history-item">
+                        <span class="ab-history-dot"></span>
+
+                        <div class="ab-history-event">
+                            <strong>Status changed</strong>
+
+                            <p>
+                                ${oldStatus}
+                                <span aria-hidden="true">→</span>
+                                ${newStatus}
+                            </p>
+
+                            <small>${formattedDate}</small>
+
+                            <small>
+                                Changed by: ${changedBy}
+                            </small>
+                        </div>
+                    </article>
+                `;
+            })
+            .join("");
+
+    } catch (error) {
+        $("historyLoading").hidden = true;
+        $("historyError").hidden = false;
+
+        $("historyError").textContent =
+            `Unable to load appointment history: ${error.message}`;
+    }
+}
+
+function closeHistoryPanel() {
+    const panel = $("historyPanel");
+
+    panel.classList.remove("is-open");
+    panel.setAttribute("aria-hidden", "true");
+
+    $("historyBackdrop").hidden = true;
+}
+
 })();

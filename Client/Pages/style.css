@@ -5585,6 +5585,40 @@
       transition: none;
   }
 }
+
+.ab-history-item {
+  position: relative;
+  display: flex;
+  gap: 16px;
+}
+
+.ab-history-dot {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--ad-primary, #334155);
+}
+
+.ab-history-event {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--ad-line, #E2E8F0);
+  flex: 1;
+}
+
+.ab-history-event p {
+  margin: 0;
+}
+
+.ab-history-event small {
+  color: var(--ad-muted, #64748B);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
 } 
 
 /* Final dialog rules are intentionally outside the layer so they also
