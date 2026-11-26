@@ -6755,6 +6755,17 @@ body:has(#bookingDialog[open])::-webkit-scrollbar {
   margin-top: 1rem;
   color: var(--ap-muted);
   font-size: 0.8rem;
+}
+.apr-chip.is-cancelled {
+  color: #B42318;
+  background: #FEF3F2;
+  border-color: #FECDCA;
+}
+
+.apr-chip.is-completed {
+  color: #067647;
+  background: #ECFDF3;
+  border-color: #ABEFC6;
 }}
 @layer AdminSpecialists {
     .asp {

@@ -362,10 +362,10 @@
         get('documentStatus').textContent = `Verification status: ${verification}`;
       }
       function renderAppointmentHistory(appointments) {
-  const container = get('appointmentHistory');
+        const container = get('appointmentHistory');
 
-  if (!appointments.length) {
-    container.innerHTML = `
+        if (!appointments.length) {
+          container.innerHTML = `
       <div class="apr-empty-state">
         <span class="apr-empty-icon" aria-hidden="true">▦</span>
         <div>
@@ -374,30 +374,33 @@
         </div>
       </div>
     `;
-    return;
-  }
+          return;
+        }
 
-  const rows = appointments.map((appointment) => {
-    const status = String(appointment.status || 'unknown')
-      .toLowerCase()
-      .replace(/[^a-z0-9_-]/g, '');
+        const rows = appointments.map((appointment) => {
+          const status = String(appointment.status || 'unknown')
+            .toLowerCase()
+            .replace(/[^a-z0-9_-]/g, '');
 
-    return `
+          return `
       <tr>
         <td><strong>${safe(formattedDate(appointment.date))}</strong></td>
         <td>${safe(appointment.specialist || 'Not assigned')}</td>
         <td>${safe(appointment.type || 'Not specified')}</td>
         <td>${safe(appointment.start || '')} – ${safe(appointment.end || '')}</td>
         <td>
-          <span class="apr-chip ${status === 'confirmed' ? 'is-active' : ''}">
+          <span class="apr-chip ${status === 'confirmed' ? 'is-active' :
+              status === 'pending' ? 'is-pending' :
+                status === 'cancelled' ? 'is-cancelled' :
+                  status === 'completed' ? 'is-completed' : ''}">
             ${safe(appointment.status || 'Unknown')}
           </span>
         </td>
       </tr>
     `;
-  }).join('');
+        }).join('');
 
-  container.innerHTML = `
+        container.innerHTML = `
     <div class="apr-history-table-wrap">
       <table class="apr-history-table">
         <thead>
@@ -416,7 +419,7 @@
       ${appointments.length} appointment${appointments.length === 1 ? '' : 's'} recorded
     </p>
   `;
-}
+      }
       const menuButton = document.querySelector('.adm-doc-nav .burger');
       const menuLinks = document.getElementById('dw-nav-links');
       if (menuButton && menuLinks) {
@@ -461,34 +464,34 @@
         if (!response.ok) throw new Error(`Patient request failed (${response.status}).`);
 
         const patient = await response.json();
-renderRecord(patient);
+        renderRecord(patient);
 
-// Load appointment history separately so a history error
-// does not prevent the patient record from displaying.
-try {
-  const appointmentResponse = await fetch(
-    `/api/appointments/patient/${encodeURIComponent(patientId)}`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${session.access_token}`
-      }
-    }
-  );
+        // Load appointment history separately so a history error
+        // does not prevent the patient record from displaying.
+        try {
+          const appointmentResponse = await fetch(
+            `/api/appointments/patient/${encodeURIComponent(patientId)}`,
+            {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${session.access_token}`
+              }
+            }
+          );
 
-  if (!appointmentResponse.ok) {
-    throw new Error(
-      `Appointment history request failed (${appointmentResponse.status}).`
-    );
-  }
+          if (!appointmentResponse.ok) {
+            throw new Error(
+              `Appointment history request failed (${appointmentResponse.status}).`
+            );
+          }
 
-  const appointments = await appointmentResponse.json();
-  renderAppointmentHistory(appointments);
+          const appointments = await appointmentResponse.json();
+          renderAppointmentHistory(appointments);
 
-} catch (appointmentError) {
-  console.error('Unable to load appointment history:', appointmentError);
+        } catch (appointmentError) {
+          console.error('Unable to load appointment history:', appointmentError);
 
-  get('appointmentHistory').innerHTML = `
+          get('appointmentHistory').innerHTML = `
     <div class="apr-empty-state">
       <div>
         <strong>Appointment history unavailable</strong>
@@ -496,27 +499,27 @@ try {
       </div>
     </div>
   `;
-}
+        }
 
-const appointmentResponse = await fetch(
-  `/api/appointments/patient/${encodeURIComponent(patientId)}`,
-  {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${session.access_token}`
-    }
-  }
-);
+        const appointmentResponse = await fetch(
+          `/api/appointments/patient/${encodeURIComponent(patientId)}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${session.access_token}`
+            }
+          }
+        );
 
-if (!appointmentResponse.ok) {
-  throw new Error(
-    `Appointment history request failed (${appointmentResponse.status}).`
-  );
-}
+        if (!appointmentResponse.ok) {
+          throw new Error(
+            `Appointment history request failed (${appointmentResponse.status}).`
+          );
+        }
 
-const appointments = await appointmentResponse.json();
+        const appointments = await appointmentResponse.json();
 
-renderAppointmentHistory(appointments);
+        renderAppointmentHistory(appointments);
       } catch (error) {
         console.error('Unable to load patient record:', error);
         showError('The patient record could not be loaded. Check your connection and try again.');
