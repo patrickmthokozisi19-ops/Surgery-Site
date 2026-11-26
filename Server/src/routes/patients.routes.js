@@ -15,6 +15,7 @@ const router = Router();
 router.use(requireAuth, requirePracticeMembership);
 
 router.get("/", getPatients);
+router.post("/", createPatient);
 router.get("/:id", getPatientById);
 
 export default router;
