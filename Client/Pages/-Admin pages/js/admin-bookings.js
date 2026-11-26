@@ -1054,6 +1054,94 @@ function actionButtons(booking) {
         // Release the temporary file URL after starting the download.
         setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
+    async function exportAuditCSV() {
+        const bookings = filteredBookings();
+    
+        if (bookings.length === 0) {
+            alert("There are no bookings to export.");
+            return;
+        }
+    
+        const appointmentIds = bookings.map((booking) => booking.id);
+    
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+    
+            if (!session) {
+                throw new Error("Your session has expired. Please sign in again.");
+            }
+    
+            const response = await fetch("/api/appointments/history/export", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${session.access_token}`
+                },
+                body: JSON.stringify({ appointmentIds })
+            });
+    
+            const result = await response.json();
+    
+            if (!response.ok) {
+                throw new Error(result.message || "Could not export audit history.");
+            }
+    
+            const headings = [
+                "Appointment ID",
+                "Previous Status",
+                "New Status",
+                "Actor Name",
+                "Actor Role",
+                "Actor UUID",
+                "Date and Time"
+            ];
+    
+            const rows = result.map((item) => [
+                item.appointment_id,
+                item.old_status || "",
+                item.new_status,
+                item.actor_name || "Unknown user",
+                item.actor_role || "Unknown role",
+                item.changed_by || "",
+                item.changed_at
+            ]);
+    
+            function csvCell(value) {
+                let text = String(value ?? "");
+    
+                if (/^\s*[=+@-]|^[\t\r\n]/.test(text)) {
+                    text = "'" + text;
+                }
+    
+                return `"${text.replace(/"/g, '""')}"`;
+            }
+    
+            const csv = [headings, ...rows]
+                .map((row) => row.map(csvCell).join(","))
+                .join("\r\n");
+    
+            const url = URL.createObjectURL(
+                new Blob(["\uFEFF", csv], {
+                    type: "text/csv;charset=utf-8;"
+                })
+            );
+    
+            const anchor = document.createElement("a");
+    
+            anchor.href = url;
+            anchor.download = `pweb-audit-history-${today()}.csv`;
+    
+            document.body.append(anchor);
+            anchor.click();
+            anchor.remove();
+    
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+    
+        } catch (error) {
+            console.error("Audit export failed:", error);
+            alert(error.message || "Could not export audit history.");
+        }
+    }
 
     /* =========================================================
        11. PAGE INITIALISATION AND EVENT LISTENERS
@@ -1225,8 +1313,15 @@ function actionButtons(booking) {
         });
 
         const exportButton = $("exportBookings");
-        const exportMenu = $("exportMenu");
+        const exportAuditButton= $("exportAuditOption").addEventListener("click", () => {
+            exportMenu.hidden = true;
+            exportButton.setAttribute("aria-expanded", "false");
         
+            exportAuditCSV();
+        });
+        const exportMenu = $("exportMenu");
+
+     
         exportButton.addEventListener("click", () => {
             const isOpen = !exportMenu.hidden;
         

@@ -430,3 +430,127 @@ export const findAppointmentHistory = async (
     actor_role: rolesById.get(item.changed_by) || null
   }));
 };
+export const findAppointmentHistoryForExport = async (
+  appointmentIds,
+  practiceId,
+  userSupabase
+) => {
+  if (!Array.isArray(appointmentIds) || appointmentIds.length === 0) {
+    return [];
+  }
+
+  // Remove duplicate IDs.
+  const uniqueIds = [...new Set(appointmentIds)];
+
+  // Confirm that all requested appointments belong to this practice.
+  const { data: appointments, error: appointmentError } =
+    await userSupabase
+      .from("appointments")
+      .select("id")
+      .eq("practice_id", practiceId)
+      .in("id", uniqueIds);
+
+  if (appointmentError) {
+    console.error("Could not verify export appointments:", appointmentError);
+    throw new AppointmentError(
+      "Could not verify appointments for audit export.",
+      500
+    );
+  }
+
+  const validIds = appointments.map((item) => item.id);
+
+  if (validIds.length !== uniqueIds.length) {
+    throw new AppointmentError(
+      "One or more appointments could not be found.",
+      404
+    );
+  }
+
+  // Retrieve all history records for the verified appointments.
+  const { data: history, error } = await userSupabase
+    .from("appointment_status_history")
+    .select(`
+      id,
+      appointment_id,
+      old_status,
+      new_status,
+      changed_by,
+      changed_at
+    `)
+    .eq("practice_id", practiceId)
+    .in("appointment_id", validIds)
+    .order("changed_at", { ascending: false });
+
+  if (error) {
+    console.error("Could not retrieve export history:", error);
+    throw new AppointmentError(
+      "Could not retrieve audit history.",
+      500
+    );
+  }
+
+  // Collect actor UUIDs.
+  const actorIds = [
+    ...new Set(
+      history
+        .map((item) => item.changed_by)
+        .filter(Boolean)
+    )
+  ];
+
+  if (actorIds.length === 0) {
+    return history.map((item) => ({
+      ...item,
+      actor_name: null,
+      actor_role: null
+    }));
+  }
+
+  // Retrieve actor profiles and roles.
+  const [profilesResult, membershipsResult] = await Promise.all([
+    userSupabase
+      .from("profiles")
+      .select("id, first_name, last_name")
+      .in("id", actorIds),
+
+    userSupabase
+      .from("practice_memberships")
+      .select("user_id, role")
+      .eq("practice_id", practiceId)
+      .eq("active", true)
+      .in("user_id", actorIds)
+  ]);
+
+  if (profilesResult.error || membershipsResult.error) {
+    console.error(
+      "Could not retrieve audit actor details:",
+      profilesResult.error || membershipsResult.error
+    );
+
+    throw new AppointmentError(
+      "Could not retrieve audit actor details.",
+      500
+    );
+  }
+
+  const profilesById = new Map(
+    profilesResult.data.map((profile) => [
+      profile.id,
+      `${profile.first_name} ${profile.last_name}`
+    ])
+  );
+
+  const rolesById = new Map(
+    membershipsResult.data.map((membership) => [
+      membership.user_id,
+      membership.role
+    ])
+  );
+
+  return history.map((item) => ({
+    ...item,
+    actor_name: profilesById.get(item.changed_by) || null,
+    actor_role: rolesById.get(item.changed_by) || null
+  }));
+};

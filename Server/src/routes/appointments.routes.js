@@ -4,10 +4,10 @@ import {
   getAppointments,
   getAppointmentById,
   getAppointmentHistory,
+  exportAppointmentHistory,
   createAppointment,
   updateAppointment
 } from "../controllers/appointments.controller.js";
-
 import { requireAuth } from "../middleware/auth.middleware.js";
 import { requirePracticeMembership } from "../middleware/membership.middleware.js";
 
@@ -18,8 +18,11 @@ const router = Router();
 router.use(requireAuth, requirePracticeMembership);
 
 router.get("/", getAppointments);
-router.get("/:id/history", getAppointmentHistory);
+
 router.get("/:id", getAppointmentById);
+router.get("/:id/history", getAppointmentHistory);
+router.post("/history/export", exportAppointmentHistory);
+
 router.post("/", createAppointment);
 router.patch("/:id", updateAppointment);
 
