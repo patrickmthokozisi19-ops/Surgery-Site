@@ -17,6 +17,7 @@ const router = Router();
 router.use(requireAuth, requirePracticeMembership);
 
 router.get("/", getAppointments);
+router.get("/patient/:patientId", getPatientAppointments);
 
 router.get("/:id", getAppointmentById);
 router.get("/:id/history", getAppointmentHistory);
