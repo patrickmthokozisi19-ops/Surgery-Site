@@ -1252,6 +1252,7 @@ import { supabase } from "./supabase-client.js";
         await loadBookings().catch((error) => {
             toast(`Unable to load bookings: ${error.message}`);
         });
+
     }
 
     /*
