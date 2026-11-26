@@ -1179,6 +1179,11 @@ function actionButtons(booking) {
                 openDialog(id);
                 return;
             }
+            
+            if (action === "history") {
+                openHistoryPanel(id);
+                return;
+            }
 
             const statuses = {
                 confirm: "confirmed",
