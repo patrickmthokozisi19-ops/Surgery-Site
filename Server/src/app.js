@@ -6,7 +6,6 @@ import patientRoutes from "./routes/patients.routes.js";
 import specialistRoutes from "./routes/specialists.routes.js";
 import hospitalRoutes from "./routes/hospitals.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-
 const app = express();
 
 app.use(express.json());

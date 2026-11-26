@@ -148,6 +148,89 @@ export const findOrCreatePatient = async ({
   return newPatient;
 };
 
+export const registerPatient = async ({
+  practiceId,
+  patient,
+  contact,
+  patientDetails = {},
+  userSupabase
+}) => {
+  if (!practiceId) {
+    throw new AppointmentError(
+      "Hospital identification is missing."
+    );
+  }
+
+  if (!patient?.trim() || !contact?.trim()) {
+    throw new AppointmentError(
+      "Patient name and contact number are required."
+    );
+  }
+
+  const cleanName = patient.trim();
+  const cleanContact = normaliseContact(contact);
+  const details = extractPatientDetails(patientDetails);
+
+  // Prevent accidental duplicate registrations.
+  const { data: existing, error: searchError } =
+    await userSupabase
+      .from("patients")
+      .select("id")
+      .eq("practice_id", practiceId)
+      .eq("contact", cleanContact)
+      .ilike("full_name", cleanName)
+      .limit(1);
+
+  if (searchError) {
+    throw new AppointmentError(
+      "Unable to check existing patient records.",
+      500
+    );
+  }
+
+  if (existing?.length) {
+    throw new AppointmentError(
+      "This patient is already registered at this practice.",
+      409
+    );
+  }
+
+  // Create the patient with default account and verification statuses.
+  const { data: newPatient, error: insertError } =
+    await userSupabase
+      .from("patients")
+      .insert({
+        practice_id: practiceId,
+        full_name: cleanName,
+        contact: cleanContact,
+        details,
+        status: "active",
+        verification_status: "not_uploaded"
+      })
+      .select(`
+        id,
+        practice_id,
+        full_name,
+        contact,
+        details,
+        status,
+        verification_status,
+        created_at
+      `)
+      .single();
+
+  if (insertError) {
+    console.error("Patient registration failed:", insertError);
+
+    throw new AppointmentError(
+      "Unable to register the patient.",
+      500
+    );
+  }
+
+  return newPatient;
+};
+
 // Retrieve one patient by their database ID.
 export const findPatientById = async (
   id,
