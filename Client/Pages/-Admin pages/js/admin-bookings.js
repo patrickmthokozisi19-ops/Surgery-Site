@@ -1385,7 +1385,18 @@ function actionButtons(booking) {
         // Prepare the initial interface, then request the bookings.
         syncSections();
         render();
+        const returnButton = $("returnToPatient");
 
+        const params = new URLSearchParams(window.location.search);
+        const returnTo = params.get("returnTo");
+        
+        if (returnTo && returnButton) {
+          returnButton.hidden = false;
+        
+          returnButton.addEventListener("click", () => {
+            window.location.href = returnTo;
+          });
+        }
         await loadBookings().catch((error) => {
             toast(`Unable to load bookings: ${error.message}`);
         });
@@ -1405,18 +1416,7 @@ if (appointmentId) {
     // Open the existing booking form with the selected appointment.
     await openDialog(appointmentId);
 }
-const returnButton = $("returnToPatient");
-
-const params = new URLSearchParams(window.location.search);
-const returnTo = params.get("returnTo");
-
-if (returnTo && returnButton) {
-  returnButton.hidden = false;
-
-  returnButton.addEventListener("click", () => {
-    window.location.href = returnTo;
-  });
-}}
+    }
     $("closeHistory").addEventListener(
         "click",
         closeHistoryPanel
