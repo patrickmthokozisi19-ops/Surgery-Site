@@ -129,110 +129,24 @@
   </main>
   <dialog class="ap-dialog" id="editDialog" aria-labelledby="editTitle"><form id="editForm"><div class="ap-dialog-header"><div><p class="ap-eyebrow">PATIENT INFORMATION</p><h2 id="editTitle">Edit details</h2></div><button class="ap-icon-button" type="button" id="closeEdit" aria-label="Close editor">×</button></div><div class="ap-form-grid"><label>Full name<input name="name" required maxlength="100"></label><label>Date of birth<input name="dob" type="date" required></label><label>Contact number<input name="phone" type="tel" required maxlength="30"></label><label>Email<input name="email" type="email"></label><label>Emergency contact<input name="emergencyName" maxlength="100"></label><label>Emergency phone<input name="emergencyPhone" type="tel" maxlength="30"></label><label>Registration status<select name="status"><option>Active</option><option>Inactive</option></select></label></div><div class="ap-dialog-actions"><button class="ap-btn" type="button" id="cancelEdit">Cancel</button><button class="ap-btn ap-btn-primary" type="submit">Save details</button></div></form></dialog>
   <script>
-  (() => {
+  (async () => {
     'use strict';
 
-    const storageKey = 'pweb-patient-directory-v1';
     const get = (id) => document.getElementById(id);
     const safe = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     })[char]);
+
     const patientId = new URLSearchParams(window.location.search).get('id');
-    const fallbackPatients = [
-      {
-            "id": "PT-1001",
-            "name": "Thandi Mokoena",
-            "initials": "TM",
-            "phone": "071 000 1201",
-            "email": "thandi.mokoena@example.com",
-            "dob": "1988-04-12",
-            "registered": "2026-08-21",
-            "verification": "Verified",
-            "status": "Active",
-            "emergencyName": "N. Mokoena",
-            "emergencyPhone": "072 000 2101"
-      },
-      {
-            "id": "PT-1002",
-            "name": "Sipho Khumalo",
-            "initials": "SK",
-            "phone": "072 000 1202",
-            "email": "sipho.khumalo@example.com",
-            "dob": "1994-11-03",
-            "registered": "2026-09-06",
-            "verification": "Pending review",
-            "status": "Active",
-            "emergencyName": "L. Khumalo",
-            "emergencyPhone": "073 000 2102"
-      },
-      {
-            "id": "PT-1003",
-            "name": "Ruth Adams",
-            "initials": "RA",
-            "phone": "073 000 1203",
-            "email": "ruth.adams@example.com",
-            "dob": "1976-06-19",
-            "registered": "2026-07-14",
-            "verification": "Verified",
-            "status": "Active",
-            "emergencyName": "J. Adams",
-            "emergencyPhone": "074 000 2103"
-      },
-      {
-            "id": "PT-1004",
-            "name": "Maria van der Merwe",
-            "initials": "MV",
-            "phone": "074 000 1204",
-            "email": "maria.vdm@example.com",
-            "dob": "1969-02-25",
-            "registered": "2026-06-29",
-            "verification": "Verified",
-            "status": "Active",
-            "emergencyName": "P. van der Merwe",
-            "emergencyPhone": "075 000 2104"
-      },
-      {
-            "id": "PT-1005",
-            "name": "Zanele Ndlovu",
-            "initials": "ZN",
-            "phone": "075 000 1205",
-            "email": "zanele.ndlovu@example.com",
-            "dob": "1999-09-10",
-            "registered": "2026-10-02",
-            "verification": "Not uploaded",
-            "status": "Active",
-            "emergencyName": "B. Ndlovu",
-            "emergencyPhone": "076 000 2105"
-      },
-      {
-            "id": "PT-1006",
-            "name": "Cameron Jacobs",
-            "initials": "CJ",
-            "phone": "076 000 1206",
-            "email": "cameron.jacobs@example.com",
-            "dob": "1981-01-08",
-            "registered": "2026-09-23",
-            "verification": "Pending review",
-            "status": "Inactive",
-            "emergencyName": "E. Jacobs",
-            "emergencyPhone": "077 000 2106"
-      }
-];
-
-    let patients = fallbackPatients;
-    try {
-      const stored = JSON.parse(localStorage.getItem(storageKey));
-      if (Array.isArray(stored)) patients = stored;
-    } catch (error) {
-      console.warn('Patient directory storage is unavailable.', error);
-    }
-
-    let patient = patients.find((item) => item.id === patientId);
+    const editButton = get('editDetails');
+    editButton.disabled = true;
+    editButton.title = 'Profile editing will be enabled when the patient update endpoint is implemented.';
 
     function formattedDate(date) {
       if (!date) return 'Not provided';
-      const parts = date.split('-').map(Number);
-      if (parts.length !== 3) return date;
+      const value = String(date).slice(0, 10);
+      const parts = value.split('-').map(Number);
+      if (parts.length !== 3 || parts.some(Number.isNaN)) return 'Not provided';
       return new Date(parts[0], parts[1] - 1, parts[2])
         .toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
     }
@@ -241,72 +155,66 @@
       return `<div><dt>${safe(label)}</dt><dd>${safe(value || 'Not provided')}</dd></div>`;
     }
 
-    function renderRecord() {
-      if (!patient) {
-        get('recordNotFound').hidden = false;
-        get('recordContent').hidden = true;
-        return;
-      }
+    function showError(message) {
+      get('recordContent').hidden = true;
+      get('recordNotFound').hidden = false;
+      get('recordNotFound').querySelector('h1').textContent = 'Unable to load patient record';
+      get('recordNotFound').querySelector('p').textContent = message;
+    }
+
+    function renderRecord(patient) {
+      const details = patient.details || {};
+      const name = patient.full_name || details.preferredName || 'Unnamed patient';
+      const status = patient.status || 'unknown';
+      const verificationMap = {
+        not_uploaded: 'Not uploaded',
+        pending_review: 'Pending review',
+        verified: 'Verified',
+        rejected: 'Rejected'
+      };
+      const verification = verificationMap[patient.verification_status] || 'Unknown';
+      const initials = name.split(/\s+/).slice(0, 2).map((part) => part[0] || '').join('').toUpperCase();
+      const phone = patient.contact || 'Not provided';
 
       get('recordNotFound').hidden = true;
       get('recordContent').hidden = false;
-      get('breadcrumbName').textContent = patient.name;
-      get('profileName').textContent = patient.name;
+      get('breadcrumbName').textContent = name;
+      get('profileName').textContent = name;
       get('profileId').textContent = patient.id;
-      get('profileInitials').textContent = patient.initials || patient.name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
-      get('profileRegistrationChip').textContent = `Registration: ${patient.status || 'Unknown'}`;
-      get('profileRegistrationChip').className = `apr-chip ${String(patient.status).toLowerCase() === 'active' ? 'is-active' : ''}`;
-      get('profileVerificationChip').textContent = `ID verification: ${patient.verification || 'Unknown'}`;
-      get('profileVerificationChip').className = `apr-chip ${String(patient.verification).toLowerCase().includes('pending') ? 'is-pending' : ''}`;
+      get('profileInitials').textContent = initials;
+      get('profileRegistrationChip').textContent = `Registration: ${status}`;
+      get('profileRegistrationChip').className = `apr-chip ${status.toLowerCase() === 'active' ? 'is-active' : ''}`;
+      get('profileVerificationChip').textContent = `ID verification: ${verification}`;
+      get('profileVerificationChip').className = `apr-chip ${verification.toLowerCase().includes('pending') ? 'is-pending' : ''}`;
+
       get('personalDetails').innerHTML = [
-        detail('Full name', patient.name),
-        detail('Patient number', patient.id),
-        detail('Date of birth', formattedDate(patient.dob)),
-        detail('Phone number', patient.phone),
-        detail('Email address', patient.email)
+        detail('Full name', name),
+        detail('Patient UUID', patient.id),
+        detail('Preferred name', details.preferredName),
+        detail('Date of birth', formattedDate(details.birthDate)),
+        detail('Phone number', phone),
+        detail('Email address', details.patientEmail),
+        detail('Alternative phone', details.alternativePhone),
+        detail('Identity type', details.idType),
+        detail('Identity number', details.identityNumber),
+        detail('Preferred language', details.language),
+        detail('Address', details.address),
+        detail('Postal code', details.postalCode),
+        detail('Preferred contact method', details.contactMethod)
       ].join('');
-      get('emergencyDetails').innerHTML = `<div class="apr-contact-card"><span class="apr-contact-mark">EC</span><div><strong>${safe(patient.emergencyName || 'Not provided')}</strong><span>${safe(patient.emergencyPhone || 'No phone number provided')}</span></div></div>`;
-      get('registrationStatus').textContent = patient.status;
-      get('verificationStatus').textContent = patient.verification;
-      get('registeredDate').textContent = formattedDate(patient.registered);
-      get('documentStatus').textContent = `Verification status: ${patient.verification}`;
+
+      const emergencyName = details.emergencyName || details.kinName || details.guardianName;
+      const emergencyPhone = details.emergencyPhone || details.kinPhone || details.guardianPhone;
+      const emergencyRelationship = details.emergencyRelationship || details.kinRelationship || details.guardianRelationship;
+      get('emergencyDetails').innerHTML = `<div class="apr-contact-card"><span class="apr-contact-mark">EC</span><div><strong>${safe(emergencyName || 'Not provided')}</strong><span>${safe(emergencyRelationship || 'Relationship not provided')} · ${safe(emergencyPhone || 'No phone number provided')}</span></div></div>`;
+      get('registrationStatus').textContent = status;
+      get('verificationStatus').textContent = verification;
+      get('registeredDate').textContent = formattedDate(patient.created_at);
+      get('documentStatus').textContent = `Verification status: ${verification}`;
     }
-
-    const dialog = get('editDialog');
-    get('editDetails').addEventListener('click', () => {
-      const form = get('editForm');
-      for (const name of ['name', 'dob', 'phone', 'email', 'emergencyName', 'emergencyPhone', 'status']) {
-        form.elements.namedItem(name).value = patient[name] || '';
-      }
-      dialog.showModal();
-    });
-
-    get('closeEdit').addEventListener('click', () => dialog.close());
-    get('cancelEdit').addEventListener('click', () => dialog.close());
-    get('editForm').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      for (const name of ['name', 'dob', 'phone', 'email', 'emergencyName', 'emergencyPhone', 'status']) {
-        patient[name] = form.elements.namedItem(name).value.trim();
-      }
-      patient.initials = patient.name.split(/\s+/).slice(0, 2)
-        .map((part) => part[0]).join('').toUpperCase();
-      try {
-        localStorage.setItem(storageKey, JSON.stringify(patients));
-      } catch (error) {
-        console.warn('Unable to save patient details.', error);
-      }
-      dialog.close();
-      renderRecord();
-    });
-
-    get('requestDocument').addEventListener('click', () => {
-      get('accessNotice').hidden = false;
-    });
 
     const menuButton = document.querySelector('.adm-doc-nav .burger');
     const menuLinks = document.getElementById('dw-nav-links');
-
     if (menuButton && menuLinks) {
       menuButton.addEventListener('click', () => {
         const isOpen = menuLinks.classList.toggle('open');
@@ -316,7 +224,44 @@
       });
     }
 
-    renderRecord();
+    get('requestDocument').addEventListener('click', () => {
+      get('accessNotice').hidden = false;
+    });
+
+    if (!patientId) {
+      showError('No patient ID was supplied. Return to the patient directory and open a patient record.');
+      return;
+    }
+
+    try {
+      const { supabase } = await import('./js/supabase-client.js');
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError || !session) {
+        window.location.replace('./admin-login.html');
+        return;
+      }
+
+      const response = await fetch(`/api/patients/${encodeURIComponent(patientId)}`, {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${session.access_token}` }
+      });
+
+      if (response.status === 401 || response.status === 403) {
+        window.location.replace('./admin-login.html');
+        return;
+      }
+      if (response.status === 404) {
+        showError('This patient could not be found in your practice. Return to the patient directory and select a valid record.');
+        return;
+      }
+      if (!response.ok) throw new Error(`Patient request failed (${response.status}).`);
+
+      const patient = await response.json();
+      renderRecord(patient);
+    } catch (error) {
+      console.error('Unable to load patient record:', error);
+      showError('The patient record could not be loaded. Check your connection and try again.');
+    }
   })();
   </script>
 </body>
