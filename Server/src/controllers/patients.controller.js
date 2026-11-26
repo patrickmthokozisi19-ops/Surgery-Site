@@ -1,7 +1,8 @@
 
 import {
     findAllPatients,
-    findPatientById
+    findPatientById,
+    registerPatient
   } from "../services/patients.service.js";
   
   const handle = (callback) => async (req, res, next) => {
@@ -41,3 +42,23 @@ import {
     res.status(200).json(patient);
   });
   
+export const createPatient = handle(async (req, res) => {
+  const {
+    patient,
+    contact,
+    patientDetails = {}
+  } = req.body;
+
+  const newPatient = await registerPatient({
+    practiceId: req.practiceId,
+    patient,
+    contact,
+    patientDetails,
+    userSupabase: req.userSupabase
+  });
+
+  res.status(201).json({
+    message: "Patient registered successfully.",
+    patient: newPatient
+  });
+});
