@@ -1263,6 +1263,16 @@ function actionButtons(booking) {
         await loadBookings().catch((error) => {
             toast(`Unable to load bookings: ${error.message}`);
         });
+        try {
+            const history = await loadAppointmentHistory(1);
+        
+            console.log(
+                "APPOINTMENT HISTORY:",
+                JSON.stringify(history, null, 2)
+            );
+        } catch (error) {
+            console.error("History test failed:", error);
+        }
 
     }
 
