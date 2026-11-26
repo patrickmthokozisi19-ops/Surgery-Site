@@ -5513,7 +5513,79 @@
         }
       }
     }
-  } 
+  
+/* =========================================
+   APPOINTMENT HISTORY PANEL
+========================================= */
+
+.ab-history-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  z-index: 1000;
+}
+
+.ab-history-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(460px, 100%);
+  height: 100dvh;
+  background: var(--ad-panel, #FFFFFF);
+  color: var(--ad-ink, #172033);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  box-shadow: -8px 0 30px rgba(15, 23, 42, 0.12);
+  visibility: hidden;
+}
+
+.ab-history-panel.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.ab-history-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 26px;
+  border-bottom: 1px solid var(--ad-line, #E2E8F0);
+}
+
+.ab-history-head h2 {
+  margin: 5px 0;
+}
+
+.ab-history-head p {
+  color: var(--ad-muted, #64748B);
+}
+
+.ab-history-body {
+  padding: 26px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.ab-history-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ab-history-backdrop:not([hidden]) {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-history-panel {
+      transition: none;
+  }
+}
+} 
 
 /* Final dialog rules are intentionally outside the layer so they also
    override the form styles in the booking HTML. Keep this block last. */
