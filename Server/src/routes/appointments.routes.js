@@ -3,6 +3,7 @@ import {
   getAppointments,
   getAppointmentById,
   getAppointmentHistory,
+  getPatientAppointments,
   exportAppointmentHistory,
   createAppointment,
   updateAppointment

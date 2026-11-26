@@ -150,10 +150,7 @@ export const getPatientAppointments = handle(async (req, res) => {
     /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
   if (!uuidPattern.test(patientId)) {
-    throw new AppointmentError(
-      "Invalid patient ID.",
-      400
-    );
+    throw new AppointmentError("Invalid patient ID.", 400);
   }
 
   const appointments = await findAppointmentsByPatient(
