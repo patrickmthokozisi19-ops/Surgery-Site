@@ -1224,8 +1224,45 @@ function actionButtons(booking) {
             }
         });
 
-        $("exportBookings").addEventListener("click", exportCSV);
-
+        const exportButton = $("exportBookings");
+        const exportMenu = $("exportMenu");
+        
+        exportButton.addEventListener("click", () => {
+            const isOpen = !exportMenu.hidden;
+        
+            exportMenu.hidden = isOpen;
+            exportButton.setAttribute("aria-expanded", String(!isOpen));
+        });
+        
+        $("exportBookingsOption").addEventListener("click", () => {
+            exportMenu.hidden = true;
+            exportButton.setAttribute("aria-expanded", "false");
+        
+            exportCSV();
+        });
+        
+        $("exportAuditOption").addEventListener("click", () => {
+            exportMenu.hidden = true;
+            exportButton.setAttribute("aria-expanded", "false");
+        
+            exportAuditCSV();
+        });
+        
+        // Close the dropdown when clicking elsewhere.
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest(".ab-export")) {
+                exportMenu.hidden = true;
+                exportButton.setAttribute("aria-expanded", "false");
+            }
+        });
+        
+        // Close the dropdown with Escape.
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                exportMenu.hidden = true;
+                exportButton.setAttribute("aria-expanded", "false");
+            }
+        });
         $("prevPage").addEventListener("click", () => {
             state.page--;
             render();
