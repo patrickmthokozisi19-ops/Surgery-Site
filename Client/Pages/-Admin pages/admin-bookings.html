@@ -260,7 +260,28 @@
         <p>Review requests, schedule appointments and manage arrivals.</p>
       </div>
       <div class="ab-heading-actions">
-        <button class="ab-btn" id="exportBookings" type="button">Export CSV</button>
+        <div class="ab-export">
+          <button
+              class="ab-btn"
+              id="exportBookings"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+          >
+              Export CSV
+              <span aria-hidden="true">▾</span>
+          </button>
+      
+          <div class="ab-export-menu" id="exportMenu" hidden>
+              <button type="button" id="exportBookingsOption">
+                  Bookings
+              </button>
+      
+              <button type="button" id="exportAuditOption">
+                  Audit history
+              </button>
+          </div>
+      </div>
         <button class="ab-btn ab-primary" id="createBooking" type="button">+ New booking</button>
       </div>
     </section>
