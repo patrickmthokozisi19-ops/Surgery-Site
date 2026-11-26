@@ -6797,6 +6797,11 @@ body:has(#bookingDialog[open])::-webkit-scrollbar {
 .apr-appointment-row:focus-visible {
   outline: 2px solid var(--ap-navy);
   outline-offset: -2px;
+}
+.ab-dialog-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }}
 @layer AdminSpecialists {
     .asp {
