@@ -364,6 +364,10 @@
       function renderAppointmentHistory(appointments) {
         const container = get('appointmentHistory');
 
+        const formatTime = (time) => {
+          if (!time) return '';
+          return String(time).slice(0, 5);
+        };
         if (!appointments.length) {
           container.innerHTML = `
       <div class="apr-empty-state">
@@ -387,7 +391,7 @@
         <td><strong>${safe(formattedDate(appointment.date))}</strong></td>
         <td>${safe(appointment.specialist || 'Not assigned')}</td>
         <td>${safe(appointment.type || 'Not specified')}</td>
-        <td>${safe(appointment.start || '')} – ${safe(appointment.end || '')}</td>
+        <td>${safe(formatTime(appointment.start))} – ${safe(formatTime(appointment.end))}</td>
         <td>
           <span class="apr-chip ${status === 'confirmed' ? 'is-active' :
               status === 'pending' ? 'is-pending' :
