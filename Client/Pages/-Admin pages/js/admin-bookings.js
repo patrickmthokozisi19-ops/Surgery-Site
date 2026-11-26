@@ -1405,7 +1405,18 @@ if (appointmentId) {
     // Open the existing booking form with the selected appointment.
     await openDialog(appointmentId);
 }
-    }
+const returnButton = $("returnToPatient");
+
+const params = new URLSearchParams(window.location.search);
+const returnTo = params.get("returnTo");
+
+if (returnTo && returnButton) {
+  returnButton.hidden = false;
+
+  returnButton.addEventListener("click", () => {
+    window.location.href = returnTo;
+  });
+}}
     $("closeHistory").addEventListener(
         "click",
         closeHistoryPanel
