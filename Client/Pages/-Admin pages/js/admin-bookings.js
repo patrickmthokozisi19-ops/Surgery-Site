@@ -1371,8 +1371,8 @@ async function openHistoryPanel(id) {
                             <small>${formattedDate}</small>
 
                             <div class="ab-history-actor">
-    <strong>${actorName}</strong>
-    <small>${actorRole}</small>
+    <small>Changed by: ${actorName}</small><br>
+    <small>Role: ${actorRole}</small><br>
     <small>UUID: ${changedBy}</small>
 </div>
                         </div>
