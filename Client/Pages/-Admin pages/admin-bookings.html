@@ -9,20 +9,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
-<!-- to make unauth opening of a page blank as redirecting to loggin-->
+  <!-- to make unauth opening of a page blank as redirecting to loggin-->
 
-<!--Hide protected content until authentication succeeds. -->
-<style>
- html:not(.auth-ready) body {
-  visibility: hidden;
-}
+  <!--Hide protected content until authentication succeeds. -->
+  <style>
+    html:not(.auth-ready) body {
+      visibility: hidden;
+    }
 
-/* Reveal protected content after authentication. */
+    /* Reveal protected content after authentication. */
 
-html.auth-ready body {
-  visibility: visible;
-} 
-</style>
+    html.auth-ready body {
+      visibility: visible;
+    }
+  </style>
 
   <script type="module" src="./js/admin-auth.js"></script>
   <script>
@@ -182,30 +182,31 @@ html.auth-ready body {
   <header class="nav nav-slim dw-nav adm-doc-nav">
     <div class="tNav">
       <a class="Emegerncy_contact" href="tel:+27000000000">
-       <img alt="" src="../assets/phone-calling-rounded-svgrepo-com.svg"/>
-       <span class="number">
-        Reception desk: 000 000 0000
-       </span>
+        <img alt="" src="../assets/phone-calling-rounded-svgrepo-com.svg" />
+        <span class="number">
+          Reception desk: 000 000 0000
+        </span>
       </a>
       <div class="t-nav-btns">
-       <div class="seach-box">
-          <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg"/>
+        <div class="seach-box">
+          <img alt="" class="search-icon" src="../public/search-finder-magnifying-glass-svgrepo-com.svg" />
           <span class="searchtext">
-           Search patients
+            Search patients
           </span>
-          <input aria-label="Search patients or bookings" class="searchPlaceHolder" placeholder="Search patients or bookings" type="search"/>
-          <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg"/>
-         </div>
-       <div class="Pweb_login">
-        <a class="login" href="logout.html">
-         <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg"/>
-         <span class="loginText">
-          Sign out
-         </span>
-        </a>
-       </div>
+          <input aria-label="Search patients or bookings" class="searchPlaceHolder"
+            placeholder="Search patients or bookings" type="search" />
+          <img alt="Close search" class="close_searchBtn" src="../public/cancel-close-delete-svgrepo-com.svg" />
+        </div>
+        <div class="Pweb_login">
+          <a class="login" href="logout.html">
+            <img alt="" class="login-icon" src="../public/account-avatar-person-svgrepo-com.svg" />
+            <span class="loginText">
+              Sign out
+            </span>
+          </a>
+        </div>
       </div>
-     </div>
+    </div>
 
     <div class="bNav">
 
@@ -503,8 +504,37 @@ html.auth-ready body {
     </form>
   </dialog>
 
+  <aside class="ab-history-panel" id="historyPanel" aria-labelledby="historyTitle" aria-hidden="true">
+    <div class="ab-history-head">
+      <div>
+        <p class="ab-kicker">APPOINTMENT RECORD</p>
+        <h2 id="historyTitle">Appointment History</h2>
+        <p id="historyPatient"></p>
+      </div>
+
+      <button type="button" id="closeHistory" class="ab-dialog-close" aria-label="Close history">×</button>
+    </div>
+
+    <div class="ab-history-body">
+      <div id="historyLoading" hidden>
+        Loading appointment history...
+      </div>
+
+      <div id="historyError" role="alert" hidden></div>
+
+      <div id="historyEmpty" hidden>
+        No recorded activity for this appointment.
+      </div>
+
+      <div id="historyTimeline" class="ab-history-timeline" aria-live="polite"></div>
+    </div>
+  </aside>
+
+  <div class="ab-history-backdrop" id="historyBackdrop" hidden></div>
+
   <div class="ab-toast" id="bookingToast" role="status" aria-live="polite"></div>
 
-  <script type="module" src="./js/admin-bookings.js"></script></body>
+  <script type="module" src="./js/admin-bookings.js"></script>
+</body>
 
 </html>
