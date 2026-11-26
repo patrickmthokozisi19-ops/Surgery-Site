@@ -381,14 +381,25 @@
           return;
         }
 
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
         const rows = appointments.map((appointment) => {
+          const appointmentDate = new Date(`${appointment.date}T00:00:00`);
+          const isUpcoming = appointmentDate >= today;
+          const dateLabel = isUpcoming ? 'Upcoming' : 'Past';
           const status = String(appointment.status || 'unknown')
             .toLowerCase()
             .replace(/[^a-z0-9_-]/g, '');
 
           return `
       <tr>
-        <td><strong>${safe(formattedDate(appointment.date))}</strong></td>
+        <td>
+  <strong>${safe(formattedDate(appointment.date))}</strong>
+  <span class="apr-appointment-period ${isUpcoming ? 'is-upcoming' : 'is-past'}">
+    ${dateLabel}
+  </span>
+</td>
         <td>${safe(appointment.specialist || 'Not assigned')}</td>
         <td>${safe(appointment.type || 'Not specified')}</td>
         <td>${safe(formatTime(appointment.start))} – ${safe(formatTime(appointment.end))}</td>
