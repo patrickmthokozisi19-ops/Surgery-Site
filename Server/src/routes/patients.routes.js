@@ -3,7 +3,8 @@ import { Router } from "express";
 
 import {
   getPatients,
-  getPatientById
+  getPatientById,
+  createPatient
 } from "../controllers/patients.controller.js";
 
 import { requireAuth } from "../middleware/auth.middleware.js";
