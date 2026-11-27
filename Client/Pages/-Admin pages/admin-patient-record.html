@@ -666,7 +666,12 @@
         if (!response.ok) throw new Error(`Patient request failed (${response.status}).`);
 
         const patient = await response.json();
-        renderRecord(patient);
+
+        currentPatient = patient;
+        renderRecord(currentPatient);
+
+        editButton.disabled = false;
+        editButton.removeAttribute('title');
 
         // Load appointment history separately so a history error
         // does not prevent the patient record from displaying.
