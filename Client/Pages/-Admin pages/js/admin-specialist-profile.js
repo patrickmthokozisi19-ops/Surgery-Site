@@ -22,6 +22,7 @@ import { supabase } from "./supabase-client.js";
 
   let specialist = null;
   let credentials = {};
+  let editing = false;
 
   // -----------------------------
   // Navigation
@@ -72,6 +73,20 @@ import { supabase } from "./supabase-client.js";
   // Load specialist
   // -----------------------------
 
+  async function getSession() {
+    const {
+      data: { session },
+      error
+    } = await supabase.auth.getSession();
+
+    if (error || !session) {
+      window.location.replace("./admin-login.html");
+      return null;
+    }
+
+    return session;
+  }
+
   async function loadSpecialist() {
     const specialistId = new URLSearchParams(
       window.location.search
@@ -84,15 +99,9 @@ import { supabase } from "./supabase-client.js";
     }
 
     try {
-      const {
-        data: { session },
-        error: sessionError
-      } = await supabase.auth.getSession();
+      const session = await getSession();
 
-      if (sessionError || !session) {
-        window.location.replace("./admin-login.html");
-        return;
-      }
+      if (!session) return;
 
       const response = await fetch(
         `/api/specialists/${encodeURIComponent(specialistId)}`,
@@ -125,6 +134,7 @@ import { supabase } from "./supabase-client.js";
           : {};
 
       fillProfile();
+      setViewMode();
 
     } catch (error) {
       console.error("Specialist profile error:", error);
@@ -139,6 +149,25 @@ import { supabase } from "./supabase-client.js";
   }
 
   // -----------------------------
+  // Populate specialty options
+  // -----------------------------
+
+  function setupSpecialties() {
+    const select = $("editSpecialty");
+
+    select.replaceChildren();
+
+    SPECIALTIES.forEach((specialty) => {
+      const option = document.createElement("option");
+
+      option.value = specialty;
+      option.textContent = specialty;
+
+      select.appendChild(option);
+    });
+  }
+
+  // -----------------------------
   // Fill profile
   // -----------------------------
 
@@ -148,24 +177,36 @@ import { supabase } from "./supabase-client.js";
     $("specialistNumber").textContent = `· ${specialist.id}`;
 
     $("profileName").textContent = specialist.full_name;
+
+    $("profileAvatar").textContent = specialist.full_name
+      .split(/\s+/)
+      .filter(part => !["Dr.", "Dr"].includes(part))
+      .slice(0, 2)
+      .map(part => part[0])
+      .join("")
+      .toUpperCase();
+
     $("profileSpecialty").textContent =
       specialist.specialty || "Specialty not specified";
 
-    $("editSpecialty").innerHTML = SPECIALTIES
-      .map((item) => {
-        const option = document.createElement("option");
-        option.value = item;
-        option.textContent = item;
-        return option;
-      })
-      .map((option) => option.outerHTML)
-      .join("");
+    $("profileAccountBadge").textContent =
+      specialist.user_id ? "Account linked" : "No linked account";
+
+    $("profileCredentialBadge").textContent =
+      credentials.credential_status || "Not verified";
+
+    setupSpecialties();
 
     $("editName").value = specialist.full_name || "";
-    $("editSpecialty").value = specialist.specialty || "";
 
-    $("editEmail").value = credentials.email || "";
-    $("editPhone").value = credentials.phone || "";
+    $("editSpecialty").value =
+      specialist.specialty || "";
+
+    $("editEmail").value =
+      credentials.email || "";
+
+    $("editPhone").value =
+      credentials.phone || "";
 
     $("editRegistration").value =
       credentials.registration || "";
@@ -180,10 +221,10 @@ import { supabase } from "./supabase-client.js";
     $("editStatus").disabled = true;
     $("editDuration").disabled = true;
 
-    $("hoursRows").innerHTML =
-      "<p>Working hours integration is not available yet.</p>";
+    $("hoursRows").textContent =
+      "Working hours integration is not available yet.";
 
-    // The database currently requires a linked user_id.
+    // Account information.
     $("accountStatus").textContent =
       specialist.user_id ? "Account linked" : "No linked account";
 
@@ -200,13 +241,79 @@ import { supabase } from "./supabase-client.js";
   }
 
   // -----------------------------
+  // View mode
+  // -----------------------------
+
+  function setViewMode() {
+    editing = false;
+
+    $("profileForm").classList.remove("asp-editing");
+
+    $("editName").disabled = true;
+    $("editSpecialty").disabled = true;
+    $("editEmail").disabled = true;
+    $("editPhone").disabled = true;
+    $("editRegistration").disabled = true;
+    $("editNotes").disabled = true;
+
+    $("editStatus").disabled = true;
+    $("editDuration").disabled = true;
+
+    $("saveProfile").textContent = "Edit profile";
+    $("saveProfile").disabled = false;
+
+    $("cancelEdit").hidden = true;
+  }
+
+  // -----------------------------
+  // Edit mode
+  // -----------------------------
+
+  function setEditMode() {
+    if (!specialist || editing) return;
+
+    editing = true;
+
+    $("profileForm").classList.add("asp-editing");
+
+    $("editName").disabled = false;
+    $("editSpecialty").disabled = false;
+    $("editEmail").disabled = false;
+    $("editPhone").disabled = false;
+    $("editRegistration").disabled = false;
+    $("editNotes").disabled = false;
+
+    // These features are not implemented yet.
+    $("editStatus").disabled = true;
+    $("editDuration").disabled = true;
+
+    $("saveProfile").textContent = "Save changes";
+    $("cancelEdit").hidden = false;
+
+    showMessage("You are editing this specialist's profile.");
+  }
+
+  // -----------------------------
+  // Cancel editing
+  // -----------------------------
+
+  function cancelEditing() {
+    if (!editing) return;
+
+    fillProfile();
+    setViewMode();
+
+    showMessage("Changes discarded.");
+  }
+
+  // -----------------------------
   // Save profile
   // -----------------------------
 
   async function saveProfile(event) {
     event.preventDefault();
 
-    if (!specialist) return;
+    if (!specialist || !editing) return;
 
     showMessage("");
 
@@ -237,15 +344,9 @@ import { supabase } from "./supabase-client.js";
     saveButton.textContent = "Saving...";
 
     try {
-      const {
-        data: { session },
-        error: sessionError
-      } = await supabase.auth.getSession();
+      const session = await getSession();
 
-      if (sessionError || !session) {
-        window.location.replace("./admin-login.html");
-        return;
-      }
+      if (!session) return;
 
       const response = await fetch(
         `/api/specialists/${encodeURIComponent(specialist.id)}`,
@@ -272,13 +373,15 @@ import { supabase } from "./supabase-client.js";
       }
 
       specialist = result.specialist;
-      credentials = { ...updatedCredentials };
 
-      $("profileName").textContent = specialist.full_name;
-      $("profileSpecialty").textContent =
-        specialist.specialty || "Specialty not specified";
+      credentials = {
+        ...updatedCredentials
+      };
 
-      showMessage("Specialist profile saved successfully.");
+      fillProfile();
+      setViewMode();
+
+      showMessage("Specialist profile updated successfully.");
 
     } catch (error) {
       console.error("Specialist save error:", error);
@@ -288,7 +391,6 @@ import { supabase } from "./supabase-client.js";
         true
       );
 
-    } finally {
       saveButton.disabled = false;
       saveButton.textContent = "Save changes";
     }
@@ -312,8 +414,17 @@ import { supabase } from "./supabase-client.js";
   setupNavigation();
   setupTabs();
 
+  $("saveProfile").addEventListener("click", () => {
+    if (editing) {
+      $("profileForm").requestSubmit();
+    } else {
+      setEditMode();
+    }
+  });
+
+  $("cancelEdit").addEventListener("click", cancelEditing);
+
   $("profileForm").addEventListener("submit", saveProfile);
-  $("saveProfile").addEventListener("click", saveProfile);
 
   loadSpecialist();
 
