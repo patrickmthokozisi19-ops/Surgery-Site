@@ -231,6 +231,147 @@ export const registerPatient = async ({
   return newPatient;
 };
 
+// Update an existing patient's profile.
+export const updatePatient = async ({
+  id,
+  practiceId,
+  patient,
+  contact,
+  patientDetails = {},
+  status,
+  userSupabase
+}) => {
+  if (!practiceId) {
+    throw new AppointmentError("Hospital identification is missing.");
+  }
+
+  if (!id) {
+    throw new AppointmentError("Patient identification is missing.");
+  }
+
+  // Retrieve the existing record within the current practice.
+  const { data: existing, error: findError } = await userSupabase
+    .from("patients")
+    .select("id, practice_id, full_name, contact, details, status")
+    .eq("id", id)
+    .eq("practice_id", practiceId)
+    .maybeSingle();
+
+  if (findError) {
+    throw new AppointmentError("Unable to retrieve the patient.", 500);
+  }
+
+  if (!existing) {
+    throw new AppointmentError("Patient not found.", 404);
+  }
+
+  const updates = {};
+
+  // Update the patient's name only when supplied.
+  if (patient !== undefined) {
+    if (typeof patient !== "string" || !patient.trim()) {
+      throw new AppointmentError("Patient name is required.");
+    }
+
+    updates.full_name = patient.trim();
+  }
+
+  // Update the contact number only when supplied.
+  if (contact !== undefined) {
+    const cleanContact = normaliseContact(contact);
+
+    if (!cleanContact) {
+      throw new AppointmentError("Patient contact number is required.");
+    }
+
+    updates.contact = cleanContact;
+  }
+
+  // Validate status when it is supplied.
+  if (status !== undefined) {
+    const cleanStatus = String(status).toLowerCase();
+
+    if (!["active", "inactive"].includes(cleanStatus)) {
+      throw new AppointmentError("Invalid patient status.");
+    }
+
+    updates.status = cleanStatus;
+  }
+
+  // Keep existing JSONB details and update only recognised fields.
+  const cleanDetails = extractPatientDetails(patientDetails);
+
+  if (Object.keys(cleanDetails).length > 0) {
+    updates.details = {
+      ...(existing.details || {}),
+      ...cleanDetails
+    };
+  }
+
+  if (Object.keys(updates).length === 0) {
+    throw new AppointmentError("No patient information was supplied.");
+  }
+
+  // Prevent another patient at this practice from having the same
+  // name and contact combination.
+  const updatedName = updates.full_name ?? existing.full_name;
+  const updatedContact = updates.contact ?? existing.contact;
+
+  if (updates.full_name !== undefined || updates.contact !== undefined) {
+    const { data: duplicate, error: duplicateError } = await userSupabase
+      .from("patients")
+      .select("id")
+      .eq("practice_id", practiceId)
+      .eq("contact", updatedContact)
+      .ilike("full_name", updatedName)
+      .neq("id", id)
+      .limit(1);
+
+    if (duplicateError) {
+      throw new AppointmentError(
+        "Unable to check for duplicate patient records.",
+        500
+      );
+    }
+
+    if (duplicate?.length) {
+      throw new AppointmentError(
+        "Another patient at this practice already has this name and contact number.",
+        409
+      );
+    }
+  }
+
+  const { data: updatedPatient, error: updateError } = await userSupabase
+    .from("patients")
+    .update(updates)
+    .eq("id", id)
+    .eq("practice_id", practiceId)
+    .select(`
+      id,
+      practice_id,
+      full_name,
+      contact,
+      details,
+      status,
+      verification_status,
+      created_at
+    `)
+    .single();
+
+  if (updateError) {
+    console.error("Patient update failed:", updateError);
+
+    throw new AppointmentError(
+      "Unable to update the patient record.",
+      500
+    );
+  }
+
+  return updatedPatient;
+};
+
+
 // Retrieve one patient by their database ID.
 export const findPatientById = async (
   id,
