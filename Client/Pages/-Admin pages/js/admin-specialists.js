@@ -1,4 +1,4 @@
-import { supabase } from "./js/supabase-client.js";
+import { supabase } from "./supabase-client.js";
 
 (() => {
   'use strict';
