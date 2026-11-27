@@ -379,8 +379,16 @@ export const findPatientById = async (
   userSupabase) => {
   const { data, error } = await userSupabase
     .from("patients")
-    .select("id, practice_id, full_name, contact, details")
-    .eq("id", id)
+    .select(`
+    id,
+    practice_id,
+    full_name,
+    contact,
+    details,
+    status,
+    verification_status,
+    created_at
+  `)    .eq("id", id)
     .eq("practice_id", practiceId)
     .maybeSingle();
 
