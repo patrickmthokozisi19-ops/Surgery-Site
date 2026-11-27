@@ -19,3 +19,26 @@ export const findAllSpecialists = async (practiceId, userSupabase) => {
 
   return data;
 };
+export const findSpecialistById = async (specialistId, practiceId, userSupabase) => {
+  const { data, error } = await userSupabase
+    .from("specialists")
+    .select(`
+      id,
+      user_id,
+      full_name,
+      specialty,
+      credentials,
+      created_at,
+      updated_at
+    `)
+    .eq("id", specialistId)
+    .eq("practice_id", practiceId)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Could not retrieve specialist:", error);
+    throw new Error("Could not retrieve specialist.");
+  }
+
+  return data;
+};

@@ -1,6 +1,9 @@
 import { Router } from "express";
 
-import { getSpecialists } from "../controllers/specialists.controller.js";
+import {
+  getSpecialists,
+  getSpecialistById
+} from "../controllers/specialists.controller.js";
 
 import { requireAuth } from "../middleware/auth.middleware.js";
 import { requirePracticeMembership } from "../middleware/membership.middleware.js";
@@ -10,5 +13,6 @@ const router = Router();
 router.use(requireAuth, requirePracticeMembership);
 
 router.get("/", getSpecialists);
+router.get("/:id", getSpecialistById);
 
 export default router;
