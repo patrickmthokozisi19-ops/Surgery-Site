@@ -234,10 +234,9 @@ export const registerPatient = async ({
 // Retrieve one patient by their database ID.
 export const findPatientById = async (
   id,
-   practiceId,
-    userSupabase) =>
-    {
-     const { data, error } = await userSupabase
+  practiceId,
+  userSupabase) => {
+  const { data, error } = await userSupabase
     .from("patients")
     .select("id, practice_id, full_name, contact, details")
     .eq("id", id)
@@ -258,8 +257,16 @@ export const findPatientById = async (
 export const findAllPatients = async (practiceId, userSupabase) => {
   const { data, error } = await userSupabase
     .from("patients")
-    .select("id, practice_id, full_name, contact, details, created_at")
-    .eq("practice_id", practiceId)
+    .select(`
+    id,
+    practice_id,
+    full_name,
+    contact,
+    details,
+    status,
+    verification_status,
+    created_at
+  `).eq("practice_id", practiceId)
     .order("created_at", { ascending: false });
 
   if (error) {

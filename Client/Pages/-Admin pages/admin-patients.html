@@ -10,18 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
 
-<!-- to make unauth opening of a page blank as redirecting to loggin-->
-<style>
- html:not(.auth-ready) body {
-  visibility: hidden;
-}
+  <!-- to make unauth opening of a page blank as redirecting to loggin-->
+  <style>
+    html:not(.auth-ready) body {
+      visibility: hidden;
+    }
 
-/* Reveal protected content after authentication. */
+    /* Reveal protected content after authentication. */
 
-html.auth-ready body {
-  visibility: visible;
-} 
-</style>
+    html.auth-ready body {
+      visibility: visible;
+    }
+  </style>
 
 
   <script type="module" src="./js/admin-auth.js"></script>
@@ -211,107 +211,85 @@ html.auth-ready body {
     (() => {
       'use strict';
 
-      const initialPatients = [
-        {
-          "id": "PT-1001",
-          "name": "Thandi Mokoena",
-          "initials": "TM",
-          "phone": "071 000 1201",
-          "email": "thandi.mokoena@example.com",
-          "dob": "1988-04-12",
-          "registered": "2026-08-21",
-          "verification": "Verified",
-          "status": "Active",
-          "emergencyName": "N. Mokoena",
-          "emergencyPhone": "072 000 2101"
-        },
-        {
-          "id": "PT-1002",
-          "name": "Sipho Khumalo",
-          "initials": "SK",
-          "phone": "072 000 1202",
-          "email": "sipho.khumalo@example.com",
-          "dob": "1994-11-03",
-          "registered": "2026-09-06",
-          "verification": "Pending review",
-          "status": "Active",
-          "emergencyName": "L. Khumalo",
-          "emergencyPhone": "073 000 2102"
-        },
-        {
-          "id": "PT-1003",
-          "name": "Ruth Adams",
-          "initials": "RA",
-          "phone": "073 000 1203",
-          "email": "ruth.adams@example.com",
-          "dob": "1976-06-19",
-          "registered": "2026-07-14",
-          "verification": "Verified",
-          "status": "Active",
-          "emergencyName": "J. Adams",
-          "emergencyPhone": "074 000 2103"
-        },
-        {
-          "id": "PT-1004",
-          "name": "Maria van der Merwe",
-          "initials": "MV",
-          "phone": "074 000 1204",
-          "email": "maria.vdm@example.com",
-          "dob": "1969-02-25",
-          "registered": "2026-06-29",
-          "verification": "Verified",
-          "status": "Active",
-          "emergencyName": "P. van der Merwe",
-          "emergencyPhone": "075 000 2104"
-        },
-        {
-          "id": "PT-1005",
-          "name": "Zanele Ndlovu",
-          "initials": "ZN",
-          "phone": "075 000 1205",
-          "email": "zanele.ndlovu@example.com",
-          "dob": "1999-09-10",
-          "registered": "2026-10-02",
-          "verification": "Not uploaded",
-          "status": "Active",
-          "emergencyName": "B. Ndlovu",
-          "emergencyPhone": "076 000 2105"
-        },
-        {
-          "id": "PT-1006",
-          "name": "Cameron Jacobs",
-          "initials": "CJ",
-          "phone": "076 000 1206",
-          "email": "cameron.jacobs@example.com",
-          "dob": "1981-01-08",
-          "registered": "2026-09-23",
-          "verification": "Pending review",
-          "status": "Inactive",
-          "emergencyName": "E. Jacobs",
-          "emergencyPhone": "077 000 2106"
-        }
-      ];
-      const storageKey = 'pweb-patient-directory-v1';
+      let patients = [];
+
+      const API_URL = '/api/patients';
+
       const get = (id) => document.getElementById(id);
       const safe = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
       })[char]);
 
-      let patients = initialPatients;
-      try {
-        const stored = JSON.parse(localStorage.getItem(storageKey));
-        if (Array.isArray(stored)) patients = stored;
-      } catch (error) {
-        console.warn('Patient directory storage is unavailable.', error);
-      }
+      async function loadPatients() {
+  try {
+    const { supabase } = await import('./js/supabase-client.js');
 
-      function persist() {
-        try {
-          localStorage.setItem(storageKey, JSON.stringify(patients));
-        } catch (error) {
-          console.warn('Unable to save patient directory.', error);
-        }
+    const {
+      data: { session },
+      error: sessionError
+    } = await supabase.auth.getSession();
+
+    if (sessionError || !session) {
+      window.location.replace('./admin-login.html');
+      return;
+    }
+
+    const response = await fetch(API_URL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${session.access_token}`
       }
+    });
+
+    if (!response.ok) {
+      throw new Error('Unable to retrieve patients.');
+    }
+
+    const data = await response.json();
+
+    patients = data.map((patient) => {
+      const details = patient.details || {};
+
+      const name = patient.full_name || 'Unnamed patient';
+
+      const status = patient.status === 'active'
+        ? 'Active'
+        : 'Inactive';
+
+      const verificationMap = {
+        verified: 'Verified',
+        pending_review: 'Pending review',
+        not_uploaded: 'Not uploaded'
+      };
+
+      return {
+        id: patient.id,
+        name,
+        initials: name
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((part) => part[0])
+          .join('')
+          .slice(0, 2)
+          .toUpperCase(),
+        phone: patient.contact || '',
+        email: details.patientEmail || '',
+        dob: details.birthDate || '',
+        registered: patient.created_at || '',
+        verification: verificationMap[patient.verification_status]
+          || 'Not uploaded',
+        status,
+        emergencyName: details.emergencyName || '',
+        emergencyPhone: details.emergencyPhone || ''
+      };
+    });
+
+    renderPatients();
+
+  } catch (error) {
+    console.error('Patient directory loading failed:', error);
+  }
+}
 
       function badge(value) {
         const name = value === 'Verified' ? 'verified' :
@@ -403,8 +381,8 @@ html.auth-ready body {
         });
       }
 
-      renderPatients();
-    })();
+      loadPatients();
+        })();
   </script>
 </body>
 
