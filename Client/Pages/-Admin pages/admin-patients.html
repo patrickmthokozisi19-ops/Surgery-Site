@@ -354,7 +354,7 @@
           <label>
             Preferred contact method
             <select name="contactMethod">
-              <option value="">Select contact method</option>
+              <option value="any" selected>All</option>
               <option value="phone">Phone call</option>
               <option value="sms">SMS</option>
               <option value="email">Email</option>
@@ -411,64 +411,52 @@
         </div>
   
         <div class="ap-reg-divider"></div>
-  
-        <div class="ap-reg-section-heading">
-          <h3>Next of kin</h3>
-        </div>
-  
+
         <label class="ap-reg-checkbox">
-          <input type="checkbox" name="kinSame" value="true">
-          Next of kin is the same as the emergency contact
+          <input type="checkbox" id="kinEnabled">
+          Add next-of-kin details (optional)
         </label>
-  
-        <div class="ap-form-grid">
-  
+        
+        <div class="ap-form-grid" id="kinFields" hidden>
           <label>
             Next of kin name
             <input name="kinName" type="text" maxlength="100">
           </label>
-  
+        
           <label>
             Relationship
             <input name="kinRelationship" type="text" maxlength="50">
           </label>
-  
+        
           <label class="ap-reg-full-width">
             Contact number
             <input name="kinPhone" type="tel" maxlength="30">
           </label>
-  
         </div>
   
         <div class="ap-reg-divider"></div>
-  
-        <div class="ap-reg-section-heading">
-          <h3>Guardian information</h3>
-          <p>Complete this section when the patient requires a guardian.</p>
-        </div>
-  
+
         <label class="ap-reg-checkbox">
-          <input type="checkbox" name="guardianNeeded" value="true">
-          Patient requires a guardian
+          <input type="checkbox" name="guardianNeeded" id="guardianEnabled">
+          Add guardian details (optional)
         </label>
-  
-        <div class="ap-form-grid">
-  
+        
+        <div class="ap-form-grid" id="guardianFields" hidden>
           <label>
             Guardian name
             <input name="guardianName" type="text" maxlength="100">
           </label>
-  
+        
           <label>
             Relationship
             <input name="guardianRelationship" type="text" maxlength="50">
           </label>
-  
+        
           <label class="ap-reg-full-width">
-            Guardian contact number
+            Contact number
             <input name="guardianPhone" type="tel" maxlength="30">
           </label>
-  
+        </div>
         </div>
       </section>
   
@@ -480,10 +468,10 @@
         </div>
   
         <div class="ap-form-grid">
-  
+
           <label class="ap-reg-full-width">
             Payment method
-            <select name="paymentMethod">
+            <select name="paymentMethod" id="paymentMethod" required>
               <option value="">Select payment method</option>
               <option value="cash">Cash</option>
               <option value="card">Card</option>
@@ -492,51 +480,48 @@
               <option value="other">Other</option>
             </select>
           </label>
-  
-          <label>
-            Payer name
-            <input name="payerName" type="text" maxlength="100">
-          </label>
-  
-          <label>
-            Payer contact number
-            <input name="payerPhone" type="tel" maxlength="30">
-          </label>
-  
-          <label>
-            Medical aid scheme
-            <input name="scheme" type="text" maxlength="100">
-          </label>
-  
-          <label>
-            Medical aid plan
-            <input name="plan" type="text" maxlength="100">
-          </label>
-  
-          <label>
-            Membership number
-            <input name="memberNumber" type="text" maxlength="50">
-          </label>
-  
-          <label>
-            Dependant code
-            <input name="dependantCode" type="text" maxlength="30">
-          </label>
-  
-          <label class="ap-reg-full-width">
-            Main member name
-            <input name="mainMember" type="text" maxlength="100">
-          </label>
-  
-          <label class="ap-reg-full-width">
-            Authorisation information
-            <textarea
-              name="authorisation"
-              rows="2"
-              maxlength="500"
-            ></textarea>
-          </label>
-  
+        
+          <div class="ap-reg-full-width ap-medical-aid-fields" id="medicalAidFields" hidden>
+            <div class="ap-form-grid">
+        
+              <label>
+                Medical aid scheme
+                <input name="scheme" type="text" maxlength="100">
+              </label>
+        
+              <label>
+                Medical aid plan
+                <input name="plan" type="text" maxlength="100">
+              </label>
+        
+              <label>
+                Membership number
+                <input name="memberNumber" type="text" maxlength="50">
+              </label>
+        
+              <label>
+                Dependant code
+                <input name="dependantCode" type="text" maxlength="30">
+              </label>
+        
+              <label>
+                Main member name
+                <input name="mainMember" type="text" maxlength="100">
+              </label>
+        
+              <label>
+                Payer contact number
+                <input name="payerPhone" type="tel" maxlength="30">
+              </label>
+        
+              <label class="ap-reg-full-width">
+                Authorisation information
+                <textarea name="authorisation" rows="2" maxlength="500"></textarea>
+              </label>
+        
+            </div>
+          </div>
+        
         </div>
   
         <div class="ap-reg-divider"></div>
@@ -589,7 +574,7 @@
   </dialog>
   
 
-  <script>
+  <script type="module">
     (() => {
       'use strict';
 
@@ -598,6 +583,203 @@
       const API_URL = '/api/patients';
 
       const get = (id) => document.getElementById(id);
+
+
+const registrationForm = get('registerForm');
+const registrationPages = [
+  ...registrationForm.querySelectorAll('.ap-reg-page')
+];
+
+const previousRegPage = get('previousRegPage');
+const nextRegPage = get('nextRegPage');
+const submitRegistration = get('submitRegistration');
+const registrationReview = get('registrationReview');
+
+let currentRegPage = 1;
+function setupConditionalFields() {
+  const toggles = [
+    ['kinEnabled', 'kinFields'],
+    ['guardianEnabled', 'guardianFields']
+  ];
+
+  toggles.forEach(([toggleId, fieldsId]) => {
+    const toggle = get(toggleId);
+    const fields = get(fieldsId);
+
+    const update = () => {
+      fields.hidden = !toggle.checked;
+
+      if (!toggle.checked) {
+        fields.querySelectorAll('input, select, textarea').forEach((field) => {
+          field.value = '';
+        });
+      }
+    };
+
+    toggle.addEventListener('change', update);
+    update();
+  });
+
+  const paymentMethod = get('paymentMethod');
+  const medicalAidFields = get('medicalAidFields');
+
+  function updatePaymentFields() {
+    const isMedicalAid = paymentMethod.value === 'medical_aid';
+
+    medicalAidFields.hidden = !isMedicalAid;
+
+    if (!isMedicalAid) {
+      medicalAidFields.querySelectorAll('input, textarea').forEach((field) => {
+        field.value = '';
+      });
+    }
+  }
+
+  paymentMethod.addEventListener('change', updatePaymentFields);
+  updatePaymentFields();
+}
+
+setupConditionalFields();
+function updateRegistrationPage() {
+  registrationPages.forEach((page, index) => {
+    const isCurrent = index + 1 === currentRegPage;
+
+    page.hidden = !isCurrent;
+    page.classList.toggle('active', isCurrent);
+  });
+
+  document.querySelectorAll(
+    '#registerDialog .ap-reg-progress-step'
+  ).forEach((step) => {
+    const stepNumber = Number(step.dataset.step);
+
+    step.classList.toggle('active', stepNumber === currentRegPage);
+    step.classList.toggle('completed', stepNumber < currentRegPage);
+  });
+
+  previousRegPage.hidden = currentRegPage === 1;
+  nextRegPage.hidden = currentRegPage === registrationPages.length;
+  submitRegistration.hidden = currentRegPage !== registrationPages.length;
+}
+
+function validateCurrentRegPage() {
+  const currentPage = registrationPages[currentRegPage - 1];
+
+  const fields = currentPage.querySelectorAll(
+    'input:not([type="checkbox"]):not([type="radio"]), select, textarea'
+  );
+
+  for (const field of fields) {
+    if (!field.checkValidity()) {
+      field.reportValidity();
+      return false;
+    }
+  }
+
+  return true;
+}
+
+
+function buildRegistrationReview() {
+  registrationReview.replaceChildren();
+
+  const heading = document.createElement('h3');
+  heading.textContent = 'Review registration details';
+
+  const description = document.createElement('p');
+  description.textContent =
+    'Please check the information below before creating the patient record.';
+
+  registrationReview.append(heading, description);
+
+  registrationPages.forEach((page) => {
+    const fields = page.querySelectorAll(
+      'input, select, textarea'
+    );
+
+    const group = document.createElement('section');
+    group.className = 'ap-reg-review-group';
+
+    const groupHeading = document.createElement('h4');
+    groupHeading.textContent =
+      page.querySelector('h3')?.textContent.trim() || 'Additional details';
+
+    const details = document.createElement('dl');
+    let hasDetails = false;
+
+    fields.forEach((field) => {
+      if (field.disabled || !field.name) return;
+
+      if (field.type === 'radio' && !field.checked) return;
+
+      const label = field.labels?.[0]?.textContent
+  .replace(/\s+/g, ' ')
+  .trim() || field.name;
+
+      let value = '';
+
+      if (field.type === 'checkbox') {
+        value = field.checked ? 'Yes' : 'No';
+      } else if (field.tagName === 'SELECT') {
+  value = field.selectedOptions[0]?.textContent
+    .replace(/\s+/g, ' ')
+    .trim() || '';
+} else {
+        value = field.value.trim();
+      }
+
+      if (!value && field.type !== 'checkbox') return;
+
+      const row = document.createElement('div');
+      row.className = 'ap-reg-review-row';
+
+      const term = document.createElement('dt');
+      term.textContent = label;
+
+      const definition = document.createElement('dd');
+      definition.textContent = value || 'Not provided';
+
+      row.append(term, definition);
+      details.appendChild(row);
+
+      hasDetails = true;
+    });
+
+    if (hasDetails) {
+      group.append(groupHeading, details);
+      registrationReview.appendChild(group);
+    }
+  });
+}
+
+nextRegPage.addEventListener('click', () => {
+  if (!validateCurrentRegPage()) return;
+
+  if (currentRegPage < registrationPages.length) {
+    currentRegPage++;
+    updateRegistrationPage();
+
+    if (currentRegPage === registrationPages.length) {
+      buildRegistrationReview();
+    }
+  }
+});
+
+previousRegPage.addEventListener('click', () => {
+  if (currentRegPage > 1) {
+    currentRegPage--;
+    updateRegistrationPage();
+  }
+});
+
+function resetRegistrationPages() {
+  currentRegPage = 1;
+  updateRegistrationPage();
+}
+
+updateRegistrationPage();
+
+
       const safe = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
       })[char]);
