@@ -185,27 +185,409 @@
     </section>
   </main>
 
-  <dialog class="ap-dialog" id="registerDialog" aria-labelledby="registerTitle">
-    <form id="registerForm">
+
+  <dialog class="ap-dialog ap-registration-dialog" id="registerDialog" aria-labelledby="registerTitle">
+    <form id="registerForm" novalidate>
+  
+      <!-- Registration header -->
       <div class="ap-dialog-header">
         <div>
           <p class="ap-eyebrow">PATIENT REGISTRATION</p>
           <h2 id="registerTitle">Register patient</h2>
+          <p class="ap-reg-subtitle">Complete the patient's registration details.</p>
         </div>
-        <button class="ap-icon-button" type="button" id="closeRegister" aria-label="Close registration">×</button>
+  
+        <button
+          class="ap-icon-button"
+          type="button"
+          id="closeRegister"
+          aria-label="Close registration"
+        >×</button>
       </div>
-      <div class="ap-form-grid">
-        <label>Full name<input name="name" required maxlength="100" autocomplete="name"></label>
-        <label>Date of birth<input name="dob" type="date" required></label>
-        <label>Contact number<input name="phone" type="tel" required maxlength="30" autocomplete="tel"></label>
-        <label>Email<input name="email" type="email" autocomplete="email"></label>
+  
+      <!-- Progress indicator -->
+      <div class="ap-reg-progress">
+        <div class="ap-reg-progress-step active" data-step="1">
+          <span>1</span>
+          <small>Personal</small>
+        </div>
+  
+        <div class="ap-reg-progress-line"></div>
+  
+        <div class="ap-reg-progress-step" data-step="2">
+          <span>2</span>
+          <small>Contact</small>
+        </div>
+  
+        <div class="ap-reg-progress-line"></div>
+  
+        <div class="ap-reg-progress-step" data-step="3">
+          <span>3</span>
+          <small>Payment & review</small>
+        </div>
       </div>
-      <div class="ap-dialog-actions">
-        <button class="ap-btn" type="button" id="cancelRegister">Cancel</button>
-        <button class="ap-btn ap-btn-primary" type="submit">Create record</button>
+  
+      <!-- PAGE 1: PERSONAL INFORMATION -->
+      <section class="ap-reg-page active" data-page="1">
+        <div class="ap-reg-section-heading">
+          <h3>Personal information</h3>
+          <p>Enter the patient's identifying information.</p>
+        </div>
+  
+        <div class="ap-form-grid">
+  
+          <label>
+            Full legal name
+            <input
+              name="name"
+              type="text"
+              required
+              maxlength="100"
+              autocomplete="name"
+              placeholder="Enter full legal name"
+            >
+          </label>
+  
+          <label>
+            Preferred name
+            <input
+              name="preferredName"
+              type="text"
+              maxlength="100"
+              placeholder="Optional"
+            >
+          </label>
+  
+          <label>
+            Date of birth
+            <input
+              name="dob"
+              type="date"
+              required
+            >
+          </label>
+  
+          <label>
+            Identification type
+            <select name="idType">
+              <option value="">Select identification type</option>
+              <option value="south_african_id">South African ID</option>
+              <option value="passport">Passport</option>
+              <option value="other">Other identification</option>
+            </select>
+          </label>
+  
+          <label>
+            Identity / passport number
+            <input
+              name="identityNumber"
+              type="text"
+              maxlength="30"
+              autocomplete="off"
+              placeholder="Enter identification number"
+            >
+          </label>
+  
+          <label>
+            Preferred language
+            <select name="language">
+              <option value="">Select language</option>
+              <option value="English">English</option>
+              <option value="isiZulu">isiZulu</option>
+              <option value="isiXhosa">isiXhosa</option>
+              <option value="Afrikaans">Afrikaans</option>
+              <option value="Sesotho">Sesotho</option>
+              <option value="Setswana">Setswana</option>
+              <option value="Sepedi">Sepedi</option>
+              <option value="siSwati">siSwati</option>
+              <option value="Tshivenda">Tshivenda</option>
+              <option value="Xitsonga">XiTsonga</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+  
+        </div>
+      </section>
+  
+      <!-- PAGE 2: CONTACT INFORMATION -->
+      <section class="ap-reg-page" data-page="2" hidden>
+        <div class="ap-reg-section-heading">
+          <h3>Contact information</h3>
+          <p>How can the practice contact this patient?</p>
+        </div>
+  
+        <div class="ap-form-grid">
+  
+          <label>
+            Primary contact number
+            <input
+              name="phone"
+              type="tel"
+              required
+              maxlength="30"
+              autocomplete="tel"
+              placeholder="Enter phone number"
+            >
+          </label>
+  
+          <label>
+            Email address
+            <input
+              name="email"
+              type="email"
+              maxlength="254"
+              autocomplete="email"
+              placeholder="Optional"
+            >
+          </label>
+  
+          <label>
+            Alternative phone number
+            <input
+              name="alternativePhone"
+              type="tel"
+              maxlength="30"
+              placeholder="Optional"
+            >
+          </label>
+  
+          <label>
+            Preferred contact method
+            <select name="contactMethod">
+              <option value="">Select contact method</option>
+              <option value="phone">Phone call</option>
+              <option value="sms">SMS</option>
+              <option value="email">Email</option>
+              <option value="whatsapp">WhatsApp</option>
+            </select>
+          </label>
+  
+          <label class="ap-reg-full-width">
+            Residential address
+            <textarea
+              name="address"
+              rows="2"
+              maxlength="500"
+              placeholder="Enter residential address"
+            ></textarea>
+          </label>
+  
+          <label>
+            Postal code
+            <input
+              name="postalCode"
+              type="text"
+              maxlength="15"
+              autocomplete="postal-code"
+            >
+          </label>
+  
+        </div>
+  
+        <div class="ap-reg-divider"></div>
+  
+        <div class="ap-reg-section-heading">
+          <h3>Emergency contact</h3>
+          <p>Someone the practice can contact in an emergency.</p>
+        </div>
+  
+        <div class="ap-form-grid">
+  
+          <label>
+            Contact name
+            <input name="emergencyName" type="text" maxlength="100">
+          </label>
+  
+          <label>
+            Relationship
+            <input name="emergencyRelationship" type="text" maxlength="50">
+          </label>
+  
+          <label class="ap-reg-full-width">
+            Contact number
+            <input name="emergencyPhone" type="tel" maxlength="30">
+          </label>
+  
+        </div>
+  
+        <div class="ap-reg-divider"></div>
+  
+        <div class="ap-reg-section-heading">
+          <h3>Next of kin</h3>
+        </div>
+  
+        <label class="ap-reg-checkbox">
+          <input type="checkbox" name="kinSame" value="true">
+          Next of kin is the same as the emergency contact
+        </label>
+  
+        <div class="ap-form-grid">
+  
+          <label>
+            Next of kin name
+            <input name="kinName" type="text" maxlength="100">
+          </label>
+  
+          <label>
+            Relationship
+            <input name="kinRelationship" type="text" maxlength="50">
+          </label>
+  
+          <label class="ap-reg-full-width">
+            Contact number
+            <input name="kinPhone" type="tel" maxlength="30">
+          </label>
+  
+        </div>
+  
+        <div class="ap-reg-divider"></div>
+  
+        <div class="ap-reg-section-heading">
+          <h3>Guardian information</h3>
+          <p>Complete this section when the patient requires a guardian.</p>
+        </div>
+  
+        <label class="ap-reg-checkbox">
+          <input type="checkbox" name="guardianNeeded" value="true">
+          Patient requires a guardian
+        </label>
+  
+        <div class="ap-form-grid">
+  
+          <label>
+            Guardian name
+            <input name="guardianName" type="text" maxlength="100">
+          </label>
+  
+          <label>
+            Relationship
+            <input name="guardianRelationship" type="text" maxlength="50">
+          </label>
+  
+          <label class="ap-reg-full-width">
+            Guardian contact number
+            <input name="guardianPhone" type="tel" maxlength="30">
+          </label>
+  
+        </div>
+      </section>
+  
+      <!-- PAGE 3: PAYMENT AND REVIEW -->
+      <section class="ap-reg-page" data-page="3" hidden>
+        <div class="ap-reg-section-heading">
+          <h3>Payment information</h3>
+          <p>Record how the patient's visits will be paid for.</p>
+        </div>
+  
+        <div class="ap-form-grid">
+  
+          <label class="ap-reg-full-width">
+            Payment method
+            <select name="paymentMethod">
+              <option value="">Select payment method</option>
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+              <option value="medical_aid">Medical aid</option>
+              <option value="eft">EFT</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+  
+          <label>
+            Payer name
+            <input name="payerName" type="text" maxlength="100">
+          </label>
+  
+          <label>
+            Payer contact number
+            <input name="payerPhone" type="tel" maxlength="30">
+          </label>
+  
+          <label>
+            Medical aid scheme
+            <input name="scheme" type="text" maxlength="100">
+          </label>
+  
+          <label>
+            Medical aid plan
+            <input name="plan" type="text" maxlength="100">
+          </label>
+  
+          <label>
+            Membership number
+            <input name="memberNumber" type="text" maxlength="50">
+          </label>
+  
+          <label>
+            Dependant code
+            <input name="dependantCode" type="text" maxlength="30">
+          </label>
+  
+          <label class="ap-reg-full-width">
+            Main member name
+            <input name="mainMember" type="text" maxlength="100">
+          </label>
+  
+          <label class="ap-reg-full-width">
+            Authorisation information
+            <textarea
+              name="authorisation"
+              rows="2"
+              maxlength="500"
+            ></textarea>
+          </label>
+  
+        </div>
+  
+        <div class="ap-reg-divider"></div>
+  
+        <div class="ap-reg-section-heading">
+          <h3>Review registration</h3>
+          <p>Review the information before creating the patient record.</p>
+        </div>
+  
+        <div id="registrationReview" class="ap-reg-review">
+          Review details will appear here.
+        </div>
+  
+      </section>
+  
+      <!-- Form navigation -->
+      <div class="ap-dialog-actions ap-reg-actions">
+  
+        <button
+          class="ap-btn"
+          type="button"
+          id="cancelRegister"
+        >Cancel</button>
+  
+        <div class="ap-reg-navigation">
+          <button
+            class="ap-btn"
+            type="button"
+            id="previousRegPage"
+            hidden
+          >Back</button>
+  
+          <button
+            class="ap-btn ap-btn-primary"
+            type="button"
+            id="nextRegPage"
+          >Continue</button>
+  
+          <button
+            class="ap-btn ap-btn-primary"
+            type="submit"
+            id="submitRegistration"
+            hidden
+          >Register patient</button>
+        </div>
+  
       </div>
+  
     </form>
   </dialog>
+  
 
   <script>
     (() => {
