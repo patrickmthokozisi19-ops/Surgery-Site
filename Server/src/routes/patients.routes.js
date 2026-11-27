@@ -1,10 +1,10 @@
 
 import { Router } from "express";
-
 import {
   getPatients,
   getPatientById,
-  createPatient
+  createPatient,
+  editPatient
 } from "../controllers/patients.controller.js";
 
 import { requireAuth } from "../middleware/auth.middleware.js";
@@ -16,6 +16,7 @@ router.use(requireAuth, requirePracticeMembership);
 
 router.get("/", getPatients);
 router.post("/", createPatient);
+router.patch("/:id", editPatient);
 router.get("/:id", getPatientById);
 
 export default router;
