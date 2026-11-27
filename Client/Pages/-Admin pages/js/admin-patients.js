@@ -230,8 +230,7 @@ updateRegistrationPage();
 
   async function loadPatients() {
 try {
-const { supabase } = await import('./js/supabase-client.js');
-
+    const { supabase } = await import('./supabase-client.js');
 const {
   data: { session },
   error: sessionError
