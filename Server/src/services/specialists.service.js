@@ -42,3 +42,39 @@ export const findSpecialistById = async (specialistId, practiceId, userSupabase)
 
   return data;
 };
+export const updateSpecialist = async ({
+  id,
+  practiceId,
+  fullName,
+  specialty,
+  credentials,
+  userSupabase
+}) => {
+  const { data, error } = await userSupabase
+    .from("specialists")
+    .update({
+      full_name: fullName,
+      specialty,
+      credentials,
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", id)
+    .eq("practice_id", practiceId)
+    .select(`
+      id,
+      user_id,
+      full_name,
+      specialty,
+      credentials,
+      created_at,
+      updated_at
+    `)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Could not update specialist:", error);
+    throw new Error("Could not update specialist.");
+  }
+
+  return data;
+};
