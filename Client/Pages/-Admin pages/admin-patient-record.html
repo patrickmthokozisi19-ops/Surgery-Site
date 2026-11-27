@@ -639,16 +639,16 @@
 
       try {
         const { supabase } = await import('./js/supabase-client.js');
-
+      
         const { data: { session }, error: sessionError } =
-          await supabase.auth.getSession();
+  await supabase.auth.getSession();
 
-        if (sessionError || !session) {
-          window.location.replace('./admin-login.html');
-          return;
-        }
+if (sessionError || !session) {
+  window.location.replace('./admin-login.html');
+  return;
+}
 
-        accessToken = session.access_token;
+accessToken = session.access_token;
 
         const response = await fetch(`/api/patients/${encodeURIComponent(patientId)}`, {
           method: 'GET',
@@ -665,23 +665,26 @@
         }
         if (!response.ok) throw new Error(`Patient request failed (${response.status}).`);
 
+        
         const patient = await response.json();
 
+        // Keep the patient available for the edit dialog.
         currentPatient = patient;
         renderRecord(currentPatient);
 
+        // Enable editing after the patient record has loaded.
         editButton.disabled = false;
         editButton.removeAttribute('title');
 
-        // Load appointment history separately so a history error
-        // does not prevent the patient record from displaying.
+        // Load appointment history separately.
+        // An appointment error must not prevent the patient record from displaying.
         try {
           const appointmentResponse = await fetch(
             `/api/appointments/patient/${encodeURIComponent(patientId)}`,
             {
               method: 'GET',
               headers: {
-                Authorization: `Bearer ${session.access_token}`
+                Authorization: `Bearer ${accessToken}`
               }
             }
           );
@@ -699,35 +702,15 @@
           console.error('Unable to load appointment history:', appointmentError);
 
           get('appointmentHistory').innerHTML = `
-    <div class="apr-empty-state">
-      <div>
-        <strong>Appointment history unavailable</strong>
-        <p>Patient details loaded, but appointments could not be retrieved. Please try again later.</p>
-      </div>
-    </div>
-  `;
+            <div class="apr-empty-state">
+              <div>
+                <strong>Appointment history unavailable</strong>
+                <p>Patient details loaded, but appointments could not be retrieved. Please try again later.</p>
+              </div>
+            </div>
+          `;
         }
-
-        const appointmentResponse = await fetch(
-          `/api/appointments/patient/${encodeURIComponent(patientId)}`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${session.access_token}`
-            }
-          }
-        );
-
-        if (!appointmentResponse.ok) {
-          throw new Error(
-            `Appointment history request failed (${appointmentResponse.status}).`
-          );
-        }
-
-        const appointments = await appointmentResponse.json();
-
-        renderAppointmentHistory(appointments);
-      } catch (error) {
+} catch (error) {
         console.error('Unable to load patient record:', error);
         showError('The patient record could not be loaded. Check your connection and try again.');
       }
