@@ -258,11 +258,14 @@
       const safe = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
       })[char]);
-
       const patientId = new URLSearchParams(window.location.search).get('id');
+
       const editButton = get('editDetails');
-      editButton.disabled = true;
-      editButton.title = 'Profile editing will be enabled when the patient update endpoint is implemented.';
+      const editDialog = get('editDialog');
+      const editForm = get('editForm');
+
+      let accessToken = null;
+      let currentPatient = null;
 
       function formattedDate(date) {
         if (!date) return 'Not provided';
@@ -361,7 +364,130 @@
         get('registeredDate').textContent = formattedDate(patient.created_at);
         get('documentStatus').textContent = `Verification status: ${verification}`;
       }
-      
+
+      function openEditDialog() {
+        if (!currentPatient) return;
+
+        const details = currentPatient.details || {};
+
+        editForm.elements.namedItem('name').value =
+          currentPatient.full_name || '';
+
+        editForm.elements.namedItem('dob').value =
+          details.birthDate || '';
+
+        editForm.elements.namedItem('phone').value =
+          currentPatient.contact || '';
+
+        editForm.elements.namedItem('email').value =
+          details.patientEmail || '';
+
+        editForm.elements.namedItem('emergencyName').value =
+          details.emergencyName || '';
+
+        editForm.elements.namedItem('emergencyPhone').value =
+          details.emergencyPhone || '';
+
+        editForm.elements.namedItem('status').value =
+          (currentPatient.status || 'active').toLowerCase() === 'inactive'
+            ? 'Inactive'
+            : 'Active';
+
+        editDialog.showModal();
+      }
+
+      // Open the editor.
+      editButton.addEventListener('click', openEditDialog);
+
+      // Close the editor without saving.
+      get('closeEdit').addEventListener('click', () => {
+        editDialog.close();
+      });
+
+      get('cancelEdit').addEventListener('click', () => {
+        editDialog.close();
+      });
+
+      // Save the updated patient profile.
+      editForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!editForm.reportValidity()) return;
+
+        if (!currentPatient || !accessToken) {
+          alert('Your session has expired. Please sign in again.');
+          window.location.replace('./admin-login.html');
+          return;
+        }
+
+        const saveButton = editForm.querySelector('button[type="submit"]');
+        const originalText = saveButton.textContent;
+
+        const patient = editForm.elements.namedItem('name').value.trim();
+        const contact = editForm.elements.namedItem('phone').value.trim();
+
+        const patientDetails = {
+          birthDate: editForm.elements.namedItem('dob').value,
+          patientEmail: editForm.elements.namedItem('email').value.trim(),
+          emergencyName: editForm.elements.namedItem('emergencyName').value.trim(),
+          emergencyPhone: editForm.elements.namedItem('emergencyPhone').value.trim()
+        };
+
+        const status = editForm.elements.namedItem('status').value.toLowerCase();
+
+        try {
+          saveButton.disabled = true;
+          saveButton.textContent = 'Saving...';
+
+          const response = await fetch(
+            `/api/patients/${encodeURIComponent(patientId)}`,
+            {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${accessToken}`
+              },
+              body: JSON.stringify({
+                patient,
+                contact,
+                patientDetails,
+                status
+              })
+            }
+          );
+
+          const result = await response.json();
+
+          if (response.status === 401 || response.status === 403) {
+            window.location.replace('./admin-login.html');
+            return;
+          }
+
+          if (!response.ok) {
+            throw new Error(
+              result.message || result.error || 'Unable to update patient profile.'
+            );
+          }
+
+          if (!result.patient?.id) {
+            throw new Error('The server did not return the updated patient record.');
+          }
+
+          // Replace the current record with the database response.
+          currentPatient = result.patient;
+          renderRecord(currentPatient);
+
+          editDialog.close();
+
+        } catch (error) {
+          console.error('Patient profile update failed:', error);
+          alert(error.message || 'Unable to save patient details. Please try again.');
+        } finally {
+          saveButton.disabled = false;
+          saveButton.textContent = originalText;
+        }
+      });
+
       function renderAppointmentHistory(appointments) {
         const container = get('appointmentHistory');
 
@@ -442,54 +568,54 @@
     </p>
   `;
       }
-      
+
       function openAppointment(appointmentId) {
-    const bookingsUrl = new URL(
-        './admin-bookings.html',
-        window.location.href
-    );
+        const bookingsUrl = new URL(
+          './admin-bookings.html',
+          window.location.href
+        );
 
-    // Tell Admin Bookings which appointment to open.
-    bookingsUrl.searchParams.set('edit', appointmentId);
+        // Tell Admin Bookings which appointment to open.
+        bookingsUrl.searchParams.set('edit', appointmentId);
 
-    // Tell Admin Bookings which patient record to return to.
-    bookingsUrl.searchParams.set(
-        'returnTo',
-        window.location.href
-    );
+        // Tell Admin Bookings which patient record to return to.
+        bookingsUrl.searchParams.set(
+          'returnTo',
+          window.location.href
+        );
 
-    window.location.href = bookingsUrl.href;
-}
+        window.location.href = bookingsUrl.href;
+      }
 
-const historyContainer = get('appointmentHistory');
+      const historyContainer = get('appointmentHistory');
 
-historyContainer.addEventListener('click', (event) => {
-  const row = event.target.closest('.apr-appointment-row');
+      historyContainer.addEventListener('click', (event) => {
+        const row = event.target.closest('.apr-appointment-row');
 
-  if (!row) return;
+        if (!row) return;
 
-  const appointmentId = row.dataset.appointmentId;
+        const appointmentId = row.dataset.appointmentId;
 
-  if (appointmentId) {
-    openAppointment(appointmentId);
-  }
-});
+        if (appointmentId) {
+          openAppointment(appointmentId);
+        }
+      });
 
-historyContainer.addEventListener('keydown', (event) => {
-  if (event.key !== 'Enter' && event.key !== ' ') return;
+      historyContainer.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
 
-  const row = event.target.closest('.apr-appointment-row');
+        const row = event.target.closest('.apr-appointment-row');
 
-  if (!row) return;
+        if (!row) return;
 
-  event.preventDefault();
+        event.preventDefault();
 
-  const appointmentId = row.dataset.appointmentId;
+        const appointmentId = row.dataset.appointmentId;
 
-  if (appointmentId) {
-    openAppointment(appointmentId);
-  }
-});
+        if (appointmentId) {
+          openAppointment(appointmentId);
+        }
+      });
 
       const menuButton = document.querySelector('.adm-doc-nav .burger');
       const menuLinks = document.getElementById('dw-nav-links');
