@@ -639,11 +639,16 @@
 
       try {
         const { supabase } = await import('./js/supabase-client.js');
-        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+        const { data: { session }, error: sessionError } =
+          await supabase.auth.getSession();
+
         if (sessionError || !session) {
           window.location.replace('./admin-login.html');
           return;
         }
+
+        accessToken = session.access_token;
 
         const response = await fetch(`/api/patients/${encodeURIComponent(patientId)}`, {
           method: 'GET',
