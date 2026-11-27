@@ -1,9 +1,10 @@
 
 import {
-    findAllPatients,
-    findPatientById,
-    registerPatient
-  } from "../services/patients.service.js";
+  findAllPatients,
+  findPatientById,
+  registerPatient,
+  updatePatient
+} from "../services/patients.service.js";
   
   const handle = (callback) => async (req, res, next) => {
     try {
@@ -60,5 +61,31 @@ export const createPatient = handle(async (req, res) => {
   res.status(201).json({
     message: "Patient registered successfully.",
     patient: newPatient
+  });
+});
+
+
+// PATCH one patient's profile.
+export const editPatient = handle(async (req, res) => {
+  const {
+    patient,
+    contact,
+    patientDetails = {},
+    status
+  } = req.body;
+
+  const updatedPatient = await updatePatient({
+    id: req.params.id,
+    practiceId: req.practiceId,
+    patient,
+    contact,
+    patientDetails,
+    status,
+    userSupabase: req.userSupabase
+  });
+
+  res.status(200).json({
+    message: "Patient profile updated successfully.",
+    patient: updatedPatient
   });
 });
