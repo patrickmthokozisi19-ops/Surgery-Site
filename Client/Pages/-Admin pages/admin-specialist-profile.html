@@ -40,7 +40,7 @@
   </script>
 </head>
 
-<body class="dw dw-light adm asp">
+<body class="dw dw-light adm ap">
 
   <a class="skip" href="#main">Skip to content</a>
 
@@ -153,494 +153,364 @@
 
   <!-- SPECIALIST PROFILE -->
 
-  <main id="main" class="asp-main">
 
-    <!-- Breadcrumb -->
+  <main class="ap-main" id="main">
 
-    <div class="asp-breadcrumb">
-      <a href="admin-specialists.html">
-        <span aria-hidden="true">←</span>
-        Back to specialists
-      </a>
-
-      <span class="asp-breadcrumb-divider">/</span>
-      <span>Specialist profile</span>
-    </div>
-
-    <!-- Profile header -->
-
-    <section class="asp-profile-card">
-
-      <div class="asp-cover">
-
-        <div class="asp-cover-pattern"></div>
-
-        <div class="asp-cover-label">
-          <span class="asp-cover-dot"></span>
-          PROFESSIONAL PROFILE
-        </div>
-
-        <span class="asp-cover-id" id="specialistNumber"></span>
-
-      </div>
-
-      <div class="asp-profile-identity">
-
-        <div class="asp-avatar" id="profileAvatar">
-          SP
-        </div>
-
-        <div class="asp-identity-details">
-
-          <div class="asp-identity-title">
-            <p class="asp-eyebrow">SPECIALIST</p>
-            <h1 id="profileName">Specialist profile</h1>
-            <p id="profileSpecialty" class="asp-subtitle">
-              Professional specialty
-            </p>
+    <nav class="ap-breadcrumb" aria-label="Breadcrumb">
+      <a href="admin-specialists.html">Specialists</a>
+      <span aria-hidden="true">/</span>
+      <span id="breadcrumbName">Specialist profile</span>
+    </nav>
+  
+    <div id="profileContent" hidden>
+  
+      <section class="apr-hero">
+  
+        <div class="apr-identity">
+  
+          <span class="apr-avatar" aria-hidden="true">
+            <span id="profileAvatar"></span>
+          </span>
+  
+          <div class="apr-heading">
+  
+            <p class="ap-eyebrow">SPECIALIST PROFILE</p>
+  
+            <h1 id="profileName"></h1>
+  
+            <div class="apr-ref">
+              Specialist UUID:
+              <span id="specialistNumber"></span>
+            </div>
+  
+            <div class="apr-status-row">
+              <span class="apr-chip is-active" id="profileAccountBadge">
+                Account status
+              </span>
+  
+              <span class="apr-chip is-pending" id="profileCredentialBadge">
+                Credential status
+              </span>
+            </div>
+  
           </div>
-
-          <div class="asp-profile-meta">
-
-            <span class="asp-meta-item">
-              <span class="asp-meta-indicator"></span>
-              <span id="profileAccountBadge">Account status</span>
-            </span>
-
-            <span class="asp-meta-item">
-              <span class="asp-meta-indicator asp-meta-neutral"></span>
-              <span id="profileCredentialBadge">Credential review</span>
-            </span>
-
-          </div>
+  
         </div>
-
-        <div class="asp-profile-actions">
-
-          <a
-            id="viewCalendar"
-            class="asp-button asp-button-secondary"
-            href="admin-calendar.html"
-          >
-            View calendar
-          </a>
-        
+  
+        <div class="apr-actions">
+  
           <button
-            class="asp-button asp-button-primary"
-            id="saveProfile"
+            class="ap-btn ap-btn-primary"
             type="button"
+            id="editProfile"
           >
             Edit profile
           </button>
-        
-          <button
-            class="asp-button asp-button-secondary"
-            id="cancelEdit"
-            type="button"
-            hidden
-          >
-            Cancel
-          </button>
-        
+  
+          <a class="ap-btn" href="admin-specialists.html">
+            Back to specialists
+          </a>
+  
         </div>
-
-      </div>
-    </section>
-
-    <!-- Feedback -->
-
-    <p
-      id="profileMessage"
-      class="asp-feedback"
-      role="status"
-      aria-live="polite"
-    ></p>
-
-    <!-- Profile content -->
-
-    <div id="profileContent" hidden>
-
-      <div class="asp-workspace">
-
-        <!-- Profile sidebar -->
-
-        <aside class="asp-sidebar">
-
-          <div class="asp-sidebar-heading">
-            <span class="asp-sidebar-label">PROFILE MANAGEMENT</span>
-          </div>
-
-          <nav class="asp-tabs" aria-label="Specialist profile sections">
-
-            <button
-              type="button"
-              class="asp-tab active"
-              data-tab="overview"
-              aria-selected="true"
-            >
-              <span class="asp-tab-icon">01</span>
-              <span class="asp-tab-copy">
-                <strong>Overview</strong>
-                <small>Professional information</small>
+  
+      </section>
+  
+      <div class="apr-layout">
+  
+        <div class="apr-main">
+  
+          <!-- Professional information -->
+  
+          <section class="ap-panel ap-detail-panel">
+  
+            <div class="apr-section-intro">
+  
+              <span class="apr-section-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4 20c1.2-3.6 4.2-5.5 8-5.5s6.8 1.9 8 5.5"/>
+                </svg>
               </span>
-              <span class="asp-tab-arrow">›</span>
-            </button>
-
-            <button
-              type="button"
-              class="asp-tab"
-              data-tab="availability"
-              aria-selected="false"
-            >
-              <span class="asp-tab-icon">02</span>
-              <span class="asp-tab-copy">
-                <strong>Availability</strong>
-                <small>Working hours and schedule</small>
+  
+              <div>
+                <h2>Professional information</h2>
+                <p>Specialist identity and professional details</p>
+              </div>
+  
+            </div>
+  
+            <div class="apr-detail-groups">
+  
+              <section class="apr-group">
+                <h3>Professional details</h3>
+  
+                <dl class="apr-detail-grid">
+  
+                  <div>
+                    <dt>Full name</dt>
+                    <dd id="viewName"></dd>
+                  </div>
+  
+                  <div>
+                    <dt>Specialty</dt>
+                    <dd id="viewSpecialty"></dd>
+                  </div>
+  
+                  <div>
+                    <dt>Registration number</dt>
+                    <dd id="viewRegistration"></dd>
+                  </div>
+  
+                </dl>
+              </section>
+  
+              <section class="apr-group">
+                <h3>Contact information</h3>
+  
+                <dl class="apr-detail-grid">
+  
+                  <div>
+                    <dt>Email address</dt>
+                    <dd id="viewEmail"></dd>
+                  </div>
+  
+                  <div>
+                    <dt>Phone number</dt>
+                    <dd id="viewPhone"></dd>
+                  </div>
+  
+                </dl>
+              </section>
+  
+              <section class="apr-group">
+                <h3>Administrative notes</h3>
+  
+                <dl class="apr-detail-grid">
+  
+                  <div>
+                    <dt>Notes</dt>
+                    <dd id="viewNotes"></dd>
+                  </div>
+  
+                </dl>
+              </section>
+  
+            </div>
+  
+          </section>
+  
+          <!-- Availability -->
+  
+          <section class="ap-panel ap-detail-panel">
+  
+            <div class="apr-section-intro">
+  
+              <span class="apr-section-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="4" y="5" width="16" height="15" rx="3"/>
+                  <path d="M8 3v4M16 3v4M4 10h16"/>
+                </svg>
               </span>
-              <span class="asp-tab-arrow">›</span>
-            </button>
-
-            <button
-              type="button"
-              class="asp-tab"
-              data-tab="access"
-              aria-selected="false"
-            >
-              <span class="asp-tab-icon">03</span>
-              <span class="asp-tab-copy">
-                <strong>Account access</strong>
-                <small>Workspace permissions</small>
+  
+              <div>
+                <h2>Availability</h2>
+                <p>Working hours and scheduling information</p>
+              </div>
+  
+            </div>
+  
+            <div class="apr-empty-state">
+  
+              <span class="apr-empty-icon" aria-hidden="true">—</span>
+  
+              <div>
+                <strong>Availability not configured</strong>
+                <p>Specialist working hours and scheduling are not yet connected to this profile.</p>
+              </div>
+  
+            </div>
+  
+          </section>
+  
+          <!-- Account -->
+  
+          <section class="ap-panel ap-detail-panel">
+  
+            <div class="apr-section-intro">
+  
+              <span class="apr-section-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="5" y="11" width="14" height="9" rx="2.5"/>
+                  <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+                </svg>
               </span>
-              <span class="asp-tab-arrow">›</span>
-            </button>
-
-          </nav>
-
-          <div class="asp-sidebar-note">
-            <span class="asp-sidebar-note-title">PROFILE INFORMATION</span>
-            <p>
-              Changes to professional information should be reviewed
-              by an authorised practice administrator.
-            </p>
-          </div>
-
+  
+              <div>
+                <h2>Account access</h2>
+                <p>Specialist account and system access</p>
+              </div>
+  
+            </div>
+  
+            <div class="apr-status-line">
+              <span>Account status</span>
+              <strong id="accountStatus"></strong>
+            </div>
+  
+            <p id="accountDescription"></p>
+  
+          </section>
+  
+        </div>
+  
+        <!-- Overview -->
+  
+        <aside class="apr-side">
+  
+          <section class="ap-panel">
+  
+            <div class="ap-panel-heading">
+              <div>
+                <h2>Profile overview</h2>
+                <p>Specialist record information</p>
+              </div>
+            </div>
+  
+            <div class="apr-status-line">
+              <span>Specialty</span>
+              <strong id="overviewSpecialty"></strong>
+            </div>
+  
+            <div class="apr-status-line">
+              <span>Credentials</span>
+              <strong id="overviewCredentials"></strong>
+            </div>
+  
+            <div class="apr-status-line">
+              <span>Account</span>
+              <strong id="overviewAccount"></strong>
+            </div>
+  
+            <div class="apr-status-line">
+              <span>Created on</span>
+              <strong id="overviewCreated"></strong>
+            </div>
+  
+          </section>
+  
+          <section class="ap-panel">
+  
+            <div class="ap-panel-heading">
+              <div>
+                <h2>Scheduling</h2>
+                <p>Specialist appointments</p>
+              </div>
+            </div>
+  
+            <a class="ap-btn" id="viewCalendar" href="admin-calendar.html">
+              View calendar
+            </a>
+  
+          </section>
+  
         </aside>
-
-        <!-- Main profile panels -->
-
-        <div class="asp-content">
-
-          <form id="profileForm">
-
-            <!-- OVERVIEW -->
-
-            <section
-              id="tab-overview"
-              class="asp-tab-panel"
-            >
-
-              <div class="asp-section-heading">
-
-                <div>
-                  <span class="asp-section-overline">PROFILE DETAILS</span>
-                  <h2>Professional information</h2>
-                  <p>
-                    Manage the specialist's professional identity
-                    and contact information.
-                  </p>
-                </div>
-
-                <span class="asp-section-number">01</span>
-
-              </div>
-
-              <div class="asp-form-section">
-
-                <div class="asp-form-section-heading">
-                  <h3>Basic information</h3>
-                  <p>Personal and professional details.</p>
-                </div>
-
-                <div class="asp-form-grid">
-
-                  <label>
-                    Full name
-                    <input
-                      id="editName"
-                      type="text"
-                      required
-                      maxlength="90"
-                      placeholder="Enter full name"
-                    >
-                  </label>
-
-                  <label>
-                    Specialty
-                    <select id="editSpecialty"></select>
-                  </label>
-
-                  <label>
-                    Email address
-                    <input
-                      id="editEmail"
-                      type="email"
-                      placeholder="specialist@example.com"
-                    >
-                  </label>
-
-                  <label>
-                    Contact number
-                    <input
-                      id="editPhone"
-                      type="tel"
-                      maxlength="30"
-                      placeholder="+27"
-                    >
-                  </label>
-
-                  <label>
-                    Professional registration number
-                    <input
-                      id="editRegistration"
-                      type="text"
-                      maxlength="60"
-                      placeholder="Registration number"
-                    >
-                  </label>
-
-                  <label>
-                    Current availability
-                    <select id="editStatus">
-                      <option>On duty</option>
-                      <option>In theatre</option>
-                      <option>On leave</option>
-                      <option>Unavailable</option>
-                    </select>
-                  </label>
-
-                </div>
-
-              </div>
-
-              <div class="asp-form-section">
-
-                <div class="asp-form-section-heading">
-                  <h3>Administrative notes</h3>
-                  <p>
-                    Internal information for authorised practice staff.
-                  </p>
-                </div>
-
-                <label class="asp-field-full">
-                  Notes
-                  <textarea
-                    id="editNotes"
-                    rows="5"
-                    maxlength="1000"
-                    placeholder="Add relevant administrative notes..."
-                  ></textarea>
-                </label>
-
-              </div>
-
-              <div class="asp-verification">
-
-                <div class="asp-verification-icon">!</div>
-
-                <div>
-                  <strong>Professional credential review</strong>
-                  <p>
-                    Current review status:
-                    <span id="credentialStatus">Not verified</span>
-                  </p>
-                  <small>
-                    Registration details must be verified by an
-                    authorised practice manager.
-                  </small>
-                </div>
-
-              </div>
-
-            </section>
-
-            <!-- AVAILABILITY -->
-
-            <section
-              id="tab-availability"
-              class="asp-tab-panel"
-              hidden
-            >
-
-              <div class="asp-section-heading">
-
-                <div>
-                  <span class="asp-section-overline">SCHEDULE MANAGEMENT</span>
-                  <h2>Working hours</h2>
-                  <p>
-                    Review the specialist's regular working schedule.
-                  </p>
-                </div>
-
-                <span class="asp-section-number">02</span>
-
-              </div>
-
-              <div class="asp-form-section">
-
-                <div class="asp-form-section-heading">
-                  <h3>Appointment preferences</h3>
-                  <p>Default duration for appointments.</p>
-                </div>
-
-                <div class="asp-form-grid asp-short-grid">
-
-                  <label>
-                    Default appointment duration
-
-                    <select id="editDuration">
-                      <option value="15">15 minutes</option>
-                      <option value="30">30 minutes</option>
-                      <option value="45">45 minutes</option>
-                      <option value="60">60 minutes</option>
-                      <option value="90">90 minutes</option>
-                    </select>
-                  </label>
-
-                </div>
-
-              </div>
-
-              <div class="asp-form-section">
-
-                <div class="asp-form-section-heading">
-                  <h3>Weekly schedule</h3>
-                  <p>
-                    Regular working hours for each day of the week.
-                  </p>
-                </div>
-
-                <div class="asp-hours" id="hoursRows"></div>
-
-              </div>
-
-              <div class="asp-information-note">
-                <strong>Schedule management</strong>
-                <p>
-                  Regular working hours are separate from specific
-                  leave dates, blocked times and calendar appointments.
-                </p>
-              </div>
-
-            </section>
-
-            <!-- ACCOUNT ACCESS -->
-
-            <section
-              id="tab-access"
-              class="asp-tab-panel"
-              hidden
-            >
-
-              <div class="asp-section-heading">
-
-                <div>
-                  <span class="asp-section-overline">ACCOUNT MANAGEMENT</span>
-                  <h2>Account access</h2>
-                  <p>
-                    Review the specialist's access to the Pweb workspace.
-                  </p>
-                </div>
-
-                <span class="asp-section-number">03</span>
-
-              </div>
-
-              <div class="asp-access-card">
-
-                <div class="asp-access-card-top">
-                  <div>
-                    <span class="asp-section-overline">ACCOUNT STATUS</span>
-                    <h3 id="accountStatus">Not invited</h3>
-                    <p id="accountDescription" class="asp-subtitle"></p>
-                  </div>
-
-                  <span class="asp-access-status">
-                    <span class="asp-meta-indicator"></span>
-                    Account
-                  </span>
-                </div>
-
-                <div class="asp-access-divider"></div>
-
-                <div class="asp-access-card-bottom">
-                  <div>
-                    <strong>Workspace invitation</strong>
-                    <p>
-                      An invitation process will be available
-                      when account provisioning is implemented.
-                    </p>
-                  </div>
-
-                  <button
-                    id="inviteButton"
-                    class="asp-button asp-button-secondary"
-                    type="button"
-                    disabled
-                  >
-                    Prepare invitation
-                  </button>
-                </div>
-
-              </div>
-
-              <div class="asp-form-section">
-
-                <div class="asp-form-section-heading">
-                  <h3>Security recommendations</h3>
-                  <p>
-                    Recommended safeguards for specialist accounts.
-                  </p>
-                </div>
-
-                <div class="asp-security-list">
-
-                  <div class="asp-security-item">
-                    <div>
-                      <strong>Authentication</strong>
-                      <p>Use secure authentication for account access.</p>
-                    </div>
-                    <span>Passkey / MFA</span>
-                  </div>
-
-                  <div class="asp-security-item">
-                    <div>
-                      <strong>Workspace role</strong>
-                      <p>Assigned access should follow practice permissions.</p>
-                    </div>
-                    <span>Doctor</span>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="asp-information-note">
-                <strong>Practice-level access</strong>
-                <p>
-                  Account access, practice membership and specialist
-                  professional records are separate parts of the system.
-                </p>
-              </div>
-
-            </section>
-
-          </form>
-
-        </div>
+  
       </div>
+  
     </div>
-
+  
+    <section class="ap-panel ap-not-found" id="profileNotFound" hidden>
+      <h1>Specialist profile unavailable</h1>
+      <p id="profileError">The specialist profile could not be loaded.</p>
+  
+      <a class="ap-btn ap-btn-primary" href="admin-specialists.html">
+        View specialists
+      </a>
+    </section>
+  
   </main>
+  
+  <!-- Edit profile dialog -->
+  
+  <dialog class="ap-dialog" id="editDialog" aria-labelledby="editTitle">
+  
+    <form id="editForm">
+  
+      <div class="ap-dialog-header">
+  
+        <div>
+          <p class="ap-eyebrow">SPECIALIST INFORMATION</p>
+          <h2 id="editTitle">Edit profile</h2>
+        </div>
+  
+        <button
+          class="ap-icon-button"
+          type="button"
+          id="closeEdit"
+          aria-label="Close editor"
+        >
+          ×
+        </button>
+  
+      </div>
+  
+      <div class="ap-form-grid">
+  
+        <label>
+          Full name
+          <input name="fullName" id="editName" required maxlength="100">
+        </label>
+  
+        <label>
+          Specialty
+          <select name="specialty" id="editSpecialty">
+          </select>
+        </label>
+  
+        <label>
+          Email address
+          <input name="email" id="editEmail" type="email">
+        </label>
+  
+        <label>
+          Phone number
+          <input name="phone" id="editPhone" type="tel" maxlength="30">
+        </label>
+  
+        <label>
+          Registration number
+          <input name="registration" id="editRegistration" maxlength="100">
+        </label>
+  
+        <label class="ap-field-full">
+          Administrative notes
+          <textarea name="notes" id="editNotes" rows="4"></textarea>
+        </label>
+  
+      </div>
+  
+      <p id="profileMessage" role="status" aria-live="polite"></p>
+  
+      <div class="ap-dialog-actions">
+  
+        <button class="ap-btn" type="button" id="cancelEdit">
+          Cancel
+        </button>
+  
+        <button class="ap-btn ap-btn-primary" type="submit" id="saveProfile">
+          Save changes
+        </button>
+  
+      </div>
+  
+    </form>
+  
+  </dialog>
+  
+  <script type="module" src="./js/admin-specialist-profile.js"></script>
+  </body>
+  </html>
+  
 
 </body>
 </html>

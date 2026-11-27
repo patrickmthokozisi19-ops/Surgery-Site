@@ -22,11 +22,10 @@ import { supabase } from "./supabase-client.js";
 
   let specialist = null;
   let credentials = {};
-  let editing = false;
 
-  // -----------------------------
+  // ----------------------------------------
   // Navigation
-  // -----------------------------
+  // ----------------------------------------
 
   function setupNavigation() {
     const nav = $("dw-nav-links");
@@ -38,40 +37,14 @@ import { supabase } from "./supabase-client.js";
       const open = nav.classList.toggle("open");
 
       button.classList.toggle("open", open);
-
-      document.querySelector(".adm-doc-nav")
-        ?.classList.toggle("open", open);
-
+      document.querySelector(".adm-doc-nav")?.classList.toggle("open", open);
       button.setAttribute("aria-expanded", String(open));
     });
   }
 
-  // -----------------------------
-  // Profile tabs
-  // -----------------------------
-
-  function setupTabs() {
-    document.querySelectorAll(".asp-tab").forEach((button) => {
-      button.addEventListener("click", () => {
-        const selected = button.dataset.tab;
-
-        document.querySelectorAll(".asp-tab").forEach((tab) => {
-          const active = tab === button;
-
-          tab.classList.toggle("active", active);
-          tab.setAttribute("aria-selected", String(active));
-        });
-
-        document.querySelectorAll(".asp-tab-panel").forEach((panel) => {
-          panel.hidden = panel.id !== `tab-${selected}`;
-        });
-      });
-    });
-  }
-
-  // -----------------------------
-  // Load specialist
-  // -----------------------------
+  // ----------------------------------------
+  // Authentication
+  // ----------------------------------------
 
   async function getSession() {
     const {
@@ -87,20 +60,22 @@ import { supabase } from "./supabase-client.js";
     return session;
   }
 
+  // ----------------------------------------
+  // Profile loading
+  // ----------------------------------------
+
   async function loadSpecialist() {
     const specialistId = new URLSearchParams(
       window.location.search
     ).get("id");
 
     if (!specialistId) {
-      showMessage("No specialist ID was provided.", true);
-      $("saveProfile").disabled = true;
+      showNotFound("No specialist ID was provided.");
       return;
     }
 
     try {
       const session = await getSession();
-
       if (!session) return;
 
       const response = await fetch(
@@ -121,7 +96,9 @@ import { supabase } from "./supabase-client.js";
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.message || "Could not load specialist.");
+        throw new Error(
+          result.message || "Could not load specialist profile."
+        );
       }
 
       specialist = result;
@@ -133,187 +110,194 @@ import { supabase } from "./supabase-client.js";
           ? { ...specialist.credentials }
           : {};
 
-      fillProfile();
-      setViewMode();
+      renderProfile();
+      setupEditDialog();
 
     } catch (error) {
       console.error("Specialist profile error:", error);
-
-      showMessage(
-        error.message || "Unable to load specialist profile.",
-        true
+      showNotFound(
+        error.message || "Unable to load specialist profile."
       );
-
-      $("saveProfile").disabled = true;
     }
   }
 
-  // -----------------------------
-  // Populate specialty options
-  // -----------------------------
+  // ----------------------------------------
+  // Render profile
+  // ----------------------------------------
 
-  function setupSpecialties() {
+  function renderProfile() {
+    if (!specialist) return;
+
+    const fullName = specialist.full_name || "Unnamed specialist";
+    const specialty = specialist.specialty || "Not provided";
+    const registration = credentials.registration || "Not provided";
+    const email = credentials.email || "Not provided";
+    const phone = credentials.phone || "Not provided";
+    const notes = credentials.administrative_notes || "No notes available";
+    const credentialStatus =
+      credentials.credential_status || "Not verified";
+
+    const accountLinked = Boolean(specialist.user_id);
+
+    $("profileContent").hidden = false;
+    $("profileNotFound").hidden = true;
+
+    $("breadcrumbName").textContent = fullName;
+    $("profileName").textContent = fullName;
+    $("specialistNumber").textContent = specialist.id;
+
+    $("profileAvatar").textContent = getInitials(fullName);
+
+    $("profileAccountBadge").textContent = accountLinked
+      ? "Account linked"
+      : "No linked account";
+
+    $("profileCredentialBadge").textContent = credentialStatus;
+
+    // Professional information
+
+    $("viewName").textContent = fullName;
+    $("viewSpecialty").textContent = specialty;
+    $("viewRegistration").textContent = registration;
+    $("viewEmail").textContent = email;
+    $("viewPhone").textContent = phone;
+    $("viewNotes").textContent = notes;
+
+    // Account information
+
+    $("accountStatus").textContent = accountLinked
+      ? "Account linked"
+      : "No linked account";
+
+    $("accountDescription").textContent = accountLinked
+      ? "A user account is linked to this specialist record."
+      : "There is currently no user account linked to this specialist record.";
+
+    // Overview
+
+    $("overviewSpecialty").textContent = specialty;
+    $("overviewCredentials").textContent = credentialStatus;
+    $("overviewAccount").textContent = accountLinked
+      ? "Linked"
+      : "Not linked";
+
+    $("overviewCreated").textContent = formatDate(
+      specialist.created_at
+    );
+
+    // Calendar
+
+    $("viewCalendar").href = "admin-calendar.html";
+
+    // Update dialog fields
+
+    populateSpecialtyOptions();
+  }
+
+  function getInitials(name) {
+    return name
+      .replace(/\bDr\.?\s*/gi, "")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part.charAt(0))
+      .join("")
+      .toUpperCase();
+  }
+
+  function formatDate(value) {
+    if (!value) return "Not available";
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+      return "Not available";
+    }
+
+    return new Intl.DateTimeFormat("en-ZA", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    }).format(date);
+  }
+
+  // ----------------------------------------
+  // Edit dialog
+  // ----------------------------------------
+
+  function populateSpecialtyOptions() {
     const select = $("editSpecialty");
+
+    if (!select) return;
+
+    const currentSpecialty = specialist?.specialty || "";
+    const options = [...SPECIALTIES];
+
+    if (
+      currentSpecialty &&
+      !options.includes(currentSpecialty)
+    ) {
+      options.push(currentSpecialty);
+    }
 
     select.replaceChildren();
 
-    SPECIALTIES.forEach((specialty) => {
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Select specialty";
+    select.appendChild(placeholder);
+
+    options.forEach((item) => {
       const option = document.createElement("option");
-
-      option.value = specialty;
-      option.textContent = specialty;
-
+      option.value = item;
+      option.textContent = item;
       select.appendChild(option);
     });
   }
 
-  // -----------------------------
-  // Fill profile
-  // -----------------------------
+  function setupEditDialog() {
+    const dialog = $("editDialog");
+    const form = $("editForm");
 
-  function fillProfile() {
-    $("profileContent").hidden = false;
+    if (!dialog || !form) return;
 
-    $("specialistNumber").textContent = `· ${specialist.id}`;
+    $("editProfile").addEventListener("click", openEditDialog);
 
-    $("profileName").textContent = specialist.full_name;
+    $("closeEdit").addEventListener("click", () => {
+      dialog.close();
+    });
 
-    $("profileAvatar").textContent = specialist.full_name
-      .split(/\s+/)
-      .filter(part => !["Dr.", "Dr"].includes(part))
-      .slice(0, 2)
-      .map(part => part[0])
-      .join("")
-      .toUpperCase();
+    $("cancelEdit").addEventListener("click", () => {
+      dialog.close();
+    });
 
-    $("profileSpecialty").textContent =
-      specialist.specialty || "Specialty not specified";
+    form.addEventListener("submit", saveProfile);
+  }
 
-    $("profileAccountBadge").textContent =
-      specialist.user_id ? "Account linked" : "No linked account";
-
-    $("profileCredentialBadge").textContent =
-      credentials.credential_status || "Not verified";
-
-    setupSpecialties();
+  function openEditDialog() {
+    if (!specialist) return;
 
     $("editName").value = specialist.full_name || "";
-
-    $("editSpecialty").value =
-      specialist.specialty || "";
-
-    $("editEmail").value =
-      credentials.email || "";
-
-    $("editPhone").value =
-      credentials.phone || "";
-
-    $("editRegistration").value =
-      credentials.registration || "";
-
-    $("editNotes").value =
-      credentials.administrative_notes || "";
-
-    $("credentialStatus").textContent =
-      credentials.credential_status || "Not verified";
-
-    // Availability is not yet connected to the database.
-    $("editStatus").disabled = true;
-    $("editDuration").disabled = true;
-
-    $("hoursRows").textContent =
-      "Working hours integration is not available yet.";
-
-    // Account information.
-    $("accountStatus").textContent =
-      specialist.user_id ? "Account linked" : "No linked account";
-
-    $("accountDescription").textContent =
-      specialist.user_id
-        ? "A user account is linked to this specialist record."
-        : "No user account is currently linked.";
-
-    $("inviteButton").disabled = true;
-
-    $("viewCalendar").href = "admin-calendar.html";
+    $("editSpecialty").value = specialist.specialty || "";
+    $("editEmail").value = credentials.email || "";
+    $("editPhone").value = credentials.phone || "";
+    $("editRegistration").value = credentials.registration || "";
+    $("editNotes").value = credentials.administrative_notes || "";
 
     showMessage("");
+
+    $("editDialog").showModal();
   }
 
-  // -----------------------------
-  // View mode
-  // -----------------------------
-
-  function setViewMode() {
-    editing = false;
-
-    $("profileForm").classList.remove("asp-editing");
-
-    $("editName").disabled = true;
-    $("editSpecialty").disabled = true;
-    $("editEmail").disabled = true;
-    $("editPhone").disabled = true;
-    $("editRegistration").disabled = true;
-    $("editNotes").disabled = true;
-
-    $("editStatus").disabled = true;
-    $("editDuration").disabled = true;
-
-    $("saveProfile").textContent = "Edit profile";
-    $("saveProfile").disabled = false;
-
-    $("cancelEdit").hidden = true;
-  }
-
-  // -----------------------------
-  // Edit mode
-  // -----------------------------
-
-  function setEditMode() {
-    if (!specialist || editing) return;
-
-    editing = true;
-
-    $("profileForm").classList.add("asp-editing");
-
-    $("editName").disabled = false;
-    $("editSpecialty").disabled = false;
-    $("editEmail").disabled = false;
-    $("editPhone").disabled = false;
-    $("editRegistration").disabled = false;
-    $("editNotes").disabled = false;
-
-    // These features are not implemented yet.
-    $("editStatus").disabled = true;
-    $("editDuration").disabled = true;
-
-    $("saveProfile").textContent = "Save changes";
-    $("cancelEdit").hidden = false;
-
-    showMessage("You are editing this specialist's profile.");
-  }
-
-  // -----------------------------
-  // Cancel editing
-  // -----------------------------
-
-  function cancelEditing() {
-    if (!editing) return;
-
-    fillProfile();
-    setViewMode();
-
-    showMessage("Changes discarded.");
-  }
-
-  // -----------------------------
+  // ----------------------------------------
   // Save profile
-  // -----------------------------
+  // ----------------------------------------
 
   async function saveProfile(event) {
     event.preventDefault();
 
-    if (!specialist || !editing) return;
+    if (!specialist) return;
 
     showMessage("");
 
@@ -322,11 +306,13 @@ import { supabase } from "./supabase-client.js";
 
     if (!fullName) {
       showMessage("Enter the specialist's full name.", true);
+      $("editName").focus();
       return;
     }
 
     if (email && !$("editEmail").validity.valid) {
       showMessage("Enter a valid email address.", true);
+      $("editEmail").focus();
       return;
     }
 
@@ -339,13 +325,13 @@ import { supabase } from "./supabase-client.js";
     };
 
     const saveButton = $("saveProfile");
+    const originalText = saveButton.textContent;
 
     saveButton.disabled = true;
     saveButton.textContent = "Saving...";
 
     try {
       const session = await getSession();
-
       if (!session) return;
 
       const response = await fetch(
@@ -364,6 +350,11 @@ import { supabase } from "./supabase-client.js";
         }
       );
 
+      if (response.status === 401 || response.status === 403) {
+        window.location.replace("./admin-login.html");
+        return;
+      }
+
       const result = await response.json();
 
       if (!response.ok) {
@@ -372,16 +363,22 @@ import { supabase } from "./supabase-client.js";
         );
       }
 
+      if (!result.specialist) {
+        throw new Error("The server did not return the updated specialist.");
+      }
+
       specialist = result.specialist;
 
-      credentials = {
-        ...updatedCredentials
-      };
+      credentials =
+        specialist.credentials &&
+        typeof specialist.credentials === "object" &&
+        !Array.isArray(specialist.credentials)
+          ? { ...specialist.credentials }
+          : {};
 
-      fillProfile();
-      setViewMode();
+      renderProfile();
 
-      showMessage("Specialist profile updated successfully.");
+      $("editDialog").close();
 
     } catch (error) {
       console.error("Specialist save error:", error);
@@ -391,41 +388,36 @@ import { supabase } from "./supabase-client.js";
         true
       );
 
+    } finally {
       saveButton.disabled = false;
-      saveButton.textContent = "Save changes";
+      saveButton.textContent = originalText;
     }
   }
 
-  // -----------------------------
-  // Feedback
-  // -----------------------------
+  // ----------------------------------------
+  // Messages and errors
+  // ----------------------------------------
 
   function showMessage(message, isError = false) {
     const element = $("profileMessage");
+
+    if (!element) return;
 
     element.textContent = message;
     element.classList.toggle("error", isError);
   }
 
-  // -----------------------------
+  function showNotFound(message) {
+    $("profileContent").hidden = true;
+    $("profileNotFound").hidden = false;
+    $("profileError").textContent = message;
+  }
+
+  // ----------------------------------------
   // Initialise
-  // -----------------------------
+  // ----------------------------------------
 
   setupNavigation();
-  setupTabs();
-
-  $("saveProfile").addEventListener("click", () => {
-    if (editing) {
-      $("profileForm").requestSubmit();
-    } else {
-      setEditMode();
-    }
-  });
-
-  $("cancelEdit").addEventListener("click", cancelEditing);
-
-  $("profileForm").addEventListener("submit", saveProfile);
-
   loadSpecialist();
 
 })();

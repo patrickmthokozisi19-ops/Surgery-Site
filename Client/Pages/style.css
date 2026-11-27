@@ -7614,7 +7614,30 @@ body:has(#bookingDialog[open])::-webkit-scrollbar {
         & .asp-btn { transition: none; }
       }
     }
-  }
+ 
+/* Specialists directory avatar */
+.asp-person .asp-avatar {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  flex: 0 0 44px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  background: #475569;
+  color: #FFFFFF;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  box-shadow: none;
+}
+ }
 
 /* ============================================================
    SPECIALIST PROFILE — PWEB ADMIN
