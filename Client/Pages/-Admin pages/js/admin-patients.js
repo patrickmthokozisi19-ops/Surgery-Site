@@ -349,33 +349,113 @@ console.error('Patient directory loading failed:', error);
   get('closeRegister').addEventListener('click', () => dialog.close());
   get('cancelRegister').addEventListener('click', () => dialog.close());
 
-  get('registerForm').addEventListener('submit', (event) => {
+
+  registrationForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const values = new FormData(event.currentTarget);
-    const name = String(values.get('name')).trim();
-    const phone = String(values.get('phone')).trim();
-    if (!name || !phone) return;
+  
+    if (!registrationForm.reportValidity()) return;
+  
+    const name = get('registerForm').elements.namedItem('name').value.trim();
+    const phone = get('registerForm').elements.namedItem('phone').value.trim();
+  
+    if (!name || !phone) {
+      alert('Please provide the patient name and contact number.');
+      return;
+    }
+  
+    const originalButtonText = submitRegistration.textContent;
+  
+    try {
+      submitRegistration.disabled = true;
+      submitRegistration.textContent = 'Registering...';
+  
+      // Get the authenticated Supabase session
+      const { supabase } = await import('./supabase-client.js');
+  
+      const {
+        data: { session },
+        error: sessionError
+      } = await supabase.auth.getSession();
+  
+      if (sessionError || !session) {
+        window.location.replace('./admin-login.html');
+        return;
+      }
+  
+      // Collect additional registration information
+      const patientDetails = {};
+  
+      for (const field of registrationForm.elements) {
+        if (!field.name || ['name', 'phone'].includes(field.name)) continue;
+        if (field.disabled || field.type === 'file') continue;
+  
+        if (field.type === 'radio' && !field.checked) continue;
+  
+        const key = {
+          dob: 'birthDate',
+          email: 'patientEmail'
+        }[field.name] || field.name;
+  
+        patientDetails[key] = field.type === 'checkbox'
+          ? field.checked
+          : field.value.trim();
+      }
+  
+      // Register patient through the Express API
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`
+        },
+        body: JSON.stringify({
+          patient: name,
+          contact: phone,
+          patientDetails
+        })
+      });
+  
+      const result = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(
+          result.message || result.error || 'Patient registration failed.'
+        );
+      }
+  
+      const newPatient = result.patient;
+  
+      if (!newPatient?.id) {
+        throw new Error('Registration succeeded, but no patient ID was returned.');
+      }
+  
+      // Reload the directory from the database
+      await loadPatients();
+  
+      // Reset the registration form
+      registrationForm.reset();
 
-    const maxNumber = Math.max(1000, ...patients.map((p) => Number(p.id.split('-')[1]) || 0));
-    const patient = {
-      id: `PT-${maxNumber + 1}`,
-      name,
-      initials: name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase(),
-      phone,
-      email: String(values.get('email') || '').trim(),
-      dob: String(values.get('dob') || ''),
-      registered: new Date().toISOString().slice(0, 10),
-      verification: 'Not uploaded',
-      status: 'Active',
-      emergencyName: '',
-      emergencyPhone: ''
-    };
-    patients.push(patient);
-    persist();
-    dialog.close();
-    window.location.href = `admin-patient-record.html?id=${encodeURIComponent(patient.id)}`;
+      ['kinEnabled', 'guardianEnabled', 'paymentMethod'].forEach((id) => {
+        get(id)?.dispatchEvent(new Event('change'));
+      });
+      
+      resetRegistrationPages();
+      dialog.close();
+  
+      // Open the newly registered patient's record
+      window.location.href =
+        `admin-patient-record.html?id=${encodeURIComponent(newPatient.id)}`;
+  
+    } catch (error) {
+      console.error('Patient registration failed:', error);
+      alert(error.message || 'Unable to register patient. Please try again.');
+  
+    } finally {
+      submitRegistration.disabled = false;
+      submitRegistration.textContent = originalButtonText;
+    }
   });
-
+  
   const menuButton = document.querySelector('.adm-doc-nav .burger');
   const menuLinks = document.getElementById('dw-nav-links');
 
